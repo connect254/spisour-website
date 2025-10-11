@@ -15,12 +15,57 @@
           window.location.href = "login.html";
         });
     </script>
-    <button>view all singles</button>
-    <button>find my match</button>
-    <button>search by location</button>
-    <button>search by career</button>
-    <button>search by age</button>
-    <button>custom search</button>
+
+    <button onclick="openForm()">view all singles</button>
+    <script>
+      function openForm() {
+        window.open("https://forms.gle/4DreGqfNbdpWHFYKA", "_blank");
+      }
+    </script>
+
+    <button onclick="openForm()">Find my match</button>
+    <script>
+      function openForm() {
+        window.open("https://forms.gle/koLpYLHX8rNRuSjJ7", "_blank");
+      }
+    </script>
+
+    <button id="search by locationBtn">search by location</button>
+    <script>
+      document
+        .getElementById("search by locationBtn")
+        .addEventListener("click", function () {
+          window.location.href = "mysearch.html";
+        });
+    </script>
+
+    <button id="search by careerBtn">search by career</button>
+    <script>
+      document
+        .getElementById("search by careerBtn")
+        .addEventListener("click", function () {
+          window.location.href = "mysearch.html";
+        });
+    </script>
+
+    <button id="search by ageBtn">search by age</button>
+    <script>
+      document
+        .getElementById("search by ageBtn")
+        .addEventListener("click", function () {
+          window.location.href = "mysearch.html";
+        });
+    </script>
+
+    <button id="custom searchBtn">custom search</button>
+    <script>
+      document
+        .getElementById("custom searchBtn")
+        .addEventListener("click", function () {
+          window.location.href = "mysearch.html";
+        });
+    </script>
+
     <button id="AboutBtn">About us</button>
     <script>
       document
@@ -29,6 +74,7 @@
           window.location.href = "about.html";
         });
     </script>
+
     <button id="contactBtn">contact us</button>
     <script>
       document
@@ -37,6 +83,7 @@
           window.location.href = "us.html";
         });
     </script>
+
     <div class="hero"></div>
     <p>
       Singles Planet is a leading online dating platform dedicated to helping
