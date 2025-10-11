@@ -3,12 +3,140 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>about us</title>
+    <title>contact us</title>
   </head>
+
+  <style>
+    body {
+      background-color: hsl(300, 69%, 70%);
+    }
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      padding: 20px;
+      border-width: 10px;
+      margin-top: 20px;
+      border-style: dashed;
+      border-color: pink;
+      border-radius: 100px;
+    }
+    h1 {
+      color: black;
+      text-align: center;
+      font-size: 20px;
+      margin-top: 40px;
+      font-family: Arial, sans-serif;
+    }
+
+    .email-btn {
+      display: inline-flex;
+      width: 400px;
+      margin-top: 30px;
+      align-items: center;
+      background-color: hsl(207, 47%, 68%);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      gap: 25px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .email-btn :hover {
+      background-color: #1ebe5d;
+      transform: scale(1.05);
+    }
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .whatsapp-btn {
+      display: inline-flex;
+      width: 400px;
+      background-color: #25d366;
+      align-items: center;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      margin-top: 0px;
+      text-decoration: none;
+      font-size: 18px;
+      border-top: 10px solid #a8dc36;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .whatsapp-btn:hover {
+      background-color: black;
+      transform: scale(1.05);
+    }
+    .call-btn {
+      display: inline-flex;
+      width: 400px;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      color: blue;
+      border-color: black;
+      border-style: solid;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      gap: 16px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .call-btn:hover {
+      background-color: black;
+      transform: scale(1.05);
+    }
+    .icon {
+      width: 25px;
+      height: 25px;
+    }
+  </style>
   <body>
-    <p>
-      we are developing this website to serve all kenyans find us through
-      whatsapp number-
-    </p>
+    <h1>
+      I am admin.if you need privacy, I do private and peronallized connections
+      to keep your indentity anonymous. Am accessible through:
+    </h1>
+    <div class="button-container">
+      <div style="text-align: center">
+        <a href="mailto:surehooksdatingagency@gmail.com" class="email-btn"
+          ><img
+            src="https://cdn-icons-png.flaticon.com/512/732/732200.png"
+            alt="Email Icon"
+            class="icon"
+          />Email website admin</a
+        >
+      </div>
+
+      <div style="text-align: center; margin-top: 50px">
+        <a
+          href="https://wa.me/254796339854?text=Hello%20I%20visited%20your%20website%20and%20would%20like%20a%20connection"
+          target="_blank"
+          class="whatsapp-btn"
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+            alt="WhatsApp Icon"
+            class="icon"
+          />Chat website admin on WhatsApp
+        </a>
+      </div>
+
+      <div style="text-align: center; margin-top: 30px">
+        <a href="tel:+254796339854" class="call-btn">
+          <img src="ds.photos/callicon.png" alt="" class="icon" />
+          Call website admin
+        </a>
+      </div>
+    </div>
   </body>
 </html>
+
+ 
+
