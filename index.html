@@ -16,18 +16,29 @@
         });
     </script>
 
-    <button onclick="openForm()">view all singles</button>
+    <button class="form-button" onclick="openForm()">Register</button>
     <script>
       function openForm() {
         window.open("https://forms.gle/4DreGqfNbdpWHFYKA", "_blank");
       }
     </script>
 
-    <button onclick="openForm()">Find my match</button>
+    <button id="view All SinglesBtn">view all singles</button>
     <script>
-      function openForm() {
-        window.open("https://forms.gle/koLpYLHX8rNRuSjJ7", "_blank");
-      }
+      document
+        .getElementById("view All SinglesBtn")
+        .addEventListener("click", function () {
+          window.location.href = "login.html";
+        });
+    </script>
+
+    <button id="Find My MatchBtn">Find my match</button>
+    <script>
+      document
+        .getElementById("Find My MatchBtn")
+        .addEventListener("click", function () {
+          window.location.href = "login.html";
+        });
     </script>
 
     <button id="search by locationBtn">search by location</button>
@@ -43,15 +54,6 @@
     <script>
       document
         .getElementById("search by careerBtn")
-        .addEventListener("click", function () {
-          window.location.href = "mysearch.html";
-        });
-    </script>
-
-    <button id="search by ageBtn">search by age</button>
-    <script>
-      document
-        .getElementById("search by ageBtn")
         .addEventListener("click", function () {
           window.location.href = "mysearch.html";
         });
