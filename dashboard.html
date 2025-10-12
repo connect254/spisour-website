@@ -131,11 +131,86 @@
       height: 24px;
       margin: 2px;
     }
+    #searchBox {
+      padding: 8px;
+      width: 250px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    mark {
+      background-color: yellow;
+      color: black;
+    }
+
+    #noResults {
+      margin-top: 10px;
+      color: red;
+      font-style: italic;
+      display: none;
+    }
+    h2 {
+      font-size: 20px;
+      color: rgb(33, 4, 80);
+      text-align: center;
+    }
   </style>
   <body>
     <h1>
       Welcome to the SINGLES PLANET Dashboard.
-      <button class="showphone-button">contact us: 0796 339 854</button>
+      <button class="showphone-button">text us on: 0796 339 854</button>
+      <br /><br />
+      <h2>
+        Type in the Search box belowto find singles by age, location, career,
+        tribe etc (e.g-teacher,nurse,kikuyu,nairobi,45,mkale,driver,22 etc)
+      </h2>
+
+      <input
+        type="text"
+        id="searchBox"
+        placeholder="start typing to search..."
+      />
+      <p id="noResults">No results found.</p>
+
+      <script>
+        const searchBox = document.getElementById("searchBox");
+        const noResults = document.getElementById("noResults");
+
+        const searchableTags = "p, h1, h2, h3, h4, h5, h6, li, a, button";
+
+        searchBox.addEventListener("input", () => {
+          document.querySelectorAll("mark").forEach((mark) => {
+            const parent = mark.parentNode;
+            parent.replaceChild(
+              document.createTextNode(mark.textContent),
+              mark
+            );
+          });
+
+          const searchText = searchBox.value.trim().toLowerCase();
+          let found = false;
+
+          if (!searchText) {
+            noResults.style.display = "none";
+            return;
+          }
+
+          document.querySelectorAll(searchableTags).forEach((element) => {
+            const text = element.textContent;
+            const regex = new RegExp(`(${searchText})`, "gi");
+
+            if (text.toLowerCase().includes(searchText)) {
+              found = true;
+              element.innerHTML = text.replace(regex, "<mark>$1</mark>");
+            } else {
+              element.innerHTML = text;
+            }
+          });
+
+          noResults.style.display = found ? "none" : "block";
+        });
+      </script>
+      <br /><br />
     </h1>
     <div class="content-box">
       <div class="image-box">
