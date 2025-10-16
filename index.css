@@ -2,7 +2,7 @@ body {
   background-size: auto;
   background-repeat: space;
   background-position: center;
-  background-color: hwb(346 45% 8%);
+  background-color: hwb(300 81% 14%);
   margin-top: 30px;
   margin-bottom: 10px;
 }
@@ -29,7 +29,7 @@ body {
     }
     
       h1 {
-        color: green;
+        color: oklab(62.693% 0.22954 -0.14227);
         font-style: normal;
         font-family: "Courier New", Courier, monospace;
         text-align: center;
@@ -144,18 +144,21 @@ body {
       border: none;
     }
       
-.introduction-statement {
+
+    .introduction-statement {
 display:block;
-color: blue;
+color: #333;
 width:auto;
 padding: 10px;
-margin: 10px;
+margin: 10px auto;
 margin-top: 10px;
 margin-bottom: 30px;
-border-color: hwb(346 45% 8%);
+border-color: hwb(300 81% 14%);
 border-style: solid;
-background-color: hwb(346 45% 8%);
+background-color: hwb(300 81% 14%);
 border-width: 2px;
 border-radius: none;
-font-size:smaller;
+
 }
+
+ 
