@@ -160,5 +160,105 @@ border-width: 2px;
 border-radius: none;
 
 }
+.any-button {
+      
+    background-color: yellow;
+      color: deeppink;
+      border-color: blue;
+      border-style: solid;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      text-decoration: none;
+      display: block;
+      margin-top: 20px;
+      width: auto;
+      font-weight: bold;
+      transition: background-color 0.15s;
+    
+    }
+    .any-button:hover {
+        background-color: black;
+        box-shadow: 5px 5px 10px red;
+      }
+        .email-btn {
+      display: inline-flex;
+      width: 300px;
+      margin-bottom: 2px;
+      align-items: center;
+      background-color: hsl(207, 47%, 68%);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      gap: 25px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .email-btn :hover {
+      background-color: #1ebe5d;
+      transform: scale(1.05);
+    }
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .whatsapp-btn {
+      display: inline-flex;
+      width: 300px;
+      background-color: #25d366;
+      align-items: center;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      margin-top: 0px;
+      text-decoration: none;
+      font-size: 18px;
+      border-top: 10px solid #a8dc36;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .whatsapp-btn:hover {
+      background-color: black;
+      transform: scale(1.05);
+    }
+    .call-btn {
+      display: inline-flex;
+      width: 300px;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      color: blue;
+      border-color: black;
+      border-style: solid;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      gap: 16px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .call-btn:hover {
+      background-color: black;
+      transform: scale(1.05);
+    }
+    .icon {
+      width: 25px;
+      height: 25px;
+    }
+
+ 
+       
+       
+
+      
+
+
 
  
