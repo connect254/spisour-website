@@ -7,48 +7,161 @@
   </head>
   <style>
     h1 {
+      color: #210eb5;
       text-align: center;
-      color: oklab(62.693% 0.22954 -0.14227);
     }
-
     body {
-      background-color: hwb(300 81% 14%);
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      line-height: 1.6;
+      background-color: lightgrey;
+    }
+    img {
+      width: 300px;
+      border-radius: 30px;
+      float: left;
+      margin: 40px;
+      border-style: solid;
+      border-color: green;
+      object-fit: contain;
+      object-position: center;
     }
 
-    p {
-      max-width: 800px;
-      margin: 10px auto;
-      font-size: 18px;
-      color: #333;
+    .showphone-button {
+      background-color: red;
+      color: white;
+      width: 200px;
+      font-style: normal;
+      transition: color 1s;
+    }
+
+    .showphone-button:hover {
+      background-color: yellow;
+      color: deeppink;
+    }
+    .content-box {
+      width: 518px;
+      height: 350px;
+      margin: 5px;
+      margin-right: 3px;
+      display: block;
+      flex-wrap: wrap;
+      border-style: solid;
+      border-color: lightgray;
+    }
+    .image-box img {
+      width: 200px;
+      height: 344px;
+      margin: 1px;
+      display: inline-flex;
+      border-style: solid;
+      border-color: lightgray;
+      background-size: 200px;
+      background-position: space;
+    }
+    .details-box {
+      width: 310px;
+      height: 344px;
+      display: inline-block;
+      margin-bottom: 5px;
+      margin-top: 1px;
+      border-style: solid;
+      border-color: lightgrey;
+      background-color: lightgray;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      box-sizing: border-box;
+      overflow: auto;
+    }
+    .details-box p {
+      line-height: 1.6;
+      padding: 2px;
+      margin-top: 2px;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+    .details-box strong {
+      color: red;
+    }
+    .whatsapp-button {
+      background-color: green;
+      color: white;
+      padding: 1px 2px;
+      border: none;
+      border-radius: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1px;
+      text-decoration: none;
+      width: fit-content;
+      margin: 2px;
+      height: 40px;
+      width: 160px;
+      transition: background-color 0.3s ease;
+    }
+    .whatsapp-button :hover {
+      background-color: hsl(145, 86%, 5%);
+    }
+
+    .whatsapp-button img {
+      width: 35px;
+      height: 35px;
+      margin: 2px;
     }
   </style>
   <body>
-    <h1>About Singles Planet</h1>
-    <p>
-      Singles Planet is a leading online dating platform dedicated to helping
-      individuals find meaningful relationships. Our mission is to connect
-      singles from around the world and provide a safe and enjoyable environment
-      for them to meet and interact.
-    </p>
-    <p>
-      Founded in 2020, Singles Planet has quickly grown to become one of the
-      most trusted names in online dating. We offer a variety of features,
-      including advanced search options, personalized matchmaking, and secure
-      messaging, to enhance the user experience.
-    </p>
-    <p>
-      At Singles Planet, we believe that everyone deserves to find love and
-      companionship. Our team is committed to providing excellent customer
-      service and continuously improving our platform to meet the needs of our
-      users.
-    </p>
-    <p>
-      Join Singles Planet today and take the first step towards finding your
-      perfect match!
-    </p>
+    <h1>Blue list</h1>
+    <div class="content-box">
+      <div class="image-box">
+        <img src="ds.photos/muhonja.jpg" alt="IRIS" />
+      </div>
+      <div class="details-box">
+        <p>Name: Iris Muhonja</p>
+        <p>Age: 26years</p>
+        <p>Gender: Female</p>
+        <p>Location: Nairobi</p>
+        <p>Tribe: Luhya</p>
+        <p>Career: Housekeeping</p>
+        <p>Education level: college</p>
+        <a
+          class="whatsapp-button"
+          href="https://wa.me/254708530614"
+          target="_blank"
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+            alt="WhatsApp Icon"
+          />
+          Whatsapp
+        </a>
+      </div>
+    </div>
+    <div class="content-box">
+      <div class="image-box">
+        <img src="ds.photos/catherine josphine.jpg" alt="catherine josphine" />
+      </div>
+      <div class="details-box">
+        <p>Name:catherine josphine</p>
+        <p>Age: 22</p>
+        <p>Location: Nairobi,kimbo</p>
+        <p>Tribe: kikuyu</p>
+        <p>Career:pmu physician and baker</p>
+        <p>seeking: mariage</p>
+        <a
+          class="whatsapp-button"
+          href="https://wa.me/254110385102"
+          target="_blank"
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+            alt="WhatsApp Icon"
+          />
+          Whatsapp
+        </a>
+      </div>
+    </div>
+
     <br />
   </body>
 </html>
