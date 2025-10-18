@@ -1,236 +1,361 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>my search</title>
-  </head>
-  <style>
-    body {
-      justify-content: center;
-      align-items: center;
-      background-color: hwb(300 81% 14%);
-      height: 100vh;
-    }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Interactive People Table — Gold (Shiny)</title>
+    <style>
+      :root {
+        --gold-600: #d4af37;
+        --gold-700: #c59d5f;
+        --gold-800: #9a7130;
+        --bg: #fffaf6;
+        --muted: #6b6b6b;
+        --card: #fff;
+        --accent-contrast: #1b1b1b;
+        --radius: 12px;
+        --shadow: 0 8px 26px rgba(154, 113, 48, 0.12);
+        font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial;
+      }
 
-    p {
-      color: rgb(25, 4, 181);
-      text-align: center;
-      font-size: 20px;
-      margin-top: 40px;
-      font-family: Arial, sans-serif;
-    }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        padding: 28px;
+        background: linear-gradient(180deg, #fffaf6 0%, #fff6ea 100%);
+        color: var(--accent-contrast);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
 
-    .email-btn {
-      display: inline-flex;
-      width: 300px;
-      margin-bottom: 2px;
-      align-items: center;
-      background-color: hsl(207, 47%, 68%);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      gap: 25px;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-    .email-btn :hover {
-      background-color: #1ebe5d;
-      transform: scale(1.05);
-    }
-    .icon {
-      width: 20px;
-      height: 20px;
-    }
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
 
-    .whatsapp-btn {
-      display: inline-flex;
-      width: 300px;
-      background-color: #25d366;
-      align-items: center;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 8px;
-      margin-top: 0px;
-      text-decoration: none;
-      font-size: 18px;
-      border-top: 10px solid #a8dc36;
-      font-weight: bold;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-    .whatsapp-btn:hover {
-      background-color: black;
-      transform: scale(1.05);
-    }
-    .call-btn {
-      display: inline-flex;
-      width: 300px;
-      align-items: center;
-      justify-content: center;
-      background-color: white;
-      color: blue;
-      border-color: black;
-      border-style: solid;
-      padding: 10px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      gap: 16px;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .call-btn:hover {
-      background-color: black;
-      transform: scale(1.05);
-    }
-    .icon {
-      width: 25px;
-      height: 25px;
-    }
-    h2 {
-      color: purple;
-      text-align: center;
-    }
+      .card {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 18px;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(170, 140, 80, 0.08);
+      }
 
-    .btn {
-      display: inline-block;
-      margin: 15px;
-      padding: 12px 25px;
-      background-color: #25d366;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      text-decoration: none;
-    }
+      header.table-header {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+        flex-wrap: wrap;
+      }
 
-    .btn:hover {
-      background-color: #128c7e;
-    }
-    h2 {
-      text-align: center;
-      color: #333;
-    }
-    input {
-      margin-bottom: 12px;
-      padding: 8px;
-      width: 300px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .search-box {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+      .title-block {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
 
-    input[type="text"] {
-      width: 60%;
-      padding: 10px;
-      font-size: 16px;
-      border: 2px solid #007bff;
-      border-radius: 6px;
-      outline: none;
-    }
+      .brand {
+        background: linear-gradient(135deg, var(--gold-600), var(--gold-700));
+        color: white;
+        padding: 10px 14px;
+        border-radius: 10px;
+        font-weight: 700;
+        box-shadow: 0 6px 18px rgba(165, 129, 59, 0.18);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
 
-    input[type="text"]:focus {
-      border-color: #0056b3;
-      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-    }
+      .brand .dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.14);
+        box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.08);
+      }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      overflow: hidden;
-    }
+      h1 {
+        font-size: 1.05rem;
+        margin: 0;
+        letter-spacing: 0.2px;
+        color: var(--gold-800);
+      }
+      p.sub {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
 
-    th,
-    td {
-      padding: 12px 15px;
-      text-align: left;
-    }
+      .controls {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
 
-    /* ✅ Blue header for all columns including "No." */
-    th {
-      background-color: #007bff;
-      color: white;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
+      .search {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #fffaf6;
+        border: 1px solid rgba(181, 146, 82, 0.15);
+        padding: 8px 10px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(160, 130, 80, 0.04);
+      }
 
-    /* ✅ Blue row borders only */
-    tr {
-      border-bottom: 2px solid #007bff;
-    }
+      .search input {
+        border: 0;
+        outline: 0;
+        background: transparent;
+        width: 260px;
+        font-size: 0.95rem;
+        color: var(--accent-contrast);
+      }
 
-    tr:last-child {
-      border-bottom: none;
-    }
+      .table-wrap {
+        overflow-x: auto;
+        margin-top: 10px;
+      }
 
-    tr:nth-child(even) {
-      background-color: #f2f6fc;
-    }
-
-    tr:hover {
-      background-color: #e6f0ff;
-      transition: background 0.3s;
-    }
-
-    /* Serial number column */
-    td:first-child {
-      font-weight: bold;
-      color: black;
-      text-align: center;
-    }
-
-    th:first-child {
-      text-align: center;
-    }
-
-    .pagination {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 20px;
-      gap: 10px;
-    }
-
-    .pagination button {
-      background-color: #007bff;
-      color: white;
-      border: black;
-      border-style: solid;
-      padding: 8px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .pagination button:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
-    }
-
-    .pagination span {
-      font-weight: bold;
-      color: #333;
-    }
-
-    @media (max-width: 768px) {
       table {
-        font-size: 14px;
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 880px;
       }
 
-      input[type="text"] {
-        width: 90%;
+      thead th {
+        position: relative;
+        text-align: left;
+        padding: 12px 12px;
+        font-size: 0.92rem;
+        letter-spacing: 0.2px;
+        border-bottom: 2px solid rgba(170, 140, 80, 0.08);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 250, 244, 0.6),
+          rgba(255, 248, 240, 0.35)
+        );
+        cursor: pointer;
+        user-select: none;
+        color: var(--gold-800);
       }
-    }
-  </style>
 
+      thead th .sort-ind {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.8rem;
+        opacity: 0.8;
+      }
+
+      tbody td {
+        padding: 10px 12px;
+        border-bottom: 1px solid rgba(170, 140, 80, 0.04);
+        font-size: 0.95rem;
+        color: #222;
+      }
+
+      tbody tr:hover {
+        background: linear-gradient(
+          90deg,
+          rgba(250, 242, 224, 0.6),
+          rgba(255, 249, 240, 0.6)
+        );
+      }
+
+      tbody tr:nth-child(even) {
+        background: rgba(253, 248, 241, 0.6);
+      }
+
+      .pill {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        background: linear-gradient(
+          180deg,
+          rgba(212, 175, 55, 0.12),
+          rgba(196, 157, 95, 0.08)
+        );
+        color: var(--gold-800);
+        border: 1px solid rgba(196, 157, 95, 0.14);
+        font-weight: 600;
+      }
+
+      .pagination {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 12px;
+        flex-wrap: wrap;
+      }
+
+      .page-btn {
+        border: 1px solid rgba(160, 130, 80, 0.12);
+        background: white;
+        padding: 8px 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        min-width: 42px;
+        text-align: center;
+        font-weight: 600;
+        box-shadow: none;
+      }
+
+      .page-btn.active {
+        background: linear-gradient(180deg, var(--gold-600), var(--gold-700));
+        color: white;
+        border-color: rgba(160, 130, 80, 0);
+        box-shadow: 0 8px 22px rgba(165, 129, 59, 0.14);
+      }
+
+      .page-btn:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+
+      .meta {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .highlight {
+        background: rgba(255, 243, 205, 0.9);
+        padding: 0 4px;
+        border-radius: 4px;
+      }
+
+      @media (max-width: 820px) {
+        .search input {
+          width: 160px;
+        }
+        thead th {
+          font-size: 0.88rem;
+          padding: 10px;
+        }
+        tbody td {
+          padding: 8px;
+          font-size: 0.9rem;
+        }
+        .brand {
+          padding: 8px 10px;
+          font-size: 0.95rem;
+        }
+      }
+      p {
+        color: rgb(25, 4, 181);
+        text-align: center;
+        font-size: 20px;
+        margin-top: 40px;
+        font-family: Arial, sans-serif;
+      }
+
+      .email-btn {
+        display: inline-flex;
+        width: 300px;
+        margin-bottom: 2px;
+        align-items: center;
+        background-color: hsl(207, 47%, 68%);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        gap: 25px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+      .email-btn :hover {
+        background-color: #1ebe5d;
+        transform: scale(1.05);
+      }
+      .icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      .whatsapp-btn {
+        display: inline-flex;
+        width: 300px;
+        background-color: #25d366;
+        align-items: center;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        margin-top: 0px;
+        text-decoration: none;
+        font-size: 18px;
+        border-top: 10px solid #a8dc36;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+      .whatsapp-btn:hover {
+        background-color: black;
+        transform: scale(1.05);
+      }
+      .call-btn {
+        display: inline-flex;
+        width: 300px;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        color: blue;
+        border-color: black;
+        border-style: solid;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        gap: 16px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .call-btn:hover {
+        background-color: black;
+        transform: scale(1.05);
+      }
+      .icon {
+        width: 25px;
+        height: 25px;
+      }
+      h2 {
+        color: purple;
+        text-align: center;
+      }
+
+      .btn {
+        display: inline-block;
+        margin: 15px;
+        padding: 12px 25px;
+        background-color: #25d366;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+      }
+
+      .btn:hover {
+        background-color: #128c7e;
+      }
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+    </style>
+  </head>
   <body>
     <h2>
       Connect With Singles from all over the country, abroad and the GULF
@@ -316,44 +441,127 @@
     <a
       href="https://wa.me/254796339854?text=Hello%20I%20visited%20your%20website%20and%20would%20like%20a%20connection"
       class="btn"
-      >professionals seeking pofessinals</a
+      >SPONSOR CONNECTION(SUGARS)</a
     >
     <br /><br />
-    <p>
-      singles list 1/50-request connection from the list..not that we have not
-      published all the singles registered with us. to contact several others
-      who are not listed here contact admin.
-      <br /><br /><br />
-    </p>
 
     <h2>
       Singles Connection Data. To get added/removed from list - contact admin
     </h2>
+    <br /><br />
+    <div class="container">
+      <div class="card" role="region" aria-labelledby="tableTitle">
+        <header class="table-header">
+          <div class="title-block">
+            <div class="brand" aria-hidden="true">
+              <span class="dot"></span>Singles Directory
+            </div>
+            <div>
+              <h1 id="tableTitle">Matches — Interactive Table</h1>
+              <p class="sub">
+                Gold shiny gradient • Search · Sort · Pagination (5 rows per
+                page)
+              </p>
+            </div>
+          </div>
 
-    <div class="search-box">
-      <input
-        type="text"
-        id="searchInput"
-        onkeyup="searchTable()"
-        placeholder="Search by name, location, tribe, career, age etc..."
-      />
-    </div>
+          <div class="controls">
+            <div class="search" title="Search all columns">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M21 21l-4.35-4.35"
+                  stroke="rgba(139,115,77,0.9)"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="6"
+                  stroke="rgba(139,115,77,0.9)"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <input
+                id="searchInput"
+                type="search"
+                placeholder="Search name, location, tribe, career..."
+                aria-label="Search table"
+              />
+              <button
+                id="clearSearch"
+                title="Clear search"
+                style="
+                  border: 0;
+                  background: transparent;
+                  cursor: pointer;
+                  font-weight: 600;
+                  color: var(--gold-800);
+                  display: none;
+                "
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+        </header>
 
-    <table id="peopleTable">
-      <thead>
-        <tr id="tableHeader"></tr>
-      </thead>
-      <tbody id="tableBody"></tbody>
-    </table>
+        <div class="table-wrap" role="table" aria-label="People table">
+          <table id="peopleTable" aria-describedby="tableTitle">
+            <thead>
+              <tr>
+                <th data-key="no">No. <span class="sort-ind"></span></th>
+                <th data-key="name">Name <span class="sort-ind"></span></th>
+                <th data-key="age">Age <span class="sort-ind"></span></th>
+                <th data-key="location">
+                  Location <span class="sort-ind"></span>
+                </th>
+                <th data-key="gender">Gender <span class="sort-ind"></span></th>
+                <th data-key="kids">Kids <span class="sort-ind"></span></th>
+                <th data-key="tribe">Tribe <span class="sort-ind"></span></th>
+                <th data-key="career">Career <span class="sort-ind"></span></th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <!-- rows generated by JS -->
+            </tbody>
+          </table>
+        </div>
 
-    <div class="pagination">
-      <button id="prevBtn" onclick="prevPage()">Prev</button>
-      <span id="pageInfo"></span>
-      <button id="nextBtn" onclick="nextPage()">Next</button>
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 14px;
+            gap: 12px;
+            flex-wrap: wrap;
+          "
+        >
+          <div class="meta" id="metaInfo" aria-live="polite"></div>
+          <div class="pagination" id="pagination"></div>
+        </div>
+      </div>
     </div>
 
     <script>
-      const peopleData = [
+      /***************
+       * CONFIG
+       ***************/
+      const rowsPerPage = 5;
+      let currentPage = 1;
+      let currentSort = { key: null, dir: 1 }; // dir: 1 asc, -1 desc
+      let currentFilter = "";
+      const rawRows = [
         ["Alex", 21, "Nairobi", "Male", 0, "Kikuyu", "Doctor"],
         ["Jane", 32, "Kiambu", "Female", 0, "Kikuyu/Kamba", "Data Analyst"],
         [
@@ -518,7 +726,6 @@
           "Nurse (Civil servant)",
         ],
         ["Herbert", 24, "Uganda", "Male", 0, "Muteso", "Electrician"],
-        ["Herbert", 24, "Uganda", "Male", 0, "Muteso", "Electrician"],
         [
           "Njoroge",
           28,
@@ -540,9 +747,8 @@
           "Halfcast of Kamba and Luhya",
           "Catering",
         ],
-        ["Faith", 25, "Nairobi", "Female", 1, "Kikuyu", "Entrepreneur"][
-          ("Dorine", 39, "Nairobi", "Female", 1, "Luo", "Clerk")
-        ],
+        ["Faith", 25, "Nairobi", "Female", 1, "Kikuyu", "Entrepreneur"],
+        ["Dorine", 39, "Nairobi", "Female", 1, "Luo", "Clerk"],
         ["Leon", 35, "Nairobi", "Male", 0, "Kamba", "Educator"],
         ["Dorine", 39, "Nairobi", "Female", 1, "Luo", "Clerk"],
         ["Victor", 26, "Nairobi", "Male", 0, "Luhya", "Steel fixer and welder"],
@@ -591,6 +797,7 @@
         ["Beatrice", 26, "Nairobi", "Female", 1, "Luhya", "Employed"],
         ["Paul", 27, "Nairobi", "Male", 0, "Kikuyu", "Employed"],
         ["Miriam", 27, "Nakuru", "Female", 0, "Kikuyu", "Sales and Marketing"],
+
         [
           "Lilian",
           39,
@@ -1268,117 +1475,243 @@
         ["Marcus", 24, "Kasa", "Male", 0, "Kikuyu", "Self"],
       ];
 
-      const headers = [
-        "No.",
-        "Name",
-        "Age",
-        "Location",
-        "Gender",
-        "Kids",
-        "Tribe",
-        "Career",
-      ];
-      const rowsPerPage = 50;
-      let currentPage = 1;
-      let filteredData = [...peopleData];
-      let sortDirection = {};
+      /***************
+       * Map rawRows -> objects used by the table
+       ***************/
+      function mapRow(arr, origIndex) {
+        return {
+          name: arr[0] ?? "",
+          age: arr[1] ?? "",
+          location: arr[2] ?? "",
+          gender: arr[3] ?? "",
+          kids: arr[4] ?? "",
+          tribe: arr[5] ?? "",
+          career: arr[6] ?? "",
+          __origIndex: origIndex,
+        };
+      }
+      const data = rawRows.map((r, i) => mapRow(r, i));
 
-      const tableHeader = document.getElementById("tableHeader");
-      headers.forEach((header, i) => {
-        const th = document.createElement("th");
-        th.textContent = header;
-        if (i === 0) return tableHeader.appendChild(th);
-        th.onclick = () => sortTable(i);
-        tableHeader.appendChild(th);
+      /***************
+       * DOM cache
+       ***************/
+      const tbody = document.getElementById("tableBody");
+      const pagination = document.getElementById("pagination");
+      const metaInfo = document.getElementById("metaInfo");
+      const searchInput = document.getElementById("searchInput");
+      const clearSearch = document.getElementById("clearSearch");
+      const headers = Array.from(document.querySelectorAll("thead th"));
+
+      /***************
+       * Helpers
+       ***************/
+      function escapeHtml(str) {
+        return String(str)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function containsAnyCell(item, query) {
+        if (!query) return true;
+        const q = query.toLowerCase();
+        return [
+          "name",
+          "age",
+          "location",
+          "gender",
+          "kids",
+          "tribe",
+          "career",
+        ].some((k) => String(item[k]).toLowerCase().includes(q));
+      }
+
+      function compare(a, b, key) {
+        const va = a[key];
+        const vb = b[key];
+        if (key === "age" || key === "kids") return Number(va) - Number(vb);
+        return String(va).localeCompare(String(vb), undefined, {
+          numeric: true,
+          sensitivity: "base",
+        });
+      }
+
+      // Enhanced processed data - respects currentFilter and currentSort (supports 'no' sort)
+      function getProcessedData() {
+        let results = data.filter((item) =>
+          containsAnyCell(item, currentFilter)
+        );
+        if (currentSort.key) {
+          if (currentSort.key === "no") {
+            results.sort(
+              (a, b) => currentSort.dir * (a.__origIndex - b.__origIndex)
+            );
+          } else {
+            results.sort(
+              (a, b) => currentSort.dir * compare(a, b, currentSort.key)
+            );
+          }
+        }
+        return results;
+      }
+
+      /***************
+       * Rendering
+       ***************/
+      function renderTable() {
+        const processed = getProcessedData();
+        const total = processed.length;
+        const totalPages = Math.max(1, Math.ceil(total / rowsPerPage));
+
+        if (currentPage > totalPages) currentPage = totalPages;
+        if (currentPage < 1) currentPage = 1;
+
+        const start = (currentPage - 1) * rowsPerPage;
+        const pageItems = processed.slice(start, start + rowsPerPage);
+
+        tbody.innerHTML = "";
+        for (let i = 0; i < pageItems.length; i++) {
+          const r = pageItems[i];
+          const tr = document.createElement("tr");
+          const serial = start + i + 1; // serial number in filtered result
+          tr.innerHTML = `
+          <td><span class="pill">${serial}</span></td>
+          <td>${escapeHtml(r.name)}</td>
+          <td>${escapeHtml(r.age)}</td>
+          <td>${escapeHtml(r.location)}</td>
+          <td>${escapeHtml(r.gender)}</td>
+          <td>${escapeHtml(r.kids)}</td>
+          <td>${escapeHtml(r.tribe)}</td>
+          <td>${escapeHtml(r.career)}</td>
+        `;
+          tbody.appendChild(tr);
+        }
+
+        renderPagination(total, totalPages);
+        updateMeta(total, totalPages);
+        updateSortIndicators();
+        clearSearch.style.display = currentFilter ? "inline-block" : "none";
+      }
+
+      function renderPagination(totalItems, totalPages) {
+        pagination.innerHTML = "";
+
+        const prevBtn = document.createElement("button");
+        prevBtn.className = "page-btn";
+        prevBtn.textContent = "Prev";
+        prevBtn.disabled = currentPage === 1;
+        prevBtn.onclick = () => {
+          currentPage--;
+          renderTable();
+        };
+        pagination.appendChild(prevBtn);
+
+        const maxButtons = 7;
+        let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+        let endPage = startPage + maxButtons - 1;
+        if (endPage > totalPages) {
+          endPage = totalPages;
+          startPage = Math.max(1, endPage - maxButtons + 1);
+        }
+
+        for (let p = startPage; p <= endPage; p++) {
+          const btn = document.createElement("button");
+          btn.className = "page-btn" + (p === currentPage ? " active" : "");
+          btn.textContent = p;
+          btn.onclick = () => {
+            currentPage = p;
+            renderTable();
+          };
+          pagination.appendChild(btn);
+        }
+
+        const nextBtn = document.createElement("button");
+        nextBtn.className = "page-btn";
+        nextBtn.textContent = "Next";
+        nextBtn.disabled = currentPage === totalPages;
+        nextBtn.onclick = () => {
+          currentPage++;
+          renderTable();
+        };
+        pagination.appendChild(nextBtn);
+      }
+
+      function updateMeta(totalItems, totalPages) {
+        const start =
+          totalItems === 0 ? 0 : (currentPage - 1) * rowsPerPage + 1;
+        const end = Math.min(totalItems, currentPage * rowsPerPage);
+        metaInfo.textContent = `${totalItems} result${
+          totalItems === 1 ? "" : "s"
+        } — showing ${start} to ${end}`;
+      }
+
+      function updateSortIndicators() {
+        headers.forEach((th) => {
+          const ind = th.querySelector(".sort-ind");
+          const key = th.dataset.key;
+          ind.textContent = "";
+          if (!currentSort.key) return;
+          if (currentSort.key === "no" && key === "no") {
+            ind.textContent = currentSort.dir === 1 ? "▲" : "▼";
+          } else if (currentSort.key === key) {
+            ind.textContent = currentSort.dir === 1 ? "▲" : "▼";
+          }
+        });
+      }
+
+      /***************
+       * Header click sorting (toggle asc/desc)
+       ***************/
+      headers.forEach((th) => {
+        th.addEventListener("click", () => {
+          const key = th.dataset.key;
+          if (!key) return;
+          if (currentSort.key === key) currentSort.dir *= -1;
+          else {
+            currentSort.key = key;
+            currentSort.dir = 1;
+          }
+          currentPage = 1;
+          renderTable();
+        });
       });
 
-      function renderTable(page = 1) {
-        const tableBody = document.getElementById("tableBody");
-        tableBody.innerHTML = "";
+      /***************
+       * Search (debounced)
+       ***************/
+      let debounceTimer = null;
+      searchInput.addEventListener("input", (e) => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+          currentFilter = e.target.value.trim();
+          currentPage = 1;
+          renderTable();
+        }, 180);
+      });
 
-        const start = (page - 1) * rowsPerPage;
-        const end = start + rowsPerPage;
-        const pageData = filteredData.slice(start, end);
-
-        pageData.forEach((person, index) => {
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td>${start + index + 1}</td>
-            <td>${person[0]}</td>
-            <td>${person[1]}</td>
-            <td>${person[2]}</td>
-            <td>${person[3]}</td>
-            <td>${person[4]}</td>
-            <td>${person[5]}</td>
-            <td>${person[6]}</td>
-          `;
-          tableBody.appendChild(tr);
-        });
-
-        document.getElementById(
-          "pageInfo"
-        ).textContent = `Page ${page} of ${Math.ceil(
-          filteredData.length / rowsPerPage
-        )}`;
-        document.getElementById("prevBtn").disabled = page === 1;
-        document.getElementById("nextBtn").disabled =
-          page === Math.ceil(filteredData.length / rowsPerPage);
-      }
-
-      renderTable();
-
-      function nextPage() {
-        if (currentPage * rowsPerPage < filteredData.length) {
-          currentPage++;
-          renderTable(currentPage);
-        }
-      }
-
-      function prevPage() {
-        if (currentPage > 1) {
-          currentPage--;
-          renderTable(currentPage);
-        }
-      }
-
-      function searchTable() {
-        const input = document
-          .getElementById("searchInput")
-          .value.toLowerCase();
-        filteredData = peopleData.filter((person) =>
-          person.join(" ").toLowerCase().includes(input)
-        );
+      clearSearch.addEventListener("click", () => {
+        searchInput.value = "";
+        currentFilter = "";
         currentPage = 1;
         renderTable();
-      }
+      });
 
-      function sortTable(columnIndex) {
-        if (columnIndex === 0) return;
+      searchInput.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          searchInput.value = "";
+          currentFilter = "";
+          currentPage = 1;
+          renderTable();
+        }
+      });
 
-        const sorted = [...filteredData].sort((a, b) => {
-          let valA = a[columnIndex - 1];
-          let valB = b[columnIndex - 1];
-
-          if (!isNaN(valA) && !isNaN(valB)) {
-            valA = parseFloat(valA);
-            valB = parseFloat(valB);
-          } else {
-            valA = valA.toString().toLowerCase();
-            valB = valB.toString().toLowerCase();
-          }
-
-          if (!sortDirection[columnIndex]) {
-            return valA > valB ? 1 : -1;
-          } else {
-            return valA < valB ? 1 : -1;
-          }
-        });
-
-        sortDirection[columnIndex] = !sortDirection[columnIndex];
-        filteredData = sorted;
-        currentPage = 1;
+      // init
+      (function init() {
+        headers.forEach((h) => h.setAttribute("role", "columnheader"));
         renderTable();
-      }
+      })();
     </script>
   </body>
 </html>
