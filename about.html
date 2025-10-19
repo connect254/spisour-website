@@ -3,244 +3,300 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About singles planet</title>
+    <title>Perfect Match Dating Connections</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f6f8;
+        margin: 0;
+        padding: 40px;
+        text-align: center;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 30px;
+      }
+
+      .card-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .card {
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        width: 750px;
+        padding: 20px 25px;
+        transition: all 0.5s ease;
+        position: relative;
+      }
+
+      .serial {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #3498db;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .profile-pic {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 25px;
+        border: 4px solid #3498db;
+        flex-shrink: 0;
+      }
+
+      .details {
+        flex: 1;
+        text-align: left;
+      }
+
+      .details h2 {
+        margin: 0 0 10px 0;
+        color: #2c3e50;
+        font-size: 22px;
+      }
+
+      .details p {
+        margin: 5px 0;
+        color: #555;
+        font-size: 15px;
+      }
+
+      .details span {
+        font-weight: bold;
+        color: #2c3e50;
+      }
+
+      .whatsapp-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+        background-color: #25d366;
+        color: white;
+        padding: 10px 18px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+      }
+
+      .whatsapp-btn:hover {
+        background-color: #1ebe5d;
+      }
+
+      .whatsapp-btn i {
+        font-size: 18px;
+      }
+
+      .nav-buttons {
+        margin-top: 25px;
+      }
+
+      .nav-buttons button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        margin: 0 10px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .nav-buttons button:hover {
+        background-color: #2c80b4;
+      }
+
+      @media (max-width: 750px) {
+        .card {
+          flex-direction: column;
+          align-items: flex-start;
+          width: 90%;
+        }
+        .profile-pic {
+          margin-right: 0;
+          margin-bottom: 15px;
+          align-self: center;
+        }
+      }
+    </style>
   </head>
-  <style>
-    h1 {
-      color: #210eb5;
-      text-align: center;
-    }
-    body {
-      background-color: lightgrey;
-    }
-    img {
-      width: 300px;
-      border-radius: 30px;
-      float: left;
-      margin: 40px;
-      border-style: solid;
-      border-color: green;
-      object-fit: contain;
-      object-position: center;
-    }
-
-    .showphone-button {
-      background-color: red;
-      color: white;
-      width: 200px;
-      font-style: normal;
-      transition: color 1s;
-    }
-
-    .showphone-button:hover {
-      background-color: yellow;
-      color: deeppink;
-    }
-    .content-box {
-      width: 518px;
-      height: 350px;
-      margin: 5px;
-      margin-right: 3px;
-      display: block;
-      flex-wrap: wrap;
-      border-style: solid;
-      border-color: lightgray;
-    }
-    .image-box img {
-      width: 200px;
-      height: 344px;
-      margin: 1px;
-      display: inline-flex;
-      border-style: solid;
-      border-color: lightgray;
-      background-size: 200px;
-      background-position: space;
-    }
-    .details-box {
-      width: 310px;
-      height: 344px;
-      display: inline-block;
-      margin-bottom: 5px;
-      margin-top: 1px;
-      border-style: solid;
-      border-color: lightgrey;
-      background-color: lightgray;
-      overflow-wrap: break-word;
-      word-wrap: break-word;
-      box-sizing: border-box;
-      overflow: auto;
-    }
-    .details-box p {
-      line-height: 1.6;
-      padding: 2px;
-      margin-top: 2px;
-      margin-bottom: 0;
-      margin-top: 0;
-    }
-    .details-box strong {
-      color: red;
-    }
-    .whatsapp-button {
-      background-color: green;
-      color: white;
-      padding: 1px 2px;
-      border: none;
-      border-radius: 20px;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1px;
-      text-decoration: none;
-      width: fit-content;
-      margin: 2px;
-      height: 40px;
-      width: 160px;
-      transition: background-color 0.3s ease;
-    }
-    .whatsapp-button :hover {
-      background-color: hsl(145, 86%, 5%);
-    }
-
-    .whatsapp-button img {
-      width: 35px;
-      height: 35px;
-      margin: 2px;
-    }
-  </style>
   <body>
-    <h1>Blue list</h1>
-    <div class="content-box">
-      <div class="image-box">
-        <img src="ds.photos/muhonja.jpg" alt="IRIS" />
-      </div>
-      <div class="details-box">
-        <p>Name: Iris Muhonja</p>
-        <p>Age: 26years</p>
-        <p>Gender: Female</p>
-        <p>Location: Nairobi</p>
-        <p>Tribe: Luhya</p>
-        <p>Career: Housekeeping</p>
-        <p>Education level: college</p>
-        <a
-          class="whatsapp-button"
-          href="https://wa.me/254708530614?text=Hello,%20got%20your%20number%20from%20the%20perfect%20match%20dating%20connections%20website.%20can%20we%20know%20each%20other%20more..."
-          target="_blank"
-        >
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-            alt="WhatsApp Icon"
-          />
-          Whatsapp
-        </a>
+    <h1>
+      Browse singles via profile cards below and chat directly with them and/or
+      search all singles from the searchable table under "find my match button"
+      and request to connect with them through the website admin. 💖
+    </h1>
+
+    <div class="card-container">
+      <div class="card" id="profileCard"></div>
+
+      <div class="nav-buttons">
+        <button onclick="prevProfile()">⬅ Previous</button>
+        <button onclick="nextProfile()">Next ➡</button>
       </div>
     </div>
-    <div class="content-box">
-      <div class="image-box">
-        <img src="ds.photos/catherine josphine.jpg" alt="catherine josphine" />
-      </div>
-      <div class="details-box">
-        <p>Name:catherine josphine</p>
-        <p>Age: 22</p>
-        <p>Location: Nairobi,kimbo</p>
-        <p>Tribe: kikuyu</p>
-        <p>Career:pmu physician and baker</p>
-        <p>seeking: mariage</p>
-        <a
-          class="whatsapp-button"
-          href="https://wa.me/254110385102?text=Hello,%20got%20your%20number%20from%20the%20perfect%20match%20dating%20connections%20website.%20can%20we%20know%20each%20other%20more..."
-          target="_blank"
-        >
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-            alt="WhatsApp Icon"
-          />
-          Whatsapp
-        </a>
-      </div>
-    </div>
-    <br />
-    <div class="content-box">
-      <div class="image-box">
-        <img src="ds.photos/dmale.jpg" alt="david" />
-      </div>
-      <div class="details-box">
-        <p>Name:David muia</p>
-        <p>Age: 28</p>
-        <p>Location: Nairobi,kajole junction</p>
-        <p>Tribe: kamba</p>
-        <p>Career:security officer and marketer</p>
-        <p>kids: None</p>
-        <p>seeking: A relationship leading to mariage</p>
-        <a
-          class="whatsapp-button"
-          href="https://wa.me/254740090409?text=Hello,%20got%20your%20number%20from%20the%20perfect%20match%20dating%20connections%20website.%20can%20we%20know%20each%20other%20more..."
-          target="_blank"
-        >
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-            alt="WhatsApp Icon"
-          />
-          Whatsapp
-        </a>
-      </div>
-    </div>
-    <br />
-    <div class="content-box">
-      <div class="image-box">
-        <img src="ds.photos/kinyanjui.jpg" alt="kinyanjui" />
-      </div>
-      <div class="details-box">
-        <p>Name: kinyanjui</p>
-        <p>Age: 32 years</p>
-        <p>Gender: male</p>
-        <p>Location: Nairobi</p>
-        <p>Tribe: kikuyu</p>
-        <p>Career: professional driver</p>
-        <p>kids: none</p>
-        <p>seeking: true love and marriage</p>
-        <a
-          class="whatsapp-button"
-          href="https://wa.me/254758795567?text=Hello,%20got%20your%20number%20from%20the%20perfect%20match%20dating%20connections%20website.%20can%20we%20know%20each%20other%20more..."
-          target="_blank"
-        >
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-            alt="WhatsApp Icon"
-          />
-          Whatsapp
-        </a>
-      </div>
-    </div>
-    <br />
-    <div class="content-box">
-      <div class="image-box">
-        <img src="ds.photos/ombati.jpg" alt="ombati" />
-      </div>
-      <div class="details-box">
-        <p>Name: annah ombati</p>
-        <p>Age: 21 years</p>
-        <p>Gender: female</p>
-        <p>Location: Nyamira, kenya</p>
-        <p>Tribe: kisii</p>
-        <p>Career: student teacher</p>
-        <p>kids: no kids</p>
-        <p>seeking: marriage partner</p>
-        <a
-          class="whatsapp-button"
-          href="https://wa.me/254719269929?text=Hello,%20got%20your%20number%20from%20the%20perfect%20match%20dating%20connections%20website.%20can%20we%20know%20each%20other%20more..."
-          target="_blank"
-        >
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-            alt="WhatsApp Icon"
-          />
-          Whatsapp
-        </a>
-      </div>
-    </div>
-    <br />
+
+    <script>
+      const profiles = [
+        {
+          name: "Iris muhonja",
+          age: 26,
+          location: "Nairobi",
+          gender: "female",
+          kids: 0,
+          tribe: "luhya",
+          career: "housekeeping attendant",
+          seeking: "A mature and caring partner aged 20–30",
+          photo: "ds.photos/muhonja.jpg",
+          phone: "0708530613",
+        },
+        {
+          name: "catherine josphine",
+          age: 22,
+          location: "Nairobi, kimbo",
+          gender: "Female",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "pmu physician and baker",
+          seeking: "An ambitious man ready to settle down",
+          photo: "ds.photos/catherine josphine.jpg",
+          phone: "254110385102",
+        },
+        {
+          name: "David muia",
+          age: 28,
+          location: "Nairobi,kayole junction",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kamba",
+          career: "security officer and marketer",
+          seeking: "A relationship leading to marriage",
+          photo: "ds.photos/dmale.jpg",
+          phone: "254740090409",
+        },
+        {
+          name: "Kinyanjui",
+          age: 32,
+          location: "Nairobi",
+          gender: "Male",
+          kids: 0,
+          tribe: "kikuyu",
+          career: "professional driver",
+          seeking: "An honest woman who values family life",
+          photo: "ds.photos/kinyanjui.jpg",
+          phone: "254758795567",
+        },
+        {
+          name: "annah ombati",
+          age: 21,
+          location: "Nyamira, kenya",
+          gender: "Female",
+          kids: 0,
+          tribe: "Kisii",
+          career: "student teacher",
+          seeking: "marriage partner",
+          photo: "ds.photos/ombati.jpg",
+          phone: "254719269929",
+        },
+        {
+          name: "peter otieno okoth",
+          age: 32,
+          location: "kisumu/bondo",
+          gender: "Male",
+          kids: 0,
+          tribe: "Luo",
+          career: "working in a hotel in housekeeping department",
+          seeking: "A loving woman who enjoys fun and laughter,below my age",
+          photo: "ds.photos/otienookoth.jpg",
+          phone: "254701839775",
+        },
+        {
+          name: "Tammie",
+          age: 30,
+          location: "Nairobi",
+          gender: "Female",
+          kids: 1,
+          tribe: "Luhya",
+          career: "Hotelian",
+          seeking: "A responsible and supportive man",
+          photo: "https://randomuser.me/api/portraits/women/48.jpg",
+          phone: "254700777777",
+        },
+        {
+          name: "Wangechi",
+          age: 32,
+          location: "Nairobi",
+          gender: "Female",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "Business Owner",
+          seeking: "A serious partner for a long-term relationship",
+          photo: "ds.photos/nott.jpg",
+          phone: "254700888888",
+        },
+      ];
+
+      let currentIndex = 0;
+      const card = document.getElementById("profileCard");
+
+      function showProfile(index) {
+        const p = profiles[index];
+        card.innerHTML = `
+          <div class="serial">${index + 1}</div>
+          <img src="${p.photo}" alt="${p.name}" class="profile-pic">
+          <div class="details">
+            <h2>${p.name}</h2>
+            <p><span>Age:</span> ${p.age}</p>
+            <p><span>Location:</span> ${p.location}</p>
+            <p><span>Gender:</span> ${p.gender}</p>
+            <p><span>Kids:</span> ${p.kids}</p>
+            <p><span>Tribe:</span> ${p.tribe}</p>
+            <p><span>Career:</span> ${p.career}</p>
+            <p><span>Seeking:</span> ${p.seeking}</p>
+            <a href="https://wa.me/${p.phone}?text=Hi%20${
+          p.name
+        },%20I%20got%20your%20contact%20from%20Perfect%20Match%20Dating%20Connections,%20can%20we%20know%20each%20other%20more..."
+               class="whatsapp-btn" target="_blank">
+               <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+          </div>
+        `;
+      }
+
+      function nextProfile() {
+        currentIndex = (currentIndex + 1) % profiles.length;
+        showProfile(currentIndex);
+      }
+
+      function prevProfile() {
+        currentIndex = (currentIndex - 1 + profiles.length) % profiles.length;
+        showProfile(currentIndex);
+      }
+
+      showProfile(currentIndex);
+    </script>
   </body>
 </html>
