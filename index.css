@@ -2,7 +2,7 @@ body {
   background-size: auto;
   background-repeat: space;
   background-position: center;
-  background-color: hwb(300 81% 14%);
+  background-color: #E2E5E9;
   font-family: Arial, sans-serif;
   margin-top: 30px;
   margin-bottom: 10px;
@@ -11,26 +11,28 @@ body {
     .hero {
   width: 100%;
   display: block;
-  padding: 2px;
-  gap: 2px;
+  padding: 10px;
   margin: 15px;
- border-color: #021919;
+ border-style: solid;
+ font-size: 30px;
  background-color: rgb(199, 217, 217);
   background-size: auto;
   border-radius: 20px;
     }
     h4 {
-       text-align: center;
-        margin-top: 120px;
+       text-align:justify;
+        margin-top: 5px;
         color: hwb(312 17% 11%);
     }
     
      
    
       button {
-        color: deeppink;
+        color: blue;
         border-color: white;
-        background-color: yellow;
+        background-color: #AAC9FF;
+        font-weight: bold;
+        font-family: 'Courier Prime', ui-monospace, monospace;
         width: 100%;
         box-sizing: border-box;
         display: block;
@@ -108,9 +110,9 @@ padding: 10px;
 margin: 15px;
 margin-top: 10px;
 margin-bottom: 30px;
-border-color:  hwb(300 81% 14%);
+border-color:  #E2E5E9;
 border-style: solid;
-background-color: hwb(300 81% 14%);
+background-color: #E2E5E9;
 border-width: 2px;
 border-radius: none;
 
@@ -135,9 +137,10 @@ border-radius: none;
 .any-button {
       
       color: deeppink;
-      border-color: white;
-      background-color: white;
+      border-color: hwb(300 81% 14%);
+      background-color: hwb(300 81% 14%);
       border-style: solid;
+      font-size: 50px;
       align-items: center;
       display: flex;
       justify-content: center;
@@ -231,6 +234,7 @@ border-radius: none;
  .whatsappgroup-button {
     
       display: block;
+  
      
  }
    
