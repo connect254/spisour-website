@@ -14,13 +14,14 @@ body {
   display: block;
   padding: 10px;
   margin: 15px;
+  margin-right: 15px;
  border-style: solid;
  border-color: green;
  font-size: 30px;
- background-color: green;
+ background-color: hwb(300 81% 14%);
   background-size: auto;
   border-radius: 20px;
-  color: white;
+  color: green;
    text-align:justify;
     }
    
@@ -129,7 +130,7 @@ border-radius: none;
         font-family: "Courier New", Courier, monospace;
         text-align: center;
         font-weight: bold;
-        font-size: 60px;
+        font-size: 50px;
         
       }
 .any-button {
