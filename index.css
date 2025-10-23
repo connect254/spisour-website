@@ -36,6 +36,7 @@ body {
         border-color: blue;
         height: 40px;
         width: auto;
+        display: block;
         border-radius: 10px;
         cursor: pointer;
         margin: 15px;
