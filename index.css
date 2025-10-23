@@ -14,21 +14,24 @@ body {
   padding: 10px;
   margin: 15px;
  border-style: solid;
+ border-color: rgb(199, 217, 217);
  font-size: 30px;
  background-color: rgb(199, 217, 217);
   background-size: auto;
   border-radius: 20px;
+  color: hwb(312 17% 11%);
+   text-align:justify;
     }
     h4 {
-       text-align:justify;
+      
         margin-top: 5px;
-        color: hwb(312 17% 11%);
+        
     }
     
      
    
       button {
-        color: blue;
+        color: yellow;
         border-color: white;
         background-color: #AAC9FF;
         font-weight: bold;
@@ -145,7 +148,7 @@ border-radius: none;
       display: flex;
       justify-content: center;
       height: 50px;
-      line-height: 50px;
+      
        padding: 0 20px;
         margin: 15px;
       box-sizing: border-box;
