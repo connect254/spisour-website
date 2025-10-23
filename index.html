@@ -7,20 +7,30 @@
 
   <body>
     <h1>Perfect match dating connections</h1>
-    <button id="MembersBtn">Members</button>
-    <script>
-      document
-        .getElementById("MembersBtn")
-        .addEventListener("click", function () {
-          window.location.href = "login.html";
-        });
-    </script>
 
     <button class="form-button" onclick="openForm()">Register</button>
     <script>
       function openForm() {
         window.open("https://forms.gle/4DreGqfNbdpWHFYKA", "_blank");
       }
+    </script>
+
+    <button id="Express chatBtn">Express chat</button>
+    <script>
+      document
+        .getElementById("Express chatBtn")
+        .addEventListener("click", function () {
+          window.location.href = "about.html";
+        });
+    </script>
+
+    <button id="Find My MatchBtn">Find my match</button>
+    <script>
+      document
+        .getElementById("Find My MatchBtn")
+        .addEventListener("click", function () {
+          window.location.href = "mysearch.html";
+        });
     </script>
 
     <button id="view All SinglesBtn">view profiles</button>
@@ -41,28 +51,19 @@
         });
     </script>
 
-    <button id="Find My MatchBtn">Find my match</button>
-    <script>
-      document
-        .getElementById("Find My MatchBtn")
-        .addEventListener("click", function () {
-          window.location.href = "mysearch.html";
-        });
-    </script>
-
-    <button id="Express chatBtn">Express chat</button>
-    <script>
-      document
-        .getElementById("Express chatBtn")
-        .addEventListener("click", function () {
-          window.location.href = "about.html";
-        });
-    </script>
-
     <button id="singles 40+Btn">Available singles 6,687</button>
     <script>
       document
         .getElementById("singles 40+Btn")
+        .addEventListener("click", function () {
+          window.location.href = "login.html";
+        });
+    </script>
+
+    <button id="MembersBtn">Members login</button>
+    <script>
+      document
+        .getElementById("MembersBtn")
         .addEventListener("click", function () {
           window.location.href = "login.html";
         });
@@ -250,9 +251,3 @@
     <br /><br />
   </body>
 </html>
-
-
-
-
-
-
