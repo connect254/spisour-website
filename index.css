@@ -3,22 +3,19 @@ body {
   background-repeat: space;
   background-position: center;
   background-color: hwb(300 81% 14%);
+  font-family: Arial, sans-serif;
   margin-top: 30px;
   margin-bottom: 10px;
 }
 
     .hero {
   width: 100%;
-  height: 300px;
-  display: flex;
+  display: block;
   padding: 2px;
-  gap: 20px;
-  margin-top: 20px;
-  border: solid;
-  margin-bottom: 0px;
+  gap: 2px;
+  margin: 15px;
  border-color: #021919;
- background-color: rgb(199, 208, 208);
-  background-size: cover;
+ background-color: rgb(199, 217, 217);
   background-size: auto;
   border-radius: 20px;
     }
@@ -31,80 +28,44 @@ body {
      
    
       button {
-        background-color: yellow;
         color: deeppink;
-        border-color: blue;
-        height: 60px;
+        border-color: white;
+        background-color: yellow;
         width: 100%;
+        box-sizing: border-box;
         display: block;
         border-radius: 10px;
         cursor: pointer;
         margin: 15px;
-        font-weight: bold;
-        font-size: 14px;
+         padding-bottom: 5px;
+        padding-top: 1px;
+        font-size: 50px;
         transition: background-color 0.15s;
+        text-align: center;
         
       }
       button:hover {
-        background-color: black;
+        background-color: rgb(182, 156, 178);
         box-shadow: 5px 5px 10px red;
       }
-  
-    .image-box img {
-      width: 150px;
-      height: 290px;
-      margin-top: 2px;
-      border-radius: 25px;
-      margin-bottom: 2px;
-      display: inline-flex;
-      border-style: solid;
-      border-color: rgb(199, 208, 208);
-      background-size:cover;
-      background-position: space;
-    }
-    .details-box {
-      width: 350px;
-      height: 290px;
+      
+         .btn {
       display: inline-block;
-      margin-bottom: 5px;
-      margin-top: 1px;
-      border-style: solid;
-      border-color: rgb(199, 208, 208);
-      background-color: rgb(199, 208, 208);
-      overflow-wrap: break-word;
-      word-wrap: break-word;
-      box-sizing: border-box;
-      overflow: auto;
+      margin: 15px;
+      padding: 12px 25px;
+      background-color: #25d366;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
     }
-     .contact-box img {
-      width: 177px;
-      height: 268px;
-      display: inline-block;
-      margin-bottom: 5px;
-      margin-top: 1px;
-      border-style: solid;
-      border-color: hwb(120 67% 9%);
-      background-color: hwb(120 67% 9%);
-      overflow-wrap: break-word;
-      word-wrap: break-word;
-      box-sizing: border-box;
-      overflow: auto;
-    }
-    .details-box p {
-      line-height: 1.6;
-      padding: 2px;
-      margin-top: 2px;
-      margin-bottom: 0;
-      margin-top: 0;
-    }
-    .details-box strong {
-        color: red;}
 
-        .contact-box {
-          border-style: solid;
-          border-color: rgb(199, 208, 208);
-          margin-top: 120px;
-        }
+    .btn:hover {
+      background-color: #128c7e;
+    }
 
 .whatsapp-button {
       background-color: hsl(142, 89%, 24%);
@@ -144,10 +105,10 @@ display:block;
 color: #333;
 width:auto;
 padding: 10px;
-margin: 10px auto;
+margin: 15px;
 margin-top: 10px;
 margin-bottom: 30px;
-border-color: hwb(300 81% 14%);
+border-color:  hwb(300 81% 14%);
 border-style: solid;
 background-color: hwb(300 81% 14%);
 border-width: 2px;
@@ -173,23 +134,22 @@ border-radius: none;
       }
 .any-button {
       
-    background-color: yellow;
       color: deeppink;
-      border-color: blue;
+      border-color: white;
+      background-color: white;
       border-style: solid;
       align-items: center;
       display: flex;
       justify-content: center;
       height: 50px;
+      line-height: 50px;
+       padding: 0 20px;
+        margin: 15px;
       box-sizing: border-box;
-      text-align: center;
-      padding: 0 20px;
       border-radius: 10px;
       cursor: pointer;
-      font-size: 2px;
       text-decoration: none;
       width: auto;
-      font-weight: bold;
       transition: background-color 0.15s;
     
     }
@@ -273,23 +233,7 @@ border-radius: none;
       display: block;
      
  }
-      .btn {
-      display: inline-block;
-      margin: 15px;
-      padding: 12px 25px;
-      background-color: #25d366;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      text-decoration: none;
-    }
-
-    .btn:hover {
-      background-color: #128c7e;
-    }
+   
 
 
 
