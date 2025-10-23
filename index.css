@@ -15,12 +15,12 @@ body {
   padding: 10px;
   margin: 15px;
  border-style: solid;
- border-color: rgb(199, 217, 217);
+ border-color: green;
  font-size: 30px;
- background-color: rgb(199, 217, 217);
+ background-color: green;
   background-size: auto;
   border-radius: 20px;
-  color: hwb(312 17% 11%);
+  color: white;
    text-align:justify;
     }
    
@@ -121,7 +121,7 @@ border-radius: none;
         font-family: "Courier New", Courier, monospace;
         text-align: center;
         font-weight: bold;
-        font-size: 40px;
+        font-size: 60px;
       }
       h2 {
         color: oklab(62.693% 0.22954 -0.14227);
@@ -129,7 +129,7 @@ border-radius: none;
         font-family: "Courier New", Courier, monospace;
         text-align: center;
         font-weight: bold;
-        font-size: 25px;
+        font-size: 60px;
         
       }
 .any-button {
