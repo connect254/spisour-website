@@ -10,6 +10,7 @@ body {
 
     .hero {
   width: 100%;
+  height: auto;
   display: block;
   padding: 10px;
   margin: 15px;
@@ -22,16 +23,10 @@ body {
   color: hwb(312 17% 11%);
    text-align:justify;
     }
-    h4 {
-      
-        margin-top: 5px;
-        
-    }
-    
-     
+   
    
       button {
-        color: yellow;
+        color: red;
         border-color: white;
         background-color: #AAC9FF;
         font-weight: bold;
