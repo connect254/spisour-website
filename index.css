@@ -18,6 +18,7 @@ body {
  border-style: solid;
  border-color: green;
  font-size: 30px;
+ font-family: yellowtail;
  background-color: hwb(300 81% 14%);
   background-size: auto;
   border-radius: 20px;
@@ -28,8 +29,8 @@ body {
    
       button {
         color: red;
-        border-color: white;
-        background-color: #AAC9FF;
+        border-color: blue;
+        background-color: yellow;
         font-weight: bold;
         font-family: 'Courier Prime', ui-monospace, monospace;
         width: 100%;
@@ -117,20 +118,20 @@ border-radius: none;
 
 }
  h1 {
-        color: oklab(62.693% 0.22954 -0.14227);
+        color: blue;
         font-style: normal;
-        font-family: "Courier New", Courier, monospace;
+        font-family: Sans Typewriter;
         text-align: center;
         font-weight: bold;
         font-size: 60px;
       }
       h2 {
         color: oklab(62.693% 0.22954 -0.14227);
-        font-style: normal;
+        font-style:italic;
         font-family: "Courier New", Courier, monospace;
         text-align: center;
-        font-weight: bold;
-        font-size: 50px;
+        font-weight:lighter;
+        font-size: 30px;
         
       }
 .any-button {
@@ -225,18 +226,23 @@ border-radius: none;
     .icon {
       width: 25px;
       height: 25px;
-    }
-
-
-       
-       
- .whatsappgroup-button {
-    
-      display: block;
-  
-     
+    }  
+ .whatsappgroup-button { 
+      display: block; 
  }
-   
+   .livechat {
+
+border-color: whitesmoke;
+background-color: whitesmoke;
+border-style: solid;
+border-radius: 20;
+color: black;
+height :400px;
+margin: 30px;
+text-align: justify;
+width: auto;
+
+   }
 
 
 
