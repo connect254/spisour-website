@@ -1,34 +1,400 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>THE SINGLES PLANET</title>
-    <link rel="stylesheet" href="DS.CSS">
-</head>
-<body>
-    <img src="" alt="">
-    <h1>PERSONAL PROFILE DETAILS</h1>
-    <h2>phone numbers: 0715766889</h2>
-    <h3>Name: Alex</h3>
-    <h3>Age: 21</h3>
-    <h3>Gender: Male</h3>
-    <h3>Location: Nairobi</h3>
-    <h3>Tribe: Kikuyu</h3>
-    <h3>Career: Doctor</h3>
-    <h3>Education level: University</h3>
-    <h3>looking for: a relationship leading to marriage</h3>
-    <h3>about me: open minded and love fun</h3>
+  <head>
+    <meta charset="utf-8" />
+    <title>Glass-Style Nested Toggles — Men & Women Age Categories</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      :root {
+        --bg1: #f3eefc;
+        --accent-purple: #7b5cff;
+        --glass-border: rgba(255, 255, 255, 0.18);
+        --muted: rgba(20, 12, 40, 0.7);
+      }
 
-h1>PERSONAL PROFILE DETAILS</h1>
-    <h2>phone numbers: 0715766889</h2>
-    <h3>Name: Evangeline Nanjala</h3>
-    <h3>Age: 32</h3>
-    <h3>Gender: Female</h3>
-    <h3>Location: Bomet</h3>
-    <h3>Tribe: Kalenjin</h3>
-    <h3>Career: Doctor</h3>
-    <h3>Education level: University</h3>
-    <h3>looking for: a relationship leading to marriage</h3>
-    <h3>about me: open minded and love fun</h3>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 36px 14px;
+        background: linear-gradient(180deg, #f8f4ff 0%, #eef7ff 100%);
+        color: var(--muted);
+      }
 
-</body>
+      .wrap {
+        width: 100%;
+        max-width: 920px;
+      }
+
+      .card {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.06),
+          rgba(255, 255, 255, 0.02)
+        );
+        border: 1px solid var(--glass-border);
+        border-radius: 14px;
+        padding: 16px;
+        margin-bottom: 18px;
+        box-shadow: 0 10px 30px rgba(80, 60, 120, 0.06);
+        backdrop-filter: blur(6px) saturate(120%);
+      }
+
+      .card-header .title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #362a66;
+      }
+      .card-header .subtitle {
+        font-size: 13px;
+        color: rgba(54, 42, 102, 0.6);
+        margin-top: 4px;
+      }
+
+      .main-btn {
+        display: block;
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        font-weight: 800;
+        font-size: 15px;
+        color: white;
+        background: linear-gradient(90deg, #7b5cff, #5f3bff);
+        box-shadow: 0 8px 20px rgba(95, 59, 255, 0.14);
+      }
+
+      .sub-container {
+        margin-top: 12px;
+      }
+
+      .sub-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        margin: 10px 0 6px 0;
+        border: none;
+        cursor: pointer;
+        font-weight: 700;
+        background: rgba(255, 255, 255, 0.03);
+        color: #2e2350;
+        box-shadow: 0 4px 14px rgba(40, 30, 70, 0.04);
+      }
+
+      .sub-btn .label {
+        font-size: 14px;
+      }
+      .sub-btn .state {
+        font-size: 13px;
+        color: rgba(46, 35, 80, 0.6);
+        font-weight: 800;
+      }
+
+      .sub-content {
+        padding: 12px;
+        margin-bottom: 8px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        color: rgba(20, 12, 40, 0.75);
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .muted-note {
+        font-size: 12px;
+        color: rgba(54, 42, 102, 0.5);
+        margin-top: 8px;
+      }
+
+      @media (max-width: 640px) {
+        .card {
+          padding: 14px;
+          border-radius: 12px;
+        }
+        .main-btn {
+          font-size: 14px;
+          padding: 11px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <!-- MAIN SECTION A -->
+      <section class="card" id="mainSectionA">
+        <div class="card-header">
+          <div class="title">Men Age Categories</div>
+          <div class="subtitle">Open to reveal age groups</div>
+        </div>
+
+        <button
+          id="mainBtnA"
+          class="main-btn"
+          aria-expanded="false"
+          onclick="toggleMain('A')"
+        >
+          Show Men by Age
+        </button>
+
+        <div id="subContainerA" class="sub-container" style="display: none">
+          <button
+            id="subBtnA-1"
+            class="sub-btn"
+            aria-expanded="false"
+            onclick="toggleSub('A',1)"
+          >
+            <span class="label">Men 18-23 years</span>
+            <span class="state">Hidden</span>
+          </button>
+          <div id="subContentA-1" class="sub-content" style="display: none">
+            Men 18-23 years
+          </div>
+
+          <button
+            id="subBtnA-2"
+            class="sub-btn"
+            aria-expanded="false"
+            onclick="toggleSub('A',2)"
+          >
+            <span class="label">Men 24-33 years</span>
+            <span class="state">Hidden</span>
+          </button>
+          <div id="subContentA-2" class="sub-content" style="display: none">
+            Men 24-33 years
+          </div>
+
+          <button
+            id="subBtnA-3"
+            class="sub-btn"
+            aria-expanded="false"
+            onclick="toggleSub('A',3)"
+          >
+            <span class="label">Men 34-40 years</span>
+            <span class="state">Hidden</span>
+          </button>
+          <div id="subContentA-3" class="sub-content" style="display: none">
+            Men 34-40 years
+          </div>
+
+          <button
+            id="subBtnA-4"
+            class="sub-btn"
+            aria-expanded="false"
+            onclick="toggleSub('A',4)"
+          >
+            <span class="label">Men 40 years+</span>
+            <span class="state">Hidden</span>
+          </button>
+          <div id="subContentA-4" class="sub-content" style="display: none">
+            Men 40 years+
+          </div>
+
+          <div class="muted-note">
+            Tip: click an option to show its content (only one shown at a time).
+          </div>
+        </div>
+      </section>
+
+      <!-- MAIN SECTION B -->
+      <section class="card" id="mainSectionB">
+        <div class="card-header">
+          <div class="title">Women Age Categories</div>
+          <div class="subtitle">Open to reveal age groups</div>
+        </div>
+
+        <button
+          id="mainBtnB"
+          class="main-btn"
+          aria-expanded="false"
+          onclick="toggleMain('B')"
+        >
+          Show Women by Age
+        </button>
+
+        <div id="subContainerB" class="sub-container" style="display: none">
+          <button
+            id="subBtnB-1"
+            class="sub-btn"
+            aria-expanded="false"
+            onclick="toggleSub('B',1)"
+          >
+            <span class="label">Women 18-23 years</span>
+            <span class="state">Hidden</span>
+          </button>
+          <div id="subContentB-1" class="sub-content" style="display: none">
+            Women 18-23 years
+          </div>
+
+          <button
+            id="subBtnB-2"
+            class="sub-btn"
+            aria-expanded="false"
+            onclick="toggleSub('B',2)"
+          >
+            <span class="label">Women 24-33 years</span>
+            <span class="state">Hidden</span>
+          </button>
+          <div id="subContentB-2" class="sub-content" style="display: none">
+            Women 24-33 years
+          </div>
+
+          <button
+            id="subBtnB-3"
+            class="sub-btn"
+            aria-expanded="false"
+            onclick="toggleSub('B',3)"
+          >
+            <span class="label">Women 34-40 years</span>
+            <span class="state">Hidden</span>
+          </button>
+          <div id="subContentB-3" class="sub-content" style="display: none">
+            Women 34-40 years
+          </div>
+
+          <button
+            id="subBtnB-4"
+            class="sub-btn"
+            aria-expanded="false"
+            onclick="toggleSub('B',4)"
+          >
+            <span class="label">Women 40 years+</span>
+            <span class="state">Hidden</span>
+          </button>
+          <div id="subContentB-4" class="sub-content" style="display: none">
+            Women 40 years+
+          </div>
+
+          <div class="muted-note">
+            Tip: main shows options; options show content (single content at a
+            time).
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const MAIN_IDS = ["A", "B"];
+      const MAIN_DISPLAY = { A: "Men by Age", B: "Women by Age" };
+
+      // Close all main sections except optional excludeId
+      function closeAllMains(excludeId) {
+        MAIN_IDS.forEach((id) => {
+          if (id === excludeId) return;
+          const container = document.getElementById("subContainer" + id);
+          const mainBtn = document.getElementById("mainBtn" + id);
+          if (container) container.style.display = "none";
+          if (mainBtn) {
+            mainBtn.setAttribute("aria-expanded", "false");
+            mainBtn.innerText = "Show " + MAIN_DISPLAY[id];
+          }
+          // Also reset that main's sub contents/buttons
+          resetSubGroup(id);
+        });
+      }
+
+      // Close all sub-content globally and reset sub buttons' states (labels remain fixed)
+      function closeAllSubContents() {
+        const allContents = document.querySelectorAll(".sub-content");
+        const allButtons = document.querySelectorAll(".sub-btn");
+        allContents.forEach((c) => (c.style.display = "none"));
+        allButtons.forEach((btn) => {
+          btn.setAttribute("aria-expanded", "false");
+          const state = btn.querySelector(".state");
+          if (state) state.innerText = "Hidden";
+          // label left unchanged (shows age-range)
+        });
+      }
+
+      // Reset a specific main's sub-buttons and sub-content (used when a main closes)
+      function resetSubGroup(mainId) {
+        const buttons = document.querySelectorAll(
+          `#subContainer${mainId} .sub-btn`
+        );
+        const contents = document.querySelectorAll(
+          `#subContainer${mainId} .sub-content`
+        );
+        contents.forEach((c) => (c.style.display = "none"));
+        buttons.forEach((btn) => {
+          btn.setAttribute("aria-expanded", "false");
+          const state = btn.querySelector(".state");
+          if (state) state.innerText = "Hidden";
+        });
+      }
+
+      // Toggle main section — ensures only one main open at a time
+      function toggleMain(mainId) {
+        const container = document.getElementById("subContainer" + mainId);
+        const mainBtn = document.getElementById("mainBtn" + mainId);
+        const isOpen = container.style.display !== "none";
+
+        if (isOpen) {
+          // Close this main and reset its sub-group
+          container.style.display = "none";
+          mainBtn.setAttribute("aria-expanded", "false");
+          mainBtn.innerText = "Show " + MAIN_DISPLAY[mainId];
+          resetSubGroup(mainId);
+        } else {
+          // Close other mains, then open this one
+          closeAllMains(mainId);
+          // also close any open sub-content globally (safety)
+          closeAllSubContents();
+          container.style.display = "block";
+          mainBtn.setAttribute("aria-expanded", "true");
+          mainBtn.innerText = "Hide " + MAIN_DISPLAY[mainId];
+          // ensure sub-buttons are reset (hidden states) when shown
+          resetSubGroup(mainId);
+        }
+      }
+
+      // Toggle a sub content — ensures only one sub-content is open globally
+      function toggleSub(mainId, subIndex) {
+        const content = document.getElementById(
+          `subContent${mainId}-${subIndex}`
+        );
+        const btn = document.getElementById(`subBtn${mainId}-${subIndex}`);
+        const isVisible = content.style.display !== "none";
+
+        if (isVisible) {
+          // close it
+          content.style.display = "none";
+          btn.setAttribute("aria-expanded", "false");
+          const state = btn.querySelector(".state");
+          if (state) state.innerText = "Hidden";
+        } else {
+          // close all other sub contents globally then open this
+          closeAllSubContents();
+          content.style.display = "block";
+          btn.setAttribute("aria-expanded", "true");
+          const state = btn.querySelector(".state");
+          if (state) state.innerText = "Visible";
+        }
+      }
+
+      // Initialize state on page load
+      (function init() {
+        MAIN_IDS.forEach((id) => {
+          const container = document.getElementById("subContainer" + id);
+          const mainBtn = document.getElementById("mainBtn" + id);
+          if (container) container.style.display = "none";
+          if (mainBtn) {
+            mainBtn.setAttribute("aria-expanded", "false");
+            mainBtn.innerText = "Show " + MAIN_DISPLAY[id];
+          }
+          resetSubGroup(id);
+        });
+      })();
+    </script>
+  </body>
 </html>
