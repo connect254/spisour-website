@@ -153,3 +153,24 @@ a {
     padding: 15px;
   }
 }
+.site-footer {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+  color: #333;
+}
+
+.site-footer a {
+  color: #007bff;
+  text-decoration: none;
+  margin: 0 5px;
+  font-weight: 500;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
