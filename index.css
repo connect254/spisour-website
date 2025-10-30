@@ -1,295 +1,155 @@
 body {
-  background-size: auto;
-  background-repeat: space;
-  background-position: center;
-  background-color: #E2E5E9;
-  margin-top: 30px;
-  margin-bottom: 10px;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", Arial, sans-serif;
+  background: #E2E5E9;
+  color: #2d1b55;
+  line-height: 1.6;
+  text-align: center;
 }
 
-    .hero {
-  width: auto;
-  height: auto;
-  display: block;
-  padding: 10px;
-  margin: 15px;
-  margin-right: 15px;
- border-style: solid;
- border-color: white;
- font-size: 30px;
- font-family: yellowtail;
- background-color: white;
-  background-size: auto;
+h1 {
+  margin-top: 25px;
+  font-size: 2rem;
+  color: #4e2786;
+  letter-spacing: 1px;
+}
+
+h2 {
+  font-weight: 500;
+  color: #7d57c7;
+  margin: 8px 0;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 20px;
-  color: green;
-   text-align:justify;
-    }
-   
-   
-      button {
-        color: red;
-        border-color: yellow;
-        background-color: yellow;
-        width: 100%;
-        max-width: 100%;
-        font-weight: bold;
-        font-family: 'courier prime', ui-monospace,monospace;
-        box-sizing: border-box;
-        display: block;
-        border-radius: 10px;
-        cursor: pointer;
-        align-items: center;
-        padding-bottom: 5px;
-        padding-top: 1px;
-        font-size: 50px;
-        transition: background-color 0.15s;
-        
-      }
-      button:hover {
-        background-color: rgb(182, 156, 178);
-        box-shadow: 5px 5px 10px red;
-      }
-      
-         .btn {
-      display: inline-block;
-      margin: 15px;
-      padding: 12px 25px;
-      background-color: #25d366;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      text-decoration: none;
-    }
-
-    .btn:hover {
-      background-color: #128c7e;
-    }
-
-.whatsapp-button {
-      background-color: hsl(142, 89%, 24%);
-      color: white;
-      padding: 1px 2px;
-      border: none;
-      border-radius: 30px;
-      font-size: 25px;
-      font-weight: bold;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1px;
-      text-decoration: none;
-      width: fit-content;
-      margin: 2px;
-      height: 46px;
-      width: 200px;
-      transition: background-color 0.3s ease;
-    }
-    .whatsapp-button :hover {
-      background-color: hsl(145, 86%, 5%);
-    }
-
-    .whatsapp-button img {
-      width: 40px;
-      height: 40px;
-      margin: 2px;
-      background-color: hsl(142, 89%, 24%);
-      border: none;
-    }
-      
-
-    .introduction-statement {
-display:block;
-color: #333;
-width:auto;
-padding: 10px;
-margin: 15px;
-margin-top: 10px;
-margin-bottom: 30px;
-border-color:  #E2E5E9;
-border-style: solid;
-background-color: #E2E5E9;
-border-width: 2px;
-border-radius: none;
-
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(120, 80, 180, 0.2);
+  margin: 15px auto;
+  width: 90%;
+  max-width: 900px;
 }
- h1 {
-        color: blue;
-        font-style: normal;
-        font-family: Sans Typewriter;
-        text-align: center;
-        font-weight: bold;
-        font-size: 60px;
-      }
-      h2 {
-        color: oklab(62.693% 0.22954 -0.14227);
-        font-style:italic;
-        font-family: "Courier New", Courier, monospace;
-        text-align: center;
-        font-weight:lighter;
-        font-size: 30px;
-        
-      }
-.any-button {
-      
-      color: deeppink;
-      border-color: hwb(300 81% 14%);
-      background-color: hwb(300 81% 14%);
-      border-style: solid;
-      font-size: 50px;
-      align-items: center;
-      display: flex;
-      justify-content: center;
-      height: 50px;
-      padding: 0 20px;
-      margin: 15px;
-      box-sizing: border-box;
-      border-radius: 10px;
-      cursor: pointer;
-      text-decoration: none;
-      width: auto;
-      transition: background-color 0.15s;
-    
-    }
-    .any-button:hover {
-        background-color: green;
-        box-shadow: 5px 5px 10px red;
-      }
-        .email-btn {
-      display: inline-flex;
-      width: 300px;
-      margin-bottom: 2px;
-      align-items: center;
-      background-color: hsl(207, 47%, 68%);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      gap: 25px;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-    .email-btn :hover {
-      background-color: #1ebe5d;
-      transform: scale(1.05);
-    }
-    .icon {
-      width: 20px;
-      height: 20px;
-    }
 
-    .whatsapp-btn {
-      display: inline-flex;
-      width: 300px;
-      background-color: #25d366;
-      align-items: center;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 8px;
-      margin-top: 0px;
-      text-decoration: none;
-      font-size: 18px;
-      border-top: 10px solid #a8dc36;
-      font-weight: bold;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-    .whatsapp-btn:hover {
-      background-color: black;
-      transform: scale(1.05);
-    }
-    .call-btn {
-      display: inline-flex;
-      width: 300px;
-      align-items: center;
-      justify-content: center;
-      background-color: white;
-      color: blue;
-      border-color: black;
-      border-style: solid;
-      padding: 10px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      gap: 16px;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .call-btn:hover {
-      background-color: black;
-      transform: scale(1.05);
-    }
-    .icon {
-      width: 25px;
-      height: 25px;
-    }  
- .whatsappgroup-button { 
-      display: block; 
- }
-   
+.startbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px auto;
+  max-width: 900px;
+}
 
+button {
+  background: linear-gradient(145deg, #7b48e8, #9e6aff);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 15px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
 
- .livechat {
-  width: auto;
-  height: auto;
-  display: block;
+button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(145deg, #8c58f8, #b78aff);
+}
+
+.hero ul {
+  text-align: left;
+  list-style-type: circle;
+  padding-left: 20px;
+}
+
+p {
+  text-align: justify;
+}
+
+.any-button h2 {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
   padding: 10px;
-  margin: 15px;
-  margin-right: 15px;
- border-style: solid;
- border-color: white;
- font-size: 30px;
- font-family: roboto;
- background-color: white;
-  background-size: auto;
-  border-radius: 20px;
-  color: black;
-   text-align:justify;
-    }
- 
-    .match {
-display:block;
-color: #333;
-width:auto;
-padding: 10px;
-margin: 15px;
-margin-top: 10px;
-margin-bottom: 30px;
-border-color: #bcc2ca;
-border-style: solid;
-background-color: #bcc2ca;
-border-width: 2px;
-border-radius: none;
-
+  box-shadow: 0 0 10px rgba(140, 100, 200, 0.2);
 }
-    .public {
-display:block;
-color: white;
-width:auto;
-padding: 10px;
-margin: 15px;
-margin-top: 10px;
-margin-bottom: 30px;
-border-color: rgb(142, 121, 121);
-border-style: solid;
-background-color: rgb(142, 121, 121);
-border-width: 2px;
-border-radius: none;
-align-items: center;
 
+a {
+  text-decoration: none;
+  color: inherit;
 }
-    .startbar {
-width:auto;
-margin: 15px;
-border-color: #E2E5E9;
-border-style: solid;
-background-color: #E2E5E9;
-border-width: 2px;
-align-items: center;
-display: flex;
-flex-direction: column; 
-gap: 20px; 
 
+.btn,
+.email-btn,
+.whatsapp-btn,
+.call-btn,
+.whatsappgroup-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 8px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+  color: #3c1f77;
+  transition: all 0.3s ease;
+}
+
+.btn:hover,
+.email-btn:hover,
+.whatsapp-btn:hover,
+.call-btn:hover,
+.whatsappgroup-button:hover {
+  background: rgba(255, 255, 255, 0.45);
+  transform: translateY(-3px);
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+}
+
+.public {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 12px;
+  border-radius: 12px;
+  margin: 10px auto;
+  width: 85%;
+  max-width: 600px;
+  font-weight: 600;
+}
+
+.livechat {
+  color: #6a4db2;
+  font-style: italic;
+  margin: 20px;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+  button {
+    width: 100%;
+    font-size: 0.95rem;
+  }
+  .btn,
+  .email-btn,
+  .whatsapp-btn,
+  .call-btn,
+  .whatsappgroup-button {
+    width: 90%;
+    display: block;
+    margin: 10px auto;
+  }
+  .glass-card {
+    padding: 15px;
+  }
 }
