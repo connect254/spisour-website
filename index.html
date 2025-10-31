@@ -115,7 +115,7 @@
       <a
         href="https://wa.me/254796339854?text=Hello%20I%20visited%20your%20website%20and%20would%20like%20private%20connection"
         class="btn"
-        style="color: yellow"
+        style="color: blue"
         >Search by Age</a
       >
       <a
@@ -155,8 +155,6 @@
         >Whites Connection</a
       >
     </div>
-
-    <div class="livechat">💬 Installing live chat...</div>
 
     <div class="public"><strong>PUBLIC WHATSAPP GROUP LINKS</strong></div>
 
@@ -234,14 +232,208 @@
       </ul>
     </div>
 
-    <div class="public"><strong>FREQUENTLY ASKED QUESTIONS</strong></div>
-    <div class="public"><strong>VISITORS' REVIEWS</strong></div>
-    <div class="public"><strong>ADVERTISE A PRODUCT</strong></div>
-    <div class="public"><strong>BUY A WEBSITE LIKE THIS</strong></div>
+    <section class="glass-card faq-section">
+      <h2>💞 Frequently Asked Questions</h2>
 
-    <p style="padding: 10px">
-      💡 We make custom websites. You can buy a licensed copy of this design.
-    </p>
+      <div class="faq">
+        <button class="faq-question">1. What is The Singles Planet?</button>
+        <div class="faq-answer">
+          <p>
+            The Singles Planet is a connection platform that helps singles meet
+            based on lifestyle, profession, and preferences. We provide direct
+            WhatsApp chat options for fast, secure connections.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">2. How do I find my match?</button>
+        <div class="faq-answer">
+          <p>
+            Choose a category like <strong>Available Singles</strong> or
+            <strong>Diaspora Singles</strong>, then click the WhatsApp button to
+            start chatting with verified singles instantly.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">3. Do I need to create an account?</button>
+        <div class="faq-answer">
+          <p>
+            No signup needed — you can connect directly through WhatsApp without
+            forms or passwords.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">4. Is The Singles Planet free?</button>
+        <div class="faq-answer">
+          <p>
+            Yes! Basic browsing and chatting are free. Premium introductions or
+            personalized matchmaking may include small service fees, clearly
+            shown before payment.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">5. How are profiles verified?</button>
+        <div class="faq-answer">
+          <p>
+            We manually review submitted details and photos to reduce fake
+            profiles and spam.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">
+          6. How can I stay safe when meeting someone?
+        </button>
+        <div class="faq-answer">
+          <p>
+            Meet in public for first dates, avoid sharing financial info, and
+            report suspicious users. Your safety comes first 💛
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">
+          7. Can I meet singles from other countries?
+        </button>
+        <div class="faq-answer">
+          <p>
+            Yes! Explore <strong>Diaspora Singles</strong> or
+            <strong>Whites Connection</strong> to meet people globally.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">
+          8. I’m over 40 — is this site for me?
+        </button>
+        <div class="faq-answer">
+          <p>
+            Absolutely! Our <strong>Date My Age 40+</strong> section is designed
+            for mature singles seeking meaningful connections.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">9. Can I request a custom match?</button>
+        <div class="faq-answer">
+          <p>
+            Yes! Message us on WhatsApp with your age range, location, and
+            preferences — we’ll help you connect privately.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">10. How do I contact support?</button>
+        <div class="faq-answer">
+          <p>
+            Tap the <strong>Call</strong> or
+            <strong>WhatsApp Admin</strong> button on the homepage. Our admin is
+            available daily to assist.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="glass-card reviews-section">
+      <h2>🌍 What Our Members Say</h2>
+
+      <div class="review">
+        <p class="review-text">
+          “I met my partner on The Singles Planet, on the "Available singles
+          Listing" — we both work in the same field and clicked instantly. Thank
+          you for making connections real!”
+        </p>
+        <p class="review-author">— Jane Nyambura., Nairobi</p>
+      </div>
+
+      <div class="review">
+        <p class="review-text">
+          “This site is so easy to use. No stress, no fake profiles — just real
+          people.I Highly recommend serious singles to GET listed as Available
+          singles or chat singles only listed there.People in general whatsapp
+          group as 90% Jokers,just Get uploaded or chat the uploaded singles.”
+        </p>
+        <p class="review-author">— Kevin Oloo., Mombasa</p>
+      </div>
+
+      <div class="review">
+        <p class="review-text">
+          “I joined ‘Diaspora Singles’ and met amazing people abroad through
+          private Admin connections. Great concept and very well-organized
+          platform.”
+        </p>
+        <p class="review-author">— Sharon K., Dubai</p>
+      </div>
+    </section>
+
+    <div class="glass-card add-review">
+      <h3>💖 Share Your Experience/Testimony Publicly</h3>
+      <textarea
+        id="reviewInput"
+        placeholder="Write your review..."
+        rows="3"
+      ></textarea>
+      <br />
+      <button id="addReviewBtn">Post Review</button>
+    </div>
+
+    <script>
+      const addReviewBtn = document.getElementById("addReviewBtn");
+      const reviewInput = document.getElementById("reviewInput");
+      const reviewSection = document.querySelector(".reviews-section");
+
+      addReviewBtn.addEventListener("click", () => {
+        const text = reviewInput.value.trim();
+        if (text) {
+          const newReview = document.createElement("div");
+          newReview.classList.add("review");
+          newReview.innerHTML = `<p class="review-text">"${text}"</p><p class="review-author">— Guest User</p>`;
+          reviewSection.appendChild(newReview);
+          reviewInput.value = "";
+        }
+      });
+    </script>
+
+    <div class="glass-card advertise-section">
+      <div class="any-button"><h2>📢 Advertise a Product / Service</h2></div>
+      <p>
+        Promote your brand, service, or event to our growing community
+        worldwide. Reach genuine audiences looking for lifestyle, travel,
+        entertainment, and personal growth opportunities.
+      </p>
+
+      <ul style="text-align: left">
+        <li>🌟 Affordable weekly and monthly advertising slots</li>
+        <li>
+          💼 Perfect for dating services, events, fashion, beauty & lifestyle
+          brands and any other type
+        </li>
+        <li>📸 Include images, website links, or short promotional videos</li>
+        <li>🗓️ Fast approval — your ad goes live within 24 hours</li>
+      </ul>
+
+      <a
+        href="https://wa.me/254796339854?text=Hello%20I%20want%20to%20advertise%20my%20product%20or%20service%20on%20The%20Singles%20Planet"
+        target="_blank"
+        class="btn"
+        style="color: green"
+      >
+        📲 Contact Admin to Advertise
+      </a>
+    </div>
+
     <a href="#" class="btn">Back to top</a>
 
     <footer class="site-footer">
@@ -252,5 +444,14 @@
         <a href="https://wa.me/254796339854" target="_blank">WhatsApp</a>
       </p>
     </footer>
+    <script>
+      const faqs = document.querySelectorAll(".faq-question");
+      faqs.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const faq = btn.parentElement;
+          faq.classList.toggle("active");
+        });
+      });
+    </script>
   </body>
 </html>
