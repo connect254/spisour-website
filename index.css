@@ -174,4 +174,115 @@ a {
 .site-footer a:hover {
   text-decoration: underline;
 }
+/* === FAQ STYLING === */
+.faq-section {
+  text-align: left;
+  margin-top: 30px;
+}
 
+.faq-question {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  color: #4e2786;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: left;
+  padding: 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(100, 70, 160, 0.2);
+}
+
+.faq-question:hover {
+  background: rgba(255, 255, 255, 0.45);
+  transform: scale(1.02);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0 15px;
+  border-radius: 0 0 12px 12px;
+  margin-bottom: 10px;
+}
+
+.faq-answer p {
+  margin: 10px 0;
+  color: #2d1b55;
+}
+
+.faq.active .faq-answer {
+  max-height: 200px;
+  padding: 15px;
+}
+/* === REVIEWS SECTION === */
+.reviews-section {
+  margin-top: 40px;
+  text-align: left;
+}
+
+.reviews-section h2 {
+  text-align: center;
+  color: #4e2786;
+  margin-bottom: 20px;
+}
+
+.review {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 15px 20px;
+  margin: 10px auto;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(120, 80, 180, 0.15);
+  max-width: 800px;
+}
+
+.review-text {
+  font-style: italic;
+  color: #2d1b55;
+}
+
+.review-author {
+  text-align: right;
+  margin-top: 8px;
+  font-weight: 600;
+  color: #6a4db2;
+}
+
+.add-review textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(140, 100, 200, 0.3);
+  padding: 10px;
+  font-family: inherit;
+}
+
+.add-review button {
+  background: linear-gradient(145deg, #7b48e8, #9e6aff);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.add-review button:hover {
+  transform: scale(1.05);
+}
+.advertise-section {
+  text-align: center;
+  line-height: 1.8;
+}
+
+.advertise-section ul li {
+  margin-bottom: 8px;
+  color: #3c1f77;
+}
+
+.advertise-section .btn {
+  font-weight: 600;
+  margin-top: 10px;
+}
