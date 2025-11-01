@@ -31,9 +31,10 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
-
       .container {
-        max-width: 1100px;
+        max-width: 100%;
+        width: 100%;
+        padding: 0 14px; /* optional for some spacing */
         margin: 0 auto;
       }
 
@@ -108,7 +109,6 @@
         border-radius: 10px;
         box-shadow: 0 2px 6px rgba(160, 130, 80, 0.04);
       }
-
       .search input {
         border: 0;
         outline: 0;
@@ -117,18 +117,16 @@
         font-size: 0.95rem;
         color: var(--accent-contrast);
       }
-
       .table-wrap {
+        width: 100%;
         overflow-x: auto;
         margin-top: 10px;
       }
-
       table {
         width: 100%;
         border-collapse: collapse;
-        min-width: 880px;
+        min-width: 0; /* or remove this line entirely */
       }
-
       thead th {
         position: relative;
         text-align: left;
@@ -260,100 +258,11 @@
         margin-top: 40px;
         font-family: Arial, sans-serif;
       }
-
-      .email-btn {
-        display: inline-flex;
-        width: 300px;
-        margin-bottom: 2px;
-        align-items: center;
-        background-color: hsl(207, 47%, 68%);
-        color: white;
-        padding: 10px 20px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-        gap: 25px;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-      }
-      .email-btn :hover {
-        background-color: #1ebe5d;
-        transform: scale(1.05);
-      }
-      .icon {
-        width: 20px;
-        height: 20px;
-      }
-
-      .whatsapp-btn {
-        display: inline-flex;
-        width: 300px;
-        background-color: #25d366;
-        align-items: center;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 8px;
-        margin-top: 0px;
-        text-decoration: none;
-        font-size: 18px;
-        border-top: 10px solid #a8dc36;
-        font-weight: bold;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-      }
-      .whatsapp-btn:hover {
-        background-color: black;
-        transform: scale(1.05);
-      }
-      .call-btn {
-        display: inline-flex;
-        width: 300px;
-        align-items: center;
-        justify-content: center;
-        background-color: white;
-        color: blue;
-        border-color: black;
-        border-style: solid;
-        padding: 10px 20px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-        gap: 16px;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-      .call-btn:hover {
-        background-color: black;
-        transform: scale(1.05);
-      }
-      .icon {
-        width: 25px;
-        height: 25px;
-      }
-      h2 {
-        color: purple;
-        text-align: center;
-      }
-
-      .btn {
-        display: inline-block;
-        margin: 15px;
-        padding: 12px 25px;
-        background-color: #25d366;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        text-decoration: none;
-      }
-
-      .btn:hover {
-        background-color: #128c7e;
-      }
       h2 {
         text-align: justify;
-        color: #333;
         font-weight: lighter;
+        color: purple;
+        text-align: center;
       }
       strong {
         color: red;
@@ -362,95 +271,14 @@
   </head>
   <body>
     <h2>
-      🌍 Connect With <strong>kenyan Singles abroad</strong>.On the search bar
-      type your country <strong>e.g Qatar,Dubai,kuwait,saudi e.t.c</strong> or
-      other search attribute (tribe,career,age,location) etc
+      🌍Connect With kenyan Singles abroad.On the search bar type your country
+      <strong>e.g Qatar,Dubai,kuwait,saudi e.t.c</strong> or other search
+      attribute (tribe,career,age,location) etc
     </h2>
 
-    <div style="text-align: center">
-      <a href="mailto:surehooksdatingagency@gmail.com" class="email-btn"
-        ><img
-          src="https://cdn-icons-png.flaticon.com/512/732/732200.png"
-          alt="Email Icon"
-          class="icon"
-        />Email website admin 💕</a
-      >
-    </div>
-
-    <div style="text-align: center; margin-top: 50px">
-      <a
-        href="https://wa.me/254796339854?text=Hello%20I%20visited%20your%20website%20and%20would%20like%20a%20connection"
-        target="_blank"
-        class="whatsapp-btn"
-      >
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-          alt="WhatsApp Icon"
-          class="icon"
-        />Chat website admin on WhatsApp 💕
-      </a>
-    </div>
-
-    <div style="text-align: center; margin-top: 30px">
-      <a href="tel:+254796339854" class="call-btn">
-        <img src="ds.photos/callicon.png" alt="" class="icon" />
-        Call website admin 💕
-      </a>
-    </div>
-
-    <p>Choose your preferred search option below:</p>
-
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20visited%20your%20website%20and%20would%20like%20a%20connection"
-      class="btn"
-      >Search by Location</a
-    >
-
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20visited%20your%20website%20and%20would%20like%20a%20connection"
-      class="btn"
-      >Search by Career</a
-    >
-
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20visited%20your%20website%20and%20would%20like%20a%20connection"
-      class="btn"
-      >search by age</a
-    >
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20visited%20your%20website%20and%20would%20like%20a%20connection"
-      class="btn"
-      >Singles with kids/No kids</a
-    >
-
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20visited%20your%20website%20and%20would%20like%20a%20connection"
-      class="btn"
-      >Single Dads/Moms</a
-    >
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20visited%20your%20website%20and%20would%20like%20a%20connection"
-      class="btn"
-      >Diaspora singles</a
-    >
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20visited%20your%20website%20and%20would%20like%20a%20connection"
-      class="btn"
-      >Verified Singles</a
-    >
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20visited%20your%20website%20and%20would%20like%20a%20connection"
-      class="btn"
-      >Campus dating</a
-    >
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20visited%20your%20website%20and%20would%20like%20a%20connection"
-      class="btn"
-      >whites connection</a
-    >
     <br /><br />
-    🌍 singles data.list <strong>shows 462 singles.</strong> To get
-    added/removed contact admin. <br /><br />
+    🌍singles data.list <strong>shows 462 singles.</strong> To get added/removed
+    contact admin. <br /><br />
     <div class="container">
       <div class="card" role="region" aria-labelledby="tableTitle">
         <header class="table-header">
