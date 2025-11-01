@@ -1,509 +1,2091 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Interactive People Table — Gold (Shiny)</title>
+    <style>
+      :root {
+        --gold-600: #d4af37;
+        --gold-700: #c59d5f;
+        --gold-800: #9a7130;
+        --bg: #fffaf6;
+        --muted: #6b6b6b;
+        --card: #fff;
+        --accent-contrast: #1b1b1b;
+        --radius: 12px;
+        --shadow: 0 8px 26px rgba(154, 113, 48, 0.12);
+        font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        padding: 28px;
+        background: linear-gradient(180deg, #fffaf6 0%, #fff6ea 100%);
+        color: var(--accent-contrast);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 18px;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(170, 140, 80, 0.08);
+      }
+
+      header.table-header {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+        flex-wrap: wrap;
+      }
+
+      .title-block {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .brand {
+        background: linear-gradient(135deg, var(--gold-600), var(--gold-700));
+        color: white;
+        padding: 10px 14px;
+        border-radius: 10px;
+        font-weight: 700;
+        box-shadow: 0 6px 18px rgba(165, 129, 59, 0.18);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .brand .dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.14);
+        box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.08);
+      }
+
+      h1 {
+        font-size: 1.05rem;
+        margin: 0;
+        letter-spacing: 0.2px;
+        color: var(--gold-800);
+      }
+      p.sub {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .controls {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .search {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #fffaf6;
+        border: 1px solid rgba(181, 146, 82, 0.15);
+        padding: 8px 10px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(160, 130, 80, 0.04);
+      }
+
+      .search input {
+        border: 0;
+        outline: 0;
+        background: transparent;
+        width: 260px;
+        font-size: 0.95rem;
+        color: var(--accent-contrast);
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        margin-top: 10px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 880px;
+      }
+
+      thead th {
+        position: relative;
+        text-align: left;
+        padding: 12px 12px;
+        font-size: 0.92rem;
+        letter-spacing: 0.2px;
+        border-bottom: 2px solid rgba(170, 140, 80, 0.08);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 250, 244, 0.6),
+          rgba(255, 248, 240, 0.35)
+        );
+        cursor: pointer;
+        user-select: none;
+        color: var(--gold-800);
+      }
+
+      thead th .sort-ind {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.8rem;
+        opacity: 0.8;
+      }
+
+      tbody td {
+        padding: 10px 12px;
+        border-bottom: 1px solid rgba(170, 140, 80, 0.04);
+        font-size: 0.95rem;
+        color: #222;
+      }
+
+      tbody tr:hover {
+        background: linear-gradient(
+          90deg,
+          rgba(250, 242, 224, 0.6),
+          rgba(255, 249, 240, 0.6)
+        );
+      }
+
+      tbody tr:nth-child(even) {
+        background: rgba(253, 248, 241, 0.6);
+      }
+
+      .pill {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        background: linear-gradient(
+          180deg,
+          rgba(212, 175, 55, 0.12),
+          rgba(196, 157, 95, 0.08)
+        );
+        color: var(--gold-800);
+        border: 1px solid rgba(196, 157, 95, 0.14);
+        font-weight: 600;
+      }
+
+      .pagination {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 12px;
+        flex-wrap: wrap;
+      }
+
+      .page-btn {
+        border: 1px solid rgba(160, 130, 80, 0.12);
+        background: white;
+        padding: 8px 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        min-width: 42px;
+        text-align: center;
+        font-weight: 600;
+        box-shadow: none;
+      }
+
+      .page-btn.active {
+        background: linear-gradient(180deg, var(--gold-600), var(--gold-700));
+        color: white;
+        border-color: rgba(160, 130, 80, 0);
+        box-shadow: 0 8px 22px rgba(165, 129, 59, 0.14);
+      }
+
+      .page-btn:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+
+      .meta {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .highlight {
+        background: rgba(255, 243, 205, 0.9);
+        padding: 0 4px;
+        border-radius: 4px;
+      }
+
+      @media (max-width: 820px) {
+        .search input {
+          width: 160px;
+        }
+        thead th {
+          font-size: 0.88rem;
+          padding: 10px;
+        }
+        tbody td {
+          padding: 8px;
+          font-size: 0.9rem;
+        }
+        .brand {
+          padding: 8px 10px;
+          font-size: 0.95rem;
+        }
+      }
+      p {
+        color: rgb(25, 4, 181);
+        text-align: center;
+        font-size: 20px;
+        margin-top: 40px;
+        font-family: Arial, sans-serif;
+      }
+
+      .email-btn {
+        display: inline-flex;
+        width: 300px;
+        margin-bottom: 2px;
+        align-items: center;
+        background-color: hsl(207, 47%, 68%);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        gap: 25px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+      .email-btn :hover {
+        background-color: #1ebe5d;
+        transform: scale(1.05);
+      }
+      .icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      .whatsapp-btn {
+        display: inline-flex;
+        width: 300px;
+        background-color: #25d366;
+        align-items: center;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        margin-top: 0px;
+        text-decoration: none;
+        font-size: 18px;
+        border-top: 10px solid #a8dc36;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+      .whatsapp-btn:hover {
+        background-color: black;
+        transform: scale(1.05);
+      }
+      .call-btn {
+        display: inline-flex;
+        width: 300px;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        color: blue;
+        border-color: black;
+        border-style: solid;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        gap: 16px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .call-btn:hover {
+        background-color: black;
+        transform: scale(1.05);
+      }
+      .icon {
+        width: 25px;
+        height: 25px;
+      }
+      h2 {
+        color: purple;
+        text-align: center;
+      }
+
+      .btn {
+        display: inline-block;
+        margin: 15px;
+        padding: 12px 25px;
+        background-color: #25d366;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+      }
+
+      .btn:hover {
+        background-color: #128c7e;
+      }
+      h2 {
+        text-align: justify;
+        color: #333;
+        font-weight: lighter;
+      }
+      strong {
+        color: red;
+      }
+    </style>
   </head>
-  <style>
-    h1 {
-      color: hsl(136, 92%, 33%);
-      text-align: justify;
-      font-style: normal;
-      font-size: 25px;
-    }
-    body {
-      background-color: lightgrey;
-    }
-
-    .whatsapp-btn {
-      background-color: #25D366;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      display: inline-block;
-      transition: 0.3s ease;
-    }
-    .whatsapp-btn:hover {
-      opacity: 0.8;
-      transform: scale(1.05);
-    }
-
-   body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(120deg, rgba(200,150,255,0.3), rgba(255,255,255,0.4));
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      padding: 20px;
-    }
-
-    .card {
-      width: 100%;
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-color: green;
-      border-width: 2px;
-      border-radius: 15px;
-      padding: 15px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      font-size: 14px;
-      line-height: 1.5;
-      white-space: pre-line; /* preserves line breaks */
-    }
-
-    .serial {
-      text-align: center;
-      font-size: 16px;
-      margin-bottom: 10px;
-      display: block;
-      padding: 4px;
-    }
-  </style>
-
-   
-</head>
-<body>
-   <h1>
-      How to unlock a contact. Locked contacts are due to singles who signed up
-      to our dating system, and allowed us to connect them with other singles
-      interested in them.To delete or add your details on "unlock a contact"/OR CHANGE NAME (for privacy reasons)
-      whatsapp admin.
-      <br><br>
-      N/B PHOTOS MAY NOT BE SHOWN HERE UNLESS THE OWNER REQUESTS
-      <br><br>
-
+  <body>
+    
+ <body>
+   <h1>what kind of partner are you looking ?</h1>
+     
+     <ul>
+      
+      <li>A partner near you?</li>
+      <li>A partner abroad?</li>
+      <li>A personal of specific age or requirement?</li>
+      <li>A God fearing partner?</li>
+      <li>single mom/dad / no kids?</li>
+      <li>An jorvial, warm and full of life type?</li>
+      <li>A career partner,education level, someone financially stable?</li>
+      <li>An intentional , real person to settle down with?</li>
+      <li>Someone who shares your dreams, goals and ambitions?</li>
+      <li>Someone respectiful, calm and loves peace?</li>
+      <li>A lifist who enjoys outing and fun?</li>
+      <li>Other criteria or a comination of several?</li>
+     </ul>
+      <br>
+      <p>Search singles here and chat with them to understand them better.</p>
+      <p>Default search criteria is : age, gender, location, tribe, career, kids , name </p>
+      <br>
+      <p>Find singles near you just by typing your local location on the search bar e.g chuka, kangema, voi etc </p>
      
        <a href="https://wa.me/254796339854_HERE?text=Hi%20admin%20%2C%20confirm%20my%20payment%20and%20unlock%20for%20me%20following%20contacts" target="_blank" target="_blank">
-  <button class="whatsapp-btn">Tap HERE to WhatsApp admin</button>
+  <button class="whatsapp-btn">Tap HERE to WhatsApp private connection admin</button>
 </a>
 
-        <br>
+      
 
-        <p>To unlock one profile pay 40/- to admin number above and forward the message. Note that to unlock all profiles you pay 300 per year. (T&C apply) </p>
-        <p>Indicate the singles profile you want to unlock by sharing the serial number, and name to admin</p>
-        <br><br>
+    <br /><br />
+    🌍 singles data.list <strong>shows 462 singles.</strong> To get
+    added/removed contact admin. <br /><br />
+    <div class="container">
+      <div class="card" role="region" aria-labelledby="tableTitle">
+        <header class="table-header">
+          <div class="title-block">
+            <div class="brand" aria-hidden="true">
+              <span class="dot"></span>Singles 🌍 Directory
+            </div>
+            <div>
+              <h1 id="tableTitle">Matches — Interactive Table</h1>
+              <p class="sub">
+                Gold shiny gradient • Search · Sort · Pagination (5 rows per
+                page)
+              </p>
+            </div>
+          </div>
 
-        
-      <a href="https://wa.me/254796339854_HERE?text=Hi%20admin%20%2C%20confirm%20my%20payment%20and%20unlock%20for%20me%20following%20contacts" target="_blank">
-  <button class="whatsapp-btn">Tap HERE to WhatsApp admin</button>
-</a>
+          <div class="controls">
+            <div class="search" title="Search all columns">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M21 21l-4.35-4.35"
+                  stroke="rgba(139,115,77,0.9)"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="6"
+                  stroke="rgba(139,115,77,0.9)"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <input
+                id="searchInput"
+                type="search"
+                placeholder="Search name, location, tribe, career..."
+                aria-label="Search table"
+              />
+              <button
+                id="clearSearch"
+                title="Clear search"
+                style="
+                  border: 0;
+                  background: transparent;
+                  cursor: pointer;
+                  font-weight: 600;
+                  color: var(--gold-800);
+                  display: none;
+                "
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+        </header>
 
+        <div class="table-wrap" role="table" aria-label="People table">
+          <table id="peopleTable" aria-describedby="tableTitle">
+            <thead>
+              <tr>
+                <th data-key="no">No. <span class="sort-ind"></span></th>
+                <th data-key="name">Name <span class="sort-ind"></span></th>
+                <th data-key="age">Age <span class="sort-ind"></span></th>
+                <th data-key="location">
+                  Location <span class="sort-ind"></span>
+                </th>
+                <th data-key="gender">Gender <span class="sort-ind"></span></th>
+                <th data-key="kids">Kids <span class="sort-ind"></span></th>
+                <th data-key="tribe">Tribe <span class="sort-ind"></span></th>
+                <th data-key="career">Career <span class="sort-ind"></span></th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <!-- rows generated by JS -->
+            </tbody>
+          </table>
+        </div>
 
-  
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 14px;
+            gap: 12px;
+            flex-wrap: wrap;
+          "
+        >
+          <div class="meta" id="metaInfo" aria-live="polite"></div>
+          <div class="pagination" id="pagination"></div>
+        </div>
+      </div>
+    </div>
 
-<script>
-  // Format: [Name, Age, Location, Gender, Kids, Tribe, Career]
-  const profiles = [
-    ["Alex", 21, "Nairobi", "Male", 0, "Kikuyu", "Doctor"],
-    ["Jane", 32, "Kiambu", "Female", 0, "Kikuyu/Kamba", "Data Analyst"],
-    ["Faustina Florence wairimu Maina", 35, "Nakuru, Kenya", "Female", "Two", "Kikuyu", "Technical store clerk"],
-    ["Josphat", 34, "Kisumu", "Male", 1, "Luo", "Water engineer"],
-    ["Faustina", 35, "Nakuru Kenya", "Female", "Two", "Kikuyu", "Technical store clerk"],
-    ["Maya", 35, "Nairobi", "Female", "Yes", "Kikuyu", "Procurement"],
-["Edwin", 28, "Nairobi", "Male", "1 child", "Luhya", "Cheff"],
-["Ryzer Tammie", 30, "Nairobi", "Female", "One", "Luhya", "Hotelian"],
-["Minah Wangechi Waweru", 32, "Nairobi", "Female", "No", "Kikuyu", "Business owner"],
-["Sifuna", 26, "Kenya", "Male", "no", "luhya", "Cook"],
-["Tracy kamau", 29, "Diani", "Female", "1 daughter", "Kikuyu", "CHW"],
-["Victor", 26, "Nairobi", "Male", "Non", "Luhya", "Steal fixer and welder"],
-["Nyoks", 28, "GULF", "Female", "None", "Kikuyu", "Cooking"],
-["Regina Wambui", 32, "Thika", "Female", "0", "Kikuyu", "Lecturer"],
-["Nicholus", 25, "Nairobi", "Male", "0", "Kamba", "IT specialist"],
-["Getrude", 27, "Kisii", "Female", "1", "Kisii", "Hair dresser"],
-["Joy Mwangi", 30, "Kenya", "Female", "0", "N/A", "N/A"],
-["Laban", 28, "Nairobi", "Male", "None", "Kalenjin", "Business Development"],
-["Benard Macharia", 27, "Nairobi Kenya", "Male", "Don't have kids", "Kikuyu", "Hustle"],
-["James", 30, "Kianjogu", "Male", "None", "Kenyan", "Job"],
-["Loreen", 27, "Nairobi", "Female", "1", "Kamba/kikuyu", "Cook"],
-["Simon kihara", 25, "nakuru", "Male", "none", "kikuyu", "Automotive engineer"],
-["Jack", 28, "Babadogo Nairobi", "Male", "0", "Luo", "Technician"],
-["Victor", 26, "Nairobi", "Male", "Non", "Luhya", "Steel fixing and welding"],
-["Kate", 42, "Nairobi", "Female", "2", "Not important", "Social worker"],
-["Jaime", 25, "Kiambu road", "Male", "None", "Kikuyu", "Data Analyst"],
-["Mercy", 33, "Nairobi", "Female", "2", "Kikuyu", "Kindergarten teacher"],
-["Godwin gisore", 30, "Nairobi", "Male", "None", "Kisii", "Chef"],
-["Kenedy", 36, "Kisumu", "Male", "0", "Luo", "Researcher"],
-["George", 24, "Rongai", "Male", "0", "Luo", "Hustle"],
-["Peter", 25, "Nakuru currenry kiambu", "Male", "None", "Kikuyu", "Employed"],
-["WINNIE", 34, "NAIROBI", "Female", "2 GIRLS", "KIKUYU", "FINANCE"],
-["Ann", 29, "Mombasa", "Female", "2girls", "Kamba", "Business owner"],
-["Wairimu", 39, "Thika road", "Female", "2", "Kikuyu", "Employed"],
-["Cecilia kalafa", 33, "Nairobi", "Female", "None", "Luhya", "Hospitality"],
-["Josephine Muthoni", 48, "Nairobi", "Female", "3", "Kikuyu", "Administration"],
-["Simon", 28, "Meru", "Male", "0", "Kikuyu", "Banker"],
-["Steve", 24, "Kisumu", "Male", "No", "Luo", "Driver"],
-["Lisa Kamau", 40, "Nyandarua", "Female", "Non", "Kikuyu", "Business woman"],
-["Angela", "28years, 10 months", "kiambu county, Gachie", "Female", "none", "Kikuyu", "Nurse"],
-["Steve", 25, "Kisumu", "Male", "No", "Luo", "None"],
-["Julita jemunga", 27, "Namanga border", "Female", "2", "Kamba", "Business woman"],
-["Koskei Brian", 22, "Kiambu", "Male", "Non", "Kalenjin", "Entrepreneur"],
-["Jeff", 34, "Nairobi", "Male", "1", "Kuria/Luhya", "Teacher"],
-["Racheal Kiarie", 29, "Kiambu", "Female", "One baby girl", "Kikuyu", "Receptionist"],
-["Kevin", 36, "Nakuru", "Male", "One", "Luo", "Business"],
-["Jackie", 27, "Kiambu", "Female", "1", "Baganda", "Education"],
-["Shillah mercy", 29, "Middle East", "Female", "1", "Kenyan", "Hair dresser"],
-["Miriam", 29, "Nyeri", "Female", "None", "Kikuyu", "Teacher"],
-["Diana", 27, "Nairobi", "Female", "No", "Kalenjin", "Travel consultant"],
-["Faith", 31, "Kenya", "Female", "0", "Luhya", "Health Records and Information Technician"],
-["precious", 34, "Nairobi", "Female", "No", "Luhya", "None"],
-["Manix", 26, "Eldoret", "Male", "None", "Luhya", "Music"],
-["Chrispine Nyabuto Mbunde", 27, "Kikuyu Nderi", "Male", "0", "Kisii", "Casual labourer in a company"],
-["Julie", 32, "Mombasa", "Female", "One daughter", "Mijikenda - chonyi", "Nurse"],
-["Mercy Wanjiru", 30, "Thika", "Female", "No", "Kikuyu", "Beautician"],
-["Sammy", 27, "Mbagathi, Nairobi", "Male", "N/A", "Kalenjin", "Barista"],
-["Jacqueline", 37, "Nairobi", "Female", "None", "Kikuyu", "Librarian"],
-["Harry", 27, "Nakuru", "Male", "0", "Kalenjin", "Teacher"],
-["Bryan", 40, "Nairobi", "Male", "None", "Kisii", "Logistics n finance"],
-["Marvis Ndungu", 27, "Nairobi", "Male", "None", "Kikuyu", "Photography"],
-["Diana", 27, "Nairobi", "Female", "0", "Kalenjin", "Consultant"],
-["She Whitney", 26, "Kiambu", "Female", "None", "Kalenjin", "Businesslady"],
-["John kingi", 42, "Kitengela", "Male", "1", "Kisii", "HSE"],
-["Anne", 24, "Kiambu", "Female", "None", "Kikuyu", "Librarian"],
-["Tabby", 25, "Nairobi", "Female", "No kids", "Kikuyu", "Business management"],
-["Margaret", 27, "Nairobi", "Female", "None", "Kamba", "Teacher"],
-["Bella", 28, "Nairobi", "Female", "0", "Kikuyu", "Sales lady"],
-["Summer", 39, "Meru", "Female", "None", "Meru", "Legal"],
-["Rahab Njoroge", 34, "Naivasha", "Female", "2", "Kikuyu", "Employed"],
-["SamuelMaina", 24, "Ongata Rongai", "Male", "0", "Kikuyu", "Cashier, Masseuse, Barber"],
-["José", 29, "Murang'a", "Male", "None", "Kikuyu", "Business person/teacher"],
-["Miriam", 29, "Nyeri", "Female", "None", "Kikuyu", "Teacher"],
-["Elizabeth", 29, "Tala", "Female", "1", "Kamba", "Juakali sector"],
-["Yvonne", 31, "Kisii", "Female", "None", "Kisii", "Business"],
-["Jepkoech katwa", 33, "Nairobi", "Female", "1", "Kale", "Lawyer"],
-["FRANCIS JUMA", 30, "Nairobi", "Male", "0", "Luo", "ICT ASSISTANT"],
-["Festus koech", 27, "Nairobi", "Male", "0", "Kalenjin", "Procurement officer"],
-["Wangui", 20, "Nyahururu", "Female", "0", "Kikuyu", "Nope"],
-["Lisa", 25, "Ruai", "Female", "0", "Kikuyu", "Sales"],
-["Pauline", 28, "Thika", "Female", "1", "Luhya", "Teacher student"],
-["Harun Kobia", 23, "Nakuru", "Male", "None", "Meru", "Still in campus"],
-["Gladys Nyambura", 31, "Lives in Nyeri kenya currently in ethiopia", "Female", "1", "Kikuyu", "Accountant/Auditor"],
-["Leilah mercy", 23, "Kenya Nairobi", "Female", "1", "Kikuyu", "Business"],
-["Steve", 28, "Kitengela", "Male", "None", "Luhya", "Agronomist"],
-["Leilah mercy", 23, "Nairobi", "Female", "1", "Kikuyu", "Business"],
-["Grace Waithira", 34, "Nairobi", "Female", "1", "Kikuyu", "Administration"],
-["Diana", 27, "Nairobi", "Female", "0", "Kalenjin", "Consultant"],
-["Hamza", 27, "Nairobi", "Male", "Nope", "Luo", "Driver"],
-["Purity", 24, "Nairobi", "Female", "No kids", "Kikuyu", "Nurse assistant"],
-["Wambui Kihara", 35, "Nairobi", "Female", "None", "Kikuyu", "Operations"],
-["Ng'endo", 30, "Archers Post- Isiolo", "Female", "One boy", "Embu", "Nurse (Civil servant)"],
-["Herbert", 24, "Uganda", "Male", "Non", "Muteso", "Electrician"],
-["Herbert", 24, "Uganda", "Male", "Non", "Muteso", "Electrician"],
-["James Njoroge", 28, "Nairobi embakasi", "Male", "0", "Kikuyu", "Self employed"],
-["Leonida njeri", 31, "Nyeri", "Female", "Zero", "Kikuyu", "Teacher"],
-["Purity", 23, "Nairobi", "Female", "No kids", "Kikuyu", "Nurse assistant"],
-["Mercy komen", 24, "Thika", "Female", "One", "Marakwet", "Business woman"],
-["Jane nabangola", 37, "Naivasha", "Female", "Yes", "Halfcast of kamba and luhya", "Catering"],
-["Faith", 25, "Nairobi", "Female", "1", "Kikuyu", "Entrepreneur"],
-["Dorine", 39, "Nairobi", "Female", "1", "Luo", "Clerk"],
-["Leon", 35, "Nairobi", "Male", "0", "Kamba", "Educcator"],
-["Dorine", 39, "Nairobi", "Female", "1", "Luo", "clerk"],
-["Victor", 26, "Nairobi", "Male", "Non", "Luhya", "Steal fixer and welder"],
-["Baruch", 24, "Nairobi", "Male", "0", "Halfcast", "Educator"],
-["Loki symon", 30, "Nairobi", "Male", "zero", "kikuyu from mwea kirinyaga", "Freelancer"],
-["Margaret", 28, "Gulf", "Female", "One", "Kikuyu", "Nany"],
-["Jeremiah", 28, "Ruaraka", "Male", "No", "Kalenjin", "Doctor"],
-["Pesh moh", 23, "Nairobi", "Female", "None", "Kikuyu", "Software dev"],
-["Enock", 28, "Kajiado", "Male", "Childfree", "Kalenjin", "Designer"],
-["Esther wanjiru", 28, "Nakuru", "Female", "0", "Kikuyu", "Accounts"],
-["Phiona bahati odera", 24, "Kasarani", "Female", "Yes", "Lui", "Fashion"],
-["Eric", 28, "Karen", "Male", "0", "Kikuyu", "Business manager"],
-["Mercy muthoni", 23, "Nairobi", "Female", "1", "Kikuyu", "Business"],
-["Kalekye", 29, "Nairobi", "Female", "1", "Kamba", "Customer Service"],
-["Francis", 29, "Kitale", "Male", "No", "Agikuyu", "Driver"],
-["Susan Mbira", 34, "Nairobi, Kenya", "Female", "NON", "KIKUYU", "BUSINESS"],
-["Denis Njagi", 29, "Embu/Thika/Nairobi", "Male", "0", "Embu", "I.T Technician"],
-["Loreen", 27, "Nairobi", "Female", "1", "Kamba", "Cook"],
-["Lui", 33, "Nairobi njiru", "Male", "0", "Tz", "Brand influence/CEO"],
-["Weddy Joy Gaitugi", 26, "Nairobi", "Female", "0", "Meru", "Hustle"],
-["John kingi", 43, "Kitengela", "Male", "1", "Kisii", "HSE officer"],
-["Beatrice", 26, "Nairobi", "Female", "1kid", "Luhya", "Employed"],
-["Paul", 27, "Nairobi", "Male", "0", "Kikuyu", "Employed"],
-["Miriam mugure", 27, "Nakuru", "Female", "No kid", "Kikuyu", "Sales and marketing"],
-["Lilian", 39, "Kericho", "Female", "2", "Kamba", "Manager in a tea factory"],
-["Rael", 27, "Nairobi", "Female", "One,boy", "Luyha", "Cosmetology"],
-["Paula", 34, "Nairobi", "Female", "1", "Luhya", "Business"],
-["Martin", 30, "Nairobi Kikuyu", "Male", "No", "Kikuyu", "Designer"],
-["Ritta", 36, "Embu", "Female", "2", "Embu", "Teacher"],
-["Nelson", 27, "Ld", "Male", "0", "Kalenjin", "Analyst"],
-["Irene", 32, "Kajiado", "Female", "2", "Kikuyu", "Civil servant"],
-["Eric w", 28, "Karen-kikuyu area", "Male", "0", "Kikuyu", "Business manager"],
-["Everlyne", 26, "Nairobi", "Female", "2", "Kamba", "Self employed"],
-["Iris Muhonja", 24, "Nairobi", "Female", "None", "Luhya", "Housekeeping attendant"],
-["Wanjiru Maina", 28, "Lower Kabete", "Female", "1", "Gikuyu", "Real Estate"],
-["Vee", 27, "Ruaka", "Female", "Yes", "Kikuyu", "House keeping trainer"],
-["Nora", 25, "Nairobi", "Female", "0", "Luhya", "consultant"],
-["Steven", 58, "Uganda", "Male", "Two", "Samia", "Sales man"],
-["Marvellous", 36, "Nairobi, Kenya", "Female", "0", "Kikuyu", "Office Admin"],
-["Shiresi", 37, "Nairobi", "Female", "No", "Kenyan", "Marketer"],
-["Thayu Macharia", 25, "Nairobi", "Male", "None", "Kikuyu", "Entrepreneur"],
-["Penny", "30+", "United Kingdom", "Female", "1", "Kikuyu", "Medical"],
-["Lyn", 36, "Nairobi", "Female", "3", "Merian", "Travel Consultant"],
-["Faith Chepngetich", 26, "Nairobi", "Female", "One girl", "Kipsigis", "Banker"],
-["Grace", 35, "Nairobi", "Female", "1", "Kikuyu", "Videographer & Photographer"],
-["𝑱𝒂𝒄𝒌𝒍𝒚𝒏 𝑹𝒐𝒏𝒐𝒉", "33𝒚𝒓𝒔", "𝑲𝒆𝒓𝒊𝒄𝒉𝒐", "Female", "𝑶𝒏𝒆", "𝑲𝒂𝒍𝒆𝒏𝒋𝒊𝒏", "𝑾𝒐𝒓𝒌𝒊𝒏𝒈"],
-["P", 32, "C", "Male", "N", "K", "Hu"],
-[".", ".", ".", "Male", ".", ".", "."],
-["Camilla", 21, "Nairobi", "Female", "None", "Kisii", "Student nurse"],
-["Daisy", 31, "Emc", "Female", "1", "Kalenjin", "Peasant farmer"],
-["Karen", 25, "Kakamega", "Female", "0", "Kikuyu", "Into business"],
-["Elly", 24, "Nakuru", "Male", "No kids", "Kalenjin", "Not working"],
-["Nora Waby", 25, "Nairobi", "Female", "none", "Luhya", "Executive assistant"],
-["Maxwell", 32, "Meru", "Male", "0", "Mmeru", "Lecturer"],
-["Ibrahim Alal", 37, "Nairobi", "Male", "1", "Luo", "Teacher"],
-["Magdaline", 26, "Murang'a", "Female", "0", "Kikuyu", "Teaching"],
-["David", 28, "Karen", "Male", "Nop", "Kikuyu", "Detail"],
-["Dagmar Salome", 22, "Nairobi", "Female", "Yes one boy", "Luhya", "Self employed"],
-["Olloh Omondi Kenas", 35, "Voi", "Male", "0", "Luo", "Medic"],
-["Rael", 27, "Nairobi", "Female", "One,boy", "Luyha", "Beautian"],
-["Alex", 37, "Nairobi", "Male", "No", "Kikuyu", "Administration"],
-["Juan", 30, "Nairobi", "Male", "0", "Kikuyu", "Fintech"],
-["maggie maggie", 35, "Nairobi", "Female", "None", "Kikuyu", "Education"],
-["Faith kananu", 32, "Nairobi", "Female", "1", "Meru", "Business"],
-["Esther", 32, "Nairobi", "Female", "No", "Kikuyu", "Marketer"],
-["Collins", 26, "Nakuru", "Male", "None", "Luo", "Welder"],
-["Rose Ann", 33, "Naivasha", "Female", "1", "Kikuyu", "Horticulturalist"],
-["Benita", 26, "Kericho", "Female", "none", "Kipsigis", "Accountant"],
-["Jane", 36, "Naivasha", "Female", "2 kids", "Luhya and kamba", "House keeping"],
-["Christine", 27, "Kasarani", "Female", "1", "Kikuyu", "Beautician"],
-["Mercy Wambua", "32years", "Kasarani - Nairobi", "Female", "1 daughter", "Kamba", "Fleet management & Logistics planner"],
-["Naomi kipsirei", 24, "Nairobi", "Female", "No", "Kalenjien", "Students"],
-["Herman", 33, "Gilgil", "Male", "No", "Kikuyu", "Sales man"],
-["Bluemoon", "23 years", "Nairobi", "Female", "0", "Kikuyu", ""],
-["Nimo", 22, "Nairobi", "Female", "No kids", "Kikuyu", "I'm an entrepreneur"],
-["Ken", 36, "Kisumu", "Male", "None", "Luo", "Psychologist"],
-["Frank", 27, "Nairobi githurai", "Male", "None", "Kisii", "Health records officer"],
-["Margaret", 27, "Gulf", "Female", "I", "Kikuyu", "Caregiver"],
-["Benta nkirote", 28, "Nairobi", "Female", "One daughter", "Merian", "Certified nurse assistant"],
-["Keith", 26, "Uthiru", "Female", "Yes, 1 daughter", "Kikuyu", "Hustling"],
-["Belinda", 26, "NAIROBI", "Female", "0", "LUO", "CS"],
-["Diana", 32, "Ngong", "Female", "2", "Kikuyu", "Sales representative"],
-["Joy", 29, "Nairobi", "Female", "1", "Luhya", "Hotelier"],
-["Yobby Tush", 22, "Thika", "Male", "None", "Kikuyu", "Engineer"],
-["Rozy", 24, "Nanyuki", "Female", "None", "Kikuyu", "Skin specialist"],
-["None", 29, "Kenya", "Male", "No", "Nyaho", "Electrician"],
-["Samuel Muthoka", 26, "Nairobi", "Male", "None", "Kamba", "Driver"],
-["Rosah", 25, "Embu", "Female", "None", "Luo", "Student"],
-["Lee chalo", 45, "Sirare", "Male", "2", "Merian", "Business"],
-["Petrus", 32, "Kangemi", "Male", "None", "Kikuyu", "Accountant"],
-["Wanjiku Kiarie", 46, "Kiambu", "Female", "None", "Kikuyu", "Engineer"],
-["Alice", 30, "Nakuru", "Female", "1", "Luo", "Receptionist"],
-["Wilson", 30, "Nairobi", "Male", "0", "Kisii", "Warehouse clerk"],
-["Wangari", 28, "Nanyuki", "Female", "0", "Kikuyu", "Clinical officer"],
-["Isaac Mwaniki", 29, "Mombasa", "Male", "None", "Kikuyu", "Research"],
-["James", 20, "Juja", "Male", "None", "Kikuyu", "Mason"],
-["Faith", 24, "Eldoret-Kapsabet", "Female", "1", "Kikuyu", "Medical Laboratory scientist"],
-["Jennifer", 33, "Nairobi", "Female", "None", "Kikuyu", "Self-employed"],
-["Richy", 30, "Kitengela", "Male", "No", "Luhya", "IT"],
-["Eric Wainaina", 28, "Karen/Ngong", "Male", "0", "Kikuyu", "Business manager"],
-["Maryanne Nduta Ngatia", 22, "Kenya", "Female", "No", "Kikuyu", "Travel consultant"],
-["Bernice", 22, "Kiambu", "Female", "None", "Kikuyu", "Hospitality"],
-["Zero", null, "Kenya", "Female", null, "None", "None"],
-["Yunis", 24, "Kiambu", "Female", "None", "Kikuyu", "Teacher"],
-["Eric", 27, "Komarock", "Male", "None", "Kamba", "Employed"],
-["Wambui", 29, "Nairobi", "Female", "1", "Kikuyu", "Medic"],
-["Nyce Muthoni", 25, "Kiambu County", "Female", "None", "Kikuyu", "Accountant"],
-["Mathew", 27, "Bungoma", "Male", "No", "Kamba", "Sales"],
-["Mirriam", 21, "Kagio", "Female", "1", "Luhya", "Financial analyst"],
-["John mwangi", 31, "Thika", "Male", "None", "Kikuyu", "Banker"],
-["Vincent", 32, "Nairobi Umoja", "Male", "2", "Luo", "Soccer coach"],
-["Hannah", 26, "Naivasha", "Female", "No", "Kikuyu", "Hospitality"],
-["Bundi Kelvin", 31, "Meru", "Male", "None", "Meru", "Building foreman"],
-["Ezekiel Mokaya", 26, "Kisii", "Male", "None", "Kisii", "IT technician"],
-["Haron", 28, "Kasarani", "Male", "None", "Kikuyu", "Fundi"],
-["George", 24, "Rongai", "Male", "None", "Luo", "Hustler"],
-["Kevin Onyango", 30, "Nairobi", "Male", "None", "Luo", "Plumber"],
-["Kennedy", 27, "Nakuru", "Male", "No", "Kisii", "Electrical Engineer"],
-["Jeff", 27, "Nakuru", "Male", "No", "Meru", "KDF / Business"],
-["Njeri Njoroge", 41, "Ruaka", "Female", "Yes", "Kikuyu", "Housekeeping"],
-["Lucy Kariuki", 32, "Nairobi", "Female", "1", "Kikuyu", "Admin"],
-["Nyawira Maina", 29, "Saudi Arabia", "Female", "1 girl", "Kikuyu", "N/A"],
-["IRIS", 33, "Nakuru", "Male", "1", "Meru", "Teacher"],
-["IRIS", 29, "Nyahururu", "Male", "None", "Kikuyu", "Self employed"],
-["FREDRICK OPIYO", 30, "Mlolongo", "Male", "0", "Luo", "Teacher"],
-["Joseph Yobera", 26, "Nairobi", "Male", "None", "Luhya", "Photographer"],
-["Johob Muluxi", 31, "Kahawa Wendani", "Male", "0", "Luo", "Pharmacist"],
-["Lilian", 23, "Nairobi", "Female", "No", "Kikuyu", "Hospitality management"],
-["Johnson Muniu", 29, "Nairobi Chokaa", "Male", "No", "Kikuyu", "Hustler"],
-["Wangui", 29, "Nairobi", "Female", "None", "Kikuyu", "Self employed"],
-["Veronicah Maina", 31, "Nairobi", "Female", "Yes", "Kikuyu", "Business"],
-["Victor Mwangi", 32, "Nairobi", "Male", "No", "Kikuyu", "Accountant"],
-["Misky Wangui", 21, "Nyeri County", "Female", "1", "Kikuyu", "Cooking"],
-["Nyawira Maina", 29, "Saudi Arabia", "Female", "1 girl 7yrs", "Kikuyu", "N/A"],
-["Irene Methu", 33, "Nyeri", "Female", "3", "Kikuyu", "Business lady"],
-["Makena", 29, "Isiolo", "Female", "1", "Meru", "Business woman"],
-["Rodd", 25, "Nairobi", "Female", "0", "Kikuyu", "Business"],
-["Snaida", 26, "Nairobi setelite", "Female", "1", "Luhya", "Countant"],
-["Campbell Wasike", 25, "Kisumu", "Male", "0", "Luhya", "IT"],
-["Jackline", 35, "Kahawa Wendani", "Female", "None", "Kikuyu", "Employed"],
-["Anne wanjiru", 36, "Naivasha", "Female", "3", "Kikuyu", "Salonist"],
-["Joy", 23, "Embu", "Female", "Yes", "Embian", "Secretary"],
-["MARYANN WANGECHI", 26, "Nyahururu", "Female", "0", "Kikuyu", "Payroll/Hr"],
-["Miriam", 27, "Nakuru", "Female", "Not yet", "Kikuyu", "Sales lady"],
-["Lear", 35, "Riruta", "Female", "4", "Luhya", "Driver"],
-["Jae", 23, "Naivasha", "Male", "None", "Kikuyu", "Econstats"],
-["Kabie maryanne", 33, "Nairobi Kenya", "Female", "2 boys 12 and 8", "Kikuyu", "Psychologist"],
-["Benard", 20, "Thika", "Male", "0", "Luo", "Working"],
-["Najimah", 24, "Nakuru", "Female", "No", "Kalenjin", "Studying"],
-["Lydia", 38, "Kiambu", "Female", "2", "Kikuyu", "Hairdresser"],
-["Cate", 21, "Muthaiga", "Female", "No kids", "Kikuyu", "Pmu physician and baker"],
-["Jackie", 28, "Kitengela", "Female", "1", "Kamba", "Nailstech"],
-["MARY LOISE GATUGI", 30, "KIRINYAGA", "Female", "1 GIRL", "MERU", "COURT CLERK"],
-["Santos Omondi", 30, "Utawala Nairobi", "Male", "None", "Luo", "Tech"],
-["Huska", 27, "Nairobi", "Male", "0", "Borana", "Flight dispatch"],
-["Joseph kinyanjui", 33, "Nairobi", "Male", "One", "Kikuyu", "Professional driver"],
-["Damaris Mubia", 36, "Nairobi", "Female", "1", "Kikuyu", "Banker"],
-["Joseph", 38, "Nairobi", "Male", "No", "Kamba", "Engineer"],
-["Vivian", 29, "Nairobi Kenya", "Female", "1", "Kikuyu", "Admin"],
-["Renus J", 32, "Nairobi", "Male", "No", "Luo", "Teaching"],
-["Antony kamau", 31, "Muranga", "Male", "None", "Kikuyu", "Accountant"],
-["loki", 30, "Thika", "Male", "none", "kikuyu", "Freelancer and IT personnel"],
-["Brian Osewe", 24, "Migori", "Male", "0", "Luo", "Teacher"],
-["Milcah", 32, "Nyeri", "Female", "No", "Kikuyu", "Agriculture"],
-["Ken", 28, "Nakuru", "Male", "0", "Luhya", "IT TECHNICIAN"],
-["OLOO SOSPETER", 29, "CHANGAMWE", "Male", "No", "LUO/LUHYA", "SURVEYOR"],
-["Bella", 27, "Nairobi", "Female", "0", "Kikuyu", "Sales"],
-["Anjeline Atieno", 26, "Lucky summer", "Female", "1 kid", "Luo", "Saloonist"],
-["Getrude Nyambura", 27, "Currently am in mlolongo (machakoes county)", "Female", "None", "Kikuyu", "Carpentry"],
-["Ogeto andrew", 32, "Maragua", "Male", "1", "Kisii", "Account"],
-["Ted", 23, "Nairobi", "Male", "No", "Luhya", "Student"],
-["Austin Ewoi", 32, "Nairobi", "Male", "No", "Turkana", "Mass communications"],
-["Emma", 36, "Saudi Arabia", "Female", "1", "Kenyan", "Front office"],
-["Ibrahim Onsongo", 33, "Nairobi", "Male", "Not yet", "Kisii", "Marketer"],
-["Martha", 31, "Nairobi", "Female", "None", "Kikuyu", "Travel expert"],
-["Kasina Jimmy", 31, "Umoja", "Male", "0", "Kamba", "Finance"],
-["Brian Collins Simiyu", 32, "Nairobi", "Male", "1", "Luhya", "Insurance"],
-["Sheeriz", 35, "Nairobi", "Female", "1", "Meru", "Business woman"],
-["Robi Agnes", 32, "Nakuru", "Female", "None", "Kisii", "Accounting and finance"],
-["Peter", 37, "Nakuru", "Male", "1", "Kikuyu", "Business"],
-["Claudio", 36, "Nairobi", "Male", "No kid", "Luo", "Driver"],
-["Selin kemunto", 23, "Nairobi", "Female", "None", "Kisii", "Self employed"],
-["Lorna mwaniki", 28, "Nairobi", "Female", "Yes", "Embian", "Business"],
-["Rose karanja", 26, "Kiambu", "Female", "None", "Kikuyu", "Information communication officer"],
-["Mark", 46, "Karatina", "Male", "0", "Kikuyu", "Farmer"],
-["Daniel Mwangi", 30, "Thika", "Male", "No", "Kikuyu", "Business man"],
-["Stellah", 29, "Kisumu", "Female", "2", "Abasuba/Luo", "Nurse"],
-["Chris nyaga", 45, "Ongata rongai", "Male", "One", "Kikuyu", "Masson"],
-["Wendy", 29, "Homabay", "Female", "None", "Luo", "Instructor"],
-["Maxwel otieno otieno", 25, "Mlolongo", "Male", "1 boy", "Luo", "Plant operator"],
-["Lavina", 30, "Thika", "Female", "1", "Luhya/Luo", "Data Entry"],
-["Catherine", "Njeri", "Thika", "Female", "1", "Kikuyu", "Freelance"],
-["Dorcas", 26, "Ruaka", "Female", "None", "Kalenjin", "Sales"],
-["Edward", 30, "Kismu", "Male", "None", "Luo", "IT TECHNICIAN"],
-["Andrew Gabriel", 33, "Nairobi", "Male", "0", "Kamba", "Accountant/engineer"],
-["Eric kabiru wanjohi", 25, "Nyeri", "Male", "No", "Kikuyu", "Online entrepreneur"],
-["Joseph", 26, "Nairpbi", "Male", "Nop", "Kikuyu", "Barista"],
-["Leah", 36, "Juja", "Female", "1", "Kikuyu", "Office administrator"],
-["Djowie joe", 32, "Kenya", "Male", "No kids", "Kuria", "Fitness trainer"],
-["Frankline", 25, "Kasarani", "Male", "None", "Luhya", "International relations"],
-["Jepkoech katwa", 33, "Nairobi", "Female", "1 daughter", "Kalenjin", "Lawyer"],
-["Jackson", 30, "Kenya", "Male", "None", "Kalenjin", "Hospitality"],
-["Wendy", 29, "Homabay", "Female", "none", "Luo", "Instructor"],
-["Poline", 28, "Kitale", "Female", "None", "Luhya", "Teacher"],
-["Beckie", 30, "Nairobi", "Female", "0", "Kikuyu", "Nurse anesthetist"],
-["Joy mwangi", 29, "Nyahururu", "Female", "1 kid", "Kikuyu", "Business"],
-["Janet", 27, "Kiambu", "Female", "Yes", "Kisii", "Beauty therapist"],
-["Peter", 28, "Nairobi", "Male", "No", "Luhya", "Employed"],
-["Laurence", 30, "Nairobi", "Male", "None", "Kenyan", "Journalist"],
-["Nathan", 35, "Nairobi", "Male", "2", "Kikuyu", "Driver"],
-["Brayan", 25, "Eldoret", "Male", "Nop", "Kisii", "N/A"],
-["Sky", 25, "Nairobi", "Female", "0", "", "IT support"],
-["Grace", 55, "Nairobi", "Female", "2", "Kikuyu", "Hospitality"],
-["Mautamu", 32, "Nairobi", "Male", "None", "Kikuyu", "Jobless"],
-["Miss Murage", 29, "Nairobi", "Female", "None", "Kikuyu", "Finance"],
-["Famous", 28, "Kenya", "Male", "none", "Kikuyu", "Teacher"],
-["Samuel Kirui", 22, "Nairobi", "Male", "0", "Kalenjin", "Student"],
-["Joy", 30, "Nairobi", "Female", "None", "Kenyan", "Self employed"],
-["David macharia", 28, "Nairobi", "Male", "No", "Kikuyu", "Employee"],
-["Ann", 32, "Nairobi", "Female", "None", "Kamba", "Teacher"],
-["collins opondo", 32, "Nairobi", "Male", "0", "Luo", "Data analyst"],
-["Yussuf Hajj", "40yrs", "Muranga", "Male", "Two", "Borana", "Career police officer"],
-["Brian Ngeno", 21, "Nakuru", "Male", "No kid", "Kalenjin", "College student"],
-["Kate Ndichu", 24, "Kajiado", "Female", "None", "Kikuyu", "Secretary"],
-["Kiki", 22, "Kiambu", "Female", "With no kids", "Merian", "Business"],
-["LUCY MUMBI WANJALA", 29, "NAIROBI", "Female", "1", "KIKUYU", "ADMIN"],
-["Diana", 23, "Kisii", "Female", "None", "Kisii", "Beauty and therapy"],
-["Christina Aseidua", 25, "Ghana Accra", "Female", "No kids", "Ashanti", "Chef"],
-["Jean", 26, "Kitale", "Male", "0", "Luhya", "Surveyor"],
-["Samuel", 36, "Murang'a", "Male", "None", "Kikuyu", "Driver"],
-["Knight", 29, "Nakuru", "Male", "Yes", "Kenyan", "Freelancer"],
-["-t", "-77", "-k", "Female", "N", "K", "N"],
-["Becky", 28, "Roysambu", "Female", "No", "Giriama - meru", "HR"],
-["Thembelihle", 23, "Sandton", "Female", "I have 1 child", "Ndebele", "Non employed"],
-["MOSES CHINEDU CONTEH", "21 years", "Freetown Sierra Leone west Africa", "Male", "1", "Limba_igbo", "Footballer"],
-["Mark", 31, "Eldoret", "Male", "0", "Kalenjin", "Gis technician"],
-["Isaac", 30, "Nkru", "Male", "None", "Kikuyu", "Business"],
-["Sasha", 26, "Nairobi", "Female", "None", "Luhya", "HRIO"],
-["Collins bet", 25, "Nairobi", "Male", "0", "Kalenjin", "Still studying"],
-["Brigid", 22, "Voi", "Female", "None", "Kisii", "Cosmetologist"],
-["Joseph Nkuyo", 29, "Isinya", "Male", "Non", "Masaai", "Weigh bridge operations"],
-["Nicholas Mutua Kiema", 42, "Kitui central", "Male", "Two", "Kamba", "Finance officer"],
-["Peninnah Ndung'uh", 34, "Naivasha", "Female", "1", "Kikuyu", "Casual labourer"],
-["Samuel", 25, "Kiambu", "Male", "None", "Kikuyu", "Chemical analyst"],
-["Eric", 35, "Rongai", "Male", "None", "Meru", "Sales"],
-["Joseph blac", 36, "Nairobi", "Male", "No", "Luhyia", "Corporate & entrepreneur"],
-["Joseph", 36, "Nairobi", "Male", "None", "Luo", "Sales executive"],
-["Phineas", 24, "Ruiru, Kihunguro", "Male", "No", "Meru", "Plumber"],
-["John", 43, "Kitengela", "Male", "1", "Kisii", "EHS"],
-["Margaret", 31, "Githurai 44", "Female", "3", "Kikuyu", "Marketer"],
-["Reagan", 27, "Kinoo", "Male", "None", "Meru", "Sound & Lighting Engineer"],
-["Thaddeus", 26, "Utawala", "Male", "No", "Kikuyu", "Logistician"],
-["Charles", 22, "Nyeri", "Male", "None", "Kikuyu", "Automotive Engineer"],
-["Winnie", 30, "Kasarani", "Female", "2", "Kikuyu", "Business"],
-["Kim Kenn", 33, "Eldoret", "Male", "Zero", "Kamba/Kalenjin", "Psychologist"],
-["Mary", 27, "Nakuru", "Female", "Zero", "Kamba", "Accountant"],
-["Frank", 35, "Kitale", "Male", "Zero", "Taita", "Pharmaceutical Industry"],
-["Cynthia Loreen Kahombi", 29, "Saudi Arabia", "Female", "1", "Luhya", "Caregiver"],
-["Lisa", 31, "Nairobi", "Female", "0", "Kamba", "Pharmacist"],
-["Peter", 29, "Nakuru", "Male", "0", "Kikuyu", "Service Provider"],
-["Timothy", 25, "Mombasa", "Male", "None", "Giryama", "Driver"],
-["Beth Nyambura", 28, "Bahrain", "Female", "Two", "Meru", "Cleaner"],
-["Jane Nyambura", 28, "Nairobi", "Female", "2", "Kikuyu", "Hairdresser"],
-["Mary Wangari Mburu", 23, "Kiambu", "Female", "One", "Kikuyu", "Beauty"],
-["Kevin", 34, "Nairobi", "Male", "None", "Kikuyu", "IT Consultant"],
-["Marvis Ndungu", 27, "Nairobi", "Male", "None", "Kikuyu", "Photographer"],
-["David", 22, "Embakasi", "Male", "No", "Luo", "Casual Labour"],
-["Marcus", 24, "Kasarani", "Male", "0", "Kikuyu", "Self-employed"],
-["Atieno Jacqueline", 35, "Mombasa", "Female", "Four Boys", "Luo", "Business Woman"],
-["Annah Ombati", 21, "Kisii, Kenya", "Female", "No kids", "Kisii", "Education Student"],
-["Scandy Chepkoech", 23, "Bomet", "Female", "1 kid", "Mkalee", "House Girl"],
-["Aawqt", 26, "Nairobi", "Male", "No", "**", "Work from Home"],
-["Rose Karwitha", 34, "Nairobi", "Female", "1", "Meru", "Designer"],
-["Carolyne", 27, "Nairobi", "Female", "1", "Kamba", "Business"],
-["Caurageous", 26, "Dubai", "Male", "0", "Swahili", "Delivery Boy in Dubai"],
-["Allexxyholmes", 25, "Nairobi", "Male", "0", "Kamba", "Hustler"],
-["Maggy Nyambura", 25, "Nairobi", "Female", "1", "Kikuyu", "Business"],
-["Vince Matthew", 37, "Nairobi", "Male", "None", "Kenyan", "Software Developer"],
-["Salim", 23, "Mariakani", "Male", "None", "Swahili", "Receptionist"],
+    <script>
+      /***************
+       * CONFIG
+       ***************/
+      const rowsPerPage = 5;
+      let currentPage = 1;
+      let currentSort = { key: null, dir: 1 }; // dir: 1 asc, -1 desc
+      let currentFilter = "";
+      const rawRows = [
+       ["Alex", 21, "Nairobi", "Male", 0, "Kikuyu", "Doctor"],
+        ["Jane", 32, "Kiambu", "Female", 0, "Kikuyu/Kamba", "Data Analyst"],
+        [
+          "Faustina Florence wairimu Maina",
+          35,
+          "Nakuru, Kenya",
+          "Female",
+          "0",
+          "Kikuyu",
+          "Technical store clerk",
+        ],
+        ["Josphat", 34, "Kisumu", "Male", 1, "Luo", "Water engineer"],
+        [
+          "Faustina",
+          35,
+          "Nakuru Kenya",
+          "Female",
+          "2",
+          "Kikuyu",
+          "Technical store clerk",
+        ],
+        ["Maya", 35, "Nairobi", "Female", "1", "Kikuyu", "Procurement"],
+        ["Edwin", 28, "Nairobi", "Male", "1", "Luhya", "Cheff"],
+        ["Ryzer Tammie", 30, "Nairobi", "Female", "1", "Luhya", "Hotelian"],
+        [
+          "Minah Wangechi Waweru",
+          32,
+          "Nairobi",
+          "Female",
+          "0",
+          "Kikuyu",
+          "Business owner",
+        ],
+        ["Sifuna", 26, "Kenya", "Male", "0", "luhya", "Cook"],
+        ["Tracy kamau", 29, "Diani", "Female", "1", "Kikuyu", "CHW"],
+        [
+          "Victor",
+          26,
+          "Nairobi",
+          "Male",
+          "0",
+          "Luhya",
+          "Steal fixer and welder",
+        ],
+        ["Nyoks", 28, "GULF", "Female", "0", "Kikuyu", "Cooking"],
+        ["Regina Wambui", 32, "Thika", "Female", "0", "Kikuyu", "Lecturer"],
+        ["Nicholus", 25, "Nairobi", "Male", "0", "Kamba", "IT specialist"],
+        ["Getrude", 27, "Kisii", "Female", "1", "Kisii", "Hair dresser"],
+        ["Joy Mwangi", 30, "Kenya", "Female", "0", "N/A", "N/A"],
+        [
+          "Laban",
+          28,
+          "Nairobi",
+          "Male",
+          "0",
+          "Kalenjin",
+          "Business Development",
+        ],
+        [
+          "Benard Macharia",
+          27,
+          "Nairobi Kenya",
+          "Male",
+          "0",
+          "Kikuyu",
+          "Hustle",
+        ],
+        ["James", 30, "Kianjogu", "Male", "0", "Kenyan", "Job"],
+        ["Loreen", 27, "Nairobi", "Female", "1", "Kamba/kikuyu", "Cook"],
+        [
+          "Simon kihara",
+          25,
+          "nakuru",
+          "Male",
+          "0",
+          "kikuyu",
+          "Automotive engineer",
+        ],
+        ["Jack", 28, "Babadogo Nairobi", "Male", "0", "Luo", "Technician"],
+        [
+          "Victor",
+          26,
+          "Nairobi",
+          "Male",
+          "0",
+          "Luhya",
+          "Steel fixing and welding",
+        ],
+        [
+          "Kate",
+          42,
+          "Nairobi",
+          "Female",
+          "2",
+          "Not important",
+          "Social worker",
+        ],
+        ["Jaime", 25, "Kiambu road", "Male", "0", "Kikuyu", "Data Analyst"],
+        [
+          "Mercy",
+          33,
+          "Nairobi",
+          "Female",
+          "2",
+          "Kikuyu",
+          "Kindergarten teacher",
+        ],
+        ["Godwin gisore", 30, "Nairobi", "Male", "0", "Kisii", "Chef"],
+        ["Kenedy", 36, "Kisumu", "Male", "0", "Luo", "Researcher"],
+        ["George", 24, "Rongai", "Male", "0", "Luo", "Hustle"],
+        [
+          "Peter",
+          25,
+          "Nakuru currenry kiambu",
+          "Male",
+          "0",
+          "Kikuyu",
+          "Employed",
+        ],
+        ["WINNIE", 34, "NAIROBI", "Female", "2", "KIKUYU", "FINANCE"],
+        ["Ann", 29, "Mombasa", "Female", "2", "Kamba", "Business owner"],
+        ["Wairimu", 39, "Thika road", "Female", "2", "Kikuyu", "Employed"],
+        [
+          "Cecilia kalafa",
+          33,
+          "Nairobi",
+          "Female",
+          "0",
+          "Luhya",
+          "Hospitality",
+        ],
+        [
+          "Josephine Muthoni",
+          48,
+          "Nairobi",
+          "Female",
+          "3",
+          "Kikuyu",
+          "Administration",
+        ],
+        ["Simon", 28, "Meru", "Male", "0", "Kikuyu", "Banker"],
+        ["Steve", 24, "Kisumu", "Male", "0", "Luo", "Driver"],
+        [
+          "Lisa Kamau",
+          40,
+          "Nyandarua",
+          "Female",
+          "0",
+          "Kikuyu",
+          "Business woman",
+        ],
+        [
+          "Angela",
+          28,
+          "kiambu county, Gachie",
+          "Female",
+          "0",
+          "Kikuyu",
+          "Nurse",
+        ],
+        ["Steve", 25, "Kisumu", "Male", "0", "Luo", "hustle"],
+        [
+          "Julita jemunga",
+          27,
+          "Namanga border",
+          "Female",
+          "2",
+          "Kamba",
+          "Business woman",
+        ],
+        ["Koskei Brian", 22, "Kiambu", "Male", "0", "Kalenjin", "Entrepreneur"],
+        ["Jeff", 34, "Nairobi", "Male", "1", "Kuria/Luhya", "Teacher"],
+        [
+          "Racheal Kiarie",
+          29,
+          "Kiambu",
+          "Female",
+          "1",
+          "Kikuyu",
+          "Receptionist",
+        ],
+        ["Kevin", 36, "Nakuru", "Male", "1", "Luo", "Business"],
+        ["Jackie", 27, "Kiambu", "Female", "1", "Baganda", "Education"],
+        [
+          "Shillah mercy",
+          29,
+          "Middle East",
+          "Female",
+          "1",
+          "Kenyan",
+          "Hair dresser",
+        ],
+        ["Miriam", 29, "Nyeri", "Female", "0", "Kikuyu", "Teacher"],
+        [
+          "Diana",
+          27,
+          "Nairobi",
+          "Female",
+          "0",
+          "Kalenjin",
+          "Travel consultant",
+        ],
+        [
+          "Faith",
+          31,
+          "Kenya",
+          "Female",
+          "0",
+          "Luhya",
+          "Health Records and Information Technician",
+        ],
+        ["precious", 34, "Nairobi", "Female", "0", "Luhya", "hustle"],
+        ["Manix", 26, "Eldoret", "Male", "0", "Luhya", "Music"],
+        [
+          "Chrispine Nyabuto Mbunde",
+          27,
+          "Kikuyu Nderi",
+          "Male",
+          "0",
+          "Kisii",
+          "Casual labourer in a company",
+        ],
+        ["Julie", 32, "Mombasa", "Female", "1", "Mijikenda - chonyi", "Nurse"],
+        ["Mercy Wanjiru", 30, "Thika", "Female", "0", "Kikuyu", "Beautician"],
+        ["Sammy", 27, "Mbagathi, Nairobi", "Male", "0", "Kalenjin", "Barista"],
+        ["Jacqueline", 37, "Nairobi", "Female", "0", "Kikuyu", "Librarian"],
+        ["Harry", 27, "Nakuru", "Male", "0", "Kalenjin", "Teacher"],
+        ["Bryan", 40, "Nairobi", "Male", "0", "Kisii", "Logistics n finance"],
+        ["Marvis Ndungu", 27, "Nairobi", "Male", "0", "Kikuyu", "Photography"],
+        ["Diana", 27, "Nairobi", "Female", "0", "Kalenjin", "Consultant"],
+        [
+          "She Whitney",
+          26,
+          "Kiambu",
+          "Female",
+          "0",
+          "Kalenjin",
+          "Businesslady",
+        ],
+        ["John kingi", 42, "Kitengela", "Male", "1", "Kisii", "HSE"],
+        ["Anne", 24, "Kiambu", "Female", "0", "Kikuyu", "Librarian"],
+        [
+          "Tabby",
+          25,
+          "Nairobi",
+          "Female",
+          "0",
+          "Kikuyu",
+          "Business management",
+        ],
+        ["Margaret", 27, "Nairobi", "Female", "0", "Kamba", "Teacher"],
+        ["Bella", 28, "Nairobi", "Female", "0", "Kikuyu", "Sales lady"],
+        ["Summer", 39, "Meru", "Female", "0", "Meru", "Legal"],
+        ["Rahab Njoroge", 34, "Naivasha", "Female", "2", "Kikuyu", "Employed"],
+        [
+          "SamuelMaina",
+          24,
+          "Ongata Rongai",
+          "Male",
+          "0",
+          "Kikuyu",
+          "Cashier, Masseuse, Barber",
+        ],
+        [
+          "José",
+          29,
+          "Murang'a",
+          "Male",
+          "0",
+          "Kikuyu",
+          "Business person/teacher",
+        ],
+        ["Miriam", 29, "Nyeri", "Female", "0", "Kikuyu", "Teacher"],
+        ["Elizabeth", 29, "Tala", "Female", "1", "Kamba", "Juakali sector"],
+        ["Yvonne", 31, "Kisii", "Female", "0", "Kisii", "Business"],
+        ["Jepkoech katwa", 33, "Nairobi", "Female", "1", "Kale", "Lawyer"],
+        ["FRANCIS JUMA", 30, "Nairobi", "Male", "0", "Luo", "ICT ASSISTANT"],
+        [
+          "Festus koech",
+          27,
+          "Nairobi",
+          "Male",
+          "0",
+          "Kalenjin",
+          "Procurement officer",
+        ],
+        ["Wangui", 20, "Nyahururu", "Female", "0", "Kikuyu", "Nope"],
+        ["Lisa", 25, "Ruai", "Female", "0", "Kikuyu", "Sales"],
+        ["Pauline", 28, "Thika", "Female", "1", "Luhya", "Teacher student"],
+        ["Harun Kobia", 23, "Nakuru", "Male", "0", "Meru", "Still in campus"],
+        [
+          "Gladys Nyambura",
+          31,
+          "Lives in Nyeri kenya currently in ethiopia",
+          "Female",
+          "1",
+          "Kikuyu",
+          "Accountant/Auditor",
+        ],
+        [
+          "Leilah mercy",
+          23,
+          "Kenya Nairobi",
+          "Female",
+          "1",
+          "Kikuyu",
+          "Business",
+        ],
+        ["Steve", 28, "Kitengela", "Male", "0", "Luhya", "Agronomist"],
+        ["Leilah mercy", 23, "Nairobi", "Female", "1", "Kikuyu", "Business"],
+        [
+          "Grace Waithira",
+          34,
+          "Nairobi",
+          "Female",
+          "1",
+          "Kikuyu",
+          "Administration",
+        ],
+        ["Diana", 27, "Nairobi", "Female", "0", "Kalenjin", "Consultant"],
+        ["Hamza", 27, "Nairobi", "Male", "0", "Luo", "Driver"],
+        ["Purity", 24, "Nairobi", "Female", "0", "Kikuyu", "Nurse assistant"],
+        ["Wambui Kihara", 35, "Nairobi", "Female", "0", "Kikuyu", "Operations"],
+        [
+          "Ng'endo",
+          30,
+          "Archers Post- Isiolo",
+          "Female",
+          "1",
+          "Embu",
+          "Nurse (Civil servant)",
+        ],
+        ["Herbert", 24, "Uganda", "Male", "0", "Muteso", "Electrician"],
+        ["Herbert", 24, "Uganda", "Male", "0", "Muteso", "Electrician"],
+        [
+          "James Njoroge",
+          28,
+          "Nairobi embakasi",
+          "Male",
+          "0",
+          "Kikuyu",
+          "Self employed",
+        ],
+        ["Leonida njeri", 31, "Nyeri", "Female", "0", "Kikuyu", "Teacher"],
+        ["Purity", 23, "Nairobi", "Female", "0", "Kikuyu", "Nurse assistant"],
+        [
+          "Mercy komen",
+          24,
+          "Thika",
+          "Female",
+          "1",
+          "Marakwet",
+          "Business woman",
+        ],
+        [
+          "Jane nabangola",
+          37,
+          "Naivasha",
+          "Female",
+          "1",
+          "Halfcast of kamba and luhya",
+          "Catering",
+        ],
+        ["Faith", 25, "Nairobi", "Female", "1", "Kikuyu", "Entrepreneur"],
+        ["Dorine", 39, "Nairobi", "Female", "1", "Luo", "Clerk"],
+        ["Leon", 35, "Nairobi", "Male", "0", "Kamba", "Educcator"],
+        ["Dorine", 39, "Nairobi", "Female", "1", "Luo", "clerk"],
+        [
+          "Victor",
+          26,
+          "Nairobi",
+          "Male",
+          "0",
+          "Luhya",
+          "Steal fixer and welder",
+        ],
+        ["Baruch", 24, "Nairobi", "Male", "0", "Halfcast", "Educator"],
+        [
+          "Loki symon",
+          30,
+          "Nairobi",
+          "Male",
+          "0",
+          "kikuyu from mwea kirinyaga",
+          "Freelancer",
+        ],
+        ["Margaret", 28, "Gulf", "Female", "1", "Kikuyu", "Nany"],
+        ["Jeremiah", 28, "Ruaraka", "Male", "0", "Kalenjin", "Doctor"],
+        ["Pesh moh", 23, "Nairobi", "Female", "0", "Kikuyu", "Software dev"],
+        ["Enock", 28, "Kajiado", "Male", "0", "Kalenjin", "Designer"],
+        ["Esther wanjiru", 28, "Nakuru", "Female", "0", "Kikuyu", "Accounts"],
+        [
+          "Phiona bahati odera",
+          24,
+          "Kasarani",
+          "Female",
+          "1",
+          "Lui",
+          "Fashion",
+        ],
+        ["Eric", 28, "Karen", "Male", "0", "Kikuyu", "Business manager"],
+        ["Mercy muthoni", 23, "Nairobi", "Female", "1", "Kikuyu", "Business"],
+        ["Kalekye", 29, "Nairobi", "Female", "1", "Kamba", "Customer Service"],
+        ["Francis", 29, "Kitale", "Male", "0", "Agikuyu", "Driver"],
+        [
+          "Susan Mbira",
+          34,
+          "Nairobi, Kenya",
+          "Female",
+          "0",
+          "KIKUYU",
+          "BUSINESS",
+        ],
+        [
+          "Denis Njagi",
+          29,
+          "Embu/Thika/Nairobi",
+          "Male",
+          "0",
+          "Embu",
+          "I.T Technician",
+        ],
+        ["Loreen", 27, "Nairobi", "Female", "1", "Kamba", "Cook"],
+        ["Lui", 33, "Nairobi njiru", "Male", "0", "Tz", "Brand influence/CEO"],
+        ["Weddy Joy Gaitugi", 26, "Nairobi", "Female", "0", "Meru", "Hustle"],
+        ["John kingi", 43, "Kitengela", "Male", "1", "Kisii", "HSE officer"],
+        ["Beatrice", 26, "Nairobi", "Female", "1", "Luhya", "Employed"],
+        ["Paul", 27, "Nairobi", "Male", "0", "Kikuyu", "Employed"],
+        [
+          "Miriam mugure",
+          27,
+          "Nakuru",
+          "Female",
+          "0",
+          "Kikuyu",
+          "Sales and marketing",
+        ],
+        [
+          "Lilian",
+          39,
+          "Kericho",
+          "Female",
+          "2",
+          "Kamba",
+          "Manager in a tea factory",
+        ],
+        ["Rael", 27, "Nairobi", "Female", "1", "Luyha", "Cosmetology"],
+        ["Paula", 34, "Nairobi", "Female", "1", "Luhya", "Business"],
+        ["Martin", 30, "Nairobi Kikuyu", "Male", "0", "Kikuyu", "Designer"],
+        ["Ritta", 36, "Embu", "Female", "2", "Embu", "Teacher"],
+        ["Nelson", 27, "Ld", "Male", "0", "Kalenjin", "Analyst"],
+        ["Irene", 32, "Kajiado", "Female", "2", "Kikuyu", "Civil servant"],
+        [
+          "Eric w",
+          28,
+          "Karen-kikuyu area",
+          "Male",
+          "0",
+          "Kikuyu",
+          "Business manager",
+        ],
+        ["Everlyne", 26, "Nairobi", "Female", "2", "Kamba", "Self employed"],
+        [
+          "Iris Muhonja",
+          24,
+          "Nairobi",
+          "Female",
+          "0",
+          "Luhya",
+          "Housekeeping attendant",
+        ],
+        [
+          "Wanjiru Maina",
+          28,
+          "Lower Kabete",
+          "Female",
+          "1",
+          "Gikuyu",
+          "Real Estate",
+        ],
+        ["Vee", 27, "Ruaka", "Female", "1", "Kikuyu", "House keeping trainer"],
+        ["Nora", 25, "Nairobi", "Female", "0", "Luhya", "consultant"],
+        ["Steven", 58, "Uganda", "Male", "2", "Samia", "Sales man"],
+        [
+          "Marvellous",
+          36,
+          "Nairobi, Kenya",
+          "Female",
+          "0",
+          "Kikuyu",
+          "Office Admin",
+        ],
+        ["Shiresi", 37, "Nairobi", "Female", "0", "Kenyan", "Marketer"],
+        [
+          "Thayu Macharia",
+          25,
+          "Nairobi",
+          "Male",
+          "0",
+          "Kikuyu",
+          "Entrepreneur",
+        ],
+        ["Penny", "30+", "United Kingdom", "Female", "1", "Kikuyu", "Medical"],
+        ["Lyn", 36, "Nairobi", "Female", "3", "Merian", "Travel Consultant"],
+        [
+          "Faith Chepngetich",
+          26,
+          "Nairobi",
+          "Female",
+          "1",
+          "Kipsigis",
+          "Banker",
+        ],
+        [
+          "Grace",
+          35,
+          "Nairobi",
+          "Female",
+          "1",
+          "Kikuyu",
+          "Videographer & Photographer",
+        ],
+        [
+          "Jackline rono",
+          "33",
+          "kericho",
+          "Female",
+          "1",
+          "kalenjin",
+          "working",
+        ],
+        ["Camilla", 21, "Nairobi", "Female", "0", "Kisii", "Student nurse"],
+        ["Daisy", 31, "Emc", "Female", "1", "Kalenjin", "Peasant farmer"],
+        ["Karen", 25, "Kakamega", "Female", "0", "Kikuyu", "Into business"],
+        ["Elly", 24, "Nakuru", "Male", "0", "Kalenjin", "Not working"],
+        [
+          "Nora Waby",
+          25,
+          "Nairobi",
+          "Female",
+          "0",
+          "Luhya",
+          "Executive assistant",
+        ],
+        ["Maxwell", 32, "Meru", "Male", "0", "Mmeru", "Lecturer"],
+        ["Ibrahim Alal", 37, "Nairobi", "Male", "1", "Luo", "Teacher"],
+        ["Magdaline", 26, "Murang'a", "Female", "0", "Kikuyu", "Teaching"],
+        ["David", 28, "Karen", "Male", "0", "Kikuyu", "Detail"],
+        [
+          "Dagmar Salome",
+          22,
+          "Nairobi",
+          "Female",
+          "0",
+          "Luhya",
+          "Self employed",
+        ],
+        ["Olloh Omondi Kenas", 35, "Voi", "Male", "0", "Luo", "Medic"],
+        ["Rael", 27, "Nairobi", "Female", "0", "Luyha", "Beautian"],
+        ["Alex", 37, "Nairobi", "Male", "0", "Kikuyu", "Administration"],
+        ["Juan", 30, "Nairobi", "Male", "0", "Kikuyu", "Fintech"],
+        ["maggie maggie", 35, "Nairobi", "Female", "0", "Kikuyu", "Education"],
+        ["Faith kananu", 32, "Nairobi", "Female", "1", "Meru", "Business"],
+        ["Esther", 32, "Nairobi", "Female", "0", "Kikuyu", "Marketer"],
+        ["Collins", 26, "Nakuru", "Male", "0", "Luo", "Welder"],
+        [
+          "Rose Ann",
+          33,
+          "Naivasha",
+          "Female",
+          "1",
+          "Kikuyu",
+          "Horticulturalist",
+        ],
+        ["Benita", 26, "Kericho", "Female", "0", "Kipsigis", "Accountant"],
+        [
+          "Jane",
+          36,
+          "Naivasha",
+          "Female",
+          "2",
+          "Luhya and kamba",
+          "House keeping",
+        ],
+        ["Christine", 27, "Kasarani", "Female", "1", "Kikuyu", "Beautician"],
+        [
+          "Mercy Wambua",
+          "32years",
+          "Kasarani - Nairobi",
+          "Female",
+          "1",
+          "Kamba",
+          "Fleet management & Logistics planner",
+        ],
+        [
+          "Naomi kipsirei",
+          24,
+          "Nairobi",
+          "Female",
+          "0",
+          "Kalenjien",
+          "Students",
+        ],
+        ["Herman", 33, "Gilgil", "Male", "0", "Kikuyu", "Sales man"],
+        ["Bluemoon", "23 years", "Nairobi", "Female", "0", "Kikuyu", ""],
+        ["Nimo", 22, "Nairobi", "Female", "0", "Kikuyu", "I'm an entrepreneur"],
+        ["Ken", 36, "Kisumu", "Male", "0", "Luo", "Psychologist"],
+        [
+          "Frank",
+          27,
+          "Nairobi githurai",
+          "Male",
+          "0",
+          "Kisii",
+          "Health records officer",
+        ],
+        ["Margaret", 27, "Gulf", "Female", "1", "Kikuyu", "Caregiver"],
+        [
+          "Benta nkirote",
+          28,
+          "Nairobi",
+          "Female",
+          "1",
+          "Merian",
+          "Certified nurse assistant",
+        ],
+        ["Keith", 26, "Uthiru", "Female", "1", "Kikuyu", "Hustling"],
+        ["Belinda", 26, "NAIROBI", "Female", "0", "LUO", "CS"],
+        ["Diana", 32, "Ngong", "Female", "2", "Kikuyu", "Sales representative"],
+        ["Joy", 29, "Nairobi", "Female", "1", "Luhya", "Hotelier"],
+        ["Yobby Tush", 22, "Thika", "Male", "0", "Kikuyu", "Engineer"],
+        ["Rozy", 24, "Nanyuki", "Female", "0", "Kikuyu", "Skin specialist"],
+        ["user", 29, "Kenya", "Male", "0", "Nyaho", "Electrician"],
+        ["Samuel Muthoka", 26, "Nairobi", "Male", "0", "Kamba", "Driver"],
+        ["Rosah", 25, "Embu", "Female", "0", "Luo", "Student"],
+        ["Lee chalo", 45, "Sirare", "Male", "2", "Merian", "Business"],
+        ["Petrus", 32, "Kangemi", "Male", "0", "Kikuyu", "Accountant"],
+        ["Wanjiku Kiarie", 46, "Kiambu", "Female", "0", "Kikuyu", "Engineer"],
+        ["Alice", 30, "Nakuru", "Female", "1", "Luo", "Receptionist"],
+        ["Wilson", 30, "Nairobi", "Male", "0", "Kisii", "Warehouse clerk"],
+        ["Wangari", 28, "Nanyuki", "Female", "0", "Kikuyu", "Clinical officer"],
+        ["Isaac Mwaniki", 29, "Mombasa", "Male", "0", "Kikuyu", "Research"],
+        ["James", 20, "Juja", "Male", "0", "Kikuyu", "Mason"],
+        [
+          "Faith",
+          24,
+          "Eldoret-Kapsabet",
+          "Female",
+          "1",
+          "Kikuyu",
+          "Medical Laboratory scientist",
+        ],
+        ["Jennifer", 33, "Nairobi", "Female", "0", "Kikuyu", "Self-employed"],
+        ["Richy", 30, "Kitengela", "Male", "0", "Luhya", "IT"],
+        [
+          "Eric Wainaina",
+          28,
+          "Karen/Ngong",
+          "Male",
+          "0",
+          "Kikuyu",
+          "Business manager",
+        ],
+        [
+          "Maryanne Nduta Ngatia",
+          22,
+          "Kenya",
+          "Female",
+          "0",
+          "Kikuyu",
+          "Travel consultant",
+        ],
+        ["Bernice", 22, "Kiambu", "Female", "0", "Kikuyu", "Hospitality"],
+        ["Yunis", 24, "Kiambu", "Female", "0", "Kikuyu", "Teacher"],
+        ["Eric", 27, "Komarock", "Male", "0", "Kamba", "Employed"],
+        ["Wambui", 29, "Nairobi", "Female", "1", "Kikuyu", "Medic"],
+        [
+          "Nyce Muthoni",
+          25,
+          "Kiambu County",
+          "Female",
+          "0",
+          "Kikuyu",
+          "Accountant",
+        ],
+        ["Mathew", 27, "Bungoma", "Male", "0", "Kamba", "Sales"],
+        ["Mirriam", 21, "Kagio", "Female", "1", "Luhya", "Financial analyst"],
+        ["John mwangi", 31, "Thika", "Male", "0", "Kikuyu", "Banker"],
+        ["Vincent", 32, "Nairobi Umoja", "Male", "2", "Luo", "Soccer coach"],
+        ["Hannah", 26, "Naivasha", "Female", "0", "Kikuyu", "Hospitality"],
+        ["Bundi Kelvin", 31, "Meru", "Male", "0", "Meru", "Building foreman"],
+        ["Ezekiel Mokaya", 26, "Kisii", "Male", "0", "Kisii", "IT technician"],
+        ["Haron", 28, "Kasarani", "Male", "0", "Kikuyu", "Fundi"],
+        ["George", 24, "Rongai", "Male", "0", "Luo", "Hustler"],
+        ["Kevin Onyango", 30, "Nairobi", "Male", "0", "Luo", "Plumber"],
+        ["Kennedy", 27, "Nakuru", "Male", "0", "Kisii", "Electrical Engineer"],
+        ["Jeff", 27, "Nakuru", "Male", "0", "Meru", "KDF / Business"],
+        ["Njeri Njoroge", 41, "Ruaka", "Female", "1", "Kikuyu", "Housekeeping"],
+        ["Lucy Kariuki", 32, "Nairobi", "Female", "1", "Kikuyu", "Admin"],
+        ["Nyawira Maina", 29, "Saudi Arabia", "Female", "1", "Kikuyu", "N/A"],
+        ["IRIS", 33, "Nakuru", "Male", "1", "Meru", "Teacher"],
+        ["IRIS", 29, "Nyahururu", "Male", "0", "Kikuyu", "Self employed"],
+        ["FREDRICK OPIYO", 30, "Mlolongo", "Male", "0", "Luo", "Teacher"],
+        ["Joseph Yobera", 26, "Nairobi", "Male", "0", "Luhya", "Photographer"],
+        [
+          "Johob Muluxi",
+          31,
+          "Kahawa Wendani",
+          "Male",
+          "0",
+          "Luo",
+          "Pharmacist",
+        ],
+        [
+          "Lilian",
+          23,
+          "Nairobi",
+          "Female",
+          "0",
+          "Kikuyu",
+          "Hospitality management",
+        ],
+        [
+          "Johnson Muniu",
+          29,
+          "Nairobi Chokaa",
+          "Male",
+          "0",
+          "Kikuyu",
+          "Hustler",
+        ],
+        ["Wangui", 29, "Nairobi", "Female", "0", "Kikuyu", "Self employed"],
+        ["Veronicah Maina", 31, "Nairobi", "Female", "1", "Kikuyu", "Business"],
+        ["Victor Mwangi", 32, "Nairobi", "Male", "1", "Kikuyu", "Accountant"],
+        [
+          "Misky Wangui",
+          21,
+          "Nyeri County",
+          "Female",
+          "1",
+          "Kikuyu",
+          "Cooking",
+        ],
+        ["Nyawira Maina", 29, "Saudi Arabia", "Female", "1", "Kikuyu", "N/A"],
+        ["Irene Methu", 33, "Nyeri", "Female", "3", "Kikuyu", "Business lady"],
+        ["Makena", 29, "Isiolo", "Female", "1", "Meru", "Business woman"],
+        ["Rodd", 25, "Nairobi", "Female", "0", "Kikuyu", "Business"],
+        ["Snaida", 26, "Nairobi setelite", "Female", "1", "Luhya", "Countant"],
+        ["Campbell Wasike", 25, "Kisumu", "Male", "0", "Luhya", "IT"],
+        ["Jackline", 35, "Kahawa Wendani", "Female", "0", "Kikuyu", "Employed"],
+        ["Anne wanjiru", 36, "Naivasha", "Female", "3", "Kikuyu", "Salonist"],
+        ["Joy", 23, "Embu", "Female", "1", "Embian", "Secretary"],
+        [
+          "MARYANN WANGECHI",
+          26,
+          "Nyahururu",
+          "Female",
+          "0",
+          "Kikuyu",
+          "Payroll/Hr",
+        ],
+        ["Miriam", 27, "Nakuru", "Female", "0", "Kikuyu", "Sales lady"],
+        ["Lear", 35, "Riruta", "Female", "4", "Luhya", "Driver"],
+        ["Jae", 23, "Naivasha", "Male", "0", "Kikuyu", "Econstats"],
+        [
+          "Kabie maryanne",
+          33,
+          "Nairobi Kenya",
+          "Female",
+          "2",
+          "Kikuyu",
+          "Psychologist",
+        ],
+        ["Benard", 20, "Thika", "Male", "0", "Luo", "Working"],
+        ["Najimah", 24, "Nakuru", "Female", "0", "Kalenjin", "Studying"],
+        ["Lydia", 38, "Kiambu", "Female", "2", "Kikuyu", "Hairdresser"],
+        [
+          "Cate",
+          21,
+          "Muthaiga",
+          "Female",
+          "0",
+          "Kikuyu",
+          "Pmu physician and baker",
+        ],
+        ["Jackie", 28, "Kitengela", "Female", "1", "Kamba", "Nailstech"],
+        [
+          "MARY LOISE GATUGI",
+          30,
+          "KIRINYAGA",
+          "Female",
+          "0",
+          "MERU",
+          "COURT CLERK",
+        ],
+        ["Santos Omondi", 30, "Utawala Nairobi", "Male", "0", "Luo", "Tech"],
+        ["Huska", 27, "Nairobi", "Male", "0", "Borana", "Flight dispatch"],
+        [
+          "Joseph kinyanjui",
+          33,
+          "Nairobi",
+          "Male",
+          "0",
+          "Kikuyu",
+          "Professional driver",
+        ],
+        ["Damaris Mubia", 36, "Nairobi", "Female", "1", "Kikuyu", "Banker"],
+        ["Joseph", 38, "Nairobi", "Male", "0", "Kamba", "Engineer"],
+        ["Vivian", 29, "Nairobi Kenya", "Female", "1", "Kikuyu", "Admin"],
+        ["Renus J", 32, "Nairobi", "Male", "0", "Luo", "Teaching"],
+        ["Antony kamau", 31, "Muranga", "Male", "0", "Kikuyu", "Accountant"],
+        [
+          "loki",
+          30,
+          "Thika",
+          "Male",
+          "0",
+          "kikuyu",
+          "Freelancer and IT personnel",
+        ],
+        ["Brian Osewe", 24, "Migori", "Male", "0", "Luo", "Teacher"],
+        ["Milcah", 32, "Nyeri", "Female", "0", "Kikuyu", "Agriculture"],
+        ["Ken", 28, "Nakuru", "Male", "0", "Luhya", "IT TECHNICIAN"],
+        [
+          "OLOO SOSPETER",
+          29,
+          "CHANGAMWE",
+          "Male",
+          "0",
+          "LUO/LUHYA",
+          "SURVEYOR",
+        ],
+        ["Bella", 27, "Nairobi", "Female", "0", "Kikuyu", "Sales"],
+        [
+          "Anjeline Atieno",
+          26,
+          "Lucky summer",
+          "Female",
+          "1",
+          "Luo",
+          "Saloonist",
+        ],
+        [
+          "Getrude Nyambura",
+          27,
+          "Currently am in mlolongo (machakoes county)",
+          "Female",
+          "0",
+          "Kikuyu",
+          "Carpentry",
+        ],
+        ["Ogeto andrew", 32, "Maragua", "Male", "1", "Kisii", "Account"],
+        ["Ted", 23, "Nairobi", "Male", "0", "Luhya", "Student"],
+        [
+          "Austin Ewoi",
+          32,
+          "Nairobi",
+          "Male",
+          "0",
+          "Turkana",
+          "Mass communications",
+        ],
+        ["Emma", 36, "Saudi Arabia", "Female", "1", "Kenyan", "Front office"],
+        ["Ibrahim Onsongo", 33, "Nairobi", "Male", "0", "Kisii", "Marketer"],
+        ["Martha", 31, "Nairobi", "Female", "0", "Kikuyu", "Travel expert"],
+        ["Kasina Jimmy", 31, "Umoja", "Male", "0", "Kamba", "Finance"],
+        [
+          "Brian Collins Simiyu",
+          32,
+          "Nairobi",
+          "Male",
+          "1",
+          "Luhya",
+          "Insurance",
+        ],
+        ["Sheeriz", 35, "Nairobi", "Female", "1", "Meru", "Business woman"],
+        [
+          "Robi Agnes",
+          32,
+          "Nakuru",
+          "Female",
+          "0",
+          "Kisii",
+          "Accounting and finance",
+        ],
+        ["Peter", 37, "Nakuru", "Male", "1", "Kikuyu", "Business"],
+        ["Claudio", 36, "Nairobi", "Male", "0", "Luo", "Driver"],
+        [
+          "Selin kemunto",
+          23,
+          "Nairobi",
+          "Female",
+          "0",
+          "Kisii",
+          "Self employed",
+        ],
+        ["Lorna mwaniki", 28, "Nairobi", "Female", "Yes", "Embian", "Business"],
+        [
+          "Rose karanja",
+          26,
+          "Kiambu",
+          "Female",
+          "0",
+          "Kikuyu",
+          "Information communication officer",
+        ],
+        ["Mark", 46, "Karatina", "Male", "0", "Kikuyu", "Farmer"],
+        ["Daniel Mwangi", 30, "Thika", "Male", "0", "Kikuyu", "Business man"],
+        ["Stellah", 29, "Kisumu", "Female", "2", "Abasuba/Luo", "Nurse"],
+        ["Chris nyaga", 45, "Ongata rongai", "Male", "1", "Kikuyu", "Masson"],
+        ["Wendy", 29, "Homabay", "Female", "0", "Luo", "Instructor"],
+        [
+          "Maxwel otieno otieno",
+          25,
+          "Mlolongo",
+          "Male",
+          "1",
+          "Luo",
+          "Plant operator",
+        ],
+        ["Lavina", 30, "Thika", "Female", "1", "Luhya/Luo", "Data Entry"],
+        [
+          "Catherine",
+          23,
+          "Njeri",
+          "Thika",
+          "Female",
+          "1",
+          "Kikuyu",
+          "Freelance",
+        ],
+        ["Dorcas", 26, "Ruaka", "Female", "0", "Kalenjin", "Sales"],
+        ["Edward", 30, "Kismu", "Male", "0", "Luo", "IT TECHNICIAN"],
+        [
+          "Andrew Gabriel",
+          33,
+          "Nairobi",
+          "Male",
+          "0",
+          "Kamba",
+          "Accountant/engineer",
+        ],
+        [
+          "Eric kabiru wanjohi",
+          25,
+          "Nyeri",
+          "Male",
+          "0",
+          "Kikuyu",
+          "Online entrepreneur",
+        ],
+        ["Joseph", 26, "Nairpbi", "Male", "0", "Kikuyu", "Barista"],
+        ["Leah", 36, "Juja", "Female", "1", "Kikuyu", "Office administrator"],
+        ["Djowie joe", 32, "Kenya", "Male", "0", "Kuria", "Fitness trainer"],
+        [
+          "Frankline",
+          25,
+          "Kasarani",
+          "Male",
+          "0",
+          "Luhya",
+          "International relations",
+        ],
+        ["Jepkoech katwa", 33, "Nairobi", "Female", "0", "Kalenjin", "Lawyer"],
+        ["Jackson", 30, "Kenya", "Male", "0", "Kalenjin", "Hospitality"],
+        ["Wendy", 29, "Homabay", "Female", "0", "Luo", "Instructor"],
+        ["Poline", 28, "Kitale", "Female", "0", "Luhya", "Teacher"],
+        ["Beckie", 30, "Nairobi", "Female", "0", "Kikuyu", "Nurse anesthetist"],
+        ["Joy mwangi", 29, "Nyahururu", "Female", "0", "Kikuyu", "Business"],
+        ["Janet", 27, "Kiambu", "Female", "0", "Kisii", "Beauty therapist"],
+        ["Peter", 28, "Nairobi", "Male", "0", "Luhya", "Employed"],
+        ["Laurence", 30, "Nairobi", "Male", "0", "Kenyan", "Journalist"],
+        ["Nathan", 35, "Nairobi", "Male", "2", "Kikuyu", "Driver"],
+        ["Brayan", 25, "Eldoret", "Male", "0", "Kisii", "N/A"],
+        ["Sky", 25, "Nairobi", "Female", "0", "", "IT support"],
+        ["Grace", 55, "Nairobi", "Female", "2", "Kikuyu", "Hospitality"],
+        ["Mautamu", 32, "Nairobi", "Male", "0", "Kikuyu", "Jobless"],
+        ["Miss Murage", 29, "Nairobi", "Female", "0", "Kikuyu", "Finance"],
+        ["Famous", 28, "Kenya", "Male", "0", "Kikuyu", "Teacher"],
+        ["Samuel Kirui", 22, "Nairobi", "Male", "0", "Kalenjin", "Student"],
+        ["Joy", 30, "Nairobi", "Female", "0", "Kenyan", "Self employed"],
+        ["David macharia", 28, "Nairobi", "Male", "0", "Kikuyu", "Employee"],
+        ["Ann", 32, "Nairobi", "Female", "0", "Kamba", "Teacher"],
+        ["collins opondo", 32, "Nairobi", "Male", "0", "Luo", "Data analyst"],
+        [
+          "Yussuf Hajj",
+          "40",
+          "Muranga",
+          "Male",
+          "2",
+          "Borana",
+          "Career police officer",
+        ],
+        [
+          "Brian Ngeno",
+          21,
+          "Nakuru",
+          "Male",
+          "0",
+          "Kalenjin",
+          "College student",
+        ],
+        ["Kate Ndichu", 24, "Kajiado", "Female", "0", "Kikuyu", "Secretary"],
+        ["Kiki", 22, "Kiambu", "Female", "0", "Merian", "Business"],
+        ["LUCY MUMBI WANJALA", 29, "NAIROBI", "Female", "1", "KIKUYU", "ADMIN"],
+        ["Diana", 23, "Kisii", "Female", "0", "Kisii", "Beauty and therapy"],
+        [
+          "Christina Aseidua",
+          25,
+          "Ghana Accra",
+          "Female",
+          "0",
+          "Ashanti",
+          "Chef",
+        ],
+        ["Jean", 26, "Kitale", "Male", "0", "Luhya", "Surveyor"],
+        ["Samuel", 36, "Murang'a", "Male", "0", "Kikuyu", "Driver"],
+        ["Knight", 29, "Nakuru", "Male", "1", "Kenyan", "Freelancer"],
+        ["Becky", 28, "Roysambu", "Female", "1", "Giriama - meru", "HR"],
+        [
+          "Thembelihle",
+          23,
+          "Sandton",
+          "Female",
+          "1",
+          "Ndebele",
+          "Non employed",
+        ],
+        [
+          "MOSES CHINEDU CONTEH",
+          21,
+          "Freetown Sierra Leone west Africa",
+          "Male",
+          "1",
+          "Limba_igbo",
+          "Footballer",
+        ],
+        ["Mark", 31, "Eldoret", "Male", "0", "Kalenjin", "Gis technician"],
+        ["Isaac", 30, "Nkru", "Male", "0", "Kikuyu", "Business"],
+        ["Sasha", 26, "Nairobi", "Female", "0", "Luhya", "HRIO"],
+        [
+          "Collins bet",
+          25,
+          "Nairobi",
+          "Male",
+          "0",
+          "Kalenjin",
+          "Still studying",
+        ],
+        ["Brigid", 22, "Voi", "Female", "0", "Kisii", "Cosmetologist"],
+        [
+          "Joseph Nkuyo",
+          29,
+          "Isinya",
+          "Male",
+          "0",
+          "Masaai",
+          "Weigh bridge operations",
+        ],
+        [
+          "Nicholas Mutua Kiema",
+          42,
+          "Kitui central",
+          "Male",
+          "2",
+          "Kamba",
+          "Finance officer",
+        ],
+        [
+          "Peninnah Ndung'uh",
+          34,
+          "Naivasha",
+          "Female",
+          "1",
+          "Kikuyu",
+          "Casual labourer",
+        ],
+        ["Samuel", 25, "Kiambu", "Male", "0", "Kikuyu", "Chemical analyst"],
+        ["Eric", 35, "Rongai", "Male", "0", "Meru", "Sales"],
+        [
+          "Joseph blac",
+          36,
+          "Nairobi",
+          "Male",
+          "0",
+          "Luhyia",
+          "Corporate & entrepreneur",
+        ],
+        ["Joseph", 36, "Nairobi", "Male", "0", "Luo", "Sales executive"],
+        ["Phineas", 24, "Ruiru, Kihunguro", "Male", "0", "Meru", "Plumber"],
+        ["John", 43, "Kitengela", "Male", "1", "Kisii", "EHS"],
+        ["Margaret", 31, "Githurai 44", "Female", "3", "Kikuyu", "Marketer"],
+        [
+          "Reagan",
+          27,
+          "Kinoo",
+          "Male",
+          "0",
+          "Meru",
+          "Sound & Lighting Engineer",
+        ],
+        ["Thaddeus", 26, "Utawala", "Male", "0", "Kikuyu", "Logistician"],
+        ["Charles", 22, "Nyeri", "Male", "0", "Kikuyu", "Automotive Engineer"],
+        ["Winnie", 30, "Kasarani", "Female", "2", "Kikuyu", "Business"],
+        [
+          "Kim Kenn",
+          33,
+          "Eldoret",
+          "Male",
+          "0",
+          "Kamba/Kalenjin",
+          "Psychologist",
+        ],
+        ["Mary", 27, "Nakuru", "Female", "0", "Kamba", "Accountant"],
+        [
+          "Frank",
+          35,
+          "Kitale",
+          "Male",
+          "0",
+          "Taita",
+          "Pharmaceutical Industry",
+        ],
+        [
+          "Cynthia Loreen Kahombi",
+          29,
+          "Saudi Arabia",
+          "Female",
+          "1",
+          "Luhya",
+          "Caregiver",
+        ],
+        ["Lisa", 31, "Nairobi", "Female", "0", "Kamba", "Pharmacist"],
+        ["Peter", 29, "Nakuru", "Male", "0", "Kikuyu", "Service Provider"],
+        ["Timothy", 25, "Mombasa", "Male", "0", "Giryama", "Driver"],
+        ["Beth Nyambura", 28, "Bahrain", "Female", "2", "Meru", "Cleaner"],
+        [
+          "Jane Nyambura",
+          28,
+          "Nairobi",
+          "Female",
+          "2",
+          "Kikuyu",
+          "Hairdresser",
+        ],
+        ["Mary Wangari Mburu", 23, "Kiambu", "Female", "0", "Kikuyu", "Beauty"],
+        ["Kevin", 34, "Nairobi", "Male", "0", "Kikuyu", "IT Consultant"],
+        ["Marvis Ndungu", 27, "Nairobi", "Male", "0", "Kikuyu", "Photographer"],
+        ["David", 22, "Embakasi", "Male", "0", "Luo", "Casual Labour"],
+        ["Marcus", 24, "Kasarani", "Male", "0", "Kikuyu", "Self-employed"],
+        [
+          "Atieno Jacqueline",
+          35,
+          "Mombasa",
+          "Female",
+          "4",
+          "Luo",
+          "Business Woman",
+        ],
+        [
+          "Annah Ombati",
+          21,
+          "Kisii, Kenya",
+          "Female",
+          "0",
+          "Kisii",
+          "Education Student",
+        ],
+        [
+          "Scandy Chepkoech",
+          23,
+          "Bomet",
+          "Female",
+          "1",
+          "Mkalee",
+          "House Girl",
+        ],
+        ["Aawqt", 26, "Nairobi", "Male", "0", "kenyan", "Work from Home"],
+        ["Rose Karwitha", 34, "Nairobi", "Female", "1", "Meru", "Designer"],
+        ["Carolyne", 27, "Nairobi", "Female", "1", "Kamba", "Business"],
+        [
+          "Caurageous",
+          26,
+          "Dubai",
+          "Male",
+          "0",
+          "Swahili",
+          "Delivery Boy in Dubai",
+        ],
+        ["Allexxyholmes", 25, "Nairobi", "Male", "0", "Kamba", "Hustler"],
+        ["Maggy Nyambura", 25, "Nairobi", "Female", "1", "Kikuyu", "Business"],
+        [
+          "Vince Matthew",
+          37,
+          "Nairobi",
+          "Male",
+          "0",
+          "Kenyan",
+          "Software Developer",
+        ],
+        ["Salim", 23, "Mariakani", "Male", "0", "Swahili", "Receptionist"],
+        ["Symon", 28, "Kirinyaga", "Male", "0", "Kikuyu", "Teacher"],
+        [
+          "Asyah",
+          31,
+          "Mombasa",
+          "Female",
+          "1",
+          "Kikuyu masai",
+          "Businesswoman",
+        ],
+        [
+          "Brian Maleche",
+          25,
+          "Nairobi",
+          "Male",
+          "0",
+          "Luhya",
+          "Mechanical engineer industrial pant technician",
+        ],
+        ["Doreen", 28, "Oman", "Female", "2", "Kisii", "Cooking"],
+        [
+          "Omondi",
+          21,
+          "Nairobi Kenya",
+          "Male",
+          "0",
+          "Luo",
+          "An orthopedic and trauma Medicine student",
+        ],
+        ["Samuel", 24, "Kiambu", "Male", "0", "Kikuyu", "Self-employed"],
+        [
+          "Emanuel mushindi",
+          30,
+          "Kakamega county",
+          "Male",
+          "0",
+          "Luhya",
+          "A business woman",
+        ],
+        ["Steph", 35, "Kiambu Githunguri", "Male", "0", "Kikuyu", "Hustler"],
+        ["Patrick muchiri", 20, "Nakuru", "Male", "0", "Kikuyu", "hustle"],
+        ["Bruce", 20, "Kisumu", "Male", "0", "Kisii", "Teacher"],
+        ["Brian Otieno", 31, "Nairobi", "Male", "2", "Luo", "Engineer"],
+        ["Peter otieno okoth", 32, "Kisumu", "Male", "0", "Luo", "Hotelier"],
+        ["Margaret", 27, "Nairobi", "Female", "0", "Kamba", "A teacher"],
+        [
+          "Judith Anyango",
+          28,
+          "Kisumu",
+          "Female",
+          "0",
+          "Luo",
+          "Senior customer relations officer",
+        ],
+        [
+          "Kevin ombati",
+          25,
+          "Qatar",
+          "Male",
+          "0",
+          "Kisii",
+          "Man life operator",
+        ],
+        ["Mark korir", 32, "Eldoret", "Male", "0", "Kalenjin", "ICT"],
+        ["James", 26, "Kenya 🇰🇪", "Male", "None", "Luhya", "Cook"],
+        [
+          "Simon Nadra",
+          32,
+          "Nairobi",
+          "Male",
+          "0",
+          "Kamba",
+          "am a vocal musician, Artist",
+        ],
+        ["Njiru", 24, "Embu", "Male", "0", "Embian", "Teaching"],
+        [
+          "Bruce mwakha",
+          28,
+          "Nairobi",
+          "Male",
+          "0",
+          "Luhya",
+          "Gardener at fairview hotel",
+        ],
+        ["Abiud", 25, "malaa", "Male", "0", "kisii", "Artist"],
+        ["Brian", 27, "Embu", "Male", "0", "Embian", "Biomed"],
+        [
+          "Cynthia Loreen Kahombi",
+          29,
+          "Saudi Arabia",
+          "Female",
+          "1",
+          "Luhya",
+          "Business lady",
+        ],
+        [
+          "Samuel Muthoka",
+          26,
+          "Nairobi komarock",
+          "Male",
+          "0",
+          "Kamba",
+          "Driver",
+        ],
+        ["Milton", 20, "Kenya", "Male", "0", "Kalenjin", "Entrepreneur"],
+        ["Meshack", 30, "Busia", "Male", "0", "Luhya", "Business man"],
+        [
+          "Wangari",
+          28,
+          "Nairobi",
+          "Female",
+          "0",
+          "Kikuyu",
+          "Automotive engineering",
+        ],
+        [
+          "Majesty Brian",
+          19,
+          "Embu",
+          "Male",
+          "0",
+          "Meru",
+          "C.O.O Event organizer",
+        ],
+        ["Julius", 40, "Nairobi", "Male", "1", "Kikuyu", "Security docket"],
+        ["Peris", 28, "Transnzoia", "Female", "0", "Luhya", "Teacher"],
+        ["Emmanuel", 28, "Dubai", "Male", "0", "Inbox", "Logistics"],
+        ["Fresh", 30, "Nairobi", "Male", "0", "Kikuyu", "Farmer and a teacher"],
+        ["Ann Maya", 22, "Nakuru", "Female", "0", "Luhya", "College graduate"],
+      ];
 
+      /***************
+       * Map rawRows -> objects used by the table
+       ***************/
 
-  ];
+      function mapRow(arr, origIndex) {
+        return {
+          name: arr[0] ?? "",
+          age: arr[1] ?? "",
+          location: arr[2] ?? "",
+          gender: arr[3] ?? "",
+          kids: arr[4] ?? "",
+          tribe: arr[5] ?? "",
+          career: arr[6] ?? "",
+          __origIndex: origIndex,
+        };
+      }
+      const data = rawRows.map((r, i) => mapRow(r, i));
 
-  profiles.forEach((p, index) => {
-    const card = document.createElement('div');
-    card.className = 'card';
+      /***************
+       * DOM cache
+       ***************/
+      const tbody = document.getElementById("tableBody");
+      const pagination = document.getElementById("pagination");
+      const metaInfo = document.getElementById("metaInfo");
+      const searchInput = document.getElementById("searchInput");
+      const clearSearch = document.getElementById("clearSearch");
+      const headers = Array.from(document.querySelectorAll("thead th"));
 
-    card.innerText = 
-`${index + 1}
-Name: ${p[0]}
-Age: ${p[1]}
-Location: ${p[2]}
-Gender: ${p[3]}
-Kids: ${p[4]}
-Tribe: ${p[5]}
-Career: ${p[6]}
-Phone: UNLOCK NUMBER`;
+      /***************
+       * Helpers
+       ***************/
+      function escapeHtml(str) {
+        return String(str)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
 
-    document.body.appendChild(card);
-  });
-</script>
+      function containsAnyCell(item, query) {
+        if (!query) return true;
+        const q = query.toLowerCase();
+        return [
+          "name",
+          "age",
+          "location",
+          "gender",
+          "kids",
+          "tribe",
+          "career",
+        ].some((k) => String(item[k]).toLowerCase().includes(q));
+      }
 
+      function compare(a, b, key) {
+        const va = a[key];
+        const vb = b[key];
+        if (key === "age" || key === "kids") return Number(va) - Number(vb);
+        return String(va).localeCompare(String(vb), undefined, {
+          numeric: true,
+          sensitivity: "base",
+        });
+      }
+
+      // Enhanced processed data - respects currentFilter and currentSort (supports 'no' sort)
+      function getProcessedData() {
+        let results = data.filter((item) =>
+          containsAnyCell(item, currentFilter)
+        );
+        if (currentSort.key) {
+          if (currentSort.key === "no") {
+            results.sort(
+              (a, b) => currentSort.dir * (a.__origIndex - b.__origIndex)
+            );
+          } else {
+            results.sort(
+              (a, b) => currentSort.dir * compare(a, b, currentSort.key)
+            );
+          }
+        }
+        return results;
+      }
+
+      /***************
+       * Rendering
+       ***************/
+      function renderTable() {
+        const processed = getProcessedData();
+        const total = processed.length;
+        const totalPages = Math.max(1, Math.ceil(total / rowsPerPage));
+
+        if (currentPage > totalPages) currentPage = totalPages;
+        if (currentPage < 1) currentPage = 1;
+
+        const start = (currentPage - 1) * rowsPerPage;
+        const pageItems = processed.slice(start, start + rowsPerPage);
+
+        tbody.innerHTML = "";
+        for (let i = 0; i < pageItems.length; i++) {
+          const r = pageItems[i];
+          const tr = document.createElement("tr");
+          const serial = start + i + 1; // serial number in filtered result
+          tr.innerHTML = `
+            <td><span class="pill">${serial}</span></td>
+            <td>${escapeHtml(r.name)}</td>
+            <td>${escapeHtml(r.age)}</td>
+            <td>${escapeHtml(r.location)}</td>
+            <td>${escapeHtml(r.gender)}</td>
+            <td>${escapeHtml(r.kids)}</td>
+            <td>${escapeHtml(r.tribe)}</td>
+            <td>${escapeHtml(r.career)}</td>
+          `;
+          tbody.appendChild(tr);
+        }
+
+        renderPagination(total, totalPages);
+        updateMeta(total, totalPages);
+        updateSortIndicators();
+        clearSearch.style.display = currentFilter ? "inline-block" : "none";
+      }
+
+      function renderPagination(totalItems, totalPages) {
+        pagination.innerHTML = "";
+
+        const prevBtn = document.createElement("button");
+        prevBtn.className = "page-btn";
+        prevBtn.textContent = "Prev";
+        prevBtn.disabled = currentPage === 1;
+        prevBtn.onclick = () => {
+          currentPage--;
+          renderTable();
+        };
+        pagination.appendChild(prevBtn);
+
+        const maxButtons = 7;
+        let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+        let endPage = startPage + maxButtons - 1;
+        if (endPage > totalPages) {
+          endPage = totalPages;
+          startPage = Math.max(1, endPage - maxButtons + 1);
+        }
+
+        for (let p = startPage; p <= endPage; p++) {
+          const btn = document.createElement("button");
+          btn.className = "page-btn" + (p === currentPage ? " active" : "");
+          btn.textContent = p;
+          btn.onclick = () => {
+            currentPage = p;
+            renderTable();
+          };
+          pagination.appendChild(btn);
+        }
+
+        const nextBtn = document.createElement("button");
+        nextBtn.className = "page-btn";
+        nextBtn.textContent = "Next";
+        nextBtn.disabled = currentPage === totalPages;
+        nextBtn.onclick = () => {
+          currentPage++;
+          renderTable();
+        };
+        pagination.appendChild(nextBtn);
+      }
+
+      function updateMeta(totalItems, totalPages) {
+        const start =
+          totalItems === 0 ? 0 : (currentPage - 1) * rowsPerPage + 1;
+        const end = Math.min(totalItems, currentPage * rowsPerPage);
+        metaInfo.textContent = `${totalItems} result${
+          totalItems === 1 ? "" : "s"
+        } — showing ${start} to ${end}`;
+      }
+
+      function updateSortIndicators() {
+        headers.forEach((th) => {
+          const ind = th.querySelector(".sort-ind");
+          const key = th.dataset.key;
+          ind.textContent = "";
+          if (!currentSort.key) return;
+          if (currentSort.key === "no" && key === "no") {
+            ind.textContent = currentSort.dir === 1 ? "▲" : "▼";
+          } else if (currentSort.key === key) {
+            ind.textContent = currentSort.dir === 1 ? "▲" : "▼";
+          }
+        });
+      }
+
+      /***************
+       * Header click sorting (toggle asc/desc)
+       ***************/
+      headers.forEach((th) => {
+        th.addEventListener("click", () => {
+          const key = th.dataset.key;
+          if (!key) return;
+          if (currentSort.key === key) currentSort.dir *= -1;
+          else {
+            currentSort.key = key;
+            currentSort.dir = 1;
+          }
+          currentPage = 1;
+          renderTable();
+        });
+      });
+
+      /***************
+       * Search (debounced)
+       ***************/
+      let debounceTimer = null;
+      searchInput.addEventListener("input", (e) => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+          currentFilter = e.target.value.trim();
+          currentPage = 1;
+          renderTable();
+        }, 180);
+      });
+
+      clearSearch.addEventListener("click", () => {
+        searchInput.value = "";
+        currentFilter = "";
+        currentPage = 1;
+        renderTable();
+      });
+
+      searchInput.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          searchInput.value = "";
+          currentFilter = "";
+          currentPage = 1;
+          renderTable();
+        }
+      });
+
+      // init
+      (function init() {
+        headers.forEach((h) => h.setAttribute("role", "columnheader"));
+        renderTable();
+      })();
+    </script>
+    <br />
+    <br />
+
+    <h1><strong>Trouble using table? whatsap admin at 0796339854</strong></h1>
+    <br /><br />
   </body>
 </html>
 
+  </body>
+</html>
