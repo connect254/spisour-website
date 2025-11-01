@@ -2,25 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, orientation=landscape" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, orientation=landscape"
+    />
     <title>Perfect Match Dating Connections</title>
     <style>
       body {
-        font-family: "Poppins", sans-serif;
-        background: linear-gradient(135deg, #e8dcf5, #f6f0fa);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f6f8;
         margin: 0;
         padding: 20px;
         text-align: center;
-        color: #2c3e50;
       }
 
       h2 {
-        color: #6a0dad;
+        color: purple;
         margin-top: 30px;
-        text-shadow: 1px 1px 2px rgba(106, 13, 173, 0.1);
       }
 
-      /* === VERIFIED SINGLES (glass-style) === */
+      /* === VERIFIED SINGLES SCROLL ROW === */
       .verified-container {
         display: flex;
         overflow-x: auto;
@@ -34,32 +35,22 @@
       }
 
       .verified-container::-webkit-scrollbar-thumb {
-        background-color: #c5a3e0;
+        background-color: #b99ad9;
         border-radius: 10px;
       }
 
       .card {
         position: relative;
         flex: 0 0 300px;
-        background: rgba(255, 255, 255, 0.25);
-        border-radius: 20px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.4);
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         scroll-snap-align: start;
         padding: 15px;
         text-align: left;
-        overflow: hidden;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        transition: transform 0.2s ease, box-shadow 0.3s ease;
-      }
-
-      .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(106, 13, 173, 0.15);
       }
 
       /* === VERIFIED BADGE === */
@@ -74,7 +65,7 @@
         padding: 5px 10px;
         border-radius: 20px;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        backdrop-filter: blur(5px);
+        backdrop-filter: blur(4px);
         display: flex;
         align-items: center;
         gap: 4px;
@@ -92,15 +83,19 @@
         margin-bottom: 10px;
       }
 
+      .details {
+        flex-grow: 1;
+      }
+
       .details h3 {
-        color: #4b0082;
+        color: #2c3e50;
         margin: 8px 0;
       }
 
       .details p {
         font-size: 14px;
         margin: 4px 0;
-        color: #333;
+        color: #555;
       }
 
       .whatsapp-btn {
@@ -111,19 +106,19 @@
         background-color: #25d366;
         color: white;
         padding: 10px 15px;
-        border-radius: 25px;
+        border-radius: 20px;
         text-decoration: none;
         font-size: 14px;
         font-weight: bold;
-        width: 100%;
         text-align: center;
-        margin-top: 12px;
+        width: 100%;
         box-sizing: border-box;
-        transition: background-color 0.2s ease;
+        transition: 0.3s ease;
       }
 
       .whatsapp-btn:hover {
         background-color: #1ebe5d;
+        transform: translateY(-2px);
       }
 
       /* === UNVERIFIED SECTION === */
@@ -138,43 +133,36 @@
       .unverified-card {
         position: relative;
         flex: 0 0 180px;
-        background: rgba(255, 255, 255, 0.3);
+        background-color: #fff;
         border: 2px dashed #b99ad9;
-        border-radius: 16px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         scroll-snap-align: start;
         padding: 15px;
         color: #2c3e50;
         font-weight: bold;
-        text-align: center;
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .unverified-card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
       }
 
       /* === UNVERIFIED BADGE === */
       .unverified-badge {
         position: absolute;
-        top: 8px;
-        left: 8px;
-        background: rgba(33, 150, 243, 0.85);
+        top: 10px;
+        left: 10px;
+        background: rgba(33, 150, 243, 0.9);
         color: white;
         font-size: 12px;
+        font-weight: bold;
         padding: 4px 8px;
         border-radius: 12px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
         backdrop-filter: blur(4px);
-      }
-
-      .unverified-badge::before {
-        content: "🚫 ";
-      }
-
-      .unverified-card a {
-        text-decoration: none;
-        color: #25d366;
-        font-size: 14px;
-        display: block;
-        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       }
 
       @media (max-width: 768px) {
@@ -182,7 +170,10 @@
           padding: 10px;
         }
         .card {
-          flex: 0 0 260px;
+          flex: 0 0 250px;
+        }
+        .unverified-card {
+          flex: 0 0 150px;
         }
       }
     </style>
@@ -237,7 +228,7 @@
       const verifiedList = document.getElementById("verifiedList");
       const unverifiedList = document.getElementById("unverifiedList");
 
-      // Render verified singles
+      // === Render Verified Singles ===
       verifiedProfiles.forEach((p) => {
         const card = document.createElement("div");
         card.className = "card";
@@ -254,26 +245,27 @@
           <a href="https://wa.me/${p.phone}?text=Hi%20${encodeURIComponent(
           p.name
         )},%20I%20saw%20your%20profile%20on%20Perfect%20Match%20Dating%20Connections." 
-             class="whatsapp-btn" target="_blank">💬 Chat on WhatsApp</a>
+               class="whatsapp-btn" target="_blank">💬 Chat on WhatsApp</a>
         `;
         verifiedList.appendChild(card);
       });
 
-      // Render unverified cards
+      // === Render Unverified Members ===
       for (let i = 1; i <= unverifiedCount; i++) {
-        const card = document.createElement("div");
-        card.className = "unverified-card";
-        card.innerHTML = `
-          <div class="unverified-badge">Unverified</div>
+        const link = document.createElement("a");
+        link.href = `https://wa.me/254736167326?text=Hi,%20I%20want%20to%20verify%20my%20profile%20as%20Unverified%20Member%20${i}`;
+        link.target = "_blank";
+        link.className = "unverified-card";
+        link.innerHTML = `
+          <div class="unverified-badge">Unverified 🚫</div>
           Unverified Member ${i}
-          <a href="https://wa.me/254736167326?text=Hi,%20I%20want%20to%20verify%20my%20profile%20as%20Unverified%20Member%20${i}">Chat on WhatsApp</a>
         `;
-        unverifiedList.appendChild(card);
+        unverifiedList.appendChild(link);
       }
 
-      // Suggest landscape orientation
+      // Suggest landscape mode
       if (window.matchMedia("(orientation: portrait)").matches) {
-        alert("📱 For best view, please rotate your phone to landscape mode.");
+        alert("For best view, rotate your phone to landscape mode 📱↩️");
       }
     </script>
   </body>
