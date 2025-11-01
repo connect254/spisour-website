@@ -2,176 +2,209 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, orientation=landscape" />
     <title>Perfect Match Dating Connections</title>
-
     <style>
       body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         background-color: #f4f6f8;
         margin: 0;
-        padding: 40px;
+        padding: 20px;
         text-align: center;
       }
 
-      h4 {
+      h2 {
         color: purple;
-        margin-bottom: 30px;
+        margin-top: 30px;
       }
 
-      .card-container {
+      /* === VERIFIED SINGLES SCROLL ROW === */
+      .verified-container {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+        overflow-x: auto;
+        gap: 20px;
+        padding: 20px 10px;
+        scroll-snap-type: x mandatory;
+      }
+
+      .verified-container::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .verified-container::-webkit-scrollbar-thumb {
+        background-color: #b99ad9;
+        border-radius: 10px;
       }
 
       .card {
-        display: flex;
-        align-items: center;
+        position: relative;
+        flex: 0 0 300px;
         background-color: #fff;
         border-radius: 12px;
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        width: 750px;
-        padding: 20px 25px;
-        transition: all 0.5s ease;
-        position: relative;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        scroll-snap-align: start;
+        padding: 15px;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
 
-      .serial {
+      /* === VERIFIED BADGE === */
+      .verified-badge {
         position: absolute;
         top: 10px;
         left: 10px;
-        background-color: #3498db;
+        background: rgba(76, 175, 80, 0.9);
         color: white;
         font-weight: bold;
-        font-size: 16px;
-        border-radius: 50%;
-        width: 30px;
-        height: 30px;
+        font-size: 13px;
+        padding: 5px 10px;
+        border-radius: 20px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(4px);
         display: flex;
         align-items: center;
-        justify-content: center;
+        gap: 4px;
+      }
+
+      .verified-badge::before {
+        content: "✅";
       }
 
       .profile-pic {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
+        width: 100%;
+        height: 220px;
+        border-radius: 12px;
         object-fit: cover;
-        margin-right: 25px;
-        border: 4px solid #3498db;
-        flex-shrink: 0;
+        margin-bottom: 10px;
       }
 
       .details {
-        flex: 1;
-        text-align: left;
+        flex-grow: 1;
       }
 
-      .details h2 {
-        margin: 0 0 10px 0;
+      .details h3 {
         color: #2c3e50;
-        font-size: 22px;
+        margin: 8px 0;
       }
 
       .details p {
-        margin: 5px 0;
+        font-size: 14px;
+        margin: 4px 0;
         color: #555;
-        font-size: 15px;
-      }
-
-      .details span {
-        font-weight: bold;
-        color: #2c3e50;
       }
 
       .whatsapp-btn {
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         gap: 8px;
-        margin-top: 12px;
         background-color: #25d366;
         color: white;
-        padding: 10px 18px;
-        border-radius: 25px;
+        padding: 10px 15px;
+        border-radius: 20px;
         text-decoration: none;
-        font-size: 15px;
+        font-size: 14px;
         font-weight: bold;
-        transition: background-color 0.3s ease;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+        transition: 0.3s ease;
       }
 
       .whatsapp-btn:hover {
         background-color: #1ebe5d;
+        transform: translateY(-2px);
       }
 
-      .whatsapp-btn i {
-        font-size: 18px;
+      /* === UNVERIFIED SECTION === */
+      .unverified-container {
+        display: flex;
+        overflow-x: auto;
+        gap: 15px;
+        padding: 20px 10px;
+        scroll-snap-type: x mandatory;
       }
 
-      .nav-buttons {
-        margin-top: 25px;
+      .unverified-card {
+        position: relative;
+        flex: 0 0 180px;
+        background-color: #fff;
+        border: 2px dashed #b99ad9;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        scroll-snap-align: start;
+        padding: 15px;
+        color: #2c3e50;
+        font-weight: bold;
       }
 
-      .nav-buttons button {
-        background-color: #3498db;
+      /* === UNVERIFIED BADGE === */
+      .unverified-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: rgba(33, 150, 243, 0.9);
         color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 25px;
-        margin: 0 10px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 4px 8px;
+        border-radius: 12px;
+        backdrop-filter: blur(4px);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       }
 
-      .nav-buttons button:hover {
-        background-color: #2c80b4;
+      .unverified-card a {
+        text-decoration: none;
+        color: #25d366;
+        font-size: 14px;
+        display: block;
+        margin-top: 10px;
       }
 
-      @media (max-width: 750px) {
-        .card {
-          flex-direction: column;
-          align-items: flex-start;
-          width: 90%;
+      @media (max-width: 768px) {
+        body {
+          padding: 10px;
         }
-        .profile-pic {
-          margin-right: 0;
-          margin-bottom: 15px;
-          align-self: center;
+        .card {
+          flex: 0 0 250px;
+        }
+        .unverified-card {
+          flex: 0 0 150px;
         }
       }
     </style>
   </head>
   <body>
-    <h4>
-      Hi, welcome ,chat directly with singles heret to their whatsapp number 💖
-    </h4>
+    <h2>💖 Verified Singles</h2>
+    <div class="verified-container" id="verifiedList"></div>
 
-    <div class="card-container">
-      <div class="card" id="profileCard"></div>
-
-      <div class="nav-buttons">
-        <button onclick="prevProfile()">⬅ Previous</button>
-        <button onclick="nextProfile()">Next ➡</button>
-      </div>
-    </div>
-    <br /><br />
-    Use navigation buttons below to navigate , to previous/next single- request
-    to added in this section so that other singles can easily find you. long
-    press image to preview full size or download.
+    <h2>👥 Unverified Members</h2>
+    <div class="unverified-container" id="unverifiedList"></div>
 
     <script>
-      const profiles = [
+      const verifiedProfiles = [
         {
-          name: "Jason mutwiri",
+          name: "Cynthia Kahombi",
+          age: 29,
+          location: "Saudi Arabia",
+          gender: "Female",
+          tribe: "Luhya",
+          career: "Caregiver",
+          seeking:
+            "Looking for a responsible, loving, loyal and God-fearing man 😇",
+          photo: "ds.photos/cynthiak.jpg",
+          phone: "254708557186",
+        },
+        {
+          name: "Jason Mutwiri",
           age: 30,
           location: "Kuwait",
-          gender: "male",
-          kids: 0,
-          tribe: "mmeru",
-          career: "chef",
-          seeking: "seeking love of my life 25-30 years",
+          gender: "Male",
+          tribe: "Meru",
+          career: "Chef",
+          seeking: "Seeking love of my life 25–30 years",
           photo: "ds.photos/Jason.jpg",
           phone: "97471095672",
         },
@@ -180,1345 +213,59 @@
           age: 34,
           location: "Dubai",
           gender: "Male",
-          kids: 0,
           tribe: "Kikuyu",
-          career: "IT consulant",
+          career: "IT Consultant",
           seeking:
-            "am a guy looking for a 25 to 33 years old lady who believes in love built on trust, understanding and shared dreams. Am a catholic. my height is 5'6.Am honest,charming, trustworthy and a straightforward gentleman",
+            "Looking for a lady 25–33 who believes in love built on trust.",
           photo: "ds.photos/kelvindubai.jpg",
           phone: "254731483597",
         },
-        {
-          name: "Iris muhonja",
-          age: 26,
-          location: "Nairobi",
-          gender: "female",
-          kids: 0,
-          tribe: "luhya",
-          career: "housekeeping attendant",
-          seeking: "A mature and caring partner aged 20 to 30",
-          photo: "ds.photos/muhonja.jpg",
-          phone: "254708530614",
-        },
-        {
-          name: "David muia",
-          age: 28,
-          location: "Nairobi,kayole junction",
-          gender: "Male",
-          kids: 0,
-          tribe: "Kamba",
-          career: "security officer and marketer",
-          seeking: "A relationship leading to marriage",
-          photo: "ds.photos/muia.jpg",
-          phone: "254740090409",
-        },
-        {
-          name: "catherine josphine",
-          age: 22,
-          location: "Nairobi, kimbo",
-          gender: "Female",
-          kids: 0,
-          tribe: "Kikuyu",
-          career: "pmu physician and baker",
-          seeking: "An ambitious man ready to settle down",
-          photo: "ds.photos/catherine josphine.jpg",
-          phone: "254110385102",
-        },
-
-        {
-          name: "Kinyanjui",
-          age: 32,
-          location: "Nairobi",
-          gender: "Male",
-          kids: 0,
-          tribe: "kikuyu",
-          career: "professional driver",
-          seeking: "An honest woman who values family life",
-          photo: "ds.photos/kinyanjui.jpg",
-          phone: "254758795567",
-        },
-        {
-          name: "Rose karwitha",
-          age: 34,
-          location: "Nairobi",
-          gender: "Female",
-          kids: 1,
-          tribe: "mmeru",
-          career: "Designer",
-          seeking:
-            "looking for a guy 35-40 years from any part of kenya who is intentional, leads with kindness,communicates openly,values deep emmotional connection and ready to build a purpose-driven life together. am ok to get more kids for him",
-          photo: "ds.photos/karwitha.jpg",
-          phone: "254720292442",
-        },
-        {
-          name: "peter otieno okoth",
-          age: 32,
-          location: "kisumu/bondo",
-          gender: "Male",
-          kids: 0,
-          tribe: "Luo",
-          career: "working in a hotel in housekeeping department",
-          seeking: "A loving woman who enjoys fun and laughter,below my age",
-          photo: "ds.photos/otienookoth.jpg",
-          phone: "254701839775",
-        },
-        {
-          name: "lilian",
-          age: 32,
-          location: "Nairobi",
-          gender: "female",
-          kids: 0,
-          tribe: "luhya",
-          career: "Hospitality trainer",
-          seeking: "seeking love of my life 25-30 years",
-          photo: "ds.photos/kegeshi.jpg",
-          phone: "254748115263",
-        },
-
-        {
-          name: "Salim hamisi",
-          age: 23,
-          location: "mariakani,Female",
-          gender: "Male",
-          kids: 0,
-          tribe: "Swahili",
-          career: "Receptionist",
-          seeking: "An open relaionship",
-          photo: "ds.photos/hamisi.jpg",
-          phone: "254751614844",
-        },
-        {
-          name: "Kelvin Ombati",
-          age: 25,
-          location: "Qatar",
-          gender: "Male",
-          kids: 0,
-          tribe: "Kisii",
-          career: "man life operator",
-          seeking:
-            "Am looking for someone who is serious, God fearing and above all respect",
-          photo: "ds.photos/KOmbati.jpg",
-          phone: "254792233112",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "sydney Baraza ",
-          age: 26,
-          location: "mumias,kakamega",
-          gender: "male",
-          kids: 0,
-          tribe: "luhya",
-          career: "IT expert",
-          seeking: "Someone serious",
-          photo: "ds.photos/sydneyBarazajpg.jpg",
-          phone: "254706014318",
-        },
-        {
-          name: "Bruce",
-          age: 28,
-          location: "Bunyore now in Mlolongo",
-          gender: "male",
-          kids: 0,
-          tribe: "luhya",
-          career: "I work as a gardener in Fairview hotel in Upperhill",
-          seeking:
-            "Interested in developing a serious love relationship that could lead to marriage.",
-          photo: "ds.photos/Bruce.jpg",
-          phone: "254799655312",
-        },
-        {
-          name: "James",
-          age: 26,
-          location: "kakamega",
-          gender: "male",
-          kids: 0,
-          tribe: "luhya",
-          career: "working",
-          seeking: "genuine love",
-          photo: "ds.photos/james26.jpg",
-          phone: "254768496287",
-        },
-        {
-          name: "morgan onyango",
-          age: 24,
-          location: "Nairobi",
-          gender: "male",
-          kids: 0,
-          tribe: "luo",
-          career: "Self employed (bike 🚲)",
-          seeking: "my better half",
-          photo: "ds.photos/morgan1.jpg",
-          phone: "254710397643",
-        },
-        {
-          name: "cynthia kahombi",
-          age: 29,
-          location: "UAE",
-          gender: "Female",
-          kids: 1,
-          tribe: "Luhya",
-          career: "Caregiver",
-          seeking:
-            "I am seeking someone who is able to communicate well, Responsible,Loving, Respectful,Loyal, Good sense of humour and God fearing😇",
-          photo: "ds.photos/cynthiak.jpg",
-          phone: "254708557186",
-        },
-        {
-          name: "Emanuel Mushinda",
-          age: 26,
-          location: "kakamega",
-          gender: "Male",
-          kids: 0,
-          tribe: "Luhya",
-          career: "Electrician",
-          seeking: "God fearing woman for marriage",
-          photo: "ds.photos/Emanuel.jpg",
-          phone: "254792512931",
-        },
-        {
-          name: "sharon oluoch",
-          age: 26,
-          location: "Tanariver,hola",
-          gender: "female",
-          kids: 1,
-          tribe: "Luo",
-          career: "receptionist/chef",
-          seeking: "marriage",
-          photo: "ds.photos/sharonoluoch.jpg",
-          phone: "254769938262",
-        },
-        {
-          name: "collins",
-          age: 26,
-          location: "nakuru",
-          gender: "male",
-          kids: 0,
-          tribe: "luo",
-          career: "business boy",
-          seeking: "a serious relationship",
-          photo: "ds.photos/collinsA.jpg",
-          phone: "254740343700",
-        },
-        {
-          name: "SIMON NADRA",
-          age: 32,
-          location: "Nairobi",
-          gender: "male",
-          kids: 0,
-          tribe: "kamba",
-          career: "business",
-          seeking: "soulmate who is trustworthy and ready to settle down",
-          photo: "ds.photos/NADRA.jpg",
-          phone: "254112488831",
-        },
-        {
-          name: "Abiud omundi",
-          age: 25,
-          location: "malaa, nairobi",
-          gender: "male",
-          kids: 0,
-          tribe: "luo",
-          career: "business",
-          seeking: "girlfriend",
-          photo: "ds.photos/Abiud.jpg",
-          phone: "254798169656",
-        },
-        {
-          name: "Jackline Atieno",
-          age: 35,
-          location: "man",
-          gender: "female",
-          kids: 4,
-          tribe: "Luo",
-          career: "business woman",
-          seeking: "I need a man 36 years to 40 years",
-          photo: "ds.photos/JacklineAt.jpg",
-          phone: "254115286209",
-        },
-
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "FREE SPACE FOR SERIOUS SINGLES",
-          age: 1,
-          location: "CLICK NEXT/PREVIOUS TO SEE PROFILES",
-          gender: "NO MONTHLY FESS, FOREVER STARTS HERE",
-          kids: 1,
-          tribe: "SHARE WEBSITE TO GET FREE SUBSCRIPTION",
-          career: "SEARCH TABLE ON FIND MY MATCH BUTTON",
-          seeking: "CHAT ADMIN ON 0736167326 TO UPLOAD YOU ON THIS SPACE",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
-        {
-          name: "CHAT ME 0736167326 I UPLOAD YOU HERE",
-          age: 1,
-          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
-          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
-          kids: 0,
-          tribe: "REQUEST INSTANT MATCHES",
-          career: "THIS SPACE IS FREE",
-          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
-          photo: "ds.photos/placeholder.jpg",
-          phone: "254736167326",
-        },
       ];
 
-      let currentIndex = 0;
-      const card = document.getElementById("profileCard");
+      const unverifiedCount = 6;
+      const verifiedList = document.getElementById("verifiedList");
+      const unverifiedList = document.getElementById("unverifiedList");
 
-      function showProfile(index) {
-        const p = profiles[index];
+      // Render verified singles
+      verifiedProfiles.forEach((p) => {
+        const card = document.createElement("div");
+        card.className = "card";
         card.innerHTML = `
-          <div class="serial">${index + 1}</div>
+          <div class="verified-badge">Verified</div>
           <img src="${p.photo}" alt="${p.name}" class="profile-pic">
           <div class="details">
-            <h2>${p.name}</h2>
-            <p><span>Age:</span> ${p.age}</p>
-            <p><span>Location:</span> ${p.location}</p>
-            <p><span>Gender:</span> ${p.gender}</p>
-            <p><span>Kids:</span> ${p.kids}</p>
-            <p><span>Tribe:</span> ${p.tribe}</p>
-            <p><span>Career:</span> ${p.career}</p>
-            <p><span>Seeking:</span> ${p.seeking}</p>
-            <a href="https://wa.me/${p.phone}?text=Hi%20${
-          p.name
-        },%20I%20got%20your%20contact%20from%20Perfect%20Match%20Dating%20Connections,%20can%20we%20know%20each%20other%20more..."
-               class="whatsapp-btn" target="_blank">
-               <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
-            </a>
+            <h3>${p.name}</h3>
+            <p><b>Age:</b> ${p.age}</p>
+            <p><b>Location:</b> ${p.location}</p>
+            <p><b>Career:</b> ${p.career}</p>
+            <p><b>Seeking:</b> ${p.seeking}</p>
           </div>
+          <a href="https://wa.me/${p.phone}?text=Hi%20${encodeURIComponent(
+          p.name
+        )},%20I%20saw%20your%20profile%20on%20Perfect%20Match%20Dating%20Connections." 
+               class="whatsapp-btn" target="_blank">💬 Chat on WhatsApp</a>
         `;
+        verifiedList.appendChild(card);
+      });
+
+      // Render unverified members
+      for (let i = 1; i <= unverifiedCount; i++) {
+        const card = document.createElement("div");
+        card.className = "unverified-card";
+        card.innerHTML = `
+          <div class="unverified-badge">Unverified 🚫</div>
+          Unverified Member ${i}
+          <a href="https://wa.me/254736167326?text=Hi,%20I%20want%20to%20verify%20my%20profile%20as%20Unverified%20Member%20${i}">
+            Chat on WhatsApp
+          </a>
+        `;
+        unverifiedList.appendChild(card);
       }
 
-      function nextProfile() {
-        currentIndex = (currentIndex + 1) % profiles.length;
-        showProfile(currentIndex);
+      // Suggest landscape on mobile
+      if (window.matchMedia("(orientation: portrait)").matches) {
+        alert("For best view, rotate your phone to landscape mode 📱↩️");
       }
-
-      function prevProfile() {
-        currentIndex = (currentIndex - 1 + profiles.length) % profiles.length;
-        showProfile(currentIndex);
-      }
-
-      showProfile(currentIndex);
     </script>
   </body>
 </html>
