@@ -176,6 +176,30 @@
           flex: 0 0 150px;
         }
       }
+      .explanation {
+        text-align: justify;
+      }
+      .site-footer {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(8px);
+        text-align: center;
+        padding: 20px;
+        margin-top: 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+        font-size: 14px;
+        color: #333;
+      }
+
+      .site-footer a {
+        color: #007bff;
+        text-decoration: none;
+        margin: 0 5px;
+        font-weight: 500;
+      }
+
+      .site-footer a:hover {
+        text-decoration: underline;
+      }
     </style>
   </head>
   <body>
@@ -529,7 +553,7 @@
         { name: "Unverified Member 4", phone: "+254 798 989649" },
         { name: "Unverified Member 5", phone: "+255 683 453 128" },
         { name: "Unverified Member 6", phone: "+256 784 172556" },
-        { name: "Unverified Member 7", phone:  "+966 54 359 3060" },
+        { name: "Unverified Member 7", phone: "+966 54 359 3060" },
         { name: "Unverified Member 8", phone: "+966 55 975 5414" },
         { name: "Unverified Member 9", phone: "+974 3047 6414" },
         { name: "Unverified Member 10", phone: " +254 792 075471" },
@@ -551,15 +575,6 @@
         { name: "Unverified Member 141", phone: "+254 783 694235" },
         { name: "Unverified Member 132", phone: "+254 789 904378" },
         { name: "Unverified Member 131", phone: "+254 791 035913" },
-        
-
-
-
-
-
-
-
-
 
         { name: "Unverified Member 141", phone: "+254 746 116428" },
         { name: "Unverified Member 15", phone: "+254 747 915225" },
@@ -635,7 +650,7 @@
           </div>
           <a href="https://wa.me/${p.phone}?text=Hi%20${encodeURIComponent(
           p.name
-        )},%20I%20saw%20your%20profile%20on%20Perfect%20Match%20Dating%20Connections."
+        )},%20I%20saw%20your%20profile%20on%20Singles%20Planet%20Dating%20Connections.%20can%20we%20know%20each%20other%20more?"
           class="whatsapp-btn" target="_blank">💬 Chat on WhatsApp</a>
         `;
         verifiedList.appendChild(card);
@@ -646,7 +661,7 @@
         const link = document.createElement("a");
         link.href = `https://wa.me/${p.phone}?text=Hi%20${encodeURIComponent(
           p.name
-        )},%20I%20saw%20your%20profile%20on%20Perfect%20Match%20Dating%20Connections.%20Are%20you%20still%20available%3F`;
+        )},%20I%20saw%20your%20profile%20on%20Singles%20Planet%20Dating%20Connections.%20https://connect254.github.io/spisour-website/%20Are%20you%20still%20available%3F`;
         link.target = "_blank";
         link.className = "unverified-card";
         link.innerHTML = `
@@ -661,5 +676,37 @@
         alert("For best view, rotate your phone to landscape mode 📱↩️");
       }
     </script>
+
+    <p>About UNverified profites</p>
+    <div class="explanation">
+      <ul>
+        <li>Contains members who join any of our singles whatsapp groups</li>
+        <li>It is a list of their phone number with direct chat on click</li>
+        <li>
+          They are deemed to be single because they jioned our singles groups
+        </li>
+        <li>
+          We strictly DO NOT endorse their singlesness because they have not
+          requsted admin Verification.
+        </li>
+        <li>
+          You cannot judge the success rate of the singles planet website by
+          dating UNverified singles
+        </li>
+        <li>Unverified singles may be jokers all the way</li>
+        <li>
+          Always contact the admin to know the authenticity of a UNverified
+          member before commiting with them
+        </li>
+      </ul>
+    </div>
+    <footer class="site-footer">
+      <p>© 2025 The Singles Planet. All Rights Reserved.</p>
+      <p>
+        Designed with ❤️ by <strong>Singles Planet Admin</strong> |
+        <a href="mailto:surehooksdatingagency@gmail.com">Email Me</a> |
+        <a href="https://wa.me/254796339854" target="_blank">WhatsApp</a>
+      </p>
+    </footer>
   </body>
 </html>
