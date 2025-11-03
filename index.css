@@ -216,7 +216,8 @@ a {
 }
 
 .faq.active .faq-answer {
-  max-height: 200px;
+  height:auto;
+  max-height: none;
   padding: 15px;
 }
 /* === REVIEWS SECTION === */
