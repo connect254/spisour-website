@@ -1,3 +1,6 @@
+
+
+
 body {
   margin: 0;
   padding: 0;
@@ -6,12 +9,8 @@ body {
   color: #2d1b55;
   line-height: 1.6;
   text-align: center;
-   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  flex-direction: column;
 }
+
 
 h1 {
   margin-top: 25px;
@@ -92,11 +91,11 @@ a {
 .whatsapp-btn,
 .call-btn,
 .whatsappgroup-button {
-  display: inline-flex;
+  display: block;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin: 8px;
+  margin: 20px;
   padding: 12px 18px;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.25);
@@ -181,7 +180,7 @@ a {
 }
 /* === FAQ STYLING === */
 .faq-section {
-  text-align: left;
+  text-align: center;
   margin-top: 30px;
 }
 
@@ -228,7 +227,7 @@ a {
 /* === REVIEWS SECTION === */
 .reviews-section {
   margin-top: 40px;
-  text-align: left;
+  text-align: center;
 }
 
 .reviews-section h2 {
@@ -260,6 +259,7 @@ a {
 
 .add-review textarea {
   width: 100%;
+  text-align: center;
   border-radius: 10px;
   border: 1px solid rgba(140, 100, 200, 0.3);
   padding: 10px;
@@ -448,4 +448,25 @@ a {
     width: 35%;                 /* make pulse ring fit smaller cards */
     height: 35%;
   }
+}
+@media (max-width: 600px) {
+  .glass-card, .reviews-section, .faq-section {
+    width: 95%;
+    margin: 10px auto;
+  }
+  .reviews-section, .faq-section {
+    text-align: center;
+  }
+}
+@media (max-width: 600px) {
+  section {
+    margin-bottom: 25px;
+  }
+}
+.back-to-top:hover {
+  color: #7b48e8;
+  text-decoration: underline;
+}
+html {
+  scroll-behavior: smooth;
 }
