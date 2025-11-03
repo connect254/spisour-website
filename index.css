@@ -156,7 +156,14 @@ a {
   .glass-card {
     padding: 15px;
   }
+    /* back-to-top responsive styles */
+  .back-to-top {
+    width: 90%;
+    font-size: 0.95rem;
+    padding: 10px;
+  }
 }
+
 .site-footer {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(8px);
@@ -264,6 +271,7 @@ a {
   border: 1px solid rgba(140, 100, 200, 0.3);
   padding: 10px;
   font-family: inherit;
+  box-sizing: border-box;
 }
 
 .add-review button {
@@ -274,7 +282,24 @@ a {
   border-radius: 12px;
   cursor: pointer;
   font-weight: 600;
+  width: 100%;
+  max-width: 200px;   /* optional: keep button smaller */
+  margin: 10px auto;
+  display: block;
+  box-sizing: border-box;
+
+  .add-review,
+.add-review textarea,
+.add-review button {
+  box-sizing: border-box; 
+  width: 90%;
+  max-width: 800px;   /* same as review cards */
+  margin: 20px auto;
+  text-align: center;
+} /* ensures padding & border stay inside width */
 }
+
+
 .add-review button:hover {
   transform: scale(1.05);
 }
@@ -462,6 +487,21 @@ a {
   section {
     margin-bottom: 25px;
   }
+  @media (max-width: 600px) {
+  .whatsapp-group-section {
+    width: 95%;
+    margin: 15px auto;
+    padding: 15px;
+  }
+
+  .back-to-top,
+  .site-footer {
+    width: 95%;
+    max-width: 900px;
+    font-size: 0.9rem;
+  }
+}
+
 }
 .back-to-top:hover {
   color: #7b48e8;
@@ -469,4 +509,51 @@ a {
 }
 html {
   scroll-behavior: smooth;
+}
+/* === ALIGNMENT FIX FOR WHATSAPP GROUP BOXES === */
+.whatsapp-group-section {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 900px;
+  width: 90%;
+  box-shadow: 0 4px 15px rgba(120, 80, 180, 0.2);
+  text-align: center;
+}
+
+/* Ensure all group buttons center properly */
+.whatsappgroup-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  max-width: 400px;
+  margin: 10px auto;
+}
+
+/* === ALIGNMENT FIX FOR BACK TO TOP & FOOTER === */
+.back-to-top {
+  display: block;
+  width: 90%;            /* same as cards */
+  max-width: 900px;      /* same as cards */
+  margin: 20px auto;     /* center it */
+  text-align: center;
+  font-weight: 600;
+  padding: 12px;         /* optional: same padding as buttons */
+  border-radius: 12px;   /* optional: for rounded look */
+  background: rgba(255,255,255,0.25); /* optional: match card style */
+  backdrop-filter: blur(10px);
+}
+
+.site-footer {
+  max-width: 900px;
+  margin: 30px auto 0 auto;
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  width: 90%;
 }
