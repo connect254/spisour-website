@@ -60,7 +60,7 @@ button:hover {
   background: linear-gradient(145deg, #8c58f8, #b78aff);
 }
 
-.hero ul {
+.faq-section ul {
   text-align: left;
   list-style-type: circle;
   padding-left: 20px;
