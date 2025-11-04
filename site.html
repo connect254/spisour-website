@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>
-      🌍Singles planet Connection Directory — Men & Women Age Categories
+      🌍 Singles planet Connection Directory — Men & Women Age Categories
     </title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <style>
@@ -130,6 +130,12 @@
         padding: 12px;
         border: 1px solid deeppink;
         box-shadow: 0 6px 18px rgba(40, 30, 70, 0.03);
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .member-card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 6px 20px rgba(40, 30, 70, 0.1);
       }
       .serial {
         font-weight: 800;
@@ -141,14 +147,33 @@
         color: rgba(20, 12, 40, 0.8);
         margin: 4px 0;
       }
-      .phone {
+
+      /* ✅ 3D WhatsApp-style fake button */
+      .fake-whatsapp {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 12px;
+        background: linear-gradient(145deg, #1ebc5a, #128c7e);
+        color: white;
+        border-radius: 20px;
+        font-size: 13px;
         font-weight: 700;
+        width: fit-content;
         margin-top: 8px;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        pointer-events: none;
+        transform: translateY(0);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
-      img.header-img {
-        max-width: 220px;
-        border-radius: 8px;
-        margin-top: 10px;
+      .fake-whatsapp:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 10px rgba(0, 255, 0, 0.3);
+      }
+      .fake-whatsapp svg {
+        width: 18px;
+        height: 18px;
+        fill: white;
       }
       @media (max-width: 900px) {
         .cards-grid {
@@ -164,7 +189,6 @@
         <p class="subtitle">Browse members grouped by gender and age ranges.</p>
       </div>
 
-      <!-- MAIN SECTIONS -->
       <section id="mainSections">
         <div class="card" id="cardMen">
           <div class="main-header">
@@ -172,11 +196,9 @@
               <div class="title">Men Age Categories</div>
               <div class="subtitle">Click a group to view men by age</div>
             </div>
-            <div>
-              <button id="mainBtnA" class="main-btn" onclick="toggleMain('A')">
-                Show Men by Age
-              </button>
-            </div>
+            <button id="mainBtnA" class="main-btn" onclick="toggleMain('A')">
+              Show Men by Age
+            </button>
           </div>
           <div id="subContainerA" class="sub-container"></div>
         </div>
@@ -187,11 +209,9 @@
               <div class="title">Women Age Categories</div>
               <div class="subtitle">Click a group to view women by age</div>
             </div>
-            <div>
-              <button id="mainBtnB" class="main-btn" onclick="toggleMain('B')">
-                Show Women by Age
-              </button>
-            </div>
+            <button id="mainBtnB" class="main-btn" onclick="toggleMain('B')">
+              Show Women by Age
+            </button>
           </div>
           <div id="subContainerB" class="sub-container"></div>
         </div>
@@ -199,7 +219,9 @@
     </div>
 
     <script>
+      const adminNumber = "25496339854";
       const members = [
+        ["Alex", 21, "Nairobi", "Male", 0, "Kikuyu", "Doctor"],
         ["Alex", 21, "Nairobi", "Male", 0, "Kikuyu", "Doctor"],
         ["Jane", 32, "Kiambu", "Female", 0, "Kikuyu/Kamba", "Data Analyst"],
         [
@@ -1530,6 +1552,36 @@
         ["Emmanuel", 28, "Dubai", "Male", "0", "Inbox", "Logistics"],
         ["Fresh", 30, "Nairobi", "Male", "0", "Kikuyu", "Farmer and a teacher"],
         ["Ann Maya", 22, "Nakuru", "Female", "0", "Luhya", "College graduate"],
+        ["Jane", 32, "Kiambu", "Female", 0, "Kikuyu/Kamba", "Data Analyst"],
+        ["Edwin", 28, "Nairobi", "Male", "1", "Luhya", "Chef"],
+        ["Ryzer Tammie", 30, "Nairobi", "Female", "1", "Luhya", "Hotelian"],
+        ["Kenedy", 36, "Kisumu", "Male", "0", "Luo", "Researcher"],
+        [
+          "Josephine Muthoni",
+          48,
+          "Nairobi",
+          "Female",
+          "3",
+          "Kikuyu",
+          "Administration",
+        ],
+        ["Simon", 28, "Meru", "Male", "0", "Kikuyu", "Banker"],
+        ["Steve", 24, "Kisumu", "Male", "0", "Luo", "Driver"],
+        [
+          "Lisa Kamau",
+          40,
+          "Nyandarua",
+          "Female",
+          "0",
+          "Kikuyu",
+          "Business woman",
+        ],
+        ["Harry", 27, "Nakuru", "Male", "0", "Kalenjin", "Teacher"],
+        ["Bryan", 40, "Nairobi", "Male", "0", "Kisii", "Logistics n finance"],
+        ["Kevin", 34, "Nairobi", "Male", "0", "Kikuyu", "IT Consultant"],
+        ["Marvis Ndungu", 27, "Nairobi", "Male", "0", "Kikuyu", "Photographer"],
+        ["David", 22, "Embakasi", "Male", "0", "Luo", "Casual Labour"],
+        ["Ann Maya", 22, "Nakuru", "Female", "0", "Luhya", "College graduate"],
       ];
 
       const ageGroups = [
@@ -1576,6 +1628,15 @@
             groupMembers.forEach((m, idx) => {
               const card = document.createElement("div");
               card.className = "member-card";
+              card.onclick = () => {
+                const msg = encodeURIComponent(
+                  `Hi admin, am a premium member for your website, please give me contact for ${m[0]}, thank you in advance.`
+                );
+                window.open(
+                  `https://wa.me/${adminNumber}?text=${msg}`,
+                  "_blank"
+                );
+              };
               card.innerHTML = `
                 <div class="serial">${idx + 1}</div>
                 <div class="member-row"><strong>Name:</strong> ${m[0]}</div>
@@ -1585,7 +1646,12 @@
                 <div class="member-row"><strong>Kids:</strong> ${m[4]}</div>
                 <div class="member-row"><strong>Tribe:</strong> ${m[5]}</div>
                 <div class="member-row"><strong>Career:</strong> ${m[6]}</div>
-                <div class="member-row"><strong>Phone number:</strong> Ask admin</div>
+                <div class="fake-whatsapp">
+                  <svg viewBox="0 0 32 32">
+                    <path d="M16.01 2.003c-7.733 0-14.006 6.273-14.006 14.006 0 2.473.648 4.886 1.883 7.012l-1.986 7.305 7.487-1.957a13.923 13.923 0 0 0 6.621 1.648c7.734 0 14.007-6.273 14.007-14.006S23.744 2.003 16.01 2.003zm0 25.515a11.42 11.42 0 0 1-5.81-1.565l-.417-.248-4.445 1.162 1.19-4.374-.271-.449a11.391 11.391 0 0 1-1.733-6.04c0-6.312 5.14-11.453 11.455-11.453 6.313 0 11.453 5.141 11.453 11.453 0 6.312-5.141 11.454-11.453 11.454zm6.273-8.603c-.343-.171-2.03-1.004-2.344-1.12-.312-.115-.539-.172-.767.172s-.88 1.12-1.08 1.347-.398.258-.741.086c-.343-.172-1.449-.535-2.76-1.705-1.02-.91-1.707-2.034-1.905-2.378-.199-.343-.021-.528.15-.7.155-.154.343-.4.516-.6.172-.2.229-.343.344-.572.115-.229.058-.43-.028-.6-.086-.171-.767-1.85-1.051-2.535-.276-.662-.557-.572-.767-.582-.199-.009-.428-.012-.657-.012s-.6.086-.915.429c-.312.343-1.2 1.173-1.2 2.86s1.229 3.316 1.4 3.547c.172.229 2.414 3.686 5.853 5.167.819.353 1.459.564 1.959.721.824.262 1.572.225 2.164.137.661-.099 2.03-.829 2.318-1.629.285-.8.285-1.486.2-1.629-.086-.143-.314-.229-.657-.4z"/>
+                  </svg>
+                  whatsapp
+                </div>
               `;
               grid.appendChild(card);
             });
@@ -1642,19 +1708,18 @@
       function toggleMain(mainId) {
         const container = document.getElementById("subContainer" + mainId);
         const mainBtn = document.getElementById("mainBtn" + mainId);
-        const isOpen = container.style.display !== "none";
-        if (isOpen) {
+        const isVisible = container.style.display !== "none";
+
+        if (isVisible) {
           container.style.display = "none";
           mainBtn.setAttribute("aria-expanded", "false");
           mainBtn.innerText = "Show " + MAIN_DISPLAY[mainId];
           resetSubGroup(mainId);
         } else {
           closeAllMains(mainId);
-          closeAllAgeContents();
           container.style.display = "block";
           mainBtn.setAttribute("aria-expanded", "true");
           mainBtn.innerText = "Hide " + MAIN_DISPLAY[mainId];
-          resetSubGroup(mainId);
         }
       }
 
@@ -1664,6 +1729,7 @@
         );
         const btn = document.getElementById(`ageBtn${mainId}-${groupId}`);
         const isVisible = content.style.display !== "none";
+
         if (isVisible) {
           content.style.display = "none";
           btn.setAttribute("aria-expanded", "false");
@@ -1678,7 +1744,6 @@
         }
       }
 
-      // initialize
       (function init() {
         renderAgeGroups("subContainerA", "Male", "A");
         renderAgeGroups("subContainerB", "Female", "B");
