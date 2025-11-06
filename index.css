@@ -102,7 +102,7 @@
       }
 
       .btn-primary {
-        background: linear-gradient(90deg, var(--accent), #8a63ff);
+        background: black;
         color: white;
       }
       .btn-login {
@@ -288,5 +288,3 @@
           font-size: 14px;
         }
       }
-
-
