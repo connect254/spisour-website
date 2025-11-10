@@ -1,752 +1,480 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>contact us</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Singles Planet — Profiles</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", Arial, sans-serif;
+        background: #e2e5e9;
+        color: #2d1b55;
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      h1,
+      h2 {
+        color: #4e2786;
+        letter-spacing: 1px;
+      }
+
+      h2 {
+        font-weight: 500;
+        margin: 20px 0;
+        color: #7d57c7;
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.35);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(120, 80, 180, 0.2);
+        margin: 15px auto;
+        width: 90%;
+        max-width: 900px;
+      }
+
+      .faq {
+        margin-bottom: 20px;
+      }
+
+      .faq-question {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.3);
+        border: none;
+        color: #4e2786;
+        font-size: 1rem;
+        font-weight: 600;
+        text-align: left;
+        padding: 15px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(100, 70, 160, 0.2);
+      }
+
+      .faq-question:hover {
+        background: rgba(255, 255, 255, 0.45);
+        transform: scale(1.02);
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, padding 0.4s ease;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0 15px;
+        border-radius: 0 0 12px 12px;
+        text-align: left;
+      }
+
+      .faq-answer p {
+        margin: 8px 0;
+        color: #2d1b55;
+      }
+
+      .faq.active .faq-answer {
+        max-height: 1000px;
+        padding: 15px;
+      }
+    </style>
   </head>
-
-  <style>
-    body {
-      background-color: hsl(300, 69%, 70%);
-      justify-content: center;
-      align-items: center;
-    }
-
-    h1 {
-      color: black;
-      text-align: center;
-      font-size: 20px;
-      margin-top: 40px;
-      font-family: Arial, sans-serif;
-    }
-
-    .email-btn {
-      display: inline-flex;
-      width: 300px;
-      margin-bottom: 2px;
-      align-items: center;
-      background-color: hsl(207, 47%, 68%);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      gap: 25px;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-    .email-btn :hover {
-      background-color: #1ebe5d;
-      transform: scale(1.05);
-    }
-    .icon {
-      width: 20px;
-      height: 20px;
-    }
-
-    .whatsapp-btn {
-      display: inline-flex;
-      width: 300px;
-      background-color: #25d366;
-      align-items: center;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 8px;
-      margin-top: 0px;
-      text-decoration: none;
-      font-size: 18px;
-      border-top: 10px solid #a8dc36;
-      font-weight: bold;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-    .whatsapp-btn:hover {
-      background-color: black;
-      transform: scale(1.05);
-    }
-    .call-btn {
-      display: inline-flex;
-      width: 300px;
-      align-items: center;
-      justify-content: center;
-      background-color: white;
-      color: blue;
-      border-color: black;
-      border-style: solid;
-      padding: 10px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      gap: 16px;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .call-btn:hover {
-      background-color: black;
-      transform: scale(1.05);
-    }
-    .icon {
-      width: 25px;
-      height: 25px;
-    }
-
-    .whatsappgroup-button {
-      background-color: #25d366;
-      color: white;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      text-decoration: none;
-      display: block;
-      margin-top: 20px;
-    }
-
-    .whatsappgroup-button:hover {
-      background-color: #1ebe57;
-    }
-  </style>
   <body>
-    <h1>
-      Your match is here with us. contact us to connect.A large number of singles
-       has registed with us and we cant upload all their photos on the web to keep 
-       the connection servises easier and affordable. otherwish we have all the data
-        collected an searchable in our local database.
-       contact us to connect you with exactly the kind of person you are seeking.
-    </h1>
+    <section class="glass-card faq-section">
+      <h2>💞 <em>Because future happens together!</em></h2>
+    </section>
 
-    <div style="text-align: center">
-      <a href="mailto:surehooksdatingagency@gmail.com" class="email-btn"
-        ><img
-          src="https://cdn-icons-png.flaticon.com/512/732/732200.png"
-          alt="Email Icon"
-          class="icon"
-        />Email website admin</a
-      >
-    </div>
+    <script>
+      // Profiles data
+      const profiles = [
+        {
+          name: "James Carter",
+          age: 38,
+          location: "Kenya",
+          gender: "Male",
+          kids: 0,
+          tribe: "White",
+          career: "Safari Lodge Manager",
+          seeking:
+            "Looking for an adventurous, sincere partner who loves nature",
+          phone: "Private Connection",
+        },
+        {
+          name: "Emily Smith",
+          age: 34,
+          location: "Kenya",
+          gender: "Female",
+          kids: 1,
+          tribe: "White",
+          career: "Conservationist",
+          seeking:
+            "Seeking a caring man who values family and wildlife conservation",
+          phone: "Private Connection",
+        },
+        {
+          name: "Olivia Brown",
+          age: 29,
+          location: "Kenya",
+          gender: "Female",
+          kids: 0,
+          tribe: "White",
+          career: "Travel Photographer",
+          seeking:
+            "Looking for a supportive, creative partner to explore life with",
+          phone: "Private Connection",
+        },
+        {
+          name: "Liam Johnson",
+          age: 41,
+          location: "Kenya",
+          gender: "Male",
+          kids: 2,
+          tribe: "White",
+          career: "Resort Owner",
+          seeking:
+            "Seeking a grounded, family-oriented woman who loves hospitality",
+          phone: "Private Connection",
+        },
+        {
+          name: "Charlotte Davis",
+          age: 32,
+          location: "Kenya",
+          gender: "Female",
+          kids: 0,
+          tribe: "White",
+          career: "NGO Director",
+          seeking: "Looking for a thoughtful, purpose-driven partner",
+          phone: "Private Connection",
+        },
+        {
+          name: "Henry Wilson",
+          age: 36,
+          location: "Kenya",
+          gender: "Male",
+          kids: 0,
+          tribe: "White",
+          career: "Marine Biologist",
+          seeking:
+            "Seeking a patient, curious woman who loves travel and the ocean",
+          phone: "Private Connection",
+        },
+        {
+          name: "Grace Thompson",
+          age: 30,
+          location: "Kenya",
+          gender: "Female",
+          kids: 0,
+          tribe: "White",
+          career: "Boutique Hotel Manager",
+          seeking: "Looking for someone ambitious, kind, and romantic",
+          phone: "Private Connection",
+        },
+        {
+          name: "Ethan Miller",
+          age: 42,
+          location: "Kenya",
+          gender: "Male",
+          kids: 1,
+          tribe: "White",
+          career: "Film Producer",
+          seeking: "Seeking a creative and loyal partner to build a life with",
+          phone: "Private Connection",
+        },
+        {
+          name: "Sophie Anderson",
+          age: 27,
+          location: "Kenya",
+          gender: "Female",
+          kids: 0,
+          tribe: "White",
+          career: "Vineyard Owner",
+          seeking:
+            "Looking for a warm, adventurous partner who loves good food and wine",
+          phone: "Private Connection",
+        },
+        {
+          name: "Noah Taylor",
+          age: 39,
+          location: "Kenya",
+          gender: "Male",
+          kids: 0,
+          tribe: "White",
+          career: "Architect",
+          seeking: "Seeking an elegant, down-to-earth woman who values family",
+          phone: "Private Connection",
+        },
+        {
+          name: "Mia White",
+          age: 31,
+          location: "Kenya",
+          gender: "Female",
+          kids: 0,
+          tribe: "White",
+          career: "Pilot",
+          seeking:
+            "Looking for a reliable, fun-loving partner who enjoys travel",
+          phone: "Private Connection",
+        },
+        {
+          name: "Lucas Martin",
+          age: 35,
+          location: "Kenya",
+          gender: "Male",
+          kids: 0,
+          tribe: "White",
+          career: "Tech Consultant",
+          seeking: "Seeking a confident, intelligent woman to grow with",
+          phone: "Private Connection",
+        },
+        {
+          name: "Ella Harris",
+          age: 28,
+          location: "Kenya",
+          gender: "Female",
+          kids: 0,
+          tribe: "White",
+          career: "Restaurateur",
+          seeking:
+            "Looking for someone who loves culinary adventures and family life",
+          phone: "Private Connection",
+        },
+        {
+          name: "Owen Clark",
+          age: 44,
+          location: "Kenya",
+          gender: "Male",
+          kids: 2,
+          tribe: "White",
+          career: "Wildlife Vet",
+          seeking:
+            "Seeking a compassionate partner who values commitment and nature",
+          phone: "Private Connection",
+        },
+        {
+          name: "Hannah Walker",
+          age: 33,
+          location: "Kenya",
+          gender: "Female",
+          kids: 0,
+          tribe: "White",
+          career: "Tour Operator",
+          seeking:
+            "Looking for an outgoing, trustworthy partner to share adventures",
+          phone: "Private Connection",
+        },
+        {
+          name: "Samuel Lewis",
+          age: 37,
+          location: "Kenya",
+          gender: "Male",
+          kids: 0,
+          tribe: "White",
+          career: "Private Finance Manager",
+          seeking:
+            "Seeking a discreet, ambitious woman with strong family values",
+          phone: "Private Connection",
+        },
+        {
+          name: "Isla Robinson",
+          age: 26,
+          location: "Kenya",
+          gender: "Female",
+          kids: 0,
+          tribe: "White",
+          career: "Art Curator",
+          seeking:
+            "Looking for a cultured, kind partner who appreciates the arts",
+          phone: "Private Connection",
+        },
+        {
+          name: "Thomas Young",
+          age: 45,
+          location: "Kenya",
+          gender: "Male",
+          kids: 1,
+          tribe: "White",
+          career: "Hotelier",
+          seeking: "Seeking a loyal, warm-hearted woman ready for family life",
+          phone: "Private Connection",
+        },
+        {
+          name: "Zoe King",
+          age: 29,
+          location: "Kenya",
+          gender: "Female",
+          kids: 0,
+          tribe: "White",
+          career: "Entrepreneur (Eco-living)",
+          seeking:
+            "Looking for an eco-minded, loving partner to build a future with",
+          phone: "Private Connection",
+        },
+        {
+          name: "Jack Scott",
+          age: 40,
+          location: "Kenya",
+          gender: "Male",
+          kids: 0,
+          tribe: "White",
+          career: "International Consultant",
+          seeking:
+            "Seeking a respectful, adventurous companion who values trust",
+          phone: "Private Connection",
+        },
+        {
+          name: "Alexander Sterling",
+          age: 34,
+          location: "London, UK",
+          gender: "Male",
+          kids: 0,
+          tribe: "British",
+          career: "Investment Banker",
+          seeking: "Elegant, ambitious woman for serious relationship",
+          phone: "Private Connection",
+        },
+        {
+          name: "Victoria Beaumont",
+          age: 31,
+          location: "Paris, France",
+          gender: "Female",
+          kids: 0,
+          tribe: "French",
+          career: "Luxury Brand Manager",
+          seeking: "Looking for a sophisticated man with vision",
+          phone: "Private Connection",
+        },
+        {
+          name: "Maximilian Rossi",
+          age: 36,
+          location: "Milan, Italy",
+          gender: "Male",
+          kids: 0,
+          tribe: "Italian",
+          career: "CEO Fashion House",
+          seeking: "Independent, stylish lady who loves art and travel",
+          phone: "Private Connection",
+        },
+        {
+          name: "Isabella Torres",
+          age: 28,
+          location: "New York, USA",
+          gender: "Female",
+          kids: 0,
+          tribe: "American",
+          career: "Tech Entrepreneur",
+          seeking: "Ambitious man who values family and culture",
+          phone: "Private Connection",
+        },
+        {
+          name: "Sebastian Van Dijk",
+          age: 39,
+          location: "Amsterdam, Netherlands",
+          gender: "Male",
+          kids: 1,
+          tribe: "Dutch",
+          career: "Private Equity Investor",
+          seeking: "Intelligent and elegant partner for a meaningful life",
+          phone: "Private Connection",
+        },
+        {
+          name: "Sophia Lindberg",
+          age: 30,
+          location: "Stockholm, Sweden",
+          gender: "Female",
+          kids: 0,
+          tribe: "Swedish",
+          career: "Fashion Designer",
+          seeking:
+            "Creative and successful gentleman for a lasting relationship",
+          phone: "Private Connection",
+        },
+        {
+          name: "Julian Knight",
+          age: 35,
+          location: "Dubai, UAE",
+          gender: "Male",
+          kids: 0,
+          tribe: "British",
+          career: "Luxury Real Estate Developer",
+          seeking: "Confident and graceful lady seeking stability and love",
+          phone: "Private Connection",
+        },
+        {
+          name: "Olivia Martinez",
+          age: 32,
+          location: "Barcelona, Spain",
+          gender: "Female",
+          kids: 0,
+          tribe: "Spanish",
+          career: "International Lawyer",
+          seeking: "Ambitious man who loves travel and fine dining",
+          phone: "Private Connection",
+        },
+        {
+          name: "Leonardo Carvalho",
+          age: 37,
+          location: "Lisbon, Portugal",
+          gender: "Male",
+          kids: 0,
+          tribe: "Portuguese",
+          career: "Tech CEO",
+          seeking: "Elegant lady with ambition and creativity",
+          phone: "Private Connection",
+        },
+        {
+          name: "Amelia Clarke",
+          age: 29,
+          location: "Sydney, Australia",
+          gender: "Female",
+          kids: 0,
+          tribe: "Australian",
+          career: "Investment Analyst",
+          seeking: "Successful, ambitious man for a committed relationship",
+          phone: "Private Connection",
+        },
+      ];
 
-    <div style="text-align: center; margin-top: 50px">
-      <a
-        href="https://wa.me/254796339854?text=Hello%20I%20visited%20your%20website%20and%20would%20like%20a%20connection"
-        target="_blank"
-        class="whatsapp-btn"
-      >
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-          alt="WhatsApp Icon"
-          class="icon"
-        />Chat website admin on WhatsApp
-      </a>
-    </div>
+      // Generate FAQ cards dynamically
+      const container = document.querySelector(".faq-section");
 
-    <div style="text-align: center; margin-top: 30px">
-      <a href="tel:+254796339854" class="call-btn">
-        <img src="ds.photos/callicon.png" alt="" class="icon" />
-        Call website admin
-      </a>
-    </div>
+      profiles.forEach((profile) => {
+        const faq = document.createElement("div");
+        faq.classList.add("faq");
 
-    <p>
-      Join our whatsapp groups below:
-      <strong>Also request me to add your group here</strong>
-    </p>
+        const btn = document.createElement("button");
+        btn.classList.add("faq-question");
+        btn.textContent = `${profile.name}, ${profile.age}`;
 
-    <a
-      href="https://chat.whatsapp.com/IbcLcfHd4xYCkzotuuEelL"
+        const answer = document.createElement("div");
+        answer.classList.add("faq-answer");
+        answer.innerHTML = `
+    <p>📍 <strong>Location:</strong> ${profile.location}</p>
+    <p>👨 <strong>Gender:</strong> ${profile.gender}</p>
+    <p>👶 <strong>Kids:</strong> ${profile.kids}</p>
+    <p>🌍 <strong>Tribe:</strong> ${profile.tribe}</p>
+    <p>💼 <strong>Career:</strong> ${profile.career}</p>
+    <p>💖 <strong>Seeking:</strong> ${profile.seeking}</p>
+    <p>📱 <strong>Phone:</strong> ${profile.phone}</p>
+  `;
 
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      THE SINGLES PLANET WhatsApp group
-    </a>
-    
-    <a
-      href="https://chat.whatsapp.com/GjV2FafgKnj4aEDToQDtKS?mode=ems_copy_t"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      EAST AFRICAN DATING WhatsApp Group
-    </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      NAIROBI SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      NAKURU SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      MOMBASA SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      KWALE SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      KILIFI SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      TANA RIVER SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      LAMU SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      TAITA TAVETA SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      GARISA SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      WAJIR SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      MANDELA SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      MARSABIT SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      ISIOLO SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      MERU SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      THARAKA NITHI SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      EMBU SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      KITUI SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      MACHAKOS SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      MAKUENI SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      NYANDARUA SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      NYERI SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      KIRINYAGA SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      MURANGA SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      KIAMBU SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      TURKANA SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      WEST POKOT SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      SAMBURU SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      TRANSZOIA SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      UASIN GISHU SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      ELGEYO MARAKWET SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      NANDI SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      BARINGO SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      LAIKIPIA SINGLES WhatsApp Group
-      </a>
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      NAROK SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      KAJIANDO SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      KERICHO SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      BOMET SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      KAKAMEGA SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      VIHIGA SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      BUNGOMA SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      BUSIA SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      SIAYA SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      KISUMU SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      HOMA BAY SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      MIGORI SINGLES WhatsApp Group
-      </a>
-    <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      KISII SINGLES WhatsApp Group
-      <a
-      href="https://wa.me/254796339854?text=Hello%20I%20would%20like%20to%20join%20this%20whatsapp%20a%20group"
-      target="_blank"
-      class="whatsappgroup-button"
-    >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-        alt="WhatsApp Icon"
-        class="icon"
-      />
-      NYAMIRA SINGLES WhatsApp Group
+        faq.appendChild(btn);
+        faq.appendChild(answer);
+        container.appendChild(faq);
+      });
 
-    
+      // FAQ toggle
+      const faqs = document.querySelectorAll(".faq");
+      faqs.forEach((f) => {
+        f.querySelector(".faq-question").addEventListener("click", () => {
+          faqs.forEach((x) => x !== f && x.classList.remove("active"));
+          f.classList.toggle("active");
+        });
+      });
+    </script>
   </body>
 </html>
-
-
- 
-
-
-
