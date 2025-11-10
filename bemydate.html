@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", Arial, sans-serif;
+      background: #e2e5e9;
+      color: #2d1b55;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 25px;
+      font-size: 2rem;
+      color: #4e2786;
+      letter-spacing: 1px;
+    }
+
+    h2 {
+      font-weight: 500;
+      color: #7d57c7;
+      margin: 8px 0;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(120, 80, 180, 0.2);
+      margin: 15px auto;
+      width: 90%;
+      max-width: 900px;
+    }
+
+    /* === FAQ STYLING === */
+    .faq-section {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .faq-question {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.3);
+      border: none;
+      color: #4e2786;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: left;
+      padding: 15px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(100, 70, 160, 0.2);
+    }
+
+    .faq-question:hover {
+      background: rgba(255, 255, 255, 0.45);
+      transform: scale(1.02);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0 15px;
+      border-radius: 0 0 12px 12px;
+      margin-bottom: 10px;
+    }
+
+    .faq-answer p {
+      margin: 10px 0;
+      color: #2d1b55;
+    }
+
+    .faq.active .faq-answer {
+      height: auto;
+      max-height: none;
+      padding: 15px;
+    }
+  </style>
+  <body>
+    <section class="glass-card faq-section">
+      <h2>💞 frequently asked questions</h2>
+
+      <div class="faq">
+        <button class="faq-question">1. What is The Singles Planet?</button>
+        <div class="faq-answer">
+          <p>
+            The Singles Planet is a connection platform that helps christian
+            singles meet based on lifestyle, profession, and preferences. We
+            provide direct WhatsApp chat options for fast, secure connections.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">2. How do I find my match?</button>
+        <div class="faq-answer">
+          <p>
+            Choose a category like <strong>Available Singles</strong> or
+            <strong>Diaspora Singles</strong>, then click the WhatsApp button to
+            start chatting with verified singles instantly.Any problem
+            navigating contact admin.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">3. Do I need to create an account?</button>
+        <div class="faq-answer">
+          <p>
+            No signup needed — you can connect directly through WhatsApp without
+            forms or passwords.However to join our database fill form on the
+            "start here" button.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">4. Is The Singles Planet free?</button>
+        <div class="faq-answer">
+          <p>
+            Yes! Basic browsing and chatting are free. Profile verification and
+            uploading on the website coupled with personalized matchmaking cost
+            only Ksh. 550/- valid for two years. Send your payments to : PAYBILL
+            -150573 , ACCOUNT -TH1678 and forward message to phone number
+            0796339854 for verification of payment and received personallized
+            matches+ profile upload.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">5. How are profiles verified?</button>
+        <div class="faq-answer">
+          <p>
+            i manually review submitted details and photos to reduce fake
+            profiles and spam.making a call to me is better.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">
+          6. How can I stay safe when meeting someone?
+        </button>
+        <div class="faq-answer">
+          <p>
+            Meet in public for first dates, avoid sharing financial info, and
+            report suspicious users. Your safety comes first 💛
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">
+          7. Can I meet singles from other countries?
+        </button>
+        <div class="faq-answer">
+          <p>
+            Yes! Explore <strong>Diaspora Singles</strong> or
+            <strong>Whites Connection</strong> to meet people globally.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">
+          8. I’m over 40 years — is this site for me?
+        </button>
+        <div class="faq-answer">
+          <p>
+            Absolutely! Our <strong>Date My Age 40+</strong> section is designed
+            for mature singles seeking meaningful connections.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">9. Can I request a custom match?</button>
+        <div class="faq-answer">
+          <p>
+            Yes! Message us on WhatsApp with your age range, location, and
+            preferences — we’ll help you connect privately.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">10. How do I contact support?</button>
+        <div class="faq-answer">
+          <p>
+            Tap the <strong>Call</strong> or
+            <strong>WhatsApp Admin</strong> button on the homepage. Our admin is
+            available daily to assist.
+          </p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
