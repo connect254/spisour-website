@@ -3,209 +3,818 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>The Singles Planet — Profiles</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", Arial, sans-serif;
+        background: #e2e5e9;
+        color: #2d1b55;
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      h1,
+      h2 {
+        color: #4e2786;
+        letter-spacing: 1px;
+      }
+
+      h2 {
+        font-weight: 500;
+        margin: 20px 0;
+        color: #7d57c7;
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.35);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(120, 80, 180, 0.2);
+        margin: 15px auto;
+        width: 90%;
+        max-width: 900px;
+      }
+
+      .faq {
+        margin-bottom: 20px;
+      }
+
+      .faq-question {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.3);
+        border: none;
+        color: #4e2786;
+        font-size: 1rem;
+        font-weight: 600;
+        text-align: left;
+        padding: 15px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(100, 70, 160, 0.2);
+      }
+
+      .faq-question:hover {
+        background: rgba(255, 255, 255, 0.45);
+        transform: scale(1.02);
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, padding 0.4s ease;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0 15px;
+        border-radius: 0 0 12px 12px;
+        text-align: left;
+      }
+
+      .faq-answer p {
+        margin: 8px 0;
+        color: #2d1b55;
+      }
+
+      .faq.active .faq-answer {
+        max-height: 1000px;
+        padding: 15px;
+      }
+    </style>
   </head>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Poppins", Arial, sans-serif;
-      background: #e2e5e9;
-      color: #2d1b55;
-      line-height: 1.6;
-      text-align: center;
-    }
-
-    h1 {
-      margin-top: 25px;
-      font-size: 2rem;
-      color: #4e2786;
-      letter-spacing: 1px;
-    }
-
-    h2 {
-      font-weight: 500;
-      color: #7d57c7;
-      margin: 8px 0;
-    }
-
-    .glass-card {
-      background: rgba(255, 255, 255, 0.35);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: 0 4px 15px rgba(120, 80, 180, 0.2);
-      margin: 15px auto;
-      width: 90%;
-      max-width: 900px;
-    }
-
-    /* === FAQ STYLING === */
-    .faq-section {
-      text-align: center;
-      margin-top: 30px;
-    }
-
-    .faq-question {
-      width: 100%;
-      background: rgba(255, 255, 255, 0.3);
-      border: none;
-      color: #4e2786;
-      font-size: 1rem;
-      font-weight: 600;
-      text-align: left;
-      padding: 15px;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 8px rgba(100, 70, 160, 0.2);
-    }
-
-    .faq-question:hover {
-      background: rgba(255, 255, 255, 0.45);
-      transform: scale(1.02);
-    }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 0 15px;
-      border-radius: 0 0 12px 12px;
-      margin-bottom: 10px;
-    }
-
-    .faq-answer p {
-      margin: 10px 0;
-      color: #2d1b55;
-    }
-
-    .faq.active .faq-answer {
-      height: auto;
-      max-height: none;
-      padding: 15px;
-    }
-  </style>
   <body>
     <section class="glass-card faq-section">
-      <h2>💞 frequently asked questions</h2>
-
-      <div class="faq">
-        <button class="faq-question">1. What is The Singles Planet?</button>
-        <div class="faq-answer">
-          <p>
-            The Singles Planet is a connection platform that helps christian
-            singles meet based on lifestyle, profession, and preferences. We
-            provide direct WhatsApp chat options for fast, secure connections.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq">
-        <button class="faq-question">2. How do I find my match?</button>
-        <div class="faq-answer">
-          <p>
-            Choose a category like <strong>Available Singles</strong> or
-            <strong>Diaspora Singles</strong>, then click the WhatsApp button to
-            start chatting with verified singles instantly.Any problem
-            navigating contact admin.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq">
-        <button class="faq-question">3. Do I need to create an account?</button>
-        <div class="faq-answer">
-          <p>
-            No signup needed — you can connect directly through WhatsApp without
-            forms or passwords.However to join our database fill form on the
-            "start here" button.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq">
-        <button class="faq-question">4. Is The Singles Planet free?</button>
-        <div class="faq-answer">
-          <p>
-            Yes! Basic browsing and chatting are free. Profile verification and
-            uploading on the website coupled with personalized matchmaking cost
-            only Ksh. 550/- valid for two years. Send your payments to : PAYBILL
-            -150573 , ACCOUNT -TH1678 and forward message to phone number
-            0796339854 for verification of payment and received personallized
-            matches+ profile upload.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq">
-        <button class="faq-question">5. How are profiles verified?</button>
-        <div class="faq-answer">
-          <p>
-            i manually review submitted details and photos to reduce fake
-            profiles and spam.making a call to me is better.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq">
-        <button class="faq-question">
-          6. How can I stay safe when meeting someone?
-        </button>
-        <div class="faq-answer">
-          <p>
-            Meet in public for first dates, avoid sharing financial info, and
-            report suspicious users. Your safety comes first 💛
-          </p>
-        </div>
-      </div>
-
-      <div class="faq">
-        <button class="faq-question">
-          7. Can I meet singles from other countries?
-        </button>
-        <div class="faq-answer">
-          <p>
-            Yes! Explore <strong>Diaspora Singles</strong> or
-            <strong>Whites Connection</strong> to meet people globally.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq">
-        <button class="faq-question">
-          8. I’m over 40 years — is this site for me?
-        </button>
-        <div class="faq-answer">
-          <p>
-            Absolutely! Our <strong>Date My Age 40+</strong> section is designed
-            for mature singles seeking meaningful connections.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq">
-        <button class="faq-question">9. Can I request a custom match?</button>
-        <div class="faq-answer">
-          <p>
-            Yes! Message us on WhatsApp with your age range, location, and
-            preferences — we’ll help you connect privately.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq">
-        <button class="faq-question">10. How do I contact support?</button>
-        <div class="faq-answer">
-          <p>
-            Tap the <strong>Call</strong> or
-            <strong>WhatsApp Admin</strong> button on the homepage. Our admin is
-            available daily to assist.
-          </p>
-        </div>
-      </div>
+      <h2>💞 <em>Because future happens together!</em></h2>
     </section>
+
+    <script>
+      // Profiles data
+      const profiles = [
+        {
+          name: "Cynthia Kahombi",
+          age: 29,
+          location: "Saudi Arabia",
+          gender: "Female",
+          kids: 0,
+          tribe: "Luhya",
+          career: "Caregiver",
+          seeking:
+            "Looking for a responsible, loving, loyal, and God-fearing man 😇",
+          phone: "+254708557186",
+        },
+        {
+          name: "Jason Mutwiri",
+          age: 30,
+          location: "Kuwait",
+          gender: "Male",
+          kids: 0,
+          tribe: "Meru",
+          career: "Chef",
+          seeking: "Seeking love of my life 25–30 years",
+          phone: "+97471095672",
+        },
+        {
+          name: "Kelvin",
+          age: 34,
+          location: "Dubai",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "IT Consultant",
+          seeking:
+            "Lady 25-33 yrs old who believes in love built on trust, understanding and shared dreams. I am Catholic. Height 5'6\"",
+          phone: "+254731483597",
+        },
+        {
+          name: "Iris Muhonja",
+          age: 26,
+          location: "Nairobi",
+          gender: "Female",
+          kids: 0,
+          tribe: "Luhya",
+          career: "Housekeeping Attendant",
+          seeking: "A mature and caring partner aged 20-30",
+          phone: "+254708530614",
+        },
+        {
+          name: "David Muia",
+          age: 28,
+          location: "Nairobi, Kayole Junction",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kamba",
+          career: "Security Officer and Marketer",
+          seeking: "A relationship leading to marriage",
+          phone: "+254740090409",
+        },
+        {
+          name: "Catherine Josphine",
+          age: 22,
+          location: "Nairobi, Kimbo",
+          gender: "Female",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "PMU Physician and Baker",
+          seeking: "An ambitious man ready to settle down",
+          phone: "+254110385102",
+        },
+        {
+          name: "Kinyanjui",
+          age: 32,
+          location: "Nairobi",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "Professional Driver",
+          seeking: "An honest woman who values family life",
+          phone: "+254758795567",
+        },
+        {
+          name: "Rose Karwitha",
+          age: 34,
+          location: "Nairobi",
+          gender: "Female",
+          kids: 1,
+          tribe: "Meru",
+          career: "Designer",
+          seeking:
+            "A life partner 35-40 years from any part of Kenya who is intentional and purpose-driven",
+          phone: "+254720292442",
+        },
+        {
+          name: "Peter Otieno Okoth",
+          age: 32,
+          location: "Kisumu/Bondo",
+          gender: "Male",
+          kids: 0,
+          tribe: "Luo",
+          career: "Working in Hotel (Housekeeping Dept)",
+          seeking: "A loving woman who enjoys fun and laughter, below my age",
+          phone: "+254701839775",
+        },
+        {
+          name: "Lilian",
+          age: 32,
+          location: "Nairobi",
+          gender: "Female",
+          kids: 0,
+          tribe: "Luhya",
+          career: "Hospitality Trainer",
+          seeking: "Seeking love of my life 25-30 years",
+          phone: "+254748115263",
+        },
+        {
+          name: "Salim Hamisi",
+          age: 23,
+          location: "Mariakani",
+          gender: "Male",
+          kids: 0,
+          tribe: "Swahili",
+          career: "Receptionist",
+          seeking: "An open relationship",
+          phone: "+254751614844",
+        },
+        {
+          name: "Kelvin Ombati",
+          age: 25,
+          location: "Qatar",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kisii",
+          career: "Man Lift Operator",
+          seeking: "Looking for someone serious, God-fearing, and respectful",
+          phone: "+254792233112",
+        },
+        {
+          name: "Sydney Baraza",
+          age: 26,
+          location: "Mumias, Kakamega",
+          gender: "Male",
+          kids: 0,
+          tribe: "Luhya",
+          career: "IT Expert",
+          seeking: "Someone serious",
+          phone: "+254706014318",
+        },
+        {
+          name: "Bruce",
+          age: 28,
+          location: "Bunyore now in Mlolongo",
+          gender: "Male",
+          kids: 0,
+          tribe: "Luhya",
+          career: "Gardener in Fairview Hotel, Upperhill",
+          seeking:
+            "Interested in developing a serious love relationship that could lead to marriage",
+          phone: "+254799655312",
+        },
+        {
+          name: "James",
+          age: 26,
+          location: "Kakamega",
+          gender: "Male",
+          kids: 0,
+          tribe: "Luhya",
+          career: "Working",
+          seeking: "Genuine love",
+          phone: "+254768496287",
+        },
+        {
+          name: "Morgan Onyango",
+          age: 24,
+          location: "Nairobi",
+          gender: "Male",
+          kids: 0,
+          tribe: "Luo",
+          career: "Self-employed (bike 🚲)",
+          seeking: "My better half",
+          phone: "+254710397643",
+        },
+        {
+          name: "Emanuel Mushinda",
+          age: 26,
+          location: "Kakamega",
+          gender: "Male",
+          kids: 0,
+          tribe: "Luhya",
+          career: "Electrician",
+          seeking: "God-fearing woman for marriage",
+          phone: "+254792512931",
+        },
+        {
+          name: "Sharon Oluoch",
+          age: 26,
+          location: "Tana River, Hola",
+          gender: "Female",
+          kids: 1,
+          tribe: "Luo",
+          career: "Receptionist/Chef",
+          seeking: "Marriage",
+          phone: "+254769938262",
+        },
+        {
+          name: "Collins",
+          age: 26,
+          location: "Nakuru",
+          gender: "Male",
+          kids: 0,
+          tribe: "Luo",
+          career: "Business Boy",
+          seeking: "A serious relationship",
+          phone: "+254740343700",
+        },
+        {
+          name: "Simon Nadra",
+          age: 32,
+          location: "Nairobi",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kamba",
+          career: "Business",
+          seeking: "Soulmate who is trustworthy and ready to settle down",
+          phone: "+254112488831",
+        },
+        {
+          name: "Abiud Omundi",
+          age: 25,
+          location: "Malaa, Nairobi",
+          gender: "Male",
+          kids: 0,
+          tribe: "Luo",
+          career: "Business",
+          seeking: "Girlfriend",
+          phone: "+254798169656",
+        },
+        {
+          name: "Jackline Atieno",
+          age: 35,
+          location: "Man",
+          gender: "Female",
+          kids: 4,
+          tribe: "Luo",
+          career: "Business Woman",
+          seeking: "I need a man 36-40 years",
+          phone: "+254115286209",
+        },
+        {
+          name: "Omondi Adrian",
+          age: 26,
+          location: "Kisumu",
+          gender: "Male",
+          kids: 0,
+          tribe: "Luo",
+          career: "Hustle",
+          seeking: "A serious relationship",
+          phone: "+254731676426",
+        },
+        {
+          name: "Sarah Kamau",
+          age: 31,
+          location: "Mombasa",
+          gender: "Female",
+          kids: 1,
+          tribe: "Kikuyu",
+          career: "Mama Mboga",
+          seeking: "A real husband for marriage",
+          phone: "+254720970796",
+        },
+        {
+          name: "Margret Tanisha",
+          age: 20,
+          location: "Uganda, Masaka",
+          gender: "Female",
+          kids: 0,
+          tribe: "Ugandan",
+          career: "Teacher",
+          seeking:
+            "Marriage with Ugandan Amuganda, Musoga or Kenyan Iteso, Toro etc",
+          phone: "+256701887258",
+        },
+        {
+          name: "Johnson",
+          age: 35,
+          location: "Nairobi",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "Doctor",
+          seeking: "Wife",
+          phone: "Private",
+        },
+        {
+          name: "Kelvin",
+          age: 32,
+          location: "Meru",
+          gender: "Male",
+          kids: 0,
+          tribe: "Meru",
+          career: "Bank Accountant",
+          seeking: "Wife material",
+          phone: "Private",
+        },
+        {
+          name: "Atieli",
+          age: 42,
+          location: "Nakuru",
+          gender: "Male",
+          kids: 0,
+          tribe: "Luhya",
+          career: "Lecturer",
+          seeking: "A wife, I am widowed",
+          phone: "Private",
+        },
+        {
+          name: "Enock",
+          age: 38,
+          location: "Kijando",
+          gender: "Male",
+          kids: 1,
+          tribe: "Kikuyu",
+          career: "Insurance Analyst",
+          seeking: "Woman to settle down with",
+          phone: "Private",
+        },
+        {
+          name: "Beatrice",
+          age: 33,
+          location: "Nairobi, Karen",
+          gender: "Female",
+          kids: 1,
+          tribe: "Kikuyu",
+          career: "Business (Own Boutique)",
+          seeking: "A marriage partner 30-39 yrs",
+          phone: "Private",
+        },
+        {
+          name: "Brenda",
+          age: 22,
+          location: "Nairobi",
+          gender: "Female",
+          kids: 0,
+          tribe: "Kamba",
+          career: "TSC Teacher",
+          seeking: "A relationship leading to marriage",
+          phone: "Private",
+        },
+        {
+          name: "Moses Mwangi",
+          age: 35,
+          location: "Nairobi",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "CEO Tech Startup",
+          seeking: "Independent, ambitious woman",
+          phone: "Private connection",
+        },
+        {
+          name: "Faith Wanjiru",
+          age: 30,
+          location: "Nairobi",
+          gender: "Female",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "Corporate Lawyer",
+          seeking: "Successful man who values family",
+          phone: "Private connection",
+        },
+        {
+          name: "Kevin Otieno",
+          age: 33,
+          location: "Mombasa",
+          gender: "Male",
+          kids: 0,
+          tribe: "Luo",
+          career: "Bank Manager",
+          seeking: "Loyal and ambitious partner",
+          phone: "Private connection",
+        },
+        {
+          name: "Mary Achieng",
+          age: 28,
+          location: "Kisumu",
+          gender: "Female",
+          kids: 0,
+          tribe: "Luo",
+          career: "Hospital Director",
+          seeking: "Looking for a loving and loyal partner who values family.",
+          phone: "Private connection",
+        },
+        {
+          name: "Daniel Kimani",
+          age: 36,
+          location: "Nairobi",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "Real Estate Investor",
+          seeking:
+            "Desires a woman who is ambitious, trustworthy, and God-fearing.",
+          phone: "Private connection",
+        },
+        {
+          name: "Susan Njeri",
+          age: 31,
+          location: "Nairobi",
+          gender: "Female",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "Entrepreneur",
+          seeking:
+            "Looking for someone fun-loving and adventurous to share life with",
+          phone: "Private connection",
+        },
+        {
+          name: "Peter Ouma",
+          age: 34,
+          location: "Eldoret",
+          gender: "Male",
+          kids: 0,
+          tribe: "Luhya",
+          career: "Construction Business Owner",
+          seeking: "Caring woman",
+          phone: "Private connection",
+        },
+        {
+          name: "Grace Chebet",
+          age: 29,
+          location: "Eldoret",
+          gender: "Female",
+          kids: 0,
+          tribe: "Kalenjin",
+          career: "Hospitality Manager",
+          seeking:
+            "Seeking a partner who enjoys intellectual conversations and humor.",
+          phone: "Private connection",
+        },
+        {
+          name: "Samuel Njoroge",
+          age: 37,
+          location: "Nairobi",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "Investment Banker",
+          seeking: "Desires a woman who is kind-hearted and supportive.",
+          phone: "Private connection",
+        },
+        {
+          name: "Linda Wairimu",
+          age: 32,
+          location: "Nairobi",
+          gender: "Female",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "Marketing Director",
+          seeking: "Looking for a loving companion to build a family with.",
+          phone: "Private connection",
+        },
+        {
+          name: "Brian Omondi",
+          age: 30,
+          location: "Kisumu",
+          gender: "Male",
+          kids: 0,
+          tribe: "Luo",
+          career: "Tech Entrepreneur",
+          seeking:
+            "Looking for a woman who is nurturing, reliable, and supportive.",
+          phone: "Private connection",
+        },
+        {
+          name: "Esther Akinyi",
+          age: 27,
+          location: "Kisumu",
+          gender: "Female",
+          kids: 0,
+          tribe: "Luo",
+          career: "Investment Analyst",
+          seeking:
+            "Looking for a man who values honesty, loyalty, and respect.",
+          phone: "Private connection",
+        },
+        {
+          name: "Kennedy Mutua",
+          age: 38,
+          location: "Machakos",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kamba",
+          career: "Logistics Director",
+          seeking:
+            "Desires a partner ready for marriage and long-term commitment.",
+          phone: "Private connection",
+        },
+        {
+          name: "Mercy Muthoni",
+          age: 29,
+          location: "Machakos",
+          gender: "Female",
+          kids: 0,
+          tribe: "Kamba",
+          career: "Fashion Designer",
+          seeking: "Confident man with vision",
+          phone: "Private connection",
+        },
+        {
+          name: "Anthony Kiptoo",
+          age: 35,
+          location: "Nakuru",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kalenjin",
+          career: "Hotel Owner",
+          seeking: "Independent woman",
+          phone: "Private connection",
+        },
+        {
+          name: "Faith Jepkorir",
+          age: 28,
+          location: "Nakuru",
+          gender: "Female",
+          kids: 0,
+          tribe: "Kalenjin",
+          career: "Architect",
+          seeking: "Successful man for serious relationship",
+          phone: "Private connection",
+        },
+        {
+          name: "David Kariuki",
+          age: 36,
+          location: "Thika",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "Software Company CEO",
+          seeking: "Elegant and ambitious woman",
+          phone: "Private connection",
+        },
+        {
+          name: "Jane Wambui",
+          age: 31,
+          location: "Thika",
+          gender: "Female",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "Bank Executive",
+          seeking: "Responsible man who loves family",
+          phone: "Private connection",
+        },
+        {
+          name: "Patrick Ochieng",
+          age: 33,
+          location: "Homa Bay",
+          gender: "Male",
+          kids: 0,
+          tribe: "Luo",
+          career: "Agribusiness Owner",
+          seeking:
+            "Looking for someone serious about building a happy life together",
+          phone: "Private connection",
+        },
+        {
+          name: "Alice Anyango",
+          age: 29,
+          location: "Homa Bay",
+          gender: "Female",
+          kids: 0,
+          tribe: "Luo",
+          career: "Entrepreneur",
+          seeking: "Responsible man",
+          phone: "Private connection",
+        },
+        {
+          name: "Felix Kiplagat",
+          age: 37,
+          location: "Kericho",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kalenjin",
+          career: "Tea Farm Owner",
+          seeking: "Elegant woman with family values",
+          phone: "Private connection",
+        },
+        {
+          name: "Brenda Chepngeno",
+          age: 28,
+          location: "Kericho",
+          gender: "Female",
+          kids: 0,
+          tribe: "Kalenjin",
+          career: "Hotel Manager",
+          seeking: "Ambitious man for marriage",
+          phone: "Private connection",
+        },
+        {
+          name: "Martin Njenga",
+          age: 35,
+          location: "Kiambu",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "Lawyer",
+          seeking: "Confident woman",
+          phone: "Private connection",
+        },
+        {
+          name: "Alice Wambui",
+          age: 30,
+          location: "Kiambu",
+          gender: "Female",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "Investment Advisor",
+          seeking: "Successful and caring man",
+          phone: "Private connection",
+        },
+        {
+          name: "George Mutiso",
+          age: 34,
+          location: "Kitui",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kamba",
+          career: "Mining Engineer",
+          seeking:
+            "Looking for someone serious about building a happy life together",
+          phone: "Private connection",
+        },
+        {
+          name: "Esther Muthoni",
+          age: 29,
+          location: "Kitui",
+          gender: "Female",
+          kids: 0,
+          tribe: "Kamba",
+          career: "Corporate Executive",
+          seeking: "Responsible man for marriage",
+          phone: "Private connection",
+        },
+        {
+          name: "Brian Chege",
+          age: 32,
+          location: "Nairobi",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "Tech Consultant",
+          seeking: "Independent and ambitious woman",
+          phone: "Private connection",
+        },
+        {
+          name: "Catherine Njeri",
+          age: 28,
+          location: "Nairobi",
+          gender: "Female",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "Marketing Manager",
+          seeking: "Successful man who values family",
+          phone: "Private connection",
+        },
+        {
+          name: "Simon Kibet",
+          age: 36,
+          location: "Eldoret",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kalenjin",
+          career: "Real Estate Developer",
+          seeking:
+            "Looking for someone intelligent, loving, and family-oriented",
+          phone: "Private connection",
+        },
+        {
+          name: "Ruth Chebet",
+          age: 27,
+          location: "Eldoret",
+          gender: "Female",
+          kids: 0,
+          tribe: "Kalenjin",
+          career: "Entrepreneur",
+          seeking: "Responsible and loving man",
+          phone: "Private connection",
+        },
+      ];
+
+      // Generate FAQ cards dynamically
+      const container = document.querySelector(".faq-section");
+
+      profiles.forEach((profile) => {
+        const faq = document.createElement("div");
+        faq.classList.add("faq");
+
+        const btn = document.createElement("button");
+        btn.classList.add("faq-question");
+        btn.textContent = `${profile.name}, ${profile.age}`;
+
+        const answer = document.createElement("div");
+        answer.classList.add("faq-answer");
+        answer.innerHTML = `
+    <p>📍 <strong>Location:</strong> ${profile.location}</p>
+    <p>👨 <strong>Gender:</strong> ${profile.gender}</p>
+    <p>👶 <strong>Kids:</strong> ${profile.kids}</p>
+    <p>🌍 <strong>Tribe:</strong> ${profile.tribe}</p>
+    <p>💼 <strong>Career:</strong> ${profile.career}</p>
+    <p>💖 <strong>Seeking:</strong> ${profile.seeking}</p>
+    <p>📱 <strong>Phone:</strong> ${profile.phone}</p>
+  `;
+
+        faq.appendChild(btn);
+        faq.appendChild(answer);
+        container.appendChild(faq);
+      });
+
+      // FAQ toggle
+      const faqs = document.querySelectorAll(".faq");
+      faqs.forEach((f) => {
+        f.querySelector(".faq-question").addEventListener("click", () => {
+          faqs.forEach((x) => x !== f && x.classList.remove("active"));
+          f.classList.toggle("active");
+        });
+      });
+    </script>
   </body>
 </html>
