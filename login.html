@@ -87,8 +87,8 @@
     </div>
 
     <script>
-      const USERNAME = "freesuccess";
-      const PASSWORD = "1234";
+      const USERNAME = "premium";
+      const PASSWORD = "2025";
 
       function login() {
         const username = document.getElementById("username").value.trim();
@@ -107,7 +107,7 @@
           message.classList.add("success");
 
           setTimeout(() => {
-            window.location.href = "dashboard.html";
+            window.location.href = "premium.html";
           }, 1500);
         } else {
           message.textContent = "Invalid username or password.";
