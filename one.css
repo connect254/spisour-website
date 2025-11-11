@@ -141,8 +141,8 @@ a {
     font-size: 1.6rem;
   }
   button {
-  
-    font-size: 0.95rem;
+   width: 70%;
+   font-size: 0.95rem;
   }
   .btn,
   .email-btn,
@@ -565,4 +565,5 @@ html {
   border-radius: 10px;
   width: 90%;
 }
+
 
