@@ -141,7 +141,7 @@ a {
     font-size: 1.6rem;
   }
   button {
-    width: 100%;
+  
     font-size: 0.95rem;
   }
   .btn,
@@ -565,3 +565,4 @@ html {
   border-radius: 10px;
   width: 90%;
 }
+
