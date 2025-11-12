@@ -288,3 +288,18 @@
           font-size: 14px;
         }
       }
+ .red-button {
+      background-color: red;       /* Red background */
+      color: white;                /* White text */
+      border: none;                /* No border */
+      padding: 12px 24px;          /* Some padding */
+      font-size: 16px;             /* Font size */
+      font-weight: bold;           /* Bold letters */
+      border-radius: 6px;          /* Rounded corners */
+      cursor: pointer;             /* Pointer on hover */
+      transition: background 0.3s; /* Smooth hover effect */
+    }
+
+    .red-button:hover {
+      background-color: darkred;   /* Darker red on hover */
+    }
