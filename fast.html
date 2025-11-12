@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>The Singles Planet — Find your match</title>
+    <meta
+      name="description"
+      content="The Singles Planet — local dating & connections. Chat via whatsapp or call admin to get listed."
+    />
+    <style>
+      :root {
+        --bg: #f3eefe;
+        --accent: #6b46c1;
+        --accent-2: #9b59ff;
+        --muted: #6b6b7a;
+        --card-bg: rgba(255, 255, 255, 0.55);
+        --glass-border: rgba(255, 255, 255, 0.6);
+        --glass-shadow: 0 6px 18px rgba(99, 70, 234, 0.08);
+        --radius: 14px;
+        --whatsapp: #25d366;
+        --maxw: 1200px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        padding: 20px;
+        font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
+        background: linear-gradient(180deg, var(--bg), #efe7ff 60%);
+        color: #0f172a;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      header {
+        max-width: var(--maxw);
+        margin: 0 auto 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .brand {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      .logo {
+        width: 64px;
+        height: 64px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        background: #fff;
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--glass-shadow);
+        overflow: hidden;
+      }
+      .logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      h1 {
+        margin: 0;
+        font-size: 20px;
+      }
+      .lead {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 0;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .btn.call {
+        color: white;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        box-shadow: var(--glass-shadow);
+      }
+      .btn.cta {
+        background: #fff;
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--glass-shadow);
+      }
+
+      main {
+        max-width: var(--maxw);
+        margin: 18px auto 60px;
+        padding: 0 6px;
+      }
+      .controls {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+        align-items: center;
+      }
+      .search {
+        flex: 1;
+        min-width: 180px;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid var(--glass-border);
+        background: var(--card-bg);
+        outline: none;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 16px;
+      }
+      .card {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.65),
+          rgba(255, 255, 255, 0.5)
+        );
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius);
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-height: 460px;
+        box-shadow: var(--glass-shadow);
+        transition: transform 0.18s ease, opacity 0.18s ease;
+      }
+      .card:hover {
+        transform: translateY(-4px);
+      }
+
+      .media {
+        height: 260px;
+        border-radius: 14px;
+        background-size: cover;
+        background-position: center;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+        position: relative;
+      }
+      .media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 14px;
+        display: block;
+      }
+
+      .category {
+        display: inline-block;
+        font-size: 12px;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        color: white;
+        padding: 6px 8px;
+        border-radius: 8px;
+      }
+      .title {
+        font-weight: 800;
+      }
+      .desc {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .meta-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+      }
+      .price {
+        font-weight: 800;
+        color: #0f172a;
+      }
+
+      .button-row {
+        display: flex;
+        gap: 8px;
+        margin-top: 6px;
+      }
+      .call-btn,
+      .wa-btn,
+      .status-btn {
+        flex: 1;
+        border: 0;
+        border-radius: 10px;
+        padding: 10px;
+        font-weight: 700;
+        cursor: pointer;
+        color: white;
+      }
+      .call-btn {
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      }
+      .call-btn:hover {
+        opacity: 0.95;
+      }
+      .wa-btn {
+        background: var(--whatsapp);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        justify-content: center;
+      }
+      .wa-btn svg {
+        width: 18px;
+        height: 18px;
+      }
+      .status-btn.available {
+        background: #16a34a;
+      }
+      .status-btn.askadmin {
+        background: #ef4444;
+      }
+      .call-btn.disabled,
+      .wa-btn.disabled {
+        background: #888;
+        cursor: not-allowed;
+      }
+
+      .card.askadmin {
+        opacity: 0.7;
+      }
+
+      .notice {
+        border-radius: 12px;
+        padding: 12px 16px;
+        margin-bottom: 12px;
+        background: rgba(107, 70, 193, 0.08);
+        border: 2px solid rgba(107, 70, 193, 0.18);
+        color: #6b1b1b;
+        font-weight: 600;
+      }
+
+      footer {
+        max-width: var(--maxw);
+        margin: 30px auto;
+        color: var(--muted);
+        font-size: 13px;
+        text-align: center;
+      }
+
+      @media (max-width: 880px) {
+        .hero h2 {
+          font-size: 18px;
+        }
+      }
+      @media (max-width: 640px) {
+        .media {
+          height: 320px;
+        }
+        .card {
+          min-height: 520px;
+        }
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+        }
+        .logo {
+          width: 56px;
+          height: 56px;
+        }
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+      .badge {
+        font-size: 12px;
+        padding: 6px 8px;
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.04);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="24" height="24" rx="6" fill="white" />
+            <path
+              d="M12 7a3 3 0 100 6 3 3 0 000-6zM4 19.5c0-2.8 3.6-4.5 8-4.5s8 1.7 8 4.5v.5H4v-.5z"
+              fill="url(#g)"
+              opacity=".9"
+            />
+          </svg>
+        </div>
+        <div>
+          <h1>The Singles Planet</h1>
+          <p class="lead">
+            Discover local singles. Chat securely via whatsapp or call admin to
+            get featured.
+          </p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn call" id="callAdminBtn">📞 Call Admin</button>
+        <button class="btn cta" id="postProfileBtn">+ Post Profile</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="controls" role="region" aria-label="Search and filters">
+        <div class="search">
+          <input
+            id="q"
+            placeholder="Search name, tribe or location..."
+            aria-label="Search profiles"
+          />
+        </div>
+
+        <div style="width: 140px">
+          <select id="gender">
+            <option value="">Any gender</option>
+            <option>Female</option>
+            <option>Male</option>
+            <option>Non-binary</option>
+          </select>
+        </div>
+        <div style="width: 140px">
+          <select id="age">
+            <option value="">Any age</option>
+            <option value="18-24">18–24</option>
+            <option value="25-34">25–34</option>
+            <option value="35-44">35–44</option>
+            <option value="45+">45+</option>
+          </select>
+        </div>
+        <div style="width: 160px">
+          <select id="location">
+            <option value="">Any location</option>
+            <option>Nairobi</option>
+            <option>Mombasa</option>
+            <option>Embu</option>
+            <option>Tharaka Nithi</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="notice" role="status">
+        Premium tip: Tap the green <strong>whatsapp</strong> button on a profile
+        to open a pre-typed message and start chatting. Admin: +254796339854
+      </div>
+
+      <section class="grid" id="profiles" aria-live="polite"></section>
+    </main>
+
+    <footer>
+      <section id="about" style="margin-bottom: 12px">
+        <strong>About The Singles Planet</strong> — A friendly space to meet
+        local singles. Always practice safe communication and verify profiles
+        before meeting.
+      </section>
+      <section id="contact">
+        Helpline: <strong>0796339854</strong> — <em>Admin</em>
+      </section>
+      <div style="margin-top: 10px">
+        © 2025 The Singles Planet — All rights reserved
+      </div>
+    </footer>
+
+    <script>
+      const ADMIN_PHONE = "tel:+254713943315";
+
+      const PROFILES = [
+        {
+          id: 4,
+          name: "Alex",
+          age: 31,
+          gender: "Male",
+          location: "Nairobi",
+          bio: "Data analyst • gym & tech",
+          tribe: "Kikuyu",
+          img: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=800",
+          phone: "+254748999583",
+          status: "available",
+        },
+
+        {
+          id: 5,
+          name: "Cynthia Kahombi",
+          age: 29,
+          gender: "Female",
+          location: "Saudi Arabia",
+          bio: "Caregiver • Looking for a responsible, loving, loyal and God-fearing man 😇",
+          tribe: "Luhya",
+          img: "ds.photos/cynthiak.jpg",
+          phone: "+254708557186",
+          status: "available",
+        },
+        {
+          id: 6,
+          name: "Jason Mutwiri",
+          age: 30,
+          gender: "Male",
+          location: "Kuwait",
+          bio: "Chef • Seeking love of my life 25–30 years",
+          tribe: "Meru",
+          img: "ds.photos/Jason.jpg",
+          phone: "+97471095672",
+          status: "available",
+        },
+        {
+          id: 7,
+          name: "Kelvin",
+          age: 34,
+          gender: "Male",
+          location: "Dubai",
+          bio: "IT consulant • lady 25-33 yrs old lady who believes in love built on trust, understanding and shared dreams. Am a catholic. my height is 5'6.",
+          tribe: "Kikuyu",
+          img: "ds.photos/kelvindubai.jpg",
+          phone: "+254731483597",
+          status: "available",
+        },
+        {
+          id: 8,
+          name: "Iris Muhonja",
+          age: 26,
+          gender: "Female",
+          location: "Nairobi",
+          bio: "Housekeeping attendant • A mature and caring partner aged 20 to 30",
+          tribe: "Luhya",
+          img: "ds.photos/muhonja.jpg",
+          phone: "+254708530614",
+          status: "available",
+        },
+        {
+          id: 9,
+          name: "David Muia",
+          age: 28,
+          gender: "Male",
+          location: "Nairobi, Kayole Junction",
+          bio: "Security officer and marketer • A relationship leading to marriage",
+          tribe: "Kamba",
+          img: "ds.photos/muia.jpg",
+          phone: "+254740090409",
+          status: "available",
+        },
+        {
+          id: 10,
+          name: "Catherine Josphine",
+          age: 22,
+          gender: "Female",
+          location: "Nairobi, Kimbo",
+          bio: "PMU physician and baker • An ambitious man ready to settle down",
+          tribe: "Kikuyu",
+          img: "ds.photos/catherine josphine.jpg",
+          phone: "+254110385102",
+          status: "available",
+        },
+        {
+          id: 11,
+          name: "Kinyanjui",
+          age: 32,
+          gender: "Male",
+          location: "Nairobi",
+          bio: "Professional driver • An honest woman who values family life",
+          tribe: "Kikuyu",
+          img: "ds.photos/kinyanjui.jpg",
+          phone: "+254758795567",
+          status: "available",
+        },
+        {
+          id: 12,
+          name: "Rose Karwitha",
+          age: 34,
+          gender: "Female",
+          location: "Nairobi",
+          bio: "Designer • A life partner 35-40 years from any part of Kenya who is intentional and purpose-driven",
+          tribe: "Meru",
+          img: "ds.photos/karwitha.jpg",
+          phone: "+254720292442",
+          status: "available",
+        },
+        {
+          id: 13,
+          name: "Peter Otieno Okoth",
+          age: 32,
+          gender: "Male",
+          location: "Kisumu/Bondo",
+          bio: "Working in a hotel in housekeeping department • A loving woman who enjoys fun and laughter, below my age",
+          tribe: "Luo",
+          img: "ds.photos/otienookoth.jpg",
+          phone: "+254701839775",
+          status: "available",
+        },
+        {
+          id: 1,
+          name: "Alex",
+          age: 31,
+          gender: "Male",
+          location: "Nairobi",
+          bio: "Data analyst • gym & tech",
+          tribe: "Kikuyu",
+          img: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=800",
+          phone: "+254748999583",
+          status: "available",
+        },
+        {
+          id: 2,
+          name: "Cynthia Kahombi",
+          age: 29,
+          gender: "Female",
+          location: "Saudi Arabia",
+          bio: "Caregiver • Looking for a responsible, loving, loyal and God-fearing man 😇",
+          tribe: "Luhya",
+          img: "ds.photos/cynthiak.jpg",
+          phone: "+254708557186",
+          status: "available",
+        },
+        {
+          id: 3,
+          name: "Jason Mutwiri",
+          age: 30,
+          gender: "Male",
+          location: "Kuwait",
+          bio: "Chef • Seeking love of my life 25–30 years",
+          tribe: "Meru",
+          img: "ds.photos/Jason.jpg",
+          phone: "+97471095672",
+          status: "available",
+        },
+        {
+          id: 4,
+          name: "Kelvin",
+          age: 34,
+          gender: "Male",
+          location: "Dubai",
+          bio: "IT consulant • lady 25-33 yrs old lady who believes in love built on trust, understanding and shared dreams. Am a catholic. my height is 5'6.",
+          tribe: "Kikuyu",
+          img: "ds.photos/kelvindubai.jpg",
+          phone: "+254731483597",
+          status: "available",
+        },
+        {
+          id: 5,
+          name: "Iris Muhonja",
+          age: 26,
+          gender: "Female",
+          location: "Nairobi",
+          bio: "Housekeeping attendant • A mature and caring partner aged 20 to 30",
+          tribe: "Luhya",
+          img: "ds.photos/muhonja.jpg",
+          phone: "+254708530614",
+          status: "available",
+        },
+        {
+          id: 6,
+          name: "David Muia",
+          age: 28,
+          gender: "Male",
+          location: "Nairobi, Kayole Junction",
+          bio: "Security officer and marketer • A relationship leading to marriage",
+          tribe: "Kamba",
+          img: "ds.photos/muia.jpg",
+          phone: "+254740090409",
+          status: "available",
+        },
+        {
+          id: 7,
+          name: "Catherine Josphine",
+          age: 22,
+          gender: "Female",
+          location: "Nairobi, Kimbo",
+          bio: "PMU physician and baker • An ambitious man ready to settle down",
+          tribe: "Kikuyu",
+          img: "ds.photos/catherine josphine.jpg",
+          phone: "+254110385102",
+          status: "available",
+        },
+        {
+          id: 8,
+          name: "Kinyanjui",
+          age: 32,
+          gender: "Male",
+          location: "Nairobi",
+          bio: "Professional driver • An honest woman who values family life",
+          tribe: "Kikuyu",
+          img: "ds.photos/kinyanjui.jpg",
+          phone: "+254758795567",
+          status: "available",
+        },
+        {
+          id: 9,
+          name: "Rose Karwitha",
+          age: 34,
+          gender: "Female",
+          location: "Nairobi",
+          bio: "Designer • A life partner 35-40 years from any part of Kenya who is intentional and purpose-driven",
+          tribe: "Meru",
+          img: "ds.photos/karwitha.jpg",
+          phone: "+254720292442",
+          status: "available",
+        },
+        {
+          id: 10,
+          name: "Peter Otieno Okoth",
+          age: 32,
+          gender: "Male",
+          location: "Kisumu/Bondo",
+          bio: "Working in a hotel in housekeeping department • A loving woman who enjoys fun and laughter, below my age",
+          tribe: "Luo",
+          img: "ds.photos/otienookoth.jpg",
+          phone: "+254701839775",
+          status: "available",
+        },
+        {
+          id: 11,
+          name: "Lilian",
+          age: 32,
+          gender: "Female",
+          location: "Nairobi",
+          bio: "Hospitality trainer • Seeking love of my life 25-30 years",
+          tribe: "Luhya",
+          img: "ds.photos/kegeshi.jpg",
+          phone: "+254748115263",
+          status: "available",
+        },
+        {
+          id: 12,
+          name: "Salim Hamisi",
+          age: 23,
+          gender: "Male",
+          location: "Mariakani",
+          bio: "Receptionist • An open relationship",
+          tribe: "Swahili",
+          img: "ds.photos/hamisi.jpg",
+          phone: "+254751614844",
+          status: "available",
+        },
+        {
+          id: 13,
+          name: "Kelvin Ombati",
+          age: 25,
+          gender: "Male",
+          location: "Qatar",
+          bio: "Man life operator • Am looking for someone who is serious, God fearing and above all respect",
+          tribe: "Kisii",
+          img: "ds.photos/KOmbati.jpg",
+          phone: "+254792233112",
+          status: "available",
+        },
+        {
+          id: 14,
+          name: "Sydney Baraza",
+          age: 26,
+          gender: "Male",
+          location: "Mumias, Kakamega",
+          bio: "IT expert • Someone serious",
+          tribe: "Luhya",
+          img: "ds.photos/sydneyBarazajpg.jpg",
+          phone: "+254706014318",
+          status: "available",
+        },
+        {
+          id: 15,
+          name: "Bruce",
+          age: 28,
+          gender: "Male",
+          location: "Bunyore, now in Mlolongo",
+          bio: "Gardener in Fairview Hotel in Upperhill • Interested in developing a serious love relationship that could lead to marriage",
+          tribe: "Luhya",
+          img: "ds.photos/Bruce.jpg",
+          phone: "+254799655312",
+          status: "available",
+        },
+        {
+          id: 16,
+          name: "James",
+          age: 26,
+          gender: "Male",
+          location: "Kakamega",
+          bio: "Working • Genuine love",
+          tribe: "Luhya",
+          img: "ds.photos/james26.jpg",
+          phone: "+254768496287",
+          status: "available",
+        },
+        {
+          id: 17,
+          name: "Morgan Onyango",
+          age: 24,
+          gender: "Male",
+          location: "Nairobi",
+          bio: "Self employed (bike 🚲) • My better half",
+          tribe: "Luo",
+          img: "ds.photos/morgan1.jpg",
+          phone: "+254710397643",
+          status: "available",
+        },
+        {
+          id: 18,
+          name: "Emanuel Mushinda",
+          age: 26,
+          gender: "Male",
+          location: "Kakamega",
+          bio: "Electrician • God fearing woman for marriage",
+          tribe: "Luhya",
+          img: "ds.photos/Emanuel.jpg",
+          phone: "+254792512931",
+          status: "available",
+        },
+        {
+          id: 19,
+          name: "Sharon Oluoch",
+          age: 26,
+          gender: "Female",
+          location: "Tanariver, Hola",
+          bio: "Receptionist/chef • Marriage",
+          tribe: "Luo",
+          img: "ds.photos/sharonoluoch.jpg",
+          phone: "+254769938262",
+          status: "available",
+        },
+        {
+          id: 20,
+          name: "Collins",
+          age: 26,
+          gender: "Male",
+          location: "Nakuru",
+          bio: "Business boy • A serious relationship",
+          tribe: "Luo",
+          img: "ds.photos/collinsA.jpg",
+          phone: "+254740343700",
+          status: "available",
+        },
+        {
+          id: 21,
+          name: "Simon Nadra",
+          age: 32,
+          gender: "Male",
+          location: "Nairobi",
+          bio: "Business • Soulmate who is trustworthy and ready to settle down",
+          tribe: "Kamba",
+          img: "ds.photos/NADRA.jpg",
+          phone: "+254112488831",
+          status: "available",
+        },
+        {
+          id: 22,
+          name: "Abiud Omundi",
+          age: 25,
+          gender: "Male",
+          location: "Malaa, Nairobi",
+          bio: "Business • Girlfriend",
+          tribe: "Luo",
+          img: "ds.photos/Abiud.jpg",
+          phone: "+254798169656",
+          status: "available",
+        },
+        {
+          id: 23,
+          name: "Jackline Atieno",
+          age: 35,
+          gender: "Female",
+          location: "Man",
+          bio: "Business woman • I need a man 36 years to 40 years",
+          tribe: "Luo",
+          img: "ds.photos/JacklineAt.jpg",
+          phone: "+254115286209",
+          status: "available",
+        },
+        {
+          id: 24,
+          name: "Omondi Adrian",
+          age: 26,
+          gender: "Male",
+          location: "Kisumu",
+          bio: "Hustle • A serious relationship",
+          tribe: "Luo",
+          img: "ds.photos/adrian.jpg",
+          phone: "+254731676426",
+          status: "available",
+        },
+        {
+          id: 25,
+          name: "Sarah Kamau",
+          age: 31,
+          gender: "Female",
+          location: "Mombasa",
+          bio: "Mama mboga • A real husband for marriage",
+          tribe: "Kikuyu",
+          img: "ds.photos/mamamboga.jpg",
+          phone: "+254720970796",
+          status: "available",
+        },
+        {
+          id: 26,
+          name: "Margret Tanisha",
+          age: 20,
+          gender: "Female",
+          location: "Uganda, Masaka",
+          bio: "Teacher • Marriage with Ugandan Amuganda, Musoga or Kenyan, Iteso, Toro etc",
+          tribe: "Ugandan",
+          img: "ds.photos/tanisha.jpg",
+          phone: "+256701887258",
+          status: "available",
+        },
+        {
+          id: 27,
+          name: "Johnson",
+          age: 35,
+          gender: "Male",
+          location: "Nairobi",
+          bio: "Doctor • Wife",
+          tribe: "Kikuyu",
+          img: "ds.photos/pc.png",
+          phone: "5,4",
+          status: "available",
+        },
+        {
+          id: 28,
+          name: "Kelvin",
+          age: 32,
+          gender: "Male",
+          location: "Meru",
+          bio: "Bank Accountant • Wife material",
+          tribe: "Meru",
+          img: "ds.photos/pc.png",
+          phone: "5,4",
+          status: "available",
+        },
+        {
+          id: 29,
+          name: "Atieli",
+          age: 42,
+          gender: "Male",
+          location: "Nakuru",
+          bio: "Lecturer • A wife, am widowed",
+          tribe: "Luhya",
+          img: "ds.photos/pc.png",
+          phone: "5,4",
+          status: "available",
+        },
+        {
+          id: 30,
+          name: "Enock",
+          age: 38,
+          gender: "Male",
+          location: "Kjiando",
+          bio: "Insurance analyst • Woman to settle down with",
+          tribe: "Kikuyu",
+          img: "ds.photos/pc.png",
+          phone: "5,4",
+          status: "available",
+        },
+        {
+          id: 31,
+          name: "Beatrice",
+          age: 33,
+          gender: "Female",
+          location: "Nairobi, Karen",
+          bio: "Business, I have own boutique • A marriage partner between 30-39 yrs",
+          tribe: "Kikuyu",
+          img: "ds.photos/pc.png",
+          phone: "5,4",
+          status: "available",
+        },
+        {
+          id: 32,
+          name: "Brenda",
+          age: 22,
+          gender: "Female",
+          location: "Nairobi",
+          bio: "TSC teacher • A relationship leading to marriage",
+          tribe: "Mkamba",
+          img: "ds.photos/pc.png",
+          phone: "5,4",
+          status: "available",
+        },
+        {
+          id: 14,
+          name: "Lilian",
+          age: 32,
+          gender: "Female",
+          location: "Nairobi",
+          bio: "Hospitality trainer • Seeking love of my life 25-30 years",
+          tribe: "Luhya",
+          img: "ds.photos/kegeshi.jpg",
+          phone: "+254748115263",
+          status: "available",
+        },
+        {
+          id: 15,
+          name: "Salim Hamisi",
+          age: 23,
+          gender: "Male",
+          location: "Mariakani",
+          bio: "Receptionist • An open relationship",
+          tribe: "Swahili",
+          img: "ds.photos/hamisi.jpg",
+          phone: "+254751614844",
+          status: "available",
+        },
+        {
+          id: 16,
+          name: "Kelvin Ombati",
+          age: 25,
+          gender: "Male",
+          location: "Qatar",
+          bio: "Man life operator • Am looking for someone who is serious, God fearing and above all respect",
+          tribe: "Kisii",
+          img: "ds.photos/KOmbati.jpg",
+          phone: "+254792233112",
+          status: "available",
+        },
+        {
+          id: 17,
+          name: "Sydney Baraza",
+          age: 26,
+          gender: "Male",
+          location: "Mumias, Kakamega",
+          bio: "IT expert • Someone serious",
+          tribe: "Luhya",
+          img: "ds.photos/sydneyBarazajpg.jpg",
+          phone: "+254706014318",
+          status: "available",
+        },
+        {
+          id: 18,
+          name: "Bruce",
+          age: 28,
+          gender: "Male",
+          location: "Bunyore, now in Mlolongo",
+          bio: "Gardener in Fairview Hotel in Upperhill • Interested in developing a serious love relationship that could lead to marriage",
+          tribe: "Luhya",
+          img: "ds.photos/Bruce.jpg",
+          phone: "+254799655312",
+          status: "available",
+        },
+        {
+          id: 19,
+          name: "James",
+          age: 26,
+          gender: "Male",
+          location: "Kakamega",
+          bio: "Working • Genuine love",
+          tribe: "Luhya",
+          img: "ds.photos/james26.jpg",
+          phone: "+254768496287",
+          status: "available",
+        },
+        {
+          id: 20,
+          name: "Morgan Onyango",
+          age: 24,
+          gender: "Male",
+          location: "Nairobi",
+          bio: "Self employed (bike 🚲) • My better half",
+          tribe: "Luo",
+          img: "ds.photos/morgan1.jpg",
+          phone: "+254710397643",
+          status: "available",
+        },
+        // … continue same format for remaining profiles
+
+        {
+          id: 1,
+          name: "Pauline",
+          age: 28,
+          gender: "Female",
+          location: "Nairobi",
+          bio: "Teacher • loves hikes, coffee & family",
+          tribe: "Kikuyu",
+          img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800",
+          phone: "+254712977748",
+          status: "available",
+        },
+        {
+          id: 2,
+          name: "Josphat",
+          age: 34,
+          gender: "Male",
+          location: "Kisumu",
+          bio: "Water engineer • outdoorsy, cook",
+          tribe: "Luo",
+          img: "https://images.unsplash.com/photo-1545996124-1b8c8fdd5bda?q=80&w=800",
+          phone: "+254723124676",
+          status: "available",
+        },
+        {
+          id: 3,
+          name: "Mercy",
+          age: 30,
+          gender: "Female",
+          location: "Thika",
+          bio: "Nurse • caring & chatty",
+          tribe: "Kikuyu",
+          img: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800",
+          phone: "+254700000001",
+          status: "available",
+        },
+
+        {
+          id: 5,
+          name: "Faustina",
+          age: 35,
+          gender: "Female",
+          location: "Nakuru",
+          bio: "Store clerk • loves crafting",
+          tribe: "Kikuyu",
+          img: "https://images.unsplash.com/photo-1531123414780-fb0f2f5f9a2b?q=80&w=800",
+          phone: "+254707283411",
+          status: "available",
+        },
+        {
+          id: 6,
+          name: "Sam",
+          age: 40,
+          gender: "Male",
+          location: "Mombasa",
+          bio: "Entrepreneur • travel, food lover",
+          tribe: "Mijikenda",
+          img: "https://images.unsplash.com/photo-1524504388940-0c2b6d9bd9b8?q=80&w=800",
+          phone: "+254700333333",
+          status: "ask admin",
+        },
+      ];
+
+      const profilesEl = document.getElementById("profiles");
+      const qEl = document.getElementById("q");
+      const genderEl = document.getElementById("gender");
+      const ageEl = document.getElementById("age");
+      const locEl = document.getElementById("location");
+      const callAdminBtn = document.getElementById("callAdminBtn");
+      const postProfileBtn = document.getElementById("postProfileBtn");
+
+      const locations = [...new Set(PROFILES.map((p) => p.location))].sort();
+      locations.forEach((loc) => {
+        const opt = document.createElement("option");
+        opt.value = loc;
+        opt.textContent = loc;
+        locEl.appendChild(opt);
+      });
+
+      function formatAge(a) {
+        return a ? a + " yrs" : "";
+      }
+
+      function render(list) {
+        profilesEl.innerHTML = "";
+        if (!list.length) {
+          profilesEl.innerHTML = '<p class="muted">No profiles found.</p>';
+          return;
+        }
+
+        list.forEach((p) => {
+          const askAdmin = (p.status || "").toLowerCase() === "ask admin";
+          const card = document.createElement("article");
+          card.className = "card" + (askAdmin ? " askadmin" : "");
+
+          const esc = (s) =>
+            String(s || "").replace(
+              /[&<>\"']/g,
+              (m) =>
+                ({
+                  "&": "&amp;",
+                  "<": "&lt;",
+                  ">": "&gt;",
+                  '"': "&quot;",
+                  "'": "&#39;",
+                }[m])
+            );
+
+          const waText = encodeURIComponent(
+            `Hi ${p.name}, I saw your profile on The Singles Planet and would like to chat. — Sent from The Singles Planet`
+          );
+          const waHref = `https://wa.me/${p.phone
+            .replace(/[^0-9+]/g, "")
+            .replace(/^\+/, "")}?text=${waText}`;
+
+          card.innerHTML = `
+            <div class="media" aria-label="Profile photo of ${esc(p.name)}">
+              <img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy" />
+            </div>
+
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+                <div>
+                  <div class="category">${esc(p.location)} • ${esc(
+            p.gender
+          )}</div>
+                  <div class="title" style="margin-top:8px">${esc(
+                    p.name
+                  )} <span class="muted">· ${formatAge(p.age)}</span></div>
+                </div>
+                <div style="text-align:right">
+                  <div class="badge">${esc(p.tribe || "")}</div>
+                </div>
+              </div>
+
+              <div class="desc" style="margin-top:8px">${esc(p.bio)}</div>
+
+              <div class="button-row">
+                <button class="wa-btn ${askAdmin ? "disabled" : ""}" ${
+            askAdmin ? "disabled" : ""
+          } onclick="${
+            askAdmin ? "void(0)" : `window.open('${waHref}','_blank')`
+          }"> 
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.52 3.48A11.93 11.93 0 0012 .25 11.9 11.9 0 003.5 6.5c-.68 1.74-.82 3.6-.4 5.38L2 18l6.36-1.68A11.9 11.9 0 0012 23.75a11.93 11.93 0 008.52-20.27z" fill="white" opacity="0.06"/><path d="M12.03 2.5c5.25 0 9.52 4.26 9.52 9.52 0 5.26-4.27 9.53-9.52 9.53a9.5 9.5 0 01-5.08-1.43L3 21l1.86-4.91A9.5 9.5 0 012.5 12.02C2.5 6.77 6.77 2.5 12.03 2.5z" fill="#fff"/><path d="M17.9 14.7c-.3-.15-1.77-.87-2.05-.98-.28-.1-.48-.15-.68.15-.2.3-.86.98-1.05 1.18-.19.2-.38.22-.7.07-.32-.15-1.35-.5-2.57-1.58-.95-.84-1.6-1.86-1.79-2.18-.19-.32-.02-.49.14-.64.15-.15.32-.38.48-.57.16-.19.21-.32.32-.53.1-.2.05-.38-.02-.53-.07-.15-.68-1.64-.93-2.25-.24-.59-.49-.51-.68-.52l-.57-.01c-.2 0-.53.07-.8.38-.27.31-1.05 1.03-1.05 2.5 0 1.47 1.08 2.9 1.23 3.1.15.2 2.12 3.3 5.15 4.62 3.03 1.33 3.03.89 3.57.84.54-.05 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.43-.07-.14-.26-.22-.56-.37z" fill="#fff"/></svg>
+                  <span style="font-weight:800;font-size:14px">whatsapp</span>
+                </button>
+
+                <button class="call-btn ${askAdmin ? "disabled" : ""}" ${
+            askAdmin ? "disabled" : ""
+          } onclick="${
+            askAdmin
+              ? "void(0)"
+              : `window.location.href='tel:${p.phone.replace(/\s/g, "")}'`
+          }">📞 Call</button>
+
+                <button class="status-btn ${
+                  askAdmin ? "askadmin" : "available"
+                }" aria-pressed="${!askAdmin}">${esc(p.status)}</button>
+              </div>
+            </div>
+          `;
+
+          profilesEl.appendChild(card);
+        });
+      }
+
+      function applyFilters() {
+        const q = (qEl.value || "").trim().toLowerCase();
+        const g = genderEl.value || "";
+        const a = ageEl.value || "";
+        const l = locEl.value || "";
+
+        const filtered = PROFILES.filter((p) => {
+          const matchesGender = !g || p.gender === g;
+          const matchesLoc = !l || p.location === l;
+          const matchesAge =
+            !a ||
+            (function () {
+              if (!p.age) return true;
+              if (a === "18-24") return p.age >= 18 && p.age <= 24;
+              if (a === "25-34") return p.age >= 25 && p.age <= 34;
+              if (a === "35-44") return p.age >= 35 && p.age <= 44;
+              if (a === "45+") return p.age >= 45;
+              return true;
+            })();
+
+          const matchesQ =
+            !q ||
+            (p.name && p.name.toLowerCase().includes(q)) ||
+            (p.bio && p.bio.toLowerCase().includes(q)) ||
+            (p.tribe && p.tribe.toLowerCase().includes(q)) ||
+            (p.location && p.location.toLowerCase().includes(q));
+
+          return matchesGender && matchesLoc && matchesAge && matchesQ;
+        });
+
+        render(filtered);
+      }
+
+      qEl.addEventListener("input", () => {
+        clearTimeout(window._searchTimer);
+        window._searchTimer = setTimeout(applyFilters, 250);
+      });
+      genderEl.addEventListener("change", applyFilters);
+      ageEl.addEventListener("change", applyFilters);
+      locEl.addEventListener("change", applyFilters);
+
+      callAdminBtn.addEventListener("click", () => {
+        window.location.href = ADMIN_PHONE;
+      });
+      postProfileBtn.addEventListener("click", () => {
+        window.location.href = ADMIN_PHONE;
+      });
+
+      render(PROFILES);
+    </script>
+  </body>
+</html>
