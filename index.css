@@ -303,3 +303,6 @@
     .red-button:hover {
       background-color: darkred;   /* Darker red on hover */
     }
+    .redfast{
+      text-align: center;
+    }
