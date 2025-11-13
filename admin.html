@@ -7,39 +7,101 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        padding: 20px;
+        margin: 0;
+        padding: 0;
+        background: #f9f7ff;
       }
-      input {
-        margin-bottom: 15px;
-        padding: 8px;
+
+      /* Glass-style sticky header */
+      header {
+        position: sticky;
+        top: 0;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+      }
+
+      h2 {
+        margin: 0 0 10px 0;
+        font-size: 22px;
+        color: #4a0072;
+        text-align: center;
+        letter-spacing: 0.5px;
+      }
+
+      #searchInput {
+        padding: 10px;
         width: 100%;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 15px;
+        outline: none;
+        transition: box-shadow 0.2s ease;
       }
+
+      #searchInput:focus {
+        box-shadow: 0 0 8px rgba(123, 31, 162, 0.4);
+      }
+
       table {
         border-collapse: collapse;
         width: 100%;
+        background: white;
       }
+
       th,
       td {
         border: 1px solid #ddd;
-        padding: 8px;
+        padding: 10px;
         text-align: left;
       }
+
       th {
         background-color: #f2f2f2;
+        position: sticky;
+        top: 95px; /* below header */
+        z-index: 5;
       }
+
       tr:hover {
-        background-color: #f1f1f1;
+        background-color: #f7f3ff;
+      }
+
+      /* WhatsApp link style */
+      .whatsapp-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: #25d366;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .whatsapp-link:hover {
+        text-decoration: underline;
+      }
+
+      .whatsapp-icon {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
       }
     </style>
   </head>
   <body>
-    <h2>Searchable Singles Table</h2>
-    <input
-      type="text"
-      id="searchInput"
-      onkeyup="searchTable()"
-      placeholder="Search for names, locations, careers..."
-    />
+    <header>
+      <h2>💜 Searchable Singles Table</h2>
+      <input
+        type="text"
+        id="searchInput"
+        onkeyup="searchTable()"
+        placeholder="🔍 Search for names, locations, careers..."
+      />
+    </header>
 
     <table id="singlesTable">
       <thead>
@@ -60,8 +122,27 @@
     </table>
 
     <script>
-      // Array of singles: ["Name", Age, "Location", "Gender", "Kids", "Tribe", "Career", "Phone"]
       const singles = [
+        [
+          "Margaret",
+          27,
+          "Nairobi",
+          "Female",
+          "0",
+          "Kamba",
+          "Teacher",
+          "0705159909",
+        ],
+        [
+          "Jackie",
+          28,
+          "Kitengela",
+          "Female",
+          "1",
+          "Kamba",
+          "Nailstech",
+          "740441528",
+        ],
         [
           "Margaret",
           27,
@@ -328,7 +409,6 @@
           "I.T Technician",
           "701092453",
         ],
-        ["Loreen", 27, "Nairobi", "Female", "1", "Kamba", "Cook", "792674047"],
         [
           "Lui",
           33,
@@ -660,16 +740,7 @@
           "Health Records and Information Technician",
           "2.54747E+11",
         ],
-        [
-          "Henry Maina",
-          37,
-          "KIAMBU",
-          "Male",
-          "NONE",
-          "KIKUYU",
-          "SELF-EMPLOYED",
-          "0722-160468",
-        ],
+
         [
           "Martin",
           30,
@@ -680,6 +751,7 @@
           "Designer",
           "716213174",
         ],
+        ["Martin", 32, "meru", "Male", "1", "mmeru", "lecturer", "0713943315"],
         ["Ritta", 36, "Embu", "Female", "2", "Embu", "Teacher", "724142940"],
         ["Nelson", 27, "Ld", "Male", "0", "Kalenjin", "Analyst", "701286213"],
         [
@@ -6032,51 +6104,48 @@
           "House manager",
           "90121252",
         ],
-        // Add the rest of your singles here in the same format
+        [
+          "Samira Hassan",
+          35,
+          "Currently Oman",
+          "Female",
+          "1",
+          "Mjomvu",
+          "House manager",
+          "90121252",
+        ],
       ];
 
-      // Populate table dynamically
-      // Populate table dynamically with phone number fix + WhatsApp link
       const tableBody = document.getElementById("tableBody");
+
       singles.forEach((person) => {
         const row = document.createElement("tr");
         person.forEach((item, index) => {
           const cell = document.createElement("td");
 
-          // If it's the last column (phone)
-          if (index === person.length - 1) {
-            let phone = String(item);
+          // Phone column
+          if (index === 7) {
+            let phone = item.toString().trim();
+            if (phone.startsWith("0")) phone = "254" + phone.slice(1);
+            else if (!phone.startsWith("254")) phone = "254" + phone;
 
-            // --- Fix number format ---
-            if (phone.includes("E+")) {
-              const num = Number(phone);
-              phone = "254" + num.toString().slice(-9);
-            } else if (phone.startsWith("0")) {
-              phone = "254" + phone.slice(1);
-            } else if (phone.startsWith("7") || phone.startsWith("1")) {
-              phone = "254" + phone;
-            }
-
-            // --- Create WhatsApp link ---
             const link = document.createElement("a");
             link.href = `https://wa.me/${phone}`;
             link.target = "_blank";
-            link.textContent = phone;
-            link.style.color = "green";
-            link.style.fontWeight = "bold";
-            link.title = "Chat on WhatsApp";
-
+            link.className = "whatsapp-link";
+            link.innerHTML = `
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="whatsapp-icon" alt="WhatsApp" />
+              whatsapp
+            `;
             cell.appendChild(link);
           } else {
             cell.textContent = item;
           }
-
           row.appendChild(cell);
         });
         tableBody.appendChild(row);
       });
 
-      // Search function
       function searchTable() {
         const input = document
           .getElementById("searchInput")
