@@ -296,6 +296,22 @@
         border-radius: 8px;
         background: rgba(0, 0, 0, 0.04);
       }
+      .floating-logins {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(107, 70, 193, 0.9);
+        color: white;
+        padding: 12px 18px;
+        border-radius: 24px;
+        font-weight: 600;
+        font-size: 14px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+        pointer-events: none; /* won't block clicks */
+        min-width: 180px;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -363,7 +379,7 @@
 
       <section class="grid" id="profiles" aria-live="polite"></section>
     </main>
-
+    <div class="floating-logins" id="floatingLogins">Loading...</div>
     <footer>
       <section id="about" style="margin-bottom: 12px">
         <strong>About The Singles Planet</strong> — A friendly space to meet
@@ -10646,7 +10662,172 @@
         window.location.href = ADMIN_PHONE;
       });
 
-      render(PROFILES);
+      render(PROFILES); // Generate 1000 fake names
+      const fakeUsers = [];
+      const firstNames = [
+        "Peter",
+        "Mary",
+        "John",
+        "Lilian",
+        "Paul",
+        "Alice",
+        "James",
+        "Nancy",
+        "Michael",
+        "Grace",
+        "Peter",
+        "Mary",
+        "John",
+        "Lilian",
+        "Paul",
+        "Alice",
+        "James",
+        "Nancy",
+        "Michael",
+        "Grace",
+        "Brian",
+        "Esther",
+        "Kevin",
+        "Sarah",
+        "Samuel",
+        "Cynthia",
+        "David",
+        "Beatrice",
+        "Emmanuel",
+        "Ruth",
+        "Dennis",
+        "Joyce",
+        "Allan",
+        "Lucy",
+        "Stephen",
+        "Agnes",
+        "Victor",
+        "Caroline",
+        "Collins",
+        "Mercy",
+        "George",
+        "Faith",
+        "Mark",
+        "Ann",
+        "Elijah",
+        "Winnie",
+        "Chris",
+        "Purity",
+        "Alex",
+        "Irene",
+        "Caleb",
+        "Dorcas",
+        "Isaac",
+        "Naomi",
+        "Nicholas",
+        "Janet",
+        "Martin",
+        "Hannah",
+        "Eric",
+        "Charity",
+        "Edwin",
+        "Brenda",
+        "Philip",
+        "Rose",
+        "Boniface",
+        "Evelyn",
+        "Daniel",
+        "Betty",
+        "Stephenie",
+        "Elvis",
+      ];
+      const lastNames = [
+        "Okoth",
+        "Mwangi",
+        "Otieno",
+        "Wambui",
+        "Kamau",
+        "Ochieng",
+        "Njoroge",
+        "Chebet",
+        "Maina",
+        "Okoth",
+        "Mwangi",
+        "Otieno",
+        "Wambui",
+        "Kamau",
+        "Ochieng",
+        "Njoroge",
+        "Chebet",
+        "Maina",
+        "Omondi",
+        "Mutua",
+        "Cherono",
+        "Achieng",
+        "Kiptoo",
+        "Atieno",
+        "Barasa",
+        "Nyambura",
+        "Mutiso",
+        "Cheruiyot",
+        "Makau",
+        "Muthoni",
+        "Wekesa",
+        "Mwende",
+        "Kosgei",
+        "Gichuki",
+        "Kilonzo",
+        "Rono",
+        "Were",
+        "Koech",
+        "Muli",
+        "Nyaga",
+        "Murugi",
+        "Musyoka",
+        "Kipkemboi",
+        "Njoki",
+        "Otieno",
+        "Mureithi",
+        "Simiyu",
+        "Kipruto",
+        "Nyambane",
+        "Karimi",
+        "Mugo",
+        "Akinyi",
+        "Kiplangat",
+        "Wafula",
+        "Muthee",
+        "Naliaka",
+        "Makena",
+        "Chesang",
+        "Onyango",
+        "Nanjala",
+        "Kariuki",
+        "Kiboi",
+        "Mworia",
+        "Kemei",
+        "Kangethe",
+        "Nduta",
+        "Mutuma",
+        "Chepkorir",
+        "Nyaboke",
+        "Mburu",
+        "Omondi",
+      ];
+
+      for (let i = 0; i < 1000; i++) {
+        const fn = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const ln = lastNames[Math.floor(Math.random() * lastNames.length)];
+        fakeUsers.push(`${fn} ${ln}`);
+      }
+
+      const floatingEl = document.getElementById("floatingLogins");
+      let currentIndex = 0;
+
+      function updateFloatingLogin() {
+        const user = fakeUsers[currentIndex];
+        floatingEl.textContent = `${user} is online`;
+        currentIndex = (currentIndex + 1) % fakeUsers.length;
+      }
+
+      // Change user every 2 seconds
+      setInterval(updateFloatingLogin, 2000);
+      updateFloatingLogin();
     </script>
   </body>
 </html>
