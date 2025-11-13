@@ -399,6 +399,18 @@
 
       const PROFILES = [
         {
+          id: 2,
+          name: "mercy wangui",
+          age: 23,
+          gender: "Female",
+          location: "Nairobi",
+          bio: "business lady • Seeking love of my life 25-30 years",
+          tribe: "kikuyu",
+          img: "ds.photos/mercy.jpg",
+          phone: "+254115506149",
+          status: "available",
+        },
+        {
           id: 14,
           name: "Lilian",
           age: 32,
@@ -10662,7 +10674,22 @@
         window.location.href = ADMIN_PHONE;
       });
 
-      render(PROFILES); // Generate 1000 fake names
+      render(PROFILES);
+
+      // === Auto-generate location dropdown from PROFILES ===
+      const locationSelect = document.getElementById("location");
+      const uniqueLocations = [
+        ...new Set(PROFILES.map((p) => p.location).filter(Boolean)),
+      ];
+      uniqueLocations.sort();
+      uniqueLocations.forEach((loc) => {
+        const opt = document.createElement("option");
+        opt.value = loc;
+        opt.textContent = loc;
+        locationSelect.appendChild(opt);
+      });
+
+      // Generate 1000 fake names
       const fakeUsers = [];
       const firstNames = [
         "Peter",
