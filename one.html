@@ -22,33 +22,8 @@
        <button onclick="location.href='dashboard.html'">Match Finder</button>
       <button onclick="location.href='login.html'">💎Premium UNLIMITED</button>
     </div>
+     <section class="paa-box" id="paa-container"></section>
 
-    
- <div class="glass-card introduction-statement">
-      <div class="any-button"><h2><strong style="color: red">premium members level-3 rights</strong></h2></div>
-      
-
-      <p>🌍<em>Perfect matches are sent to you daily via email or whatsapp automatically without you having to make requests.</em></p>
-      <p>🌍<em>Call/chat admin anytime to inquire about/follow/ or to request a connection(s)</em></p>
-      <p>🌍<em>Free profile uploads(Photo optional).</strong></em></p>
-      <p>🌍<em>Anonymous profiles browsing/Admin rights.</em></p>
-      <p>🌍<em>Free personalized match making.</em></p>
-      <p>💎<em>No expiry of package/NO renewal fees</em></p>
-     
-    </div>
-    <div class="glass-card introduction-statement">
-      <div class="any-button"><h2><strong style="color: red">premium members level-2 rights</strong></h2></div>
-      <p>💎<em>Call/chat admin anytime to inquire about/ or to request a connection(s)</em></p>
-      <p>💎<em>Free profile uploads(Photo optional).</strong></em></p>
-      <p>💎<em>No expiry of package/NO renewal fees</em></p>
-     
-     
-    </div>
-    <div class="glass-card introduction-statement">
-      <div class="any-button"><h2><strong style="color: red">premium members level-1 rights</strong></h2></div>
-      <p>💎<em>Free profile uploads(Photo optional).</strong></em></p>
-      <p>💎<em>No expiry of package/NO renewal fees</em></p>
-    </div>
     <div class="glass-card introduction-statement">
       <div class="any-button"><h2>About Singles Planet</h2></div>
       <p>
@@ -442,6 +417,78 @@
         btn.addEventListener("click", () => {
           const faq = btn.parentElement;
           faq.classList.toggle("active");
+        });
+      });
+    </script>
+     <script>
+      // ------------------------
+      // 📌 Dynamic Notice Array
+      // ------------------------
+      const notices = [
+  { title: "premium members level-3 rights", text: "🌍Perfect matches are sent to you daily via email or whatsapp automatically without you having to make requests.🌍Call/chat admin anytime to inquire about/follow/ or to request a connection(s).🌍Free profile uploads(Photo optional).🌍Anonymous profiles browsing/Admin rights.🌍Free personalized match making.💎No expiry of package/NO renewal fees"},
+  { title: "premium members level-2 rights", text: "💎Call/chat admin anytime to inquire about/ or to request a connection(s).💎Free profile uploads(Photo optional).💎No expiry of package/NO renewal fees" },
+  { title: "premium members level-1 rights", text: "💎Free profile uploads(Photo optional). 💎No expiry of package/NO renewal fees"},
+];
+
+
+      const container = document.getElementById("paa-container");
+
+      // ------------------------
+      // 📌 Auto-generate items
+      // ------------------------
+notices.forEach((itemData, index) => {
+  const item = document.createElement("div");
+  item.className = "paa-item";
+
+  item.innerHTML = `
+    <button class="paa-question" aria-expanded="false" aria-controls="answer${index}">
+      ${itemData.title}
+      <span class="icon-wrap">
+        <svg class="paa-icon" viewBox="0 0 24 24">
+          <path d="M8.12 9.29L12.58 13.76L17.05 9.29L18.46 10.71L12.58 16.59L6.71 10.71L8.12 9.29Z"/>
+        </svg>
+      </span>
+    </button>
+
+    <div class="paa-answer" id="answer${index}" role="region" aria-hidden="true">
+      ${itemData.text}
+    </div>
+  `;
+
+  container.appendChild(item);
+});
+
+
+
+
+
+      // ------------------------
+      // 📌 Accordion logic + ARIA
+      // ------------------------
+      const paaItems = document.querySelectorAll(".paa-item");
+
+      paaItems.forEach((item) => {
+        const btn = item.querySelector(".paa-question");
+        const answer = item.querySelector(".paa-answer");
+
+        btn.addEventListener("click", () => {
+          const isOpen = item.classList.contains("active");
+
+          // Close all
+          paaItems.forEach((i) => {
+            i.classList.remove("active");
+            i.querySelector(".paa-question").setAttribute(
+              "aria-expanded",
+              "false"
+            );
+            i.querySelector(".paa-answer").setAttribute("aria-hidden", "true");
+          });
+
+          if (!isOpen) {
+            item.classList.add("active");
+            btn.setAttribute("aria-expanded", "true");
+            answer.setAttribute("aria-hidden", "false");
+          }
         });
       });
     </script>
