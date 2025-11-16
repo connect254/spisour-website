@@ -141,8 +141,8 @@ a {
     font-size: 1.6rem;
   }
   button {
-   width: 70%;
-   font-size: 0.95rem;
+    width : 70%;
+    font-size: 0.95rem;
   }
   .btn,
   .email-btn,
@@ -565,5 +565,81 @@ html {
   border-radius: 10px;
   width: 90%;
 }
+.paa-box {
+        width: 90%;
+        max-width: 900px;
+        margin: 20px auto;
+        background: #E2E5E9;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+        border-radius: 6px;
+        font-family: "Roboto", Arial, sans-serif;
 
+        /* Removed border */
+        border: none;
+      }
 
+      .paa-item {
+        border-bottom: 2px solid #9e6aff;
+      }
+      .paa-item:last-child {
+        border-bottom: none;
+      }
+
+      .paa-question {
+        width: 100%;
+        padding: 16px 20px;
+        font-size: 16px;
+        font-weight: 500;
+        background: #E2E5E9;
+        border: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        color: #202124;
+        transition: background 0.2s ease;
+      }
+      .paa-question:hover {
+        background: #f8f9fa;
+      }
+
+      /* Circular background for the arrow */
+      .icon-wrap {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background:  #9e6aff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s ease;
+      }
+      .paa-question:hover .icon-wrap {
+        background: #e8eaed;
+      }
+
+      .paa-icon {
+        width: 16px;
+        height: 16px;
+        transition: transform 0.25s ease;
+        fill: black;
+      }
+
+      .paa-item.active .paa-icon {
+        transform: rotate(90deg);
+      }
+
+      .paa-answer {
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 20px;
+        font-size: 15px;
+        color: #3c4043;
+        line-height: 1.5;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+      }
+
+      .paa-item.active .paa-answer {
+        padding: 14px 20px 18px;
+        max-height: 500px;
+      }
