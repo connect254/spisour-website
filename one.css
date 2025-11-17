@@ -565,22 +565,23 @@ html {
   border-radius: 10px;
   width: 90%;
 }
+
+
+
 .paa-box {
         width: 90%;
         max-width: 900px;
         margin: 20px auto;
-        background: #E2E5E9;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
-        border-radius: 6px;
+        background: transparent;
+        box-shadow: none;
+        border-radius: 0 ;
+         border: none;
         font-family: "Roboto", Arial, sans-serif;
-
-        /* Removed border */
-        border: none;
       }
 
-      .paa-item {
-        border-bottom: 2px solid #9e6aff;
-      }
+
+
+
       .paa-item:last-child {
         border-bottom: none;
       }
@@ -590,17 +591,24 @@ html {
         padding: 16px 20px;
         font-size: 16px;
         font-weight: 500;
-        background: #E2E5E9;
+         background:#E2E5E9;
+        background: transparent;
         border: none;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items:center;
         cursor: pointer;
         color: #202124;
         transition: background 0.2s ease;
       }
+     
       .paa-question:hover {
-        background: #f8f9fa;
+  background: none !important;
+}
+
+       
+      .paa-question:hover .icon-wrap {
+        background: #e8eaed;
       }
 
       /* Circular background for the arrow */
@@ -613,9 +621,6 @@ html {
         align-items: center;
         justify-content: center;
         transition: background 0.2s ease;
-      }
-      .paa-question:hover .icon-wrap {
-        background: #e8eaed;
       }
 
       .paa-icon {
@@ -637,9 +642,61 @@ html {
         color: #3c4043;
         line-height: 1.5;
         transition: max-height 0.3s ease, padding 0.3s ease;
+        
       }
+      .paa-answer {
+  white-space: pre-line;  /* honors line breaks (\n) in your text */
+}
+
 
       .paa-item.active .paa-answer {
         padding: 14px 20px 18px;
         max-height: 500px;
       }
+      .paa-box,
+.paa-question,
+.paa-answer {
+  background: inherit !important;
+}
+body {
+  background: #E2E5E9; /* your page color */
+}
+
+.paa-box {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.paa-question,
+.paa-answer {
+  background: inherit !important;  /* perfect camouflage */
+}
+
+/* REMOVE ALL VISIBLE BOX EFFECTS FROM THE ACCORDION */
+.paa-box {
+  background: #E2E5E9 !important;    /* SAME COLOR AS BODY */
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;              /* IMPORTANT – removes the “box feel” */
+  margin: 0 auto !important;          /* keep centered but remove top/bottom spacing */
+}
+
+/* Make each item look like part of the page */
+.paa-question,
+.paa-answer {
+  background: #E2E5E9 !important;     /* exact same as body */
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Keep only the dividers */
+.paa-item {
+  border: none !important;
+  border-bottom: 1px solid #9e6aff !important;
+  border-top: 1px solid #9e6aff !important;  /* colored divider stays visible */
+ 
+
+}
