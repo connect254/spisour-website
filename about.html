@@ -2,214 +2,169 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, orientation=landscape"
-    />
-    <title>Perfect Match Dating Connections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Singles Planet</title>
+
     <style>
       body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f4f6f8;
         margin: 0;
         padding: 20px;
-        text-align: center;
+        font-family: "Poppins", sans-serif;
+        background: #f3e8ff;
       }
 
       h2 {
-        color: purple;
-        margin-top: 30px;
+        text-align: center;
+        margin-bottom: 10px;
+        color: #4b007d;
       }
 
-      /* === VERIFIED SINGLES SCROLL ROW === */
+      .section-title {
+        font-size: 26px;
+        font-weight: 700;
+        text-align: center;
+        margin-top: 40px;
+        color: #4b007d;
+      }
+
+      /* VERIFIED PROFILE CARDS */
       .verified-container {
-        display: flex;
-        overflow-x: auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
         gap: 20px;
-        padding: 20px 10px;
-        scroll-snap-type: x mandatory;
-      }
-
-      .verified-container::-webkit-scrollbar {
-        height: 8px;
-      }
-
-      .verified-container::-webkit-scrollbar-thumb {
-        background-color: #b99ad9;
-        border-radius: 10px;
+        margin-top: 20px;
       }
 
       .card {
-        position: relative;
-        flex: 0 0 300px;
-        background-color: #fff;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        scroll-snap-align: start;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 18px;
         padding: 15px;
-        text-align: left;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        position: relative;
+        transition: 0.3s;
       }
 
-      /* === VERIFIED BADGE === */
+      .card:hover {
+        transform: scale(1.03);
+      }
+
       .verified-badge {
         position: absolute;
         top: 10px;
-        left: 10px;
-        background: rgba(76, 175, 80, 0.9);
+        right: 10px;
+        background: #4b007d;
         color: white;
+        padding: 4px 10px;
+        border-radius: 14px;
+        font-size: 12px;
         font-weight: bold;
-        font-size: 13px;
-        padding: 5px 10px;
-        border-radius: 20px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        backdrop-filter: blur(4px);
-        display: flex;
-        align-items: center;
-        gap: 4px;
-      }
-
-      .verified-badge::before {
-        content: "✅";
       }
 
       .profile-pic {
         width: 100%;
-        height: 220px;
-        border-radius: 12px;
+        height: 190px;
         object-fit: cover;
-        margin-bottom: 10px;
+        border-radius: 14px;
       }
 
       .details {
-        flex-grow: 1;
-      }
-
-      .details h3 {
-        color: #2c3e50;
-        margin: 8px 0;
+        margin-top: 10px;
+        font-size: 14px;
       }
 
       .details p {
-        font-size: 14px;
-        margin: 4px 0;
-        color: #555;
+        margin: 3px 0;
       }
 
       .whatsapp-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        background-color: #25d366;
-        color: white;
-        padding: 10px 15px;
-        border-radius: 20px;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: bold;
+        display: block;
         text-align: center;
-        width: 100%;
-        box-sizing: border-box;
-        transition: 0.3s ease;
+        margin-top: 12px;
+        background: #25d366;
+        color: white;
+        padding: 10px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 15px;
       }
 
       .whatsapp-btn:hover {
-        background-color: #1ebe5d;
-        transform: translateY(-2px);
+        background: #1eb85c;
       }
 
-      /* === UNVERIFIED SECTION === */
-      .unverified-container {
-        display: flex;
-        overflow-x: auto;
-        gap: 15px;
-        padding: 20px 10px;
-        scroll-snap-type: x mandatory;
-      }
-
-      .unverified-card {
-        position: relative;
-        flex: 0 0 180px;
-        background-color: #fff;
-        border: 2px dashed #b99ad9;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        scroll-snap-align: start;
-        padding: 15px;
-        color: #2c3e50;
-        font-weight: bold;
-        text-decoration: none;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .unverified-card:hover {
-        transform: scale(1.03);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      }
-
-      /* === UNVERIFIED BADGE === */
-      .unverified-badge {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        background: rgba(33, 150, 243, 0.9);
-        color: white;
-        font-size: 12px;
-        font-weight: bold;
-        padding: 4px 8px;
-        border-radius: 12px;
-        backdrop-filter: blur(4px);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      }
-
-      @media (max-width: 768px) {
-        body {
-          padding: 10px;
-        }
-        .card {
-          flex: 0 0 250px;
-        }
-        .unverified-card {
-          flex: 0 0 150px;
-        }
-      }
-      .explanation {
-        text-align: justify;
-      }
-      .site-footer {
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(8px);
-        text-align: center;
-        padding: 20px;
+      /* CATEGORY CARDS */
+      .categories {
         margin-top: 40px;
-        border-top: 1px solid rgba(255, 255, 255, 0.3);
-        font-size: 14px;
-        color: #333;
       }
 
-      .site-footer a {
-        color: #007bff;
-        text-decoration: none;
-        margin: 0 5px;
-        font-weight: 500;
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
       }
 
-      .site-footer a:hover {
-        text-decoration: underline;
+      .join-card {
+        background: white;
+        border-radius: 14px;
+        padding: 18px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+        border-left: 5px solid #4b007d;
+      }
+
+      .join-card:hover {
+        transform: scale(1.05);
+        background: #f5e1ff;
+      }
+      /* Horizontal Swiper for Verified Profiles */
+      .verified-wrapper {
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+        margin-bottom: 30px;
+      }
+
+      .verified-slider {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding-bottom: 10px;
+
+        /* hide scrollbar */
+        scrollbar-width: none;
+      }
+      .verified-slider::-webkit-scrollbar {
+        display: none;
+      }
+
+      .card {
+        min-width: 260px; /* IMPORTANT for sliding */
       }
     </style>
   </head>
-  <body>
-    <h2>🌍✅ Verified Singles</h2>
-    <div class="verified-container" id="verifiedList"></div>
 
-    <h2>100% FREE CONNECTIONS REFERAL PROGRAMME</h2>
-    <div class="unverified-container" id="unverifiedList"></div>
+  <body>
+    <h2>Singles Planet – Verified Profiles</h2>
+
+    <div class="verified-wrapper">
+      <div id="verifiedList" class="verified-slider"></div>
+    </div>
+
+    <h2 class="section-title">CHAT SEVERAL SINGLES (Master Key Dates)</h2>
+    <div id="unverifiedList" class="cards-grid"></div>
 
     <script>
+      /* ============================
+   VERIFIED PROFILES
+   ============================ */
       const verifiedProfiles = [
         {
           name: "Cynthia Kahombi",
@@ -223,6 +178,7 @@
           photo: "ds.photos/cynthiak.jpg",
           phone: "254708557186",
         },
+
         {
           name: "Jason Mutwiri",
           age: 30,
@@ -604,352 +560,281 @@
           phone: "254796339854",
         },
       ];
-      const unverifiedProfiles = [
+      /* ============================
+   CATEGORY CARDS (9 CARDS)
+   ============================ */
+
+      const categoryCards = [
         {
-          name: "",
-          phone:
-            "+254 743 182132,+254 743 215223,+254 740 117731,+254 741 278735,+254 741 618780,+254 741 668824,+254 741 996085,+254 742 005817,+254 742 615815,+254 742 652276",
+          label: "Women 18–23",
+          phones: [
+            "254714748200",
+            "254714522282",
+            "254707352465",
+            "254727285141",
+            "254723125040",
+            "254714553714",
+            "254702433651",
+            "254114100007",
+            "254705174099",
+            "254704813589",
+          ],
         },
-        { name: "", phone: "+254 724 242868" },
-        { name: "", phone: "+254 724 306024" },
-        { name: "", phone: "+254 724 124889" },
-        { name: "", phone: "+254 724 334734" },
-        { name: "", phone: "+254 724 337678" },
-        { name: "", phone: "+254 724 392504" },
-        { name: "", phone: "+254 724 473610" },
-        { name: "", phone: "+254 724 586787" },
-        { name: "", phone: "+254 724 637982" },
-        { name: "", phone: "+254 724 920564" },
-        { name: "", phone: "+254 725 111352" },
-        { name: "", phone: "+254 725 124935" },
-        { name: "", phone: "+254 725 455796" },
-        { name: "", phone: "+254 725 593287" },
-        { name: "", phone: "+254 725 608731" },
-        { name: "", phone: "+254 725 622571" },
-        { name: "", phone: "+254 725 649121" },
-        { name: "", phone: "+254 725 822571" },
-        { name: "", phone: "+254 725 841708" },
-        { name: "", phone: "+254 725 885383" },
-        { name: "", phone: "+254 726 143129" },
-        { name: "", phone: "+254 726 290845" },
-        { name: "", phone: "+254 726 317875" },
-        { name: "", phone: "+254 726 360979" },
-        { name: "", phone: "+254 726 391445" },
-        { name: "", phone: "+254 726 430751" },
-        { name: "", phone: "+254 726 589547" },
-        { name: "", phone: "+254 726 653591" },
-        { name: "", phone: "+254 726 688546" },
-        { name: "", phone: "+254 726 764639" },
-        { name: "", phone: "+254 726 773312" },
-        { name: "", phone: "+254 726 804871" },
-        { name: "", phone: "+254 727 065857" },
-        { name: "", phone: "+254 727 089185" },
-        { name: "", phone: "+254 727 359208" },
-        { name: "", phone: "+254 727 632367" },
-        { name: "", phone: "+254 727 640480" },
-        { name: "", phone: "+254 727 800035" },
-        { name: "", phone: "+254 727 803864" },
-        { name: "", phone: "+254 727 810262" },
-        { name: "", phone: "+254 727 863977" },
-        { name: "", phone: "+254 727 904709" },
-        { name: "", phone: "+254 727 935017" },
-        { name: "", phone: "+254 728 048656" },
-        { name: "", phone: "+254 728 295272" },
-        { name: "", phone: "+254 728 513709" },
-        { name: "", phone: "+254 728 619413" },
-
-        { name: "", phone: "+254 729 037961" },
-        { name: "", phone: "+254 729 163341" },
-        { name: "", phone: "+254 729 172417" },
-        { name: "", phone: "+254 729 581520" },
-        { name: "", phone: "+254 729 695198" },
-        { name: "", phone: "+254 729 755231" },
-        { name: "", phone: "+254 731 228453" },
-        { name: "", phone: "+254 731 280113" },
-        { name: "", phone: "+254 732 308205" },
-        { name: "", phone: "+254 732 308205" },
-        { name: "", phone: "+254 732 442989" },
-        { name: "", phone: "+254 732 681900" },
-        { name: "", phone: "+254 733 606364" },
-        { name: "", phone: "+254 734 507123" },
-        { name: "", phone: "+254 734 650420" },
-        { name: "", phone: "+254 736 102304" },
         {
-          name: "",
-          phone:
-            "+254 736 778697,+254 737 620768,+254 738 771195,+254 739 600314,+254 739 627696,+254 739 984533",
+          label: "Women 24–28",
+          phones: [
+            "254743182132",
+            "254743215223",
+            "254740117731",
+            "254741278735",
+            "254741618780",
+            "254741668824",
+            "254741996085",
+            "254742005817",
+            "254742615815",
+            "254742652276",
+          ],
         },
-
-        { name: "", phone: "+254 743 317103" },
-        { name: "", phone: "+254 743 317103" },
-        { name: "", phone: "+254 743 452203" },
-        { name: "", phone: "+254 745 419004" },
-        { name: "", phone: "+254 745 664375" },
-        { name: "", phone: "+254 746 101052" },
-        { name: "", phone: "+254 746 144228" },
-        { name: "", phone: "+254 746 281039" },
-        { name: "", phone: "+254 746 373477" },
-        { name: "", phone: "+254 746 489340" },
-        { name: "", phone: "+254 746 997225" },
-        { name: "", phone: "+254 746 997225" },
-        { name: "", phone: "+254 748 607177" },
-        { name: "", phone: "+254 748 612399" },
-        { name: "", phone: "+254 748 791304" },
-        { name: "", phone: "+254 748 892057" },
-        { name: "", phone: "+254 750 009090" },
-        { name: "", phone: "+254 751 416050" },
-        { name: "", phone: "+254 753 068531" },
-        { name: "", phone: "+254 753 108755" },
-        { name: "", phone: "+254 753 439868" },
-        { name: "", phone: "+254 753 439868" },
-        { name: "", phone: "+254 754 783227" },
-        { name: "", phone: "+254 757 315090" },
-        { name: "", phone: "+254 757 339168" },
-        { name: "", phone: "+254 757 549938" },
-        { name: "", phone: "+254 757 872276" },
-        { name: "", phone: "+254 758 394746" },
-        { name: "", phone: "+254 759 279733" },
-        { name: "", phone: "+254 759 669294" },
-        { name: "", phone: "+254 759 840610" },
-        { name: "", phone: "+254 740 273050" },
-        { name: "", phone: "+254 740 474514" },
-        { name: "", phone: "+254 740 605572" },
-        { name: "", phone: "+254 740 935910" },
-        { name: "", phone: "+254 741 230973" },
-        { name: "", phone: "+254 741 234114" },
-
-        { name: "", phone: "+254 726 550759" },
-        { name: "", phone: "+254 726 555709" },
-        { name: "", phone: "+254 726 572565" },
-
-        { name: "", phone: "+254 724 676686" },
-        { name: "", phone: "+254 724 728508" },
-        { name: "", phone: "+254 724 766089" },
-        { name: "", phone: "+254 724 814281" },
-        { name: "", phone: "+254 724 828031" },
-        { name: "", phone: "+254 724 832396" },
-        { name: "", phone: "+254 724 864544" },
-        { name: "", phone: "+254 724 871769" },
-
-        { name: "", phone: "+254 724 545993" },
-        { name: "", phone: "+254 724 554579" },
-        { name: "", phone: "+254 724 574946" },
-        { name: "", phone: "+254 728 514644" },
-        { name: "-how are you doing today- 11 ", phone: "+254 728 807279" },
-        { name: "-how are you doing today- 4 ", phone: "+254 711 26684" },
-        { name: "-how are you doing today- 7 ", phone: "+254 723 897270" },
-        { name: "-how are you doing today- 8 ", phone: "+254 724 142940" },
-
-        { name: "-how are you doing today- 9 ", phone: "+254 725 297983" },
-        { name: "-how are you doing today- 10 ", phone: "+254 725 932130" },
-        { name: "-how are you doing today- 11 ", phone: "+254 725 963211" },
-        { name: "-how are you doing today- 19 ", phone: "+254 720 474637" },
-        { name: "-how are you doing today- 21 ", phone: "+254 740 456798" },
-        { name: "-how are you doing today- 31 ", phone: "+254 748 991348" },
-        { name: "-how are you doing today- 32 ", phone: "+254 720 604383" },
-        { name: "-how are you doing today- 33 ", phone: "+254 721 774891" },
-        { name: "-how are you doing today- 34 ", phone: "+254 722 543710" },
-        { name: "-how are you doing today- 35 ", phone: "+254 722 799986" },
-        { name: "-how are you doing today- 36 ", phone: "+254 723 682289" },
-        { name: "-how are you doing today- 41 ", phone: "+254 727 097903" },
-        { name: "-how are you doing today- 42 ", phone: "+254 727 404274" },
-        { name: "-how are you doing today- 43 ", phone: "+254 727 573765" },
-        { name: "-how are you doing today- 44 ", phone: "+254 728 240854" },
-        { name: "-how are you doing today- 47 ", phone: "+254 728 807496" },
-        { name: "-how are you doing today- 48 ", phone: "+254 729 231379" },
-        { name: "-how are you doing today- 49 ", phone: "+254 731 611987" },
-        { name: "-how are you doing today- 50 ", phone: "+254 736 336866" },
-        { name: "-how are you doing today- 51 ", phone: "+254 739 116498" },
-        { name: "-how are you doing today- 52 ", phone: "+254 740 262025" },
-        { name: "-how are you doing today- 53 ", phone: "+254 740 489393" },
-        { name: "-how are you doing today- 54 ", phone: "+254 740 515628" },
-        { name: "-how are you doing today- 55 ", phone: "+254 740 523160" },
-        { name: "-how are you doing today- 56 ", phone: "+254 741 316102" },
-        { name: "-how are you doing today- 57 ", phone: "+254 742 427300" },
-        { name: "-how are you doing today- 58 ", phone: "+254 742 672204" },
-        { name: "-how are you doing today- 59 ", phone: "+254 778 935118" },
-        { name: "-how are you doing today- 60 ", phone: "+254 780 416924" },
-        { name: "-how are you doing today- 61 ", phone: "+254 780 860302" },
-        { name: "-how are you doing today- 62 ", phone: "+254 781 012015" },
-        { name: "-how are you doing today- 63 ", phone: "+254 716 344962" },
-        { name: "-how are you doing today- 64 ", phone: "+254 716 688813" },
-        { name: "-how are you doing today- 65 ", phone: "+254 717 048834" },
-        { name: "-how are you doing today- 66 ", phone: "+254 717 267167" },
-        { name: "-how are you doing today- 67 ", phone: "+254 717 665126" },
-        { name: "-how are you doing today- 68 ", phone: "+254 718 635378" },
-        { name: "-how are you doing today- 69 ", phone: "+254 719 632023" },
-        { name: "-how are you doing today- 70 ", phone: "+254 719 665894" },
-        { name: "-how are you doing today- 71 ", phone: "+254 720 226220" },
-        { name: "-how are you doing today- 72 ", phone: "+254 790 152103" },
-        { name: "-how are you doing today- 73 ", phone: "+254 790 190295" },
-        { name: "-how are you doing today- 74 ", phone: "+254 790 213578" },
-        { name: "-how are you doing today- 75 ", phone: "+254 790 295616" },
-        { name: "-how are you doing today- 78 ", phone: "+254 769 095856" },
-        { name: "-how are you doing today- 79 ", phone: "+254 769 212648" },
-        { name: "-how are you doing today- 80 ", phone: "+254 769 478444" },
-        { name: "-how are you doing today- 81 ", phone: "+254 769 954635" },
-        { name: "-how are you doing today- 82 ", phone: "+254 770 946007" },
-        { name: "-how are you doing today- 83 ", phone: "+254 798 854118" },
-        { name: "-how are you doing today- 84 ", phone: "+254 799 059182" },
-        { name: "-how are you doing today- 85 ", phone: "+254 799 213030" },
-        { name: "-how are you doing today- 86 ", phone: "+254 799 226936" },
-        { name: "-how are you doing today- 87 ", phone: "+254 799 427662" },
-        { name: "-how are you doing today- 88 ", phone: "+254 799 573797" },
-        { name: "-how are you doing today- 89 ", phone: "+254 799 614835" },
-        { name: "-how are you doing today- 90 ", phone: "+254 799 869864" },
-        { name: "-how are you doing today- 91 ", phone: "+254 799 894972" },
-        { name: "-how are you doing today- 92 ", phone: "+254 790 486033" },
-        { name: "-how are you doing today- 93 ", phone: "+254 791 157735" },
-        { name: "-how are you doing today- 94 ", phone: "+254 791 851598" },
-        { name: "-how are you doing today- 95 ", phone: "+254 792 347446" },
-        { name: "-how are you doing today- 96 ", phone: "+254 792 988349" },
-        { name: "-how are you doing today- 97 ", phone: "+254 793 274752" },
-        { name: "-how are you doing today- 98 ", phone: "+254 795 324304" },
-        { name: "-how are you doing today- 99 ", phone: "+254 796 392311" },
-        { name: "-how are you doing today- 100 ", phone: "+254 796 663936" },
-        { name: "-how are you doing today- 101 ", phone: "+254 797 823785" },
-        { name: "-how are you doing today- 102 ", phone: "+254 781 859612" },
-        { name: "-how are you doing today- 103 ", phone: "+254 783 650785" },
-        { name: "-how are you doing today- 104 ", phone: "+254 785 687566" },
-        { name: "-how are you doing today- 105 ", phone: "+254 787 740090" },
-        { name: "-how are you doing today- 106 ", phone: "+254 789 484301" },
-        { name: "-how are you doing today- 107 ", phone: "+254 706 561180" },
-        { name: "-how are you doing today- 108 ", phone: "+254 713 631713" },
-        { name: "-how are you doing today- 109 ", phone: "+254 741 610154" },
-        { name: "-how are you doing today- 110 ", phone: "+254 754 957924" },
-        { name: "-how are you doing today- 111 ", phone: "+254 733 688666" },
-        { name: "-how are you doing today- 112 ", phone: "+254 700 041978" },
-        { name: "-how are you doing today- 113 ", phone: "+254 114 648590" },
-        { name: "-how are you doing today- 114 ", phone: "+254 113 459212" },
-        { name: "-how are you doing today- 115 ", phone: "+254 732 324993" },
-        { name: "-how are you doing today- 116 ", phone: "+254 741 639401" },
-        { name: "-how are you doing today- 117 ", phone: "+254 794 043704" },
-        { name: "-how are you doing today- 118 ", phone: "+254 737 213408" },
-        { name: "-how are you doing today- 119 ", phone: "+254 798 069779" },
-        { name: "-how are you doing today- 120 ", phone: "+254 706 245673" },
-        { name: "-how are you doing today- 121 ", phone: "+254 793 947737" },
-        { name: "-how are you doing today- 122 ", phone: "+254 705 852459" },
-        { name: "-how are you doing today- 123 ", phone: "+254 791 419609" },
-        { name: "-how are you doing today- 124 ", phone: "+254 722 590480" },
-        { name: "-how are you doing today- 125 ", phone: "+254 758 053966" },
-        { name: "-how are you doing today- 126 ", phone: "+254 705 632793" },
-        { name: "-how are you doing today- 127 ", phone: "+254 727 322744" },
-        { name: "-how are you doing today- 128 ", phone: "+254 796 339854" },
-        { name: "-how are you doing today- 129 ", phone: "+254 726 994979" },
-        { name: "-how are you doing today- 130 ", phone: "+254 792 722201" },
-        { name: "-how are you doing today- 131 ", phone: "+254 746 398848" },
-        { name: "-how are you doing today- 132 ", phone: "+254 794 772271" },
-        { name: "-how are you doing today- 133 ", phone: "+254 794 220064" },
-        { name: "-how are you doing today- 134 ", phone: "+254 790 869400" },
-        { name: "-how are you doing today- 135 ", phone: "+254 710 700749" },
-        { name: "-how are you doing today- 136 ", phone: "+254 796 885560" },
-        { name: "-how are you doing today- 137 ", phone: "+254 112 241909" },
-        { name: "-how are you doing today- 138 ", phone: "+254 798 562661" },
-        { name: "-how are you doing today- 139 ", phone: "+254 759 917707" },
-        { name: "-how are you doing today- 140 ", phone: "+254 768 049563" },
-        { name: "-how are you doing today- 141 ", phone: "+254 759 178029" },
-        { name: "-how are you doing today- 142 ", phone: "+254 716 462416" },
-        { name: "-how are you doing today- 143 ", phone: "+254 715 331107" },
-        { name: "-how are you doing today- 144 ", phone: "+254 758 608183" },
-        { name: "-how are you doing today- 145 ", phone: "+254 748 246151" },
-        { name: "-how are you doing today- 146 ", phone: "+254 745 278819" },
-        { name: "-how are you doing today- 147 ", phone: "+254 754 952185" },
-        { name: "-how are you doing today- 148 ", phone: "+254 775 075248" },
-        { name: "-how are you doing today- 149 ", phone: "+254 114 246306" },
-        { name: "-how are you doing today- 150 ", phone: "+254 705 414031" },
-        { name: "-how are you doing today- 151 ", phone: "+254 721 233368" },
-        { name: "-how are you doing today- 152 ", phone: "+254 752 962121" },
-        { name: "-how are you doing today- 153 ", phone: "+254 799 919163" },
-        { name: "-how are you doing today- 154 ", phone: "+254 710 938960" },
-        { name: "-how are you doing today- 155 ", phone: "+254 705 211600" },
-        { name: "-how are you doing today- 156 ", phone: "+254 723 691681" },
-        { name: "-how are you doing today- 157 ", phone: "+254 724 480359" },
-        { name: "-how are you doing today- 158 ", phone: "+254 710 643506" },
-        { name: "-how are you doing today- 159 ", phone: "+254 113 445576" },
-        { name: "-how are you doing today- 160 ", phone: "+254 715 941577" },
-        { name: "-how are you doing today- 161 ", phone: "+254 714 748200" },
-        { name: "-how are you doing today- 162 ", phone: "+254 714 522282" },
-        { name: "-how are you doing today- 163 ", phone: "+254 707 352465" },
-        { name: "-how are you doing today- 164 ", phone: "+254 727 285141" },
-        { name: "-how are you doing today- 165 ", phone: "+254 723 125040" },
-        { name: "-how are you doing today- 166 ", phone: "+254 714 553714" },
-        { name: "-how are you doing today- 167 ", phone: "+254 702 433651" },
-        { name: "-how are you doing today- 168 ", phone: "+254 114 100007" },
-        { name: "-how are you doing today- 169 ", phone: "+254 705 174099" },
-        { name: "-how are you doing today- 170 ", phone: "+254 704 813589" },
+        {
+          label: "Women 29–33",
+          phones: [
+            "254724306024",
+            "254724124889",
+            "254724334734",
+            "254724337678",
+            "254724392504",
+            "254724473610",
+            "254724586787",
+            "254724637982",
+            "254724920564",
+            "254725111352",
+          ],
+        },
+        {
+          label: "Women 34–40",
+          phones: [
+            "254725124935",
+            "254725455796",
+            "254725593287",
+            "254725608731",
+            "254725622571",
+            "254725649121",
+            "254725822571",
+            "254725841708",
+            "254725885383",
+            "254726143129",
+          ],
+        },
+        {
+          label: "Women 40–50",
+          phones: [
+            "254726290845",
+            "254726317875",
+            "254726360979",
+            "254726391445",
+          ],
+        },
+        {
+          label: "Men 23–28",
+          phones: [
+            "254726430751",
+            "254726589547",
+            "254726653591",
+            "254726688546",
+            "254726764639",
+            "254726773312",
+            "254726804871",
+            "254727065857",
+            "254727089185",
+            "254727359208",
+          ],
+        },
+        {
+          label: "Men 29–35",
+          phones: [
+            "254727632367",
+            "254727640480",
+            "254727800035",
+            "254727803864",
+            "254727810262",
+            "254727863977",
+            "254727904709",
+            "254727935017",
+            "254728048656",
+            "254728295272",
+          ],
+        },
+        {
+          label: "Men 36–44",
+          phones: [
+            "254728513709",
+            "254728619413",
+            "254729037961",
+            "254729163341",
+            "254729172417",
+            "254729581520",
+            "254729695198",
+            "254729755231",
+            "254731228453",
+            "254731280113",
+          ],
+        },
+        {
+          label: "Men 45–60",
+          phones: [
+            "254732308205",
+            "254732308205",
+            "254732442989",
+            "254732681900",
+            "254733606364",
+            "254734507123",
+          ],
+        },
       ];
 
-      const verifiedList = document.getElementById("verifiedList");
-      const unverifiedList = document.getElementById("unverifiedList");
+      /* ============================
+   RENDER VERIFIED PROFILES
+   ============================ */
 
-      // === Render Verified Singles (WhatsApp) ===
+      const verifiedList = document.getElementById("verifiedList");
+
       verifiedProfiles.forEach((p) => {
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
     <div class="verified-badge">Verified</div>
-    <img src="${p.photo}" alt="${p.name}" class="profile-pic">
+    <img src="${p.photo}" class="profile-pic">
     <div class="details">
       <h3>${p.name}</h3>
-      <p><b>Age:</b> ${p.age || "N/A"}</p>
-      <p><b>Location:</b> ${p.location || "N/A"}</p>
-      <p><b>Gender:</b> ${p.gender || "N/A"}</p>
-      <p><b>Kids:</b> ${p.kids !== undefined ? p.kids : "N/A"}</p>
-      <p><b>Tribe:</b> ${p.tribe || "N/A"}</p>
-      <p><b>Career:</b> ${p.career || "N/A"}</p>
-      <p><b>Seeking:</b> ${p.seeking || "N/A"}</p>
+      <p><b>Age:</b> ${p.age}</p>
+      <p><b>Location:</b> ${p.location}</p>
+      <p><b>Gender:</b> ${p.gender}</p>
+      <p><b>Kids:</b> ${p.kids}</p>
+      <p><b>Tribe:</b> ${p.tribe}</p>
+      <p><b>Career:</b> ${p.career}</p>
+      <p><b>Seeking:</b> ${p.seeking}</p>
     </div>
+
     <a href="https://wa.me/${p.phone}?text=Hi%20${encodeURIComponent(
           p.name
-        )},%20I%20saw%20your%20profile%20on%20Singles%20Planet%20Dating%20Connections.%20https://connect254.github.io/spisour-website/%20can%20we%20know%20each%20other%20more?"
+        )},%20I%20saw%20your%20profile%20on%20Singles%20Planet.%20Can%20we%20connect?"
       class="whatsapp-btn" target="_blank">💬 Chat on WhatsApp</a>
   `;
         verifiedList.appendChild(card);
       });
 
-      // === Render Unverified Members (SMS) ===
-      unverifiedProfiles.forEach((p) => {
-        const link = document.createElement("a");
-        link.href = `sms:${p.phone}?body=${encodeURIComponent(
-          "hi" +
-            p.name +
-            ",  nilipata kwa hii WHATSAPP GROUP, pia wako na website . https://chat.whatsapp.com/CWE7TuhcsO8ApYHTFttx57"
-        )}`;
-        link.className = "unverified-card";
-        link.innerHTML = `
-    <div class="unverified-badge">Join me to group</div>
-    ${p.name}
-  `;
-        unverifiedList.appendChild(link);
+      /* ============================
+   RENDER CATEGORY CARDS
+   ============================ */
+
+      const unverifiedList = document.getElementById("unverifiedList");
+
+      categoryCards.forEach((cat) => {
+        const card = document.createElement("div");
+        card.className = "join-card";
+        card.innerHTML = cat.label;
+
+        card.onclick = () => {
+          const message = encodeURIComponent(
+            "Hi,i saw your profile on Singles Planet! https://chat.whatsapp.com/CWE7TuhcsO8ApYHTFttx57?mode=wwt can know each other more!"
+          );
+          cat.phones.forEach((phone) => {
+            window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+          });
+        };
+
+        unverifiedList.appendChild(card);
+      });
+    </script>
+    <script>
+      // === ENABLE SWIPE + DRAG TO SCROLL ===
+      const slider = document.querySelector(".verified-slider");
+
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      slider.addEventListener("mousedown", (e) => {
+        isDown = true;
+        slider.classList.add("active");
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
       });
 
-      // Suggest landscape mode
-      if (window.matchMedia("(orientation: portrait)").matches) {
-        alert("For best view, rotate your phone to landscape mode 📱↩️");
-      }
-    </script>
+      slider.addEventListener("mouseleave", () => {
+        isDown = false;
+        slider.classList.remove("active");
+      });
 
-    <p>HOW IT WORKS</p>
-    <div class="explanation">
-      <ul>
-        <li>CLICK BOXES labelled "Join me to group"</li>
-        <li>Allow whatsApp to send the pre-typed welcome message</li>
-        <li>Notify admin when done</li>
-        <li>You will get free connectionS of your choice.</li>
-        <li>
-          The boxes are clustered in 10-s with card labels 1,2,3 etc meaning you
-          do one cluster(10 referrals) to get free connections
-        </li>
-        <li>INQUIRIES WhatsApp me on +254796339854 (ADMIN)</li>
-      </ul>
-    </div>
-    <footer class="site-footer">
-      <p>© 2025 The Singles Planet. All Rights Reserved.</p>
-      <p>
-        Designed with ❤️ by <strong>Singles Planet Admin</strong> |
-        <a href="mailto:surehooksdatingagency@gmail.com">Email Me</a> |
-        <a href="https://wa.me/254796339854" target="_blank">WhatsApp</a>
-      </p>
-    </footer>
+      slider.addEventListener("mouseup", () => {
+        isDown = false;
+        slider.classList.remove("active");
+      });
+
+      slider.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 2; // scroll speed
+        slider.scrollLeft = scrollLeft - walk;
+      });
+
+      // Mobile touch support
+      slider.addEventListener("touchstart", (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+      });
+
+      slider.addEventListener("touchend", () => {
+        isDown = false;
+      });
+
+      slider.addEventListener("touchmove", (e) => {
+        if (!isDown) return;
+        const x = e.touches[0].pageX - slider.offsetLeft;
+        const walk = (x - startX) * 2;
+        slider.scrollLeft = scrollLeft - walk;
+      });
+      // ==========================
+      // AUTO SCROLL VERIFIED PROFILES (3X FASTER)
+      // ==========================
+
+      const autoSlider = document.querySelector(".verified-slider");
+      let autoScrollSpeed = 3; // 3× speed (was 1)
+      let isUserInteracting = false;
+
+      // Auto-scroll function
+      function autoScroll() {
+        if (!isUserInteracting) {
+          autoSlider.scrollLeft += autoScrollSpeed;
+
+          // Loop back to start when reaching the end
+          if (
+            autoSlider.scrollLeft >=
+            autoSlider.scrollWidth - autoSlider.clientWidth
+          ) {
+            autoSlider.scrollLeft = 0;
+          }
+        }
+        requestAnimationFrame(autoScroll);
+      }
+      // Detect user interaction (pause auto-scroll)
+      ["mousedown", "touchstart"].forEach((evt) => {
+        autoSlider.addEventListener(evt, () => {
+          isUserInteracting = true;
+        });
+      });
+      // Resume auto-scroll after interaction
+      ["mouseup", "mouseleave", "touchend"].forEach((evt) => {
+        autoSlider.addEventListener(evt, () => {
+          setTimeout(() => {
+            isUserInteracting = false;
+          }, 800);
+        });
+      });
+      // Start auto scroll
+      autoScroll();
+    </script>
   </body>
 </html>
