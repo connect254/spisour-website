@@ -23,6 +23,12 @@
       <button onclick="location.href='login.html'">💎Premium UNLIMITED</button>
     </div>
      <section class="paa-box" id="paa-container"></section>
+
+<br>
+<div class="lifetime"><h3>pay now to get lifetime free premium member connections</h3></div>
+
+<button onclick="pay()">Pay with M-PESA</button>
+
  <section class="glass-card faq-section">
       <h2><strong style="color: #4e2786;">WHAT EXACTLY I AM LOOKING FOR</strong></h2>
 
@@ -131,7 +137,7 @@
    
     <section class="glass-card faq-section">
       <div class="faq">
-        <button class="faq-question"><strong style="color: red"> website notice: 1 </strong></button>
+        <button class="faq-question"><strong>website memo </strong></button>
         <div class="faq-answer">
           <ul>
             <li>
@@ -154,16 +160,7 @@
               💬 New applicants must confirm their WhatsApp number for profile
               activation.
             </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-    <section class="glass-card faq-section">
-      <div class="faq">
-        <button class="faq-question"><strong style="color: red"> website notice: 2 </strong></button></button>
-        <div class="faq-answer">
-          <ul>
-            <li>
+              <li>
               🙏 Members are advised to maintain respect and privacy during
               interactions.
             </li>
@@ -338,6 +335,7 @@
       </div>
     </section>
 
+
     <div class="glass-card add-review">
       <h3>💖 Share Your Experience Publicly</h3>
       <textarea
@@ -421,13 +419,14 @@
       const notices = [
   { title: "ABOUT SINGLES PLANET", text: "🌍 Congratulations!and Welcome to The Singles Planet — where meaningful connections begin!. Created Sept 2025, . This platform is created for the Glory of GOD. \n🌟Our Mission:creating an ecosystem to empower singles build authentic, meaningful, and lasting connections through a secure and innovative digital platform.\n🌿Our Vision: The Singles Planet envisions a future where every individual has the opportunity to connect with others in a genuine and empowering way."},
   { title: " FIND YOUR MATCH", text: "🎯Tap on singles list 1&2,speed dating ,bemydate,singles 18-65 years e.t.c and chat singles directly, incase a direct chat number is not provided ask admin/searches are available for any locations, any age, any Career etc\n 💕 Get a private connection or use any membership described below\n 🌟  Search or post your personal preferences, interests, and compatibility insights on WHAT EXACTLY I AM LOOKING FOR page"},
-  { title: "premium members level-3 rights", text: "🌍Perfect matches are sent to you daily via email or whatsapp automatically without you having to make requests. \n🌍Call/chat admin anytime to inquire about,follow or to request a connection(s).\n🌍Free profile uploads(Photo optional).\n🌍Anonymous profiles browsing/Admin rights.\n🌍Free personalized match making.\n💎No expiry of package,NO renewal fees"},
-  { title: "premium members level-2 rights", text: "💎Call/chat admin anytime to inquire about/ or to request a connection(s).\n💎Free profile uploads(Photo optional).\n💎No expiry of package/NO renewal fees" },
-  { title: "premium members level-1 rights", text: "💎Free profile uploads(Photo optional). \n💎No expiry of package/NO renewal fees"},
+  { title: "premium member rights LEVEL 3", text: "🌍Relax everything is done for you-perfect matches are prompted to chat you daily.\n🌍Perfect matches are sent to you daily via email or whatsapp automatically without you having to make requests. \n🌍Call/chat admin anytime to inquire about,follow or to request a connection(s).\n🌍Free profile uploads(Photo optional).\n🌍Anonymous profiles browsing/Admin rights.\n🌍Free personalized match making.\n💎No expiry of package,NO renewal fees.\n💎One time fee kshs. 999/-"},
+  { title: "premium member rights LEVEL 2", text: "💎Call/chat admin anytime to inquire about/ or to request a connection(s).\n💎Free profile uploads(Photo optional).\n💎No expiry of package/NO renewal fees.\n💎One time fee kshs. 550/-" },
+  { title: "premium member rights LEVEL 1", text: "💎Free profile uploads(Photo optional). \n💎No expiry of package/NO renewal fees.\n💎 one time fee kshs. 299/-"},
   { title: "WHATSAPP GROUP\n<a href='https://chat.whatsapp.com/CWE7TuhcsO8ApYHTFttx57?mode=wwt' target='_blank' style='color:#25D366; text-decoration:underline;'>Click here to join</a>",},
 ];
 
 
+      
       const container = document.getElementById("paa-container");
 
       // ------------------------
@@ -489,5 +488,21 @@ notices.forEach((itemData, index) => {
         });
       });
     </script>
+
+    <script>
+function pay() {
+  fetch("https://yourserver.com/stkpush", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      phone: "0712345678",
+      amount: 100
+    })
+  })
+  .then(res => res.json())
+  .then(data => alert(data.message))
+  .catch(err => alert("Error: " + err));
+}
+</script>
   </body>
 </html>
