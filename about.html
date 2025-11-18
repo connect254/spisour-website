@@ -577,13 +577,13 @@
             "254702433651",
             "254114100007",
             "254705174099",
-            "254704813589",
           ],
         },
         {
           label: "Women 24–28",
           phones: [
             "254743182132",
+            "254704813589",
             "254743215223",
             "254740117731",
             "254741278735",
@@ -591,8 +591,6 @@
             "254741668824",
             "254741996085",
             "254742005817",
-            "254742615815",
-            "254742652276",
           ],
         },
         {
@@ -603,11 +601,10 @@
             "254724334734",
             "254724337678",
             "254724392504",
+            "254742615815",
+            "254742652276",
             "254724473610",
             "254724586787",
-            "254724637982",
-            "254724920564",
-            "254725111352",
           ],
         },
         {
@@ -615,14 +612,13 @@
           phones: [
             "254725124935",
             "254725455796",
+            "254724637982",
+            "254724920564",
+            "254725111352",
             "254725593287",
             "254725608731",
             "254725622571",
             "254725649121",
-            "254725822571",
-            "254725841708",
-            "254725885383",
-            "254726143129",
           ],
         },
         {
@@ -632,6 +628,10 @@
             "254726317875",
             "254726360979",
             "254726391445",
+            "254725822571",
+            "254725841708",
+            "254725885383",
+            "254726143129",
           ],
         },
         {
@@ -646,7 +646,6 @@
             "254726804871",
             "254727065857",
             "254727089185",
-            "254727359208",
           ],
         },
         {
@@ -656,38 +655,39 @@
             "254727640480",
             "254727800035",
             "254727803864",
+            "254727359208",
             "254727810262",
-            "254727863977",
-            "254727904709",
-            "254727935017",
-            "254728048656",
-            "254728295272",
+            "254724142940",
+            "254725297983",
+            "254725932130",
           ],
         },
         {
           label: "Men 36–44",
           phones: [
             "254728513709",
-            "254728619413",
-            "254729037961",
-            "254729163341",
-            "254729172417",
-            "254729581520",
-            "254729695198",
-            "254729755231",
-            "254731228453",
-            "254731280113",
+            "254725963211",
+            "254720474637",
+            "254740456798",
+            "254748991348",
+            "254720604383",
+            "254721774891",
+            "254722543710",
+            "254722799986",
           ],
         },
         {
           label: "Men 45–60",
           phones: [
             "254732308205",
-            "254732308205",
-            "254732442989",
-            "254732681900",
-            "254733606364",
-            "254734507123",
+            "254723682289",
+            "254727097903",
+            "254727404274",
+            "254727573765",
+            "254728240854",
+            "254728807496",
+            "254729231379",
+            "254731611987",
           ],
         },
       ];
@@ -727,26 +727,54 @@
    RENDER CATEGORY CARDS
    ============================ */
 
-      const unverifiedList = document.getElementById("unverifiedList");
+      // POPUP FUNCTIONS
+      function openPopup(phones) {
+        const phoneList = document.getElementById("phoneList");
+        phoneList.innerHTML = "";
 
+        phones.forEach((phone) => {
+          const msg = encodeURIComponent(
+            "I got your number from the Singles Planet website,https://chat.whatsapp.com/CWE7TuhcsO8ApYHTFttx57?mode=wwt  can we know each other more?"
+          );
+
+          const a = document.createElement("a");
+          a.href = `https://wa.me/${phone}?text=${msg}`;
+          a.target = "_blank";
+          a.style = `
+            display:block;
+            padding:10px;
+            background:#25D366;
+            color:white;
+            margin-bottom:10px;
+            text-align:center;
+            border-radius:10px;
+            font-weight:bold;
+            text-decoration:none;
+        `;
+          a.innerText = phone;
+
+          phoneList.appendChild(a);
+        });
+
+        document.getElementById("popup").style.display = "block";
+      }
+
+      function closePopup() {
+        document.getElementById("popup").style.display = "none";
+      }
+
+      // RENDER CATEGORY CARDS
       categoryCards.forEach((cat) => {
         const card = document.createElement("div");
         card.className = "join-card";
         card.innerHTML = cat.label;
 
-        card.onclick = () => {
-          const message = encodeURIComponent(
-            "Hi,i saw your profile on Singles Planet! https://chat.whatsapp.com/CWE7TuhcsO8ApYHTFttx57?mode=wwt can know each other more!"
-          );
-          cat.phones.forEach((phone) => {
-            window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
-          });
-        };
+        // OPEN POPUP WITH NUMBERS
+        card.onclick = () => openPopup(cat.phones);
 
         unverifiedList.appendChild(card);
       });
-    </script>
-    <script>
+
       // === ENABLE SWIPE + DRAG TO SCROLL ===
       const slider = document.querySelector(".verified-slider");
 
@@ -836,5 +864,54 @@
       // Start auto scroll
       autoScroll();
     </script>
+
+    <!-- POPUP PHONE LIST -->
+    <div
+      id="popup"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 30px;
+        backdrop-filter: blur(3px);
+      "
+    >
+      <div
+        style="
+          max-width: 360px;
+          margin: 60px auto;
+          background: white;
+          padding: 20px;
+          border-radius: 16px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        "
+      >
+        <h3 style="margin-top: 0; text-align: center; color: #4b007d">
+          Available Numbers
+        </h3>
+
+        <div id="phoneList" style="margin-top: 15px"></div>
+
+        <button
+          onclick="closePopup()"
+          style="
+            margin-top: 15px;
+            width: 100%;
+            padding: 10px;
+            background: #4b007d;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+          "
+        >
+          Close
+        </button>
+      </div>
+    </div>
   </body>
 </html>
