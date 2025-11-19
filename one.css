@@ -1,6 +1,3 @@
-
-
-
 body {
   margin: 0;
   padding: 0;
@@ -162,8 +159,8 @@ a {
     font-size: 0.95rem;
     padding: 10px;
   }
-}
 
+}
 .site-footer {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(8px);
@@ -173,16 +170,11 @@ a {
   border-top: 1px solid rgba(255, 255, 255, 0.3);
   font-size: 14px;
   color: #333;
-}
-.site-footer {
-  max-width: 900px;
+   max-width: 900px;
   margin: 30px auto 0 auto;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   width: 90%;
 }
-
 .site-footer a {
   color: #007bff;
   text-decoration: none;
@@ -228,15 +220,17 @@ a {
   border-radius: 0 0 12px 12px;
   margin-bottom: 10px;
 }
+.faq-answer {
+  transition: max-height 0.4s ease, padding 0.3s ease;
+}
+
 
 .faq-answer p {
   margin: 10px 0;
   color: #2d1b55;
 }
-
 .faq.active .faq-answer {
-  height:auto;
-  max-height: none;
+  max-height: 500px;
   padding: 15px;
 }
 /* === REVIEWS SECTION === */
@@ -244,7 +238,6 @@ a {
   margin-top: 40px;
   text-align: center;
 }
-
 .reviews-section h2 {
   text-align: center;
   color: #4e2786;
@@ -295,6 +288,7 @@ a {
   margin: 10px auto;
   display: block;
   box-sizing: border-box;
+}
 
   .add-review,
 .add-review textarea,
@@ -305,8 +299,6 @@ a {
   margin: 20px auto;
   text-align: center;
 } /* ensures padding & border stay inside width */
-}
-
 
 .add-review button:hover {
   transform: scale(1.05);
@@ -699,11 +691,11 @@ body {
   border-top: 1px solid #9e6aff !important;  /* colored divider stays visible */
  
 }
-
 .timer-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
   #timer {
         font-size: 20px;
@@ -711,10 +703,9 @@ body {
         color: red;
         text-align: center;
         margin-top: 20px;
-        width: 80px;
-        
-      
+         width: 90px; /* slightly bigger — fits even “TIME UP” */
       }
+
         .floating-logins {
         position: fixed;
         bottom: 20px;
@@ -728,7 +719,7 @@ body {
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         z-index: 9999;
         pointer-events: none; /* won't block clicks */
-        min-width: 180px;
+        width: 200px;   /* fixed width */
         text-align: center;
       }
       .connection-wrapper {
