@@ -731,3 +731,9 @@ body {
         min-width: 180px;
         text-align: center;
       }
+      .connection-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+      }
