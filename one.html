@@ -25,7 +25,7 @@
      <section class="paa-box" id="paa-container"></section>
 
 <br>
-<h3 style="text-align: center">Choose a level and pay now to get lifetime free premium member connections.<div id="timer">05:00</div></h3>
+<h3 style="text-align: center">⚠️ pay now to get lifetime free premium member connections.<div id="timer">05:00</div></h3>
 
 <button onclick="pay()">Pay with M-PESA</button>
 <h4 style="text-align: center">send money 0796 339 854 and forward message </h4>
@@ -335,7 +335,7 @@
         <p class="review-author">— Jason m., Kuwait</p>
       </div>
     </section>
-
+    <div class="floating-logins" id="floatingLogins">Loading...</div>
 
     <div class="glass-card add-review">
       <h3>💖 Share Your Experience Publicly</h3>
@@ -529,7 +529,172 @@ function pay() {
 
         timeLeft--;
       }, 1000);
+           // Generate 1000 fake names
+      const fakeUsers = [];
+      const firstNames = [
+        "Peter",
+        "Mary",
+        "John",
+        "Lilian",
+        "Paul",
+        "Alice",
+        "James",
+        "Nancy",
+        "Michael",
+        "Grace",
+        "Peter",
+        "Mary",
+        "John",
+        "Lilian",
+        "Paul",
+        "Alice",
+        "James",
+        "Nancy",
+        "Michael",
+        "Grace",
+        "Brian",
+        "Esther",
+        "Kevin",
+        "Sarah",
+        "Samuel",
+        "Cynthia",
+        "David",
+        "Beatrice",
+        "Emmanuel",
+        "Ruth",
+        "Dennis",
+        "Joyce",
+        "Allan",
+        "Lucy",
+        "Stephen",
+        "Agnes",
+        "Victor",
+        "Caroline",
+        "Collins",
+        "Mercy",
+        "George",
+        "Faith",
+        "Mark",
+        "Ann",
+        "Elijah",
+        "Winnie",
+        "Chris",
+        "Purity",
+        "Alex",
+        "Irene",
+        "Caleb",
+        "Dorcas",
+        "Isaac",
+        "Naomi",
+        "Nicholas",
+        "Janet",
+        "Martin",
+        "Hannah",
+        "Eric",
+        "Charity",
+        "Edwin",
+        "Brenda",
+        "Philip",
+        "Rose",
+        "Boniface",
+        "Evelyn",
+        "Daniel",
+        "Betty",
+        "Stephenie",
+        "Elvis",
+      ];
+      const lastNames = [
+        "Okoth",
+        "Mwangi",
+        "Otieno",
+        "Wambui",
+        "Kamau",
+        "Ochieng",
+        "Njoroge",
+        "Chebet",
+        "Maina",
+        "Okoth",
+        "Mwangi",
+        "Otieno",
+        "Wambui",
+        "Kamau",
+        "Ochieng",
+        "Njoroge",
+        "Chebet",
+        "Maina",
+        "Omondi",
+        "Mutua",
+        "Cherono",
+        "Achieng",
+        "Kiptoo",
+        "Atieno",
+        "Barasa",
+        "Nyambura",
+        "Mutiso",
+        "Cheruiyot",
+        "Makau",
+        "Muthoni",
+        "Wekesa",
+        "Mwende",
+        "Kosgei",
+        "Gichuki",
+        "Kilonzo",
+        "Rono",
+        "Were",
+        "Koech",
+        "Muli",
+        "Nyaga",
+        "Murugi",
+        "Musyoka",
+        "Kipkemboi",
+        "Njoki",
+        "Otieno",
+        "Mureithi",
+        "Simiyu",
+        "Kipruto",
+        "Nyambane",
+        "Karimi",
+        "Mugo",
+        "Akinyi",
+        "Kiplangat",
+        "Wafula",
+        "Muthee",
+        "Naliaka",
+        "Makena",
+        "Chesang",
+        "Onyango",
+        "Nanjala",
+        "Kariuki",
+        "Kiboi",
+        "Mworia",
+        "Kemei",
+        "Kangethe",
+        "Nduta",
+        "Mutuma",
+        "Chepkorir",
+        "Nyaboke",
+        "Mburu",
+        "Omondi",
+      ];
+
+      for (let i = 0; i < 1000; i++) {
+        const fn = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const ln = lastNames[Math.floor(Math.random() * lastNames.length)];
+        fakeUsers.push(`${fn} ${ln}`);
+      }
+
+      const floatingEl = document.getElementById("floatingLogins");
+      let currentIndex = 0;
+
+      function updateFloatingLogin() {
+        const user = fakeUsers[currentIndex];
+        floatingEl.textContent = `${user} is online`;
+        currentIndex = (currentIndex + 1) % fakeUsers.length;
+      }
+
+      // Change user every 2 seconds
+      setInterval(updateFloatingLogin, 2000);
+      updateFloatingLogin();
     </script>
   </body>
 </html>
-
