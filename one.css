@@ -698,9 +698,11 @@ body {
   border-bottom: 1px solid #9e6aff !important;
   border-top: 1px solid #9e6aff !important;  /* colored divider stays visible */
  
-
 }
-.lifetime {
-  align-items: center;
-  text-align: center;
-}
+  #timer {
+        font-size: 20px;
+        font-weight: bold;
+        color: red;
+        text-align: center;
+        margin-top: 20px;
+      }
