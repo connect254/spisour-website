@@ -67,6 +67,17 @@
         font-size: 22px;
         box-shadow: 0 6px 20px rgba(99, 66, 255, 0.18);
       }
+      .logo {
+  text-align: center; /* centers the image horizontally */
+  margin: 20px 0; /* adds vertical spacing */
+}
+
+.logo img {
+  width: 70px; /* adjust size as needed */
+  height: auto; /* keeps aspect ratio */
+  border-radius: 10px; /* optional: rounded corners */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* optional: subtle shadow */
+}
 
       h1 {
         margin: 0;
@@ -289,7 +300,7 @@
         }
       }
  .red-button {
-      background-color:  #6b46c1;       /* Red background */
+      background-color:  #6b46c1;
       color: white;                /* White text */
       border: none;                /* No border */
       padding: 12px 24px;          /* Some padding */
@@ -301,7 +312,7 @@
     }
 
     .red-button:hover {
-      background-color: darkred;   /* Darker red on hover */
+      background-color:#6b46c1;   /* Darker red on hover */
     }
     .redfast{
       text-align: center;
