@@ -73,7 +73,7 @@
 }
 
 .logo img {
-  width: 70px; /* adjust size as needed */
+  width: 60px; /* adjust size as needed */
   height: auto; /* keeps aspect ratio */
   border-radius: 10px; /* optional: rounded corners */
   box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* optional: subtle shadow */
