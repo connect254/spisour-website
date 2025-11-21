@@ -9,44 +9,37 @@
 
   <body id="top">
     <h1>🌍 THE SINGLES PLANET</h1>
-    <div class="slogan">“where singles become soulmates”</div>
-    
-
+    <div class="slogan">“100% free dating experience!”</div>
+     
     <div class="startbar">
       <button onclick="location.href='about.html'">🌍 speed DATING</button>
       <button onclick="location.href='bemydate.html'">💖BEMYDATE</button>
       <button onclick="location.href='mysearch.html'">✈️Diaspora Singles</button>
       <button onclick="location.href='site.html'">Singles 18-65 years</button>
        <button onclick="location.href='us.html'">💬WHITES singles</button>
-      <button onclick="location.href='login-admin.html'">Singles list 1</button>
+      <button onclick="location.href='admin.html'">Singles list 1</button>
       <button onclick="location.href='login-admin.html'">Singles list 2</button>
        <button onclick="location.href='dashboard.html'">Match Finder</button>
       <button onclick="location.href='login.html'">💎Premium UNLIMITED</button>
     </div>
      <section class="paa-box" id="paa-container"></section>
 
-<br>
-<h3 style="text-align: center">Pay a MEMBER LEVEL now to get lifetime free premium member connections.</h3>
-<div class="timer-wrapper"><div id="timer">05:00</div></div>
-
-<button onclick="pay()">Pay with M-PESA</button>
-<h4 style="text-align: center">send money 0796 339 854 and forward message </h4>
-
  <section class="glass-card faq-section">
       <h2><strong style="color: #4e2786;">WHAT EXACTLY I AM LOOKING FOR</strong></h2>
 
-      <div class="faq">
+    
+        <button class="faq-question">1. margret 24</button>
+        <div class="faq-answer">
+          <p>Am located in Nairobi, am a teacher by proffession, employed under TSC, no kids - searching for an intentional man for marriage between 25-35 should be caring , God fearing and doing something for work  from any part of kenya, My tribe kamba</p>
+        </div>
+      </div>
+        <div class="faq">
         <button class="faq-question">1. NAME, AGE</button>
         <div class="faq-answer">
           <p>ABCD</p>
         </div>
       </div>
 <div class="faq">
-        <button class="faq-question">1. NAME, AGE</button>
-        <div class="faq-answer">
-          <p>ABCD</p>
-        </div>
-      </div>
       <div class="faq">
         <button class="faq-question">1. NAME, AGE</button>
         <div class="faq-answer">
@@ -425,9 +418,9 @@
       const notices = [
   { title: "ABOUT SINGLES PLANET", text: "🌍 Congratulations!and Welcome to The Singles Planet — where meaningful connections begin!. Created Sept 2025, . This platform is created for the Glory of GOD. \n🌟Our Mission:creating an ecosystem to empower singles build authentic, meaningful, and lasting connections through a secure and innovative digital platform.\n🌿Our Vision: The Singles Planet envisions a future where every individual has the opportunity to connect with others in a genuine and empowering way."},
   { title: " FIND YOUR MATCH", text: "🎯Tap on singles list 1&2,speed dating ,bemydate,singles 18-65 years e.t.c and chat singles directly, incase a direct chat number is not provided ask admin/searches are available for any locations, any age, any Career etc\n 💕 Get a private connection or use any membership described below\n 🌟  Search or post your personal preferences, interests, and compatibility insights on WHAT EXACTLY I AM LOOKING FOR page"},
-  { title: "premium member rights LEVEL 3", text: "💰One time fee kshs. 999/-.\n🌍Relax everything is done for you-perfect matches are prompted to chat you daily.\n🌍Perfect matches are sent to you daily via email or whatsapp automatically without you having to make requests. \n🌍Call/chat admin anytime to inquire about,follow or to request a connection(s).\n🌍Free profile uploads(Photo optional).\n🌍Anonymous profiles browsing/Admin rights.\n🌍Free personalized match making.\n💎No expiry of package,NO renewal fees."},
-  { title: "premium member rights LEVEL 2", text: "💰One time fee kshs. 550/-.\n💎Call/chat admin anytime to inquire about/ or to request a connection(s).\n💎Free profile uploads(Photo optional).\n💎No expiry of package/NO renewal fees." },
-  { title: "premium member rights LEVEL 1", text: "💰One time fee kshs. 299/-.\n💎Free profile uploads(Photo optional). \n💎No expiry of package/No renewal fees"},
+  { title: "Upload my photo (level 1)", text: "💰One time fee kshs. 300/-.\n💎Free profile uploads(Photo optional). \n💎No expiry of package/No renewal fees"},
+  { title: "Give me contacts for... (level 2)", text: "💰One time fee kshs. 550/-.\n💎Call/chat admin anytime to inquire about/ or to request a connection(s).\n💎Free profile uploads(Photo optional).\n💎No expiry of package/NO renewal fees." },
+  { title: "Freedom, Love and liberty (level 3)", text: "💰One time fee kshs. 1000/-.\n🌍Relax everything is done for you-perfect matches are prompted to chat you daily.\n🌍Perfect matches are sent to you daily via email or whatsapp automatically without you having to make requests. \n🌍Call/chat admin anytime to inquire about,follow or to request a connection(s).\n🌍Free profile uploads(Photo optional).\n🌍Anonymous profiles browsing/Admin rights.\n🌍Free personalized match making.\n💎No expiry of package,NO renewal fees."},
   { title: "WHATSAPP GROUP\n<a href='https://chat.whatsapp.com/CWE7TuhcsO8ApYHTFttx57?mode=wwt' target='_blank' style='color:#25D366; text-decoration:underline;'>Click here to join</a>",},
 ];
 
@@ -494,46 +487,7 @@ notices.forEach((itemData, index) => {
         });
       });
     </script>
-
-    <script>
-function pay() {
-  fetch("https://yourserver.com/stkpush", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      phone: "0712345678",
-      amount: 100
-    })
-  })
-  .then(res => res.json())
-  .then(data => alert(data.message))
-  .catch(err => alert("Error: " + err));
-}
-</script>
- <script>
-      // 5 minutes countdown
-      let timeLeft = 5 * 60; // 5 minutes in seconds
-
-      const timer = setInterval(() => {
-        // Convert seconds to minutes:seconds
-        let minutes = Math.floor(timeLeft / 60);
-        let seconds = timeLeft % 60;
-
-        // Add leading zero if needed
-        if (seconds < 10) seconds = "0" + seconds;
-        if (minutes < 10) minutes = "0" + minutes;
-
-        // Display
-        document.getElementById("timer").textContent = minutes + ":" + seconds;
-
-        // Stop at zero
-        if (timeLeft <= 0) {
-          clearInterval(timer);
-          document.getElementById("timer").textContent = "TIME'S UP!";
-        }
-
-        timeLeft--;
-      }, 1000);
+<script>
            // Generate 1000 fake names
       const fakeUsers = [];
       const firstNames = [
