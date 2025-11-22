@@ -216,7 +216,7 @@ padding: 0 15px;
         font-weight: 600;
         cursor: pointer;
         font-size: 14px;
-        box-shadow: 0 6px 18px rgba(78, 50, 179, 0.1);
+        box-shadow: 0 6px 18px #e2e5e9;
         transition: 0.2s ease;
       }
       .btn:hover {
@@ -230,7 +230,7 @@ padding: 0 15px;
       .btn-login {
         background: #e2e5e9;
         color: #6b46c1;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 6px 18px #e2e5e9;
       }
 
       .btn-login:hover {
