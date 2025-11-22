@@ -74,8 +74,8 @@ padding: 0 15px;
   left: -270px; /* hidden */
   width: 270px;
   height: 100%;
-  background: black;
-  color: white;
+  background: white;
+  color: #6b46c1;
   transition: 0.3s ease;
   padding-top: 20px;
   z-index: 200;
@@ -114,13 +114,13 @@ padding: 0 15px;
 
 .menu-list li a {
   text-decoration: none;
-  color: #cbd5e1;
+  color:  #6b46c1;
   font-size: 16px;
   display: block;
 }
 
 .menu-list li:hover {
-  background: #374151;
+  background: black;
 }
 
 /* Dark overlay */
@@ -227,17 +227,17 @@ padding: 0 15px;
       }
 
       .btn-primary {
-        background: black;
-        color: white;
+       background: #e2e5e9;
+        color: #6b46c1;
       }
       .btn-login {
-        background: black;
-        color: white;
+        background: #e2e5e9;
+        color: #6b46c1;
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
       }
 
       .btn-login:hover {
-        background: #333;
+        background: #e2e5e9;
         transform: translateY(-2px);
       }
       
@@ -288,8 +288,8 @@ padding: 0 15px;
       background-color:  #6b46c1;
       color: white;                /* White text */
       border: none;                /* No border */
-      padding: 12px 24px;          /* Some padding */
-      font-size: 16px;             /* Font size */
+      padding: 10px 14px;          /* Some padding */
+      font-size: 14px;             /* Font size */
       font-weight: bold;           /* Bold letters */
       border-radius: 6px;          /* Rounded corners */
       cursor: pointer;             /* Pointer on hover */
