@@ -280,26 +280,6 @@ padding: 0 15px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
       }
 
-     
- .red-button {
-      background-color:  #6b46c1;
-      color: white;                /* White text */
-      border: none;                /* No border */
-      padding: 10px 14px;          /* Some padding */
-      font-size: 14px;             /* Font size */
-      font-weight: bold;           /* Bold letters */
-      border-radius: 6px;          /* Rounded corners */
-      cursor: pointer;             /* Pointer on hover */
-      transition: background 0.3s; /* Smooth hover effect */
-    }
-
-    .red-button:hover {
-      background-color:#6b46c1;   /* Darker red on hover */
-    }
-    .redfast{
-      text-align: center;
-    
-    }
     
       .welcome-section {
         display: flex;
