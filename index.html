@@ -52,65 +52,12 @@
         </div>
 
         <div class="cta" aria-hidden="false">
-          <a
-            class="whatsapp-btn"
-            href="https://wa.me/254796339854?text=Hi%20admin,%20I%20have%20registered,%20please%20send%20me%20my%20login%20password."
-            target="_blank"
-          >
-            <span class="whatsapp-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 32 32"
-                width="22"
-                height="22"
-                fill="white"
-              >
-                <path
-                  d="M16.003 2.667C8.636 2.667 2.67 8.631 2.67 16c0 2.817.742 5.403 2.032 7.67L2.667 29.333l5.858-1.917A13.29 13.29 0 0 0 16.003 29.333c7.367 0 13.333-5.964 13.333-13.333S23.37 2.667 16.003 2.667zm0 24.004c-2.33 0-4.488-.686-6.307-1.857l-.452-.29-3.474 1.135 1.14-3.386-.295-.521a11.355 11.355 0 0 1-1.725-6.717c0-6.28 5.12-11.4 11.4-11.4 6.28 0 11.4 5.12 11.4 11.4s-5.12 11.4-11.4 11.4zm6.274-8.542c-.343-.17-2.03-1.003-2.345-1.12-.316-.116-.547-.17-.778.171-.232.34-.89 1.12-1.092 1.35-.2.232-.403.26-.747.087-.343-.171-1.45-.535-2.76-1.703a10.3 10.3 0 0 1-1.91-2.373c-.2-.34-.022-.525.15-.693.155-.153.343-.4.515-.6.172-.2.23-.34.344-.568.116-.232.058-.426-.03-.6-.087-.17-.778-1.87-1.065-2.56-.28-.674-.564-.583-.778-.594-.2-.008-.43-.01-.66-.01a1.28 1.28 0 0 0-.932.435c-.32.34-1.22 1.19-1.22 2.9 0 1.71 1.25 3.36 1.43 3.6.17.232 2.46 3.96 6.08 5.45.85.366 1.515.584 2.03.746.85.27 1.63.23 2.24.14.68-.1 2.03-.83 2.32-1.64.29-.81.29-1.5.2-1.64-.087-.13-.317-.2-.66-.37z"
-                />
-              </svg>
-            </span>
-            Contact us
-          </a>
-
           <button class="btn btn-primary" id="joinBtn">Register</button>
           <button class="btn btn-login" id="loginBtn">Login</button>
         </div>
       </header>
       <br />
       <section class="controls" aria-label="Search and filters">
-        <div class="search" id="fakeSearch">
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M21 21l-4.35-4.35"
-              stroke="#5b3db7"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <circle
-              cx="11"
-              cy="11"
-              r="6"
-              stroke="#5b3db7"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-          <input
-            type="text"
-            placeholder="Search by name, age, city or interest"
-            readonly
-          />
-        </div>
-
         <select id="genderFilter" class="filter">
           <option value="any">All genders</option>
           <option value="female">Female</option>
@@ -126,28 +73,21 @@
           <option value="50+">50+</option>
         </select>
 
-        <button id="nearbyBtn" class="btn btn-ghost">Nearby singles</button>
+        <select id="ageFilter" class="filter">
+          <option value="any">Any location</option>
+          <option value="18-25">Within kenya</option>
+          <option value="26-35">Middle east (gulf)</option>
+          <option value="36-50">worldwide</option>
+        </select>
+
+        <button id="nearbyBtn" class="btn btn-ghost">featured singles</button>
       </section>
 
-      <div class="redfast">
-        <button class="red-button" onclick="window.location.href='fast.html'">
-          Singles list 1
-        </button>
-      </div>
-      <br />
-      <div class="redfast">
-        <button class="red-button" onclick="window.location.href='unpaid.html'">
-          Singles list 2
-        </button>
-      </div>
-      <br />
-      <div class="redfast">
-        <button class="red-button" onclick="window.location.href='one.html'">
-          Singles list 3
-        </button>
-      </div>
       <div class="available">
         <button class="btn btn-login" id="loginBtn">women 22 years</button>
+        <button class="btn btn-login" id="loginBtn">women 24 years</button>
+        <button class="btn btn-login" id="loginBtn">Men 28 years</button>
+        <button class="btn btn-login" id="loginBtn">Men 33 years</button>
       </div>
 
       <section class="welcome-section">
@@ -206,6 +146,29 @@
         </div>
       </section>
 
+      <div class="cta" aria-hidden="false">
+        <a
+          class="whatsapp-btn"
+          href="https://wa.me/254796339854?text=Hi%20admin,%20I%20have%20registered,%20please%20send%20me%20my%20login%20password."
+          target="_blank"
+        >
+          <span class="whatsapp-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 32 32"
+              width="22"
+              height="22"
+              fill="white"
+            >
+              <path
+                d="M16.003 2.667C8.636 2.667 2.67 8.631 2.67 16c0 2.817.742 5.403 2.032 7.67L2.667 29.333l5.858-1.917A13.29 13.29 0 0 0 16.003 29.333c7.367 0 13.333-5.964 13.333-13.333S23.37 2.667 16.003 2.667zm0 24.004c-2.33 0-4.488-.686-6.307-1.857l-.452-.29-3.474 1.135 1.14-3.386-.295-.521a11.355 11.355 0 0 1-1.725-6.717c0-6.28 5.12-11.4 11.4-11.4 6.28 0 11.4 5.12 11.4 11.4s-5.12 11.4-11.4 11.4zm6.274-8.542c-.343-.17-2.03-1.003-2.345-1.12-.316-.116-.547-.17-.778.171-.232.34-.89 1.12-1.092 1.35-.2.232-.403.26-.747.087-.343-.171-1.45-.535-2.76-1.703a10.3 10.3 0 0 1-1.91-2.373c-.2-.34-.022-.525.15-.693.155-.153.343-.4.515-.6.172-.2.23-.34.344-.568.116-.232.058-.426-.03-.6-.087-.17-.778-1.87-1.065-2.56-.28-.674-.564-.583-.778-.594-.2-.008-.43-.01-.66-.01a1.28 1.28 0 0 0-.932.435c-.32.34-1.22 1.19-1.22 2.9 0 1.71 1.25 3.36 1.43 3.6.17.232 2.46 3.96 6.08 5.45.85.366 1.515.584 2.03.746.85.27 1.63.23 2.24.14.68-.1 2.03-.83 2.32-1.64.29-.81.29-1.5.2-1.64-.087-.13-.317-.2-.66-.37z"
+              />
+            </svg>
+          </span>
+          Contact us
+        </a>
+      </div>
+
       <footer class="footer">
         <p>© 2025 The Singles Planet. All Rights Reserved.</p>
         <p>
@@ -235,21 +198,17 @@
         window.open(googleFormUrl, "_blank");
       });
 
-      document.getElementById("fakeSearch").addEventListener("click", () => {
-        window.open(googleFormUrl, "_blank");
-      });
+      document
+        .getElementById("genderFilter")
+        .addEventListener("change", () => {});
 
-      document.getElementById("genderFilter").addEventListener("change", () => {
-        window.open(googleFormUrl, "_blank");
-      });
+      document.getElementById("ageFilter").addEventListener("change", () => {});
+      window.open(googleFormUrl, "_blank");
 
-      document.getElementById("ageFilter").addEventListener("change", () => {
-        window.open(googleFormUrl, "_blank");
-      });
+      document.getElementById("ageFilter").addEventListener("change", () => {});
+      window.open(googleFormUrl, "_blank");
 
-      document.getElementById("nearbyBtn").addEventListener("click", () => {
-        window.open(googleFormUrl, "_blank");
-      });
+      document.getElementById("nearbyBtn").addEventListener("click", () => {});
 
       document.getElementById("loginBtn").addEventListener("click", () => {
         window.location.href = "one.html";
