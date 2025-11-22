@@ -643,12 +643,14 @@ html {
       }
       .paa-answer {
   white-space: pre-line;  /* honors line breaks (\n) in your text */
+   text-align: left !important;
 }
 
 
       .paa-item.active .paa-answer {
         padding: 14px 20px 18px;
         max-height: 500px;
+        text-align: left !important;
       }
       .paa-box,
 .paa-question,
