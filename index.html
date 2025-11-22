@@ -1,26 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Singles Planet — Meet your match</title>
-    <meta
-      name="description"
-      content="Singles Planet — modern, friendly dating front page with quick WhatsApp contact and registration links."
-    />
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sliding Menu Website</title>
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
+    <!-- Top Bar with Hamburger Menu -->
+    <div class="topbar">
+      <div class="menu-icon" onclick="openMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <h1 class="jupiter">The Singles Planet Website</h1>
+    </div>
+
+    <!-- Sliding Sidebar -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <h2>Navigation</h2>
+        <button class="close-btn" onclick="closeMenu()">✕</button>
+      </div>
+
+      <ul class="menu-list">
+        <li><a href="fast.html">Open dates</a></li>
+        <li><a href="unpaid.html">Ask admin</a></li>
+        <li><a href="one.html">Permanent membership</a></li>
+        <li><a href="site.html">Browse singles</a></li>
+        <li><a href="admin.html">Chat lists</a></li>
+        <li><a href="mysearch.html">Diaspora dating</a></li>
+        <li><a href="bemydate.html">Be my date</a></li>
+        <li><a href="about.html">Speed Dating</a></li>
+        <li><a href="about.html">SPONSER CONNECTION</a></li>
+      </ul>
+    </div>
+
+    <!-- Dark Background -->
+    <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+    <script src="script.js"></script>
+
     <div class="wrap" role="main">
       <header>
         <div class="brand">
           <div class="logo"><img src="ds.photos/tspbdp.png" alt="Logo" /></div>
           <div>
-            <h1>The Singles Planet</h1>
-            <div class="tag">
-              <p style="color: red">“100% free dating experience!”</p>
-            </div>
+            <h1 style="color: red">“100% free dating experience!"</h1>
           </div>
         </div>
 
@@ -101,6 +129,7 @@
 
         <button id="nearbyBtn" class="btn btn-ghost">Nearby singles</button>
       </section>
+
       <div class="redfast">
         <button class="red-button" onclick="window.location.href='fast.html'">
           Singles list 1
@@ -174,6 +203,7 @@
           </p>
         </div>
       </section>
+
       <footer class="footer">
         <p>© 2025 The Singles Planet. All Rights Reserved.</p>
         <p>
@@ -183,6 +213,18 @@
         </p>
       </footer>
     </div>
+
+    <script>
+      function openMenu() {
+        document.getElementById("sidebar").classList.add("open");
+        document.getElementById("overlay").classList.add("show");
+      }
+
+      function closeMenu() {
+        document.getElementById("sidebar").classList.remove("open");
+        document.getElementById("overlay").classList.remove("show");
+      }
+    </script>
 
     <script>
       const googleFormUrl = "https://forms.gle/r4Vp8jqYyeMYQZhy9"; // replace with your form link
