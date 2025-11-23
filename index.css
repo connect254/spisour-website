@@ -290,14 +290,13 @@ padding: 0 15px;
       }
 
       .welcome-card {
-        background: white;
-        border-radius: 16px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        padding: 30px 24px;
+      
         max-width: 700px;
         width: 100%;
         text-align: center;
         line-height: 1.6;
+        padding: 20px 16px;
+        
       }
 
       .welcome-card h2 {
@@ -315,22 +314,19 @@ padding: 0 15px;
       .welcome-card ul {
         list-style: none;
         padding: 0;
-        margin: 20px 0;
+        margin: 10px 0;
         text-align: left;
       }
 
       .welcome-card li {
         background: #f3f3f7;
-        border-radius: 10px;
-        padding: 10px 14px;
+        padding: 10px 5px;
         margin-bottom: 10px;
         font-size: 15px;
       }
 
       @media (max-width: 600px) {
-        .welcome-card {
-          padding: 20px 16px;
-        }
+       
 
         .welcome-card h2 {
           font-size: 20px;
