@@ -76,8 +76,8 @@ border-radius: 10px;
 .sidebar {
   position: fixed;
   top: 0;
-  left: -320px; /* hidden */
-  width: 320px;
+  left: -290px; /* hidden */
+  width: 290px;
   height: 100%;
   background: white;
   color: #6b46c1;
@@ -436,3 +436,4 @@ border-radius: 10px;
         }
       }
           
+
