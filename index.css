@@ -20,11 +20,7 @@
       }
 
       
-      body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #e2e5e9;
-}
+  
 body {
         min-height: 100%;
         background: var(--bg);
@@ -34,6 +30,9 @@ body {
         -moz-osx-font-smoothing: grayscale;
         padding: 40px 16px;
         box-sizing: border-box;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #e2e5e9;
       }
 
 /* Top bar */
@@ -64,23 +63,57 @@ padding: 0 15px;
   border-radius: 2px;
 }
 
+
+.sidebar::-webkit-scrollbar {
+width: 6px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+background: #6b46c1;
+border-radius: 10px;
+}
+
 /* Sidebar (hidden by default) */
 .sidebar {
   position: fixed;
   top: 0;
-  left: -270px; /* hidden */
-  width: 270px;
+  left: -320px; /* hidden */
+  width: 320px;
   height: 100%;
   background: white;
   color: #6b46c1;
   transition: 0.3s ease;
   padding-top: 20px;
   z-index: 200;
+  overflow-y: auto;  
 }
+.badge {
+    background: #6a41d1;   /* Your purple theme */
+    color: white;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    min-width: 22px;
+    text-align: center;
+}
+
 
 /* Sidebar open */
 .sidebar.open {
   left: 0;
+}
+.sidebar {
+    pointer-events: none;
+}
+
+.sidebar.open {
+    pointer-events: auto;
+}
+.overlay {
+    pointer-events: none;
+}
+
+.overlay.show {
+    pointer-events: auto;
 }
 
 /* Header inside sidebar */
@@ -102,11 +135,22 @@ padding: 0 15px;
 .menu-list {
   list-style: none;
   padding: 0;
-  margin-top: 20px;
+  margin-top: 0px;
 }
+
 
 .menu-list li {
   padding: 12px 20px;
+}
+
+.menu-list li {
+    font-size: 18px;
+    color: #6a41d1;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;   /* Push text left and badge right */
+    align-items: center;
+    border-bottom: 1px solid #eee;
 }
 
 .menu-list li a {
