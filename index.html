@@ -25,15 +25,15 @@
       </div>
 
       <ul class="menu-list">
-        <li><a href="fast.html">Open dates</a></li>
-        <li><a href="unpaid.html">Ask admin</a></li>
-        <li><a href="one.html">Permanent membership</a></li>
-        <li><a href="site.html">Browse singles</a></li>
-        <li><a href="admin.html">Chat lists</a></li>
-        <li><a href="mysearch.html">Diaspora dating</a></li>
-        <li><a href="bemydate.html">Be my date</a></li>
-        <li><a href="about.html">Speed Dating</a></li>
-        <li><a href="login.html">SPONSER CONNECTION</a></li>
+        <li><a href="fast.html">Open dates</a><span class="badge" id="openDatesCount">0</span></li>
+        <li><a href="unpaid.html">Ask admin</a><span class="badge" id="askAdminCount">3</span></li>
+        <li><a href="one.html">Permanent membership</a><span class="badge" id="permCount">2</span></li>
+        <li><a href="site.html">Browse singles</a><span class="badge" id="browseCount">12</span></li>
+        <li><a href="admin.html">Chat lists</a><span class="badge" id="chatCount">4</span></li>
+        <li><a href="mysearch.html">Diaspora dating</a><span class="badge" id="diasporaCount">1</span></li>
+        <li><a href="bemydate.html">Be my date</a><span class="badge" id="bemydateCount">6</span></li>
+        <li><a href="about.html">Speed Dating</a><span class="badge" id="speedCount">8</span></li>
+        <li><a href="login.html">SPONSER CONNECTION</a><span class="badge" id="sponsorCount">0</span></li>
       </ul>
     </div>
 
@@ -73,12 +73,11 @@
           <option value="50+">50+</option>
         </select>
 
-        <select id="ageFilter" class="filter">
+        <select id="locationFilter" class="filter">
           <option value="any">Any location</option>
           <option value="18-25">Within kenya</option>
           <option value="26-35">Middle east (gulf)</option>
-          <option value="36-50">Germany</option>
-          <option value="36-50">Canada</option>
+          <option value="36-50">worldwide</option>
         </select>
 
         <button id="nearbyBtn" class="btn btn-ghost">featured singles</button>
@@ -105,25 +104,25 @@
             </li> 
          
             <li>
-              Automated-matches are sent via email or whatsapp (no requests
+              💎automated-matches are sent via email or whatsapp (no requests
                 needed).
             </li>
             <li>
-                Call/chat admin anytime to inquire about,follow or to request
+                💎Call/chat admin anytime to inquire about,follow or to request
                 a connection(s).
             </li>
-<li>Matches usually prompted to chat you (for ladies).</li>
-<li>Free profile uploads(Photo recommended but optional).</li>
-<li>Everyone can chat you directly from the website(optional).</li>
-<li>Anonymous profiles browsing/Admin rights.</li>
-<li>PRIVACY guaranted</li>
-<li>Very effective for single mothers/fathers</li>
-<li>Free personalized match making. </li>
-<li>Unlimited connections.</li>
-<li>Browsing all profiles.</li>
-<li>Personal admin matching.</li>
-<li>Visibility boost </li>
-<li>No expiry of package,NO renewal fees.</li>
+<li>💎Matches usually prompted to chat you (for ladies).</li>
+<li>💎Free profile uploads(Photo recommended but optional).</li>
+<li>💎Everyone can chat you directly from the website(optional).</li>
+<li>💎Anonymous profiles browsing/Admin rights.</li>
+<li>💎PRIVACY guaranted</li>
+<li>💎very effective for single mothers/fathers</li>
+<li>💎Free personalized match making. </li>
+<li>💎Unlimited connections.</li>
+<li>💎Browsing all profiles.</li>
+<li>💎personal admin matching.</li>
+<li>💎 visibility boost </li>
+<li>💎No expiry of package,NO renewal fees.</li>
 <p>Join our growing global community and take the first step toward love, friendship, and abudance. <br /><strong><p style="color: red">“Mature love is gentle , understanding and intentional!”</p>
 </strong></p>
         </div>
@@ -186,10 +185,10 @@
         .addEventListener("change", () => {});
 
       document.getElementById("ageFilter").addEventListener("change", () => {});
-      window.open(googleFormUrl, "_blank");
+      
 
-      document.getElementById("ageFilter").addEventListener("change", () => {});
-      window.open(googleFormUrl, "_blank");
+      document.getElementById("locationFilter").addEventListener("change", () => {});
+     
 
       document.getElementById("nearbyBtn").addEventListener("click", () => {});
 
@@ -197,7 +196,19 @@
         window.location.href = "one.html";
       });
     </script>
+    <script>
+    // Example dynamic counters
+document.getElementById("openDatesCount").textContent = 37;
+document.getElementById("askAdminCount").textContent = 643;
+document.getElementById("permCount").textContent = 4;
+document.getElementById("browseCount").textContent = 1098;
+document.getElementById("chatCount").textContent = 31;
+document.getElementById("diasporaCount").textContent = 117;
+document.getElementById("bemydateCount").textContent = 7;
+document.getElementById("speedCount").textContent = 7;
+document.getElementById("sponsorCount").textContent = 120;
+</script>
   </body>
 </html>
 
-
+       
