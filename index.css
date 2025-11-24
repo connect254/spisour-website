@@ -23,7 +23,6 @@
   
 body {
         min-height: 100%;
-        background: var(--bg);
         align-items: flex-start;
         color: #1b1530;
         -webkit-font-smoothing: antialiased;
@@ -87,13 +86,13 @@ border-radius: 10px;
   overflow-y: auto;  
 }
 .badge {
-    background: #6a41d1;   /* Your purple theme */
-    color: white;
-    padding: 2px 10px;
-    border-radius: 20px;
-    font-size: 13px;
-    min-width: 22px;
-    text-align: center;
+  background: #6a41d1;   /* Your purple theme */
+  color: white;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  min-width: 22px;
+  text-align: center;
 }
 
 
@@ -160,10 +159,6 @@ border-radius: 10px;
   display: block;
 }
 
-.menu-list li:hover {
-  background: black;
-}
-
 /* Dark overlay */
 .overlay {
   position: fixed;
@@ -205,11 +200,10 @@ border-radius: 10px;
         font-weight: 700;
         font-size: 22px;
         box-shadow: 0 6px 20px rgba(99, 66, 255, 0.18);
+         text-align: center; /* centers the image horizontally */
+         margin: 20px 0; /* adds vertical spacing */
       }
-      .logo {
-  text-align: center; /* centers the image horizontally */
-  margin: 20px 0; /* adds vertical spacing */
-}
+
 
 .logo img {
   width: 60px; /* adjust size as needed */
@@ -436,4 +430,3 @@ border-radius: 10px;
         }
       }
           
-
