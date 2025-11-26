@@ -446,28 +446,13 @@ h2 {
   }
 
   .category-btn {
-    
-
   display: flex;
         gap: 12px;
         align-items: center;
         margin-bottom: 18px;
         flex-wrap: wrap;
-        justify-content: center;
-      
- 
+        justify-content: center;  
   }
-
-
-      
-      
-        
-
-
-  .category-btn:hover {
-    background: #512a97;
-  }
-
   /* Card Grid */
   .card-container {
     display: none;
@@ -503,4 +488,5 @@ h2 {
   .whatsapp-icon {
     width: 30px;
   }
+
 
