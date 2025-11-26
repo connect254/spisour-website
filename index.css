@@ -463,7 +463,8 @@ h2 {
 
   /* Glass-style Card */
   .card {
-    background: rgba(255,255,255,0.25);
+    background: #6b46c1 ;
+   color: white;
     border: 1px solid rgba(255,255,255,0.35);
     backdrop-filter: blur(10px);
     border-radius: 15px;
@@ -488,5 +489,6 @@ h2 {
   .whatsapp-icon {
     width: 30px;
   }
+
 
 
