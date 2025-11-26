@@ -446,15 +446,23 @@ h2 {
   }
 
   .category-btn {
-    padding: 12px 20px;
-    border: none;
-    background: #6b46c1;
-    color: white;
-    font-size: 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
+    
+
+  display: flex;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+      
+ 
   }
+
+
+      
+      
+        
+
 
   .category-btn:hover {
     background: #512a97;
@@ -495,3 +503,4 @@ h2 {
   .whatsapp-icon {
     width: 30px;
   }
+
