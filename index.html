@@ -278,20 +278,38 @@ document.getElementById("speedCount").textContent = 7;
 document.getElementById("sponsorCount").textContent = 120;
 document.getElementById("permCount").textContent = 4;
 </script>
-<script>
+
+  <script>
+let openCategory = null; // Track which section is open
 
 function showCategory(id) {
-  document.querySelectorAll('.card-container').forEach(div => div.style.display = 'none');
-  document.getElementById(id).style.display = 'grid';
+  const section = document.getElementById(id);
+
+  // If the same category is clicked again → close it
+  if (openCategory === id) {
+    section.style.display = "none";
+    openCategory = null;
+    return;
+  }
+
+  // Close all categories
+  document.querySelectorAll('.card-container')
+    .forEach(div => div.style.display = 'none');
+
+  // Open the selected one
+  section.style.display = "grid";
+  openCategory = id;
+
+  // Optional smooth scroll
+  window.scrollTo({ top: 200, behavior: 'smooth' });
 }
-  
 </script>
-  
     
   </body>
 </html>
 
        
+
 
 
 
