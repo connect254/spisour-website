@@ -430,3 +430,68 @@ border-radius: 10px;
         }
       }
           
+
+
+h2 {
+    text-align: center;
+  }
+
+  /* Category Buttons */
+  .category-list {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .category-btn {
+    padding: 12px 20px;
+    border: none;
+    background: #6b46c1;
+    color: white;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .category-btn:hover {
+    background: #512a97;
+  }
+
+  /* Card Grid */
+  .card-container {
+    display: none;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  /* Glass-style Card */
+  .card {
+    background: rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,0.35);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    background: #25d366; /* WhatsApp green */
+    padding: 10px 14px;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+  }
+
+  .whatsapp-icon {
+    width: 30px;
+  }
