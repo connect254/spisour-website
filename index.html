@@ -89,6 +89,76 @@
         </button>
       </div>
 
+<h2>Choose a Category</h2>
+
+<div class="category-list">
+  <button class="category-btn" onclick="showCategory('doctor')">Marry a Doctor</button>
+  <button class="category-btn" onclick="showCategory('teacher')">Marry a Teacher</button>
+  <button class="category-btn" onclick="showCategory('lecturer')">Marry a Lecturer</button>
+</div>
+
+<!-- ====================== CATEGORY: DOCTORS ====================== -->
+<div id="doctor" class="card-container">
+  <div class="card">
+    <h3>Dr. Faith – 30</h3>
+    <p>Medical Officer</p>
+    <a class="whatsapp-btn" href="https://wa.me/254701000111" target="_blank">
+      <img class="whatsapp-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+      whatsapp
+    </a>
+  </div>
+
+  <div class="card">
+    <h3>Dr. Kelvin – 36</h3>
+    <p>Surgeon</p>
+    <a class="whatsapp-btn" href="https://wa.me/254727500222" target="_blank">
+      <img class="whatsapp-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+      whatsapp
+    </a>
+  </div>
+</div>
+
+<!-- ====================== CATEGORY: TEACHERS ====================== -->
+<div id="teacher" class="card-container">
+  <div class="card">
+    <h3>Angela – 28</h3>
+    <p>High School Teacher</p>
+    <a class="whatsapp-btn" href="https://wa.me/254743221100" target="_blank">
+      <img class="whatsapp-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+      whatsapp
+    </a>
+  </div>
+
+  <div class="card">
+    <h3>Brian – 32</h3>
+    <p>Primary Teacher</p>
+    <a class="whatsapp-btn" href="https://wa.me/254710998877" target="_blank">
+      <img class="whatsapp-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+      whatsapp
+    </a>
+  </div>
+</div>
+
+<!-- ====================== CATEGORY: LECTURERS ====================== -->
+<div id="lecturer" class="card-container">
+  <div class="card">
+    <h3>Lilian – 34</h3>
+    <p>University Lecturer</p>
+    <a class="whatsapp-btn" href="https://wa.me/254745667788" target="_blank">
+      <img class="whatsapp-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+      whatsapp
+    </a>
+  </div>
+
+  <div class="card">
+    <h3>George – 38</h3>
+    <p>College Lecturer</p>
+    <a class="whatsapp-btn" href="https://wa.me/254701223344" target="_blank">
+      <img class="whatsapp-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+      whatsapp
+    </a>
+  </div>
+</div>
 
       <section class="welcome-section">
         <div class="welcome-card">
@@ -208,9 +278,19 @@ document.getElementById("speedCount").textContent = 7;
 document.getElementById("sponsorCount").textContent = 120;
 document.getElementById("permCount").textContent = 4;
 </script>
+
+<script>
+  function showCategory(id) {
+    document.querySelectorAll('.card-container').forEach(div => div.style.display = 'none');
+    document.getElementById(id).style.display = 'grid';
+    window.scrollTo({ top: 200, behavior: 'smooth' });
+  }
+</script>
+    
   </body>
 </html>
 
        
+
 
 
