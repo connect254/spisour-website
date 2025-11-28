@@ -34,14 +34,9 @@
         <li><a href="about.html">⚡Speed Dating</a><span class="badge" id="speedCount">8</span></li>
         <li><a href="login.html">💑Sponsor Dates</a><span class="badge" id="sponsorCount">0</span></li>
          <li><a href="one.html">🏆Premium membership</a><span class="badge" id="permCount">2</span></li>
-         <li class="special-header">✨Special Connections</li>
-<li class="special-item"><a href="#">HIV +ve singles</a></li>
-<li class="special-item"><a href="#">Widowed men</a></li>
-<li class="special-item"><a href="#">Don't want kids</a></li>
-<li class="special-item"><a href="#">Can't get kids</a></li>
-<li class="special-item"><a href="#">Verified Rich singles</a></li>
-        <li class="special-item"><a href="#">Advantanged singles</a></li>
-
+         <li class="special-header">✨Hookup Connections</li>
+<li class="special-item"><a href="#">Hookups near me</a></li>
+<li class="special-item"><a href="#">Hookups any location</a></li>
       </ul>
     </div>
 
@@ -465,13 +460,38 @@ locations.forEach(loc => {
 
 
 </script>
+<script>
+const specialCases = [
+  { label: "HIV+VE singles" },
+  { label: "Widowed men" },
+  { label: "Don't want kids" },
+  { label: "Can't kids" },
+  { label: "Verified Rich singles" },
+  { label: "Advantanged singles" },
+];
 
+const menuList = document.querySelector(".menu-list");
 
+// Create header
+const header = document.createElement("li");
+header.className = "special-header";
+header.textContent = "✨Special Connections";
+menuList.appendChild(header);
+
+// Create items with WhatsApp link
+specialCases.forEach(item => {
+  const li = document.createElement("li");
+  li.className = "special-item";
+
+  li.innerHTML = `<a href="https://wa.me/254796339854?text=A%20need%20a%20special%20category%20connection" target="_blank">${item.label}</a>`;
+
+  menuList.appendChild(li);
+});
+</script>
   </body>
 </html>
 
        
-
 
 
 
