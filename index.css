@@ -510,11 +510,9 @@ h2 {
 
 /* Special Cases Items */
 .special-item {
-  background: #25d366; /* WhatsApp green */
-  color: white;
+  background: white;
   padding: 12px 20px;
   margin: 2px 0; /* small spacing */
-  border-radius: 8px;
   font-size: 15px;
 }
 
@@ -526,4 +524,3 @@ h2 {
   .special-item a:hover {
   opacity: 0.9;
 }
-
