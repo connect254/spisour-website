@@ -449,7 +449,7 @@ h2 {
   display: flex;
         gap: 12px;
         align-items: center;
-        margin-bottom: 18px;
+        margin-bottom: 8px;
         flex-wrap: wrap;
         justify-content: center;  
   }
@@ -491,4 +491,39 @@ h2 {
   }
 
 
+ .location-list {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
 
+/* Special Cases Header */
+.special-header {
+  background: black;
+  color: white;
+  font-weight: bold;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: default;
+}
+
+/* Special Cases Items */
+.special-item {
+  background: #25d366; /* WhatsApp green */
+  color: white;
+  padding: 12px 20px;
+  margin: 2px 0; /* small spacing */
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.special-item a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+  .special-item a:hover {
+  opacity: 0.9;
+}
