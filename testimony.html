@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Singles Planet Testimonials</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f0f0f5;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        color: #5a2d82;
+      }
+
+      #testimonialContainer {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .testimonial-card {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 16px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        font-size: 16px;
+        line-height: 1.6;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>What Our Users Say</h1>
+    <div id="testimonialContainer"></div>
+
+    <script>
+      // Testimonials array (raw, no serial numbers)
+      const testimonials = [
+        "I joined Singles Planet after a stressful breakup and didn’t expect much, but within two weeks I met a woman who matched my energy, goals, and personality. We both work in the medical field, so we bonded instantly over our long shifts and shared dreams. The platform made it easy to communicate freely and safely. Thank you for restoring my hope in love. — Brian M.",
+        "As a widowed mother of two, dating again was terrifying. But Singles Planet connected me with a patient, understanding man who didn’t judge my past. We took things slowly, and now my kids absolutely adore him. Your platform is a true blessing. — Ruth K.",
+        "Being HIV-positive made dating extremely difficult for me. Most apps are full of stigma. Here, I found a category just for people like me, and for the first time I dated without fear of judgment. I met someone who understands fully. We’re building a beautiful journey together. — Peter O.",
+        "I relocated to Qatar three years ago, and loneliness hit me hard. Your diaspora category connected me to a fellow Kenyan working in Doha. We now spend weekends exploring the city together. Singles Planet is the truth! — Faith W.",
+        "At 45, I thought real love was no longer for me. But the 40+ singles category surprised me. I met a mature, well-grounded woman who knows what she wants. We plan to settle down next year if things continue smoothly. — Charles N.",
+        "I tried the hookups category just for fun, and honestly didn’t expect anything serious. But I matched with someone honest, clean, respectful, and direct. It was safe, private, and exactly what I needed at that moment. — Michelle A.",
+        "I cannot have kids due to medical reasons, and most people ghost me after they find out. Singles Planet has a 'can’t get kids' category that connects you with people who understand. I finally met a man who accepted me fully without pressure. — Shiko M.",
+        "As a divorced man, dating came with doubts and judgement. But here the divorced category is full of mature people looking for true companionship. I met someone amazing who had also healed from her past. We’ve been together for 4 months and counting. — Kelvin R.",
+        "Your platform gave me a private connection with someone who values privacy just as much as I do. We kept things discreet until we were ready to go public. I’ve never felt so respected and safe on any dating website. — Lorna S.",
+        "I work as a truck driver, so my schedule is crazy. I joined the career category hoping to find someone who understands. I met a lovely lady who works remotely, and now she even helps manage my off days. Singles Planet works! — Musa J.",
+        "I joined Singles Planet after a stressful breakup and didn’t expect much, but within two weeks I met a woman who matched my energy, goals, and personality. We both work in the medical field, so we bonded instantly over our long shifts and shared dreams. The platform made it easy to communicate freely and safely. Thank you for restoring my hope in love. — Brian M., Nairobi",
+        "As a widowed mother of two, dating again was terrifying. But Singles Planet connected me with a patient, understanding man who didn’t judge my past. We took things slowly, and now my kids absolutely adore him. Your platform is a true blessing. — Ruth K., Kisumu",
+        "Being HIV-positive made dating extremely difficult for me. Most apps are full of stigma. Here, I found a category just for people like me, and for the first time I dated without fear of judgment. I met someone who understands fully. We’re building a beautiful journey together. — Peter O., Eldoret",
+        "I relocated to Qatar three years ago, and loneliness hit me hard. Your diaspora category connected me to a fellow Kenyan working in Doha. We now spend weekends exploring the city together. Singles Planet is the truth! — Faith W., Nairobi",
+        "At 45, I thought real love was no longer for me. But the 40+ singles category surprised me. I met a mature, well-grounded woman who knows what she wants. We plan to settle down next year if things continue smoothly. — Charles N., Nakuru",
+        "I tried the hookups category just for fun, and honestly didn’t expect anything serious. But I matched with someone honest, clean, respectful, and direct. It was safe, private, and exactly what I needed at that moment. — Michelle A., Mombasa",
+        "I cannot have kids due to medical reasons, and most people ghost me after they find out. Singles Planet has a 'can’t get kids' category that connects you with people who understand. I finally met a man who accepted me fully without pressure. — Shiko M., Kisii",
+        "As a divorced man, dating came with doubts and judgement. But here the divorced category is full of mature people looking for true companionship. I met someone amazing who had also healed from her past. We’ve been together for 4 months and counting. — Kelvin R., Thika",
+        "Your platform gave me a private connection with someone who values privacy just as much as I do. We kept things discreet until we were ready to go public. I’ve never felt so respected and safe on any dating website. — Lorna S., Meru",
+        "I work as a truck driver, so my schedule is crazy. I joined the career category hoping to find someone who understands. I met a lovely lady who works remotely, and now she even helps manage my off days. Singles Planet works! — Musa J., Nairobi",
+        "After years of trying mainstream apps, I finally found someone who truly understands my personality and lifestyle. Singles Planet has deeper categories that actually match your reality, not just your photos. — Anita M., Eldoret",
+        "The widowed category connected me with a gentle soul who had also lost a spouse. We cried together, healed together, and now laugh together. I never thought I’d love again. — John L., Mombasa",
+        "The divorce category is so respectful. People are mature and healed. I matched with a man who treats me like a queen and knows how to communicate. — Maggie K., Nairobi",
+        "As an ICT professional, I used the career category and found a lady who works in cybersecurity. We talk tech, we talk future, and now planning a business together. This platform is gold. — Timothy O., Kisumu",
+        "I joined the hookups category with low expectations. But I ended up meeting someone decent and respectful. The admin-recommended matches make it feel safe. — Nancy W., Nakuru",
+        "Being in the UK made me miss Kenyan connections. The diaspora category linked me with someone living in Manchester too. We’re now planning a Kenyan-style Christmas together. — Ezra M., Nairobi",
+        "At 42, and never married, I felt alone among my peers. Singles Planet matched me with a vibrant 40-year-old teacher. Life feels exciting again. — Jeruto C., Meru",
+        "The 'can’t have kids' category changed my life. I met someone who didn’t judge, didn’t question, didn’t pressure—just loved. — Janet A., Thika",
+        "I got a private connection with someone who understood my need for confidentiality due to my work. Your admin handled me professionally. — Sam K., Mombasa",
+        "As someone HIV-positive, I never thought I’d confidently date again. Your category gave me hope and dignity. — Carol M., Kisumu",
+        "I joined the divorced category and finally met a man who truly understands the struggles of second chances. We share similar life experiences and values, and every conversation feels meaningful. — Grace T., Nairobi",
+        "After losing my spouse, I thought I’d never date again. The widowed category connected me to a compassionate woman who has brought joy back into my life. — Paul M., Eldoret",
+        "I’m in the diaspora and often felt disconnected from fellow Kenyans. Singles Planet linked me to someone in the same city abroad, and now we share weekend adventures. — Esther W., Doha",
+        "The private connection category allowed me to find love without exposing my personal details. I met someone genuine, kind, and respectful. — Dennis K., Nairobi",
+        "I always wanted someone in a similar profession. Thanks to the career category, I matched with a dedicated nurse who understands my hectic schedule perfectly. — Alice N., Mombasa",
+        "At 41, I felt love had passed me by, but the 40+ singles category proved otherwise. I met a patient and charming gentleman who has reignited my hope. — Michael A., Kisumu",
+        "Being HIV-positive made me cautious, but this platform made it safe to connect. I finally found someone who shares my health perspective and supports me fully. — Sharon L., Nairobi",
+        "I was nervous about dating as a single parent, but the private connection category introduced me to someone amazing who respects my family. — George O., Meru",
+        "I used the can’t-get-kids category and finally met someone who accepted me completely without pressure. We’re exploring a future together. — Mercy S., Nakuru",
+        "The hookups category was handled professionally, and I ended up meeting someone honest about their intentions. Safe, clean, and fun. — Brian K., Thika",
+        "Singles Planet connected me to a widowed woman who truly understands me. Our bond has grown quickly, and she brings light to my days. — Daniel W., Nairobi",
+        "As a divorced man, I met a mature woman who has also healed from her past. We laugh, communicate, and share goals. Truly grateful. — Peter L., Kisumu",
+        "I never expected a professional match, but I met an engineer whose life goals align perfectly with mine. — Jennifer A., Meru",
+        "Living abroad, I was lonely. The diaspora category connected me to a kind soul who shares my culture and values. — Philip N., Doha",
+        "I finally feel comfortable dating after my spouse passed away. The widowed category introduced me to someone caring and patient. — Florence M., Nairobi",
+        "I’m HIV-positive and hesitant about dating. This platform made it safe, and I met someone supportive who respects me fully. — Kevin O., Nakuru",
+        "The 40+ singles category gave me a match who is mature, kind, and responsible. I feel a real connection. — Sylvia K., Mombasa",
+        "Private connection allowed me to meet someone discreetly and safely. We communicate daily and our trust grows. — Alex M., Thika",
+        "I used the career category and found a partner in teaching. We share similar schedules and life priorities. — Lucy W., Kisumu",
+        "Being divorced, I never expected to find love again. Singles Planet proved me wrong. — Sam N., Nairobi",
+        "The can’t-get-kids category introduced me to someone amazing who shares my life vision. — Grace A., Meru",
+        "Singles Planet’s hookups category is discreet and safe. I met someone fun and respectful. — Dennis W., Mombasa",
+        "Diaspora category connected me with a Kenyan living in Germany. We’ve shared cultural experiences and feel close despite the distance. — Esther L., Doha",
+
+        // ... add remaining testimonials up to 100
+      ];
+
+      const container = document.getElementById("testimonialContainer");
+
+      // Render testimonials with automatic numbering
+      testimonials.forEach((testimonial, index) => {
+        const div = document.createElement("div");
+        div.className = "testimonial-card";
+        div.textContent = `${index + 1}. ${testimonial}`; // Auto-numbering
+        container.appendChild(div);
+      });
+    </script>
+  </body>
+</html>
