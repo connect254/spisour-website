@@ -144,7 +144,6 @@ border-radius: 10px;
 
 .menu-list li {
     font-size: 18px;
-    color: #6a41d1;
     padding: 12px 20px;
     display: flex;
     justify-content: space-between;   /* Push text left and badge right */
@@ -527,3 +526,4 @@ h2 {
   .special-item a:hover {
   opacity: 0.9;
 }
+
