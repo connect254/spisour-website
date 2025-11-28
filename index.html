@@ -34,9 +34,9 @@
         <li><a href="about.html">⚡Speed Dating</a><span class="badge" id="speedCount">8</span></li>
         <li><a href="login.html">💑Sponsor Dates</a><span class="badge" id="sponsorCount">0</span></li>
          <li><a href="one.html">🏆Premium membership</a><span class="badge" id="permCount">2</span></li>
-         <li class="special-header">✨Hookup Connections</li>
-<li class="special-item"><a href="#">Hookups near me</a></li>
-<li class="special-item"><a href="#">Hookups any location</a></li>
+         <li class="special-header">✨Instant Hookups</li>
+<li class="special-item"><a href="#">Hookups near me</a><span class="badge" id="hookupCount">ask</span></li>
+<li class="special-item"><a href="#">Hookups any location</a><span class="badge" id="hookupanyCount">78</span></li>
       </ul>
     </div>
 
@@ -214,13 +214,13 @@
     <script>
     // Example dynamic counters
 document.getElementById("openDatesCount").textContent = 37;
-document.getElementById("askAdminCount").textContent = 1670;
-document.getElementById("browseCount").textContent = 5098;
+document.getElementById("askAdminCount").textContent = 11670;
+document.getElementById("browseCount").textContent = 15098;
 document.getElementById("chatCount").textContent = 31;
-document.getElementById("diasporaCount").textContent = 2117;
+document.getElementById("diasporaCount").textContent = 12117;
 document.getElementById("bemydateCount").textContent = 7;
 document.getElementById("speedCount").textContent = 7;
-document.getElementById("sponsorCount").textContent = 120;
+document.getElementById("sponsorCount").textContent = 1120;
 document.getElementById("permCount").textContent = 4;
 </script>
 
@@ -462,12 +462,18 @@ locations.forEach(loc => {
 </script>
 <script>
 const specialCases = [
-  { label: "HIV+VE singles" },
-  { label: "Widowed men" },
-  { label: "Don't want kids" },
-  { label: "Can't kids" },
-  { label: "Verified Rich singles" },
-  { label: "Advantanged singles" },
+  { label: "HIV+ positive singles", number: 212 },
+  { label: "Sinior singles 40+", number: 65 },
+  { label: " Muslim Marriage Seekers", number: 17 },
+  { label: "Widowed men", number: 15 },
+  { label: "Widowed wommen", number: 25 },
+  { label: "Urgent relationship", number: 96 },
+  { label: "Pregnant lady", number: 5 },
+  { label: "Don't want kids", number: 130 },
+  { label: "Can't get kids", number: 80 },
+  { label: "Advantanged singles", number: 144 },
+  { label: "Verified Rich singles", number: 199 },
+  { label: "Corporate Career Singles", number: 88 },
 ];
 
 const menuList = document.querySelector(".menu-list");
@@ -479,14 +485,22 @@ header.textContent = "✨Special Connections";
 menuList.appendChild(header);
 
 // Create items with WhatsApp link
-specialCases.forEach(item => {
+
+
+  specialCases.forEach(item => {
   const li = document.createElement("li");
   li.className = "special-item";
 
-  li.innerHTML = `<a href="https://wa.me/254796339854?text=A%20need%20a%20special%20category%20connection" target="_blank">${item.label}</a>`;
+  li.innerHTML = `
+    <a href="https://wa.me/254796339854?text=A%20need%20a%20special%20category%20connection" target="_blank">
+      ${item.label}
+      <span class="badge">${item.number}</span>
+    </a>
+  `;
 
   menuList.appendChild(li);
 });
+
 </script>
   </body>
 </html>
