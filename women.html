@@ -4,6 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Single men</title>
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <title>Single Women</title>
+      <link rel="stylesheet" href="index.css" />
+      <!-- optional: inline styles below if needed -->
+    </head>
+
     <meta
       name="description"
       content="The Singles Planet — local dating & connections. Chat via whatsapp or call admin to get listed."
@@ -170,6 +178,34 @@
         opacity: 1;
         transform: translateY(0); /* pop to original position */
       }
+      #premiumPopup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #ff4d4d; /* red */
+        color: white;
+        padding: 20px 30px;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        display: none;
+        z-index: 50;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        animation: fadein 0.3s ease;
+      }
+
+      @keyframes fadein {
+        from {
+          opacity: 0;
+          transform: translate(-50%, -60%);
+        }
+        to {
+          opacity: 1;
+          transform: translate(-50%, -50%);
+        }
+      }
     </style>
   </head>
 
@@ -181,48 +217,40 @@
         <div></div>
         <div></div>
       </div>
-      <h4 class="jupiter">Single WOmen</h4>
+
+      <script>
+        function openMenu() {
+          // Redirect to index.html and pass a query parameter
+          window.location.href = "index.html?sidebar=open";
+        }
+      </script>
+
+      <h4 class="jupiter">Single Women</h4>
     </div>
 
     <div class="content">
       <div class="career" onclick="goToPage('teachers.html')">
-        Nurses <span>6</span>
+        SAMPLE CAREERS<span>6</span>
       </div>
-      <div class="career" onclick="goToPage('teachers.html')">
-        Teachers <span>4</span>
+      <div class="career" onclick="premiumAlert()">Teachers<span>4</span></div>
+      <div class="career" onclick="premiumAlert()">Engineers<span>3</span></div>
+      <div class="career" onclick="premiumAlert()">Pilots<span>1</span></div>
+      <div class="career" onclick="premiumAlert()">Chefs<span>13</span></div>
+      <div class="career" onclick="premiumAlert()">Drivers<span>5</span></div>
+      <div class="career" onclick="premiumAlert()">
+        Accountants<span>5</span>
       </div>
-      <div class="career" onclick="goToPage('engineers.html')">
-        Engineers <span>3</span>
+      <div class="career" onclick="premiumAlert()">Mechanics<span>3</span></div>
+      <div class="career" onclick="premiumAlert()">
+        Electricians<span>5</span>
       </div>
-      <div class="career" onclick="goToPage('pilots.html')">
-        Pilots <span>1</span>
+      <div class="career" onclick="premiumAlert()">Doctors<span>1</span></div>
+      <div class="career" onclick="premiumAlert()">Plumbers<span>1</span></div>
+      <div class="career" onclick="premiumAlert()">
+        IT Technicians<span>1</span>
       </div>
-      <div class="career" onclick="goToPage('chefs.html')">
-        Chefs <span>13</span>
-      </div>
-      <div class="career" onclick="goToPage('drivers.html')">
-        Drivers <span>5</span>
-      </div>
-      <div class="career" onclick="goToPage('accountants.html')">
-        Accountants <span>5</span>
-      </div>
-      <div class="career" onclick="goToPage('mechanics.html')">
-        Mechanics <span>3</span>
-      </div>
-      <div class="career" onclick="goToPage('electricians.html')">
-        Electricians <span>5</span>
-      </div>
-      <div class="career" onclick="goToPage('doctors.html')">
-        Doctors <span>1</span>
-      </div>
-      <div class="career" onclick="goToPage('plumbers.html')">
-        Plumbers <span>1</span>
-      </div>
-      <div class="career" onclick="goToPage('it-technicians.html')">
-        IT Technicians <span>1</span>
-      </div>
-      <div class="career" onclick="goToPage('security-officers.html')">
-        Security Officers <span>22</span>
+      <div class="career" onclick="premiumAlert()">
+        Security Officers<span>22</span>
       </div>
     </div>
 
@@ -251,12 +279,6 @@
         <div class="menu-icon">🔗</div>
       </div>
     </div>
-    <script>
-      function openMenu() {
-        // Go to index.html AND pass a signal that menu should open
-        window.location.href = "index.html?openMenu=true";
-      }
-    </script>
 
     <script>
       function toggleMenu() {
@@ -291,6 +313,22 @@
       }
     </script>
     <script>
+      function goToPage(page) {
+        window.location.href = page;
+      }
+    </script>
+    <div id="premiumPopup">Only available for premium members</div>
+    <script>
+      function premiumAlert() {
+        const popup = document.getElementById("premiumPopup");
+        popup.style.display = "block";
+
+        // Hide popup after 2 seconds
+        setTimeout(() => {
+          popup.style.display = "none";
+        }, 2000);
+      }
+
       function goToPage(page) {
         window.location.href = page;
       }
