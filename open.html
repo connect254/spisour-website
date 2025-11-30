@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Singles Planet</title>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        font-family: "Poppins", sans-serif;
+        background: #f3e8ff;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 10px;
+        color: #4b007d;
+      }
+
+      .section-title {
+        font-size: 26px;
+        font-weight: 700;
+        text-align: center;
+        margin-top: 40px;
+        color: #4b007d;
+      }
+
+      /* VERIFIED PROFILE CARDS */
+      .verified-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 18px;
+        padding: 15px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        position: relative;
+        transition: 0.3s;
+      }
+
+      .card:hover {
+        transform: scale(1.03);
+      }
+
+      .verified-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #4b007d;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 14px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .profile-pic {
+        width: 100%;
+        height: 190px;
+        object-fit: cover;
+        border-radius: 14px;
+      }
+
+      .details {
+        margin-top: 10px;
+        font-size: 14px;
+      }
+
+      .details p {
+        margin: 3px 0;
+      }
+
+      .whatsapp-btn {
+        display: block;
+        text-align: center;
+        margin-top: 12px;
+        background: #25d366;
+        color: white;
+        padding: 10px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 15px;
+      }
+
+      .whatsapp-btn:hover {
+        background: #1eb85c;
+      }
+
+      /* CATEGORY CARDS */
+      .categories {
+        margin-top: 40px;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .join-card {
+        background: white;
+        border-radius: 14px;
+        padding: 18px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+        border-left: 5px solid #4b007d;
+      }
+
+      .join-card:hover {
+        transform: scale(1.05);
+        background: #f5e1ff;
+      }
+      /* Horizontal Swiper for Verified Profiles */
+      .verified-wrapper {
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+        margin-bottom: 30px;
+      }
+
+      .verified-slider {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding-bottom: 10px;
+
+        /* hide scrollbar */
+        scrollbar-width: none;
+      }
+      .verified-slider::-webkit-scrollbar {
+        display: none;
+      }
+
+      .card {
+        min-width: 260px; /* IMPORTANT for sliding */
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Singles Planet – Verified Profiles</h2>
+
+    <div class="verified-wrapper">
+      <div id="verifiedList" class="verified-slider"></div>
+    </div>
+
+    <h2 class="section-title">CHAT SEVERAL SINGLES (Master Key Dates)</h2>
+    <div id="unverifiedList" class="cards-grid"></div>
+
+    <script>
+      /* ============================
+   VERIFIED PROFILES
+   ============================ */
+      const verifiedProfiles = [
+        {
+          name: "Cynthia Kahombi",
+          age: 29,
+          location: "Saudi Arabia",
+          gender: "Female",
+          tribe: "Luhya",
+          career: "Caregiver",
+          seeking:
+            "Looking for a responsible, loving, loyal and God-fearing man 😇",
+          photo: "ds.photos/cynthiak.jpg",
+          phone: "254708557186",
+        },
+
+        {
+          name: "Jason Mutwiri",
+          age: 30,
+          location: "Kuwait",
+          gender: "Male",
+          tribe: "Meru",
+          career: "Chef",
+          seeking: "Seeking love of my life 25–30 years",
+          photo: "ds.photos/Jason.jpg",
+          phone: "97471095672",
+        },
+        {
+          name: "Kelvin",
+          age: 34,
+          location: "Dubai",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "IT consulant",
+          seeking:
+            "lady 25-33 yrs old lady who believes in love built on trust, understanding and shared dreams. Am a catholic. my height is 5'6.",
+          photo: "ds.photos/kelvindubai.jpg",
+          phone: "254731483597",
+        },
+        {
+          name: "Iris muhonja",
+          age: 26,
+          location: "Nairobi",
+          gender: "female",
+          kids: 0,
+          tribe: "luhya",
+          career: "housekeeping attendant",
+          seeking: "A mature and caring partner aged 20 to 30",
+          photo: "ds.photos/muhonja.jpg",
+          phone: "254708530614",
+        },
+        {
+          name: "David muia",
+          age: 28,
+          location: "Nairobi,kayole junction",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kamba",
+          career: "security officer and marketer",
+          seeking: "A relationship leading to marriage",
+          photo: "ds.photos/muia.jpg",
+          phone: "254740090409",
+        },
+        {
+          name: "catherine josphine",
+          age: 22,
+          location: "Nairobi, kimbo",
+          gender: "Female",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "pmu physician and baker",
+          seeking: "An ambitious man ready to settle down",
+          photo: "ds.photos/catherine josphine.jpg",
+          phone: "254110385102",
+        },
+
+        {
+          name: "Kinyanjui",
+          age: 32,
+          location: "Nairobi",
+          gender: "Male",
+          kids: 0,
+          tribe: "kikuyu",
+          career: "professional driver",
+          seeking: "An honest woman who values family life",
+          photo: "ds.photos/kinyanjui.jpg",
+          phone: "254758795567",
+        },
+        {
+          name: "Rose karwitha",
+          age: 34,
+          location: "Nairobi",
+          gender: "Female",
+          kids: 1,
+          tribe: "mmeru",
+          career: "Designer",
+          seeking:
+            "a life partner 35-40 years from any part of kenya who is intentional and purpose-driven.",
+          photo: "ds.photos/karwitha.jpg",
+          phone: "254720292442",
+        },
+        {
+          name: "peter otieno okoth",
+          age: 32,
+          location: "kisumu/bondo",
+          gender: "Male",
+          kids: 0,
+          tribe: "Luo",
+          career: "working in a hotel in housekeeping department",
+          seeking: "A loving woman who enjoys fun and laughter,below my age",
+          photo: "ds.photos/otienookoth.jpg",
+          phone: "254701839775",
+        },
+        {
+          name: "lilian",
+          age: 32,
+          location: "Nairobi",
+          gender: "female",
+          kids: 0,
+          tribe: "luhya",
+          career: "Hospitality trainer",
+          seeking: "seeking love of my life 25-30 years",
+          photo: "ds.photos/kegeshi.jpg",
+          phone: "254748115263",
+        },
+
+        {
+          name: "Salim hamisi",
+          age: 23,
+          location: "mariakani,Female",
+          gender: "Male",
+          kids: 0,
+          tribe: "Swahili",
+          career: "Receptionist",
+          seeking: "An open relaionship",
+          photo: "ds.photos/hamisi.jpg",
+          phone: "254751614844",
+        },
+        {
+          name: "Kelvin Ombati",
+          age: 25,
+          location: "Qatar",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kisii",
+          career: "man life operator",
+          seeking:
+            "Am looking for someone who is serious, God fearing and above all respect",
+          photo: "ds.photos/KOmbati.jpg",
+          phone: "254792233112",
+        },
+
+        {
+          name: "sydney Baraza ",
+          age: 26,
+          location: "mumias,kakamega",
+          gender: "male",
+          kids: 0,
+          tribe: "luhya",
+          career: "IT expert",
+          seeking: "Someone serious",
+          photo: "ds.photos/sydneyBarazajpg.jpg",
+          phone: "254706014318",
+        },
+        {
+          name: "Bruce",
+          age: 28,
+          location: "Bunyore now in Mlolongo",
+          gender: "male",
+          kids: 0,
+          tribe: "luhya",
+          career: "I work as a gardener in Fairview hotel in Upperhill",
+          seeking:
+            "Interested in developing a serious love relationship that could lead to marriage.",
+          photo: "ds.photos/Bruce.jpg",
+          phone: "254799655312",
+        },
+        {
+          name: "James",
+          age: 26,
+          location: "kakamega",
+          gender: "male",
+          kids: 0,
+          tribe: "luhya",
+          career: "working",
+          seeking: "genuine love",
+          photo: "ds.photos/james26.jpg",
+          phone: "254768496287",
+        },
+        {
+          name: "morgan onyango",
+          age: 24,
+          location: "Nairobi",
+          gender: "male",
+          kids: 0,
+          tribe: "luo",
+          career: "Self employed (bike 🚲)",
+          seeking: "my better half",
+          photo: "ds.photos/morgan1.jpg",
+          phone: "254710397643",
+        },
+
+        {
+          name: "Emanuel Mushinda",
+          age: 26,
+          location: "kakamega",
+          gender: "Male",
+          kids: 0,
+          tribe: "Luhya",
+          career: "Electrician",
+          seeking: "God fearing woman for marriage",
+          photo: "ds.photos/Emanuel.jpg",
+          phone: "254792512931",
+        },
+        {
+          name: "sharon oluoch",
+          age: 26,
+          location: "Tanariver,hola",
+          gender: "female",
+          kids: 1,
+          tribe: "Luo",
+          career: "receptionist/chef",
+          seeking: "marriage",
+          photo: "ds.photos/sharonoluoch.jpg",
+          phone: "254769938262",
+        },
+        {
+          name: "collins",
+          age: 26,
+          location: "nakuru",
+          gender: "male",
+          kids: 0,
+          tribe: "luo",
+          career: "business boy",
+          seeking: "a serious relationship",
+          photo: "ds.photos/collinsA.jpg",
+          phone: "254740343700",
+        },
+        {
+          name: "SIMON NADRA",
+          age: 32,
+          location: "Nairobi",
+          gender: "male",
+          kids: 0,
+          tribe: "kamba",
+          career: "business",
+          seeking: "soulmate who is trustworthy and ready to settle down",
+          photo: "ds.photos/NADRA.jpg",
+          phone: "254112488831",
+        },
+        {
+          name: "Abiud omundi",
+          age: 25,
+          location: "malaa, nairobi",
+          gender: "male",
+          kids: 0,
+          tribe: "luo",
+          career: "business",
+          seeking: "girlfriend",
+          photo: "ds.photos/Abiud.jpg",
+          phone: "254798169656",
+        },
+        {
+          name: "Jackline Atieno",
+          age: 35,
+          location: "man",
+          gender: "female",
+          kids: 4,
+          tribe: "Luo",
+          career: "business woman",
+          seeking: "I need a man 36 years to 40 years",
+          photo: "ds.photos/JacklineAt.jpg",
+          phone: "254115286209",
+        },
+        {
+          name: "Omondi  adrian",
+          age: 26,
+          location: "kisumu",
+          gender: "male",
+          kids: 0,
+          tribe: "luo",
+          career: "hustle",
+          seeking: "a serious relationship",
+          photo: "ds.photos/adrian.jpg",
+          phone: "254731676426",
+        },
+        {
+          name: "sarah kamau",
+          age: 31,
+          location: "mombasa",
+          gender: "female",
+          kids: 1,
+          tribe: "kikuyu",
+          career: "mama mboga",
+          seeking: "A real husband for marriage",
+          photo: "ds.photos/mamamboga.jpg",
+          phone: "254720970796",
+        },
+        {
+          name: "margret tanisha",
+          age: 20,
+          location: "UGANDA,masaka",
+          gender: "female",
+          kids: 0,
+          tribe: "Ugandan",
+          career: "Teacher",
+          seeking:
+            "marriage with ugandan amuganda, musoga or kenyan , Iteso, toro etc",
+          photo: "ds.photos/tanisha.jpg",
+          phone: "256701887258",
+        },
+        {
+          name: "johnson",
+          age: 35,
+          location: "Nairobi",
+          gender: "male",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "Doctor",
+          seeking: "wife",
+          photo: "ds.photos/pc.png",
+          phone: "5,4",
+        },
+        {
+          name: "Kelvin",
+          age: 32,
+          location: "Meru",
+          gender: "male",
+          kids: 0,
+          tribe: "mmeru",
+          career: "Bank Accountant",
+          seeking: "wife material",
+          photo: "ds.photos/pc.png",
+          phone: "5,4",
+        },
+        {
+          name: "Atieli",
+          age: 42,
+          location: "Nakuru",
+          gender: "male",
+          kids: 0,
+          tribe: "mluhya",
+          career: "lecturer",
+          seeking: "a wife , am widowed",
+          photo: "ds.photos/pc.png",
+          phone: "5,4",
+        },
+        {
+          name: "Enock",
+          age: 38,
+          location: "Kjiando",
+          gender: "male",
+          kids: 1,
+          tribe: "Kikuyu",
+          career: "Insurance analyst",
+          seeking: "Woman to settle down with",
+          photo: "ds.photos/pc.png",
+          phone: "5,4",
+        },
+        {
+          name: "Beatrice",
+          age: 33,
+          location: "Nairobi Karen",
+          gender: "female",
+          kids: 1,
+          tribe: "Kikuyu",
+          career: "business, i have own boutique",
+          seeking: "a marriage partner between 30-39 yrs",
+          photo: "ds.photos/pc.png",
+          phone: "5,4",
+        },
+        {
+          name: "Brenda",
+          age: 22,
+          location: "Nairobi",
+          gender: "female",
+          kids: 0,
+          tribe: "mkamba",
+          career: "TSC teacher",
+          seeking: "A relationship leading to marriage",
+          photo: "ds.photos/pc.png",
+          phone: "5,4",
+        },
+        {
+          name: "CHAT ME 0796339854 I UPLOAD YOU HERE",
+          age: 1,
+          location: "CHAT DIRECTLY ON THIS WHATSAPP BUTTON",
+          gender: "LOCAL AND INTERNATIONAL DATE AVAILABLE",
+          kids: 0,
+          tribe: "REQUEST INSTANT MATCHES",
+          career: "THIS SPACE IS FREE",
+          seeking: "DO YOU WANT TO APPEAR HERE? INBOX NOW",
+          photo: "ds.photos/placeholder.jpg",
+          phone: "254796339854",
+        },
+      ];
+      /* ============================
+   CATEGORY CARDS (9 CARDS)
+   ============================ */
+
+      const categoryCards = [
+        {
+          label: "Women 18–23",
+          phones: [
+            "254714748200",
+            "254714522282",
+            "254707352465",
+            "254727285141",
+            "254723125040",
+            "254714553714",
+            "254702433651",
+            "254114100007",
+            "254705174099",
+            "254704813589",
+          ],
+        },
+        {
+          label: "Women 24–28",
+          phones: [
+            "254743182132",
+            "254743215223",
+            "254740117731",
+            "254741278735",
+            "254741618780",
+            "254741668824",
+            "254741996085",
+            "254742005817",
+            "254742615815",
+            "254742652276",
+          ],
+        },
+        {
+          label: "Women 29–33",
+          phones: [
+            "254724306024",
+            "254724124889",
+            "254724334734",
+            "254724337678",
+            "254724392504",
+            "254724473610",
+            "254724586787",
+            "254724637982",
+            "254724920564",
+            "254725111352",
+          ],
+        },
+        {
+          label: "Women 34–40",
+          phones: [
+            "254725124935",
+            "254725455796",
+            "254725593287",
+            "254725608731",
+            "254725622571",
+            "254725649121",
+            "254725822571",
+            "254725841708",
+            "254725885383",
+            "254726143129",
+          ],
+        },
+        {
+          label: "Women 40–50",
+          phones: [
+            "254726290845",
+            "254726317875",
+            "254726360979",
+            "254726391445",
+          ],
+        },
+        {
+          label: "Men 23–28",
+          phones: [
+            "254726430751",
+            "254726589547",
+            "254726653591",
+            "254726688546",
+            "254726764639",
+            "254726773312",
+            "254726804871",
+            "254727065857",
+            "254727089185",
+            "254727359208",
+          ],
+        },
+        {
+          label: "Men 29–35",
+          phones: [
+            "254727632367",
+            "254727640480",
+            "254727800035",
+            "254727803864",
+            "254727810262",
+            "254727863977",
+            "254727904709",
+            "254727935017",
+            "254728048656",
+            "254728295272",
+          ],
+        },
+        {
+          label: "Men 36–44",
+          phones: [
+            "254728513709",
+            "254728619413",
+            "254729037961",
+            "254729163341",
+            "254729172417",
+            "254729581520",
+            "254729695198",
+            "254729755231",
+            "254731228453",
+            "254731280113",
+          ],
+        },
+
+        {
+          label: "Men 45–60",
+          phones: [
+            "254732308205",
+            "254732308205",
+            "254732442989",
+            "254732681900",
+            "254733606364",
+            "254734507123",
+          ],
+        },
+      ];
+
+      /* ============================
+   RENDER VERIFIED PROFILES
+   ============================ */
+
+      const verifiedList = document.getElementById("verifiedList");
+
+      verifiedProfiles.forEach((p) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+    <div class="verified-badge">Verified</div>
+    <img src="${p.photo}" class="profile-pic">
+    <div class="details">
+      <h3>${p.name}</h3>
+      <p><b>Age:</b> ${p.age}</p>
+      <p><b>Location:</b> ${p.location}</p>
+      <p><b>Gender:</b> ${p.gender}</p>
+      <p><b>Kids:</b> ${p.kids}</p>
+      <p><b>Tribe:</b> ${p.tribe}</p>
+      <p><b>Career:</b> ${p.career}</p>
+      <p><b>Seeking:</b> ${p.seeking}</p>
+    </div>
+
+    <a href="https://wa.me/${p.phone}?text=Hi%20${encodeURIComponent(
+          p.name
+        )},%20I%20saw%20your%20profile%20on%20Singles%20Planet.%20Can%20we%20connect?"
+      class="whatsapp-btn" target="_blank">💬 Chat on WhatsApp</a>
+  `;
+        verifiedList.appendChild(card);
+      });
+
+      /* ============================
+   RENDER CATEGORY CARDS
+   ============================ */
+
+      // POPUP FUNCTIONS
+      function openPopup(phones) {
+        const phoneList = document.getElementById("phoneList");
+        phoneList.innerHTML = "";
+
+        phones.forEach((phone) => {
+          const msg = encodeURIComponent(
+            "I got your number from the Singles Planet website,https://chat.whatsapp.com/CWE7TuhcsO8ApYHTFttx57?mode=wwt  can we know each other more?"
+          );
+
+          const a = document.createElement("a");
+          a.href = `https://wa.me/${phone}?text=${msg}`;
+          a.target = "_blank";
+          a.style = `
+            display:block;
+            padding:10px;
+            background:#25D366;
+            color:white;
+            margin-bottom:10px;
+            text-align:center;
+            border-radius:10px;
+            font-weight:bold;
+            text-decoration:none;
+        `;
+          a.innerText = phone;
+
+          phoneList.appendChild(a);
+        });
+
+        document.getElementById("popup").style.display = "block";
+      }
+
+      function closePopup() {
+        document.getElementById("popup").style.display = "none";
+      }
+
+      // RENDER CATEGORY CARDS
+      categoryCards.forEach((cat) => {
+        const card = document.createElement("div");
+        card.className = "join-card";
+        card.innerHTML = cat.label;
+
+        // OPEN POPUP WITH NUMBERS
+        card.onclick = () => openPopup(cat.phones);
+
+        unverifiedList.appendChild(card);
+      });
+
+      // === ENABLE SWIPE + DRAG TO SCROLL ===
+      const slider = document.querySelector(".verified-slider");
+
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      slider.addEventListener("mousedown", (e) => {
+        isDown = true;
+        slider.classList.add("active");
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+      });
+
+      slider.addEventListener("mouseleave", () => {
+        isDown = false;
+        slider.classList.remove("active");
+      });
+
+      slider.addEventListener("mouseup", () => {
+        isDown = false;
+        slider.classList.remove("active");
+      });
+
+      slider.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 2; // scroll speed
+        slider.scrollLeft = scrollLeft - walk;
+      });
+
+      // Mobile touch support
+      slider.addEventListener("touchstart", (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+      });
+
+      slider.addEventListener("touchend", () => {
+        isDown = false;
+      });
+
+      slider.addEventListener("touchmove", (e) => {
+        if (!isDown) return;
+        const x = e.touches[0].pageX - slider.offsetLeft;
+        const walk = (x - startX) * 2;
+        slider.scrollLeft = scrollLeft - walk;
+      });
+      // ==========================
+      // AUTO SCROLL VERIFIED PROFILES (3X FASTER)
+      // ==========================
+
+      const autoSlider = document.querySelector(".verified-slider");
+      let autoScrollSpeed = 3; // 3× speed (was 1)
+      let isUserInteracting = false;
+
+      // Auto-scroll function
+      function autoScroll() {
+        if (!isUserInteracting) {
+          autoSlider.scrollLeft += autoScrollSpeed;
+
+          // Loop back to start when reaching the end
+          if (
+            autoSlider.scrollLeft >=
+            autoSlider.scrollWidth - autoSlider.clientWidth
+          ) {
+            autoSlider.scrollLeft = 0;
+          }
+        }
+        requestAnimationFrame(autoScroll);
+      }
+      // Detect user interaction (pause auto-scroll)
+      ["mousedown", "touchstart"].forEach((evt) => {
+        autoSlider.addEventListener(evt, () => {
+          isUserInteracting = true;
+        });
+      });
+      // Resume auto-scroll after interaction
+      ["mouseup", "mouseleave", "touchend"].forEach((evt) => {
+        autoSlider.addEventListener(evt, () => {
+          setTimeout(() => {
+            isUserInteracting = false;
+          }, 800);
+        });
+      });
+      // Start auto scroll
+      autoScroll();
+    </script>
+
+    <!-- POPUP PHONE LIST -->
+    <div
+      id="popup"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 30px;
+        backdrop-filter: blur(3px);
+      "
+    >
+      <div
+        style="
+          max-width: 360px;
+          margin: 60px auto;
+          background: white;
+          padding: 20px;
+          border-radius: 16px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        "
+      >
+        <h3 style="margin-top: 0; text-align: center; color: #4b007d">
+          Available Numbers
+        </h3>
+
+        <div id="phoneList" style="margin-top: 15px"></div>
+
+        <button
+          onclick="closePopup()"
+          style="
+            margin-top: 15px;
+            width: 100%;
+            padding: 10px;
+            background: #4b007d;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+          "
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
