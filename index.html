@@ -124,18 +124,6 @@
         </button>
       </div>
 
-<h2>singles by career</h2>
-
-<div class="category-list"></div>
-
-<div class="category-cards-wrapper"></div>
-
-
-<h2>singles by location(counties)</h2>
-
-<div class="location-list"></div>
-
-<div class="location-cards-wrapper"></div>
 
       <section class="welcome-section">
         <div class="welcome-card">
@@ -256,31 +244,6 @@ document.getElementById("sponsorCount").textContent = 1120;
 document.getElementById("permCount").textContent = 4;
 </script>
 
-  <script>
-let openCategory = null; // Track which section is open
-
-function showCategory(id) {
-  const section = document.getElementById(id);
-
-  // If the same category is clicked again → close it
-  if (openCategory === id) {
-    section.style.display = "none";
-    openCategory = null;
-    return;
-  }
-
-  // Close all categories
-  document.querySelectorAll('.card-container')
-    .forEach(div => div.style.display = 'none');
-
-  // Open the selected one
-  section.style.display = "grid";
-  openCategory = id;
-
-  // Optional smooth scroll
-  window.scrollTo({ top: 200, behavior: 'smooth' });
-}
-</script>
     
 <script>
 window.onload = function () {}
@@ -293,120 +256,37 @@ window.onload = function () {}
       openNav(); // call your existing function that opens the slide menu
     }
   }
-
-// ================== CAREER LIST IN JS ARRAY ==================
-const careers = [
-  { id: "caregiver", label: "all careers", whatsapp: "caregivers" },
-
-];
-
-// ================== GENERATE BUTTONS + CARDS ==================
-
-const listContainer = document.querySelector(".category-list");
-const cardsContainer = document.querySelector(".category-cards-wrapper");
-
-// Build UI dynamically
-careers.forEach(career => {
-
-  // Create career button
-  const btn = document.createElement("button");
-  btn.className = "category-btn";
-  btn.textContent = career.label;
-  btn.onclick = () => showCategory(career.id);
-  listContainer.appendChild(btn);
-
-  // Create career card container
-  const cardDiv = document.createElement("div");
-  cardDiv.id = career.id;
-  cardDiv.className = "card-container";
-  cardDiv.style.display = "none";
-
-  cardDiv.innerHTML = `
-      <div class="card">
-        <h3>request list</h3>
-        <a class="whatsapp-btn"
-           href="https://wa.me/254796339854?text=connect%20me%20with%20${career.whatsapp}%20in%20the%20website."
-           target="_blank">
-          <img class="whatsapp-icon"
-               src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
-          whatsapp
-        </a>
-      </div>
-  `;
-
-  cardsContainer.appendChild(cardDiv);
-});
 </script>
-
-
-<script>
-// ================== LOCATION LIST IN JS ARRAY ==================
-const locations = [
-  { id: "diaspora", label: "ALL locations", whatsapp: "diaspora singles" },
-
-];
-
-
-// ================== GENERATE LOCATION BUTTONS + CARDS ==================
-
-const locList = document.querySelector(".location-list");
-const locCards = document.querySelector(".location-cards-wrapper");
-
-
-
-
-locations.forEach(loc => {
-
-  // 1️⃣ Create the button
-  const btn = document.createElement("button");
-  btn.className = "category-btn";
-  btn.textContent = loc.label;
-
-  // 2️⃣ Make the button show its card on click
-  btn.onclick = () => showCategory(loc.id);
-
-  // 3️⃣ Add the button to the list
-  locList.appendChild(btn);
-
-  // 4️⃣ Create the card for this location
-  const card = document.createElement("div");
-  card.id = loc.id;
-  card.className = "card-container";
-  card.style.display = "none";
-
-  card.innerHTML = `
-      <div class="card">
-        <h3>request list</h3>
-        <a class="whatsapp-btn"
-           href="https://wa.me/254796339854?text=connect%20me%20with%20${loc.whatsapp}%20in%20the%20website."
-           target="_blank">
-          <img class="whatsapp-icon"
-               src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
-          whatsapp
-        </a>
-      </div>
-  `;
-
-  // 5️⃣ Add the card to the container
-  locCards.appendChild(card);
-
-});
-
-
-</script>
-
 
 <script>
 function openNav() {
   document.getElementById("sidebar").classList.add("open");
 }
 </script>
+<script>
+  function openMenu() {
+    document.getElementById("sidebar").classList.add("open");
+    document.getElementById("overlay").classList.add("show");
+  }
+
+  function closeMenu() {
+    document.getElementById("sidebar").classList.remove("open");
+    document.getElementById("overlay").classList.remove("show");
+  }
+
+  // Check URL for sidebar parameter
+  window.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("sidebar") === "open") {
+      openMenu();
+    }
+  });
+</script>
 
   </body>
 </html>
 
        
-
 
 
 
