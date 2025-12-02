@@ -555,3 +555,82 @@ h2 {
 .overlay.show {
   display: block;
 }
+ .floating-logins {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background: red;
+        color: white;
+        padding: 12px 18px;
+        border-radius: 24px;
+        font-weight: 600;
+        font-size: 14px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        z-index: 999999;
+        pointer-events: none; /* won't block clicks */
+        width: 200px; /* fixed width */
+        text-align: center;
+      }
+      
+      .premium-card {
+        background: white;
+        border-radius: 20px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      }
+
+      .premium-header {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #3b0764;
+      }
+
+      .columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 10px;
+      }
+
+      .col-title {
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #4c1d95;
+      }
+
+      ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      li {
+        padding: 6px 0;
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+      }
+
+      .tick {
+        color: green;
+        font-weight: bold;
+        margin-right: 8px;
+      }
+
+      .connect-btn {
+        background: #10b981;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 12px;
+        display: inline-block;
+        margin-top: 15px;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 15px;
+      }
+
+      .connect-btn:hover {
+        background: #059669;
+      }
