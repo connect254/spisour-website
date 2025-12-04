@@ -125,7 +125,7 @@ border-radius: 10px;
 .close-btn {
   background: none;
   border: none;
-  color: white;
+  color: green;
   font-size: 25px;
   cursor: pointer;
 }
@@ -247,8 +247,7 @@ border-radius: 10px;
       }
       
       .btn {
-        border: 0;
-        padding: 10px 14px;
+      
         border-radius: 12px;
         font-weight: 600;
         cursor: pointer;
