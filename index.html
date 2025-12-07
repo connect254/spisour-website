@@ -87,8 +87,8 @@
         </div>
 
         <div class="cta" aria-hidden="false">
-          <button class="btn btn-primary" id="joinBtn"><h4 style="color: red">Register</h4></button>
-          <button class="btn btn-login" id="loginBtn"><h4 style="color: red" onclick="openMenu()">Sidebar</h4></button>  
+          <button class="btn btn-primary" id="joinBtn"><p style="color: red">Register</p></button>
+          <button class="btn btn-login" id="loginBtn"><p style="color: red" onclick="openMenu()">Sidebar</p></button>  
         </div>
         <p>scroll page down to counties</p>
 
@@ -114,38 +114,343 @@
 
              <!-- ======================= BLOG 1 ======================= -->
     <div class="premium-card">
-      <p style="color: blue;">Galaxy Stars Connect 254</p>
-      <div class="premium-header">✨Meet new friends near you</div>
-         <div class="premium-header">✨Find new friends near you</div>
-
-
-            <div class="premium-header">✨
-fun chat and vibes club</div>
-               <div class="premium-header">✨
-link with proffessionals near you</div>
-                  <div class="premium-header">✨
-singles chat, mingle, and dating near you</div>
-                     <div class="premium-header">✨
-Find job opportunies</div>
-                     
-       </div>
-           
- 
-
-
-
-      
+    <p style="color: red;">Galaxy Stars Connect 254</p>
+    <p style="color: blue;">✨Meet new friends near you </p>
+    <p style="color: blue;">✨Meet new friends near you </p>
+    <p style="color: blue;">✨Fun chat and vibes club </p>
+    <p style="color: blue;">✨Link with proffessionals near you </p>
+    <p style="color: blue;">✨Singles chat, mingle, and dating near you </p>
+    <p style="color: blue;">✨Find job opportunies </p>             
+    </div>
+    
       <section class="welcome-section">
         <div class="welcome-card">
+
+
+  <div id="unverifiedList" class="cards-grid"></div>
+
+    <h2>Galaxy Stars Connect 254- visibility boost</h2>
+
+    <div class="verified-wrapper">
+      <div id="verifiedList" class="verified-slider"></div>
+    </div>
+    <script>
+      /* ============================
+   VERIFIED PROFILES
+   ============================ */
+      const verifiedProfiles = [
+        {
+          name: "Cynthia Kahombi",
+          age: 29,
+          location: "Saudi Arabia",
+          gender: "Female",
+          tribe: "Luhya",
+          career: "Caregiver",
+          seeking:
+            "Looking for a responsible, loving, loyal and God-fearing man 😇",
+          photo: "ds.photos/cynthiak.jpg",
+          phone: "254708557186",
+        },
+
+        {
+          name: "Jason Mutwiri",
+          age: 30,
+          location: "Kuwait",
+          gender: "Male",
+          tribe: "Meru",
+          career: "Chef",
+          seeking: "Seeking love of my life 25–30 years",
+          photo: "ds.photos/Jason.jpg",
+          phone: "97471095672",
+        },
+        {
+          name: "Kelvin",
+          age: 34,
+          location: "Dubai",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "IT consulant",
+          seeking:
+            "lady 25-33 yrs old lady who believes in love built on trust, understanding and shared dreams. Am a catholic. my height is 5'6.",
+          photo: "ds.photos/kelvindubai.jpg",
+          phone: "254731483597",
+        },
+        {
+          name: "Iris muhonja",
+          age: 26,
+          location: "Nairobi",
+          gender: "female",
+          kids: 0,
+          tribe: "luhya",
+          career: "housekeeping attendant",
+          seeking: "A mature and caring partner aged 20 to 30",
+          photo: "ds.photos/muhonja.jpg",
+          phone: "254708530614",
+        },
+        {
+          name: "David muia",
+          age: 28,
+          location: "Nairobi,kayole junction",
+          gender: "Male",
+          kids: 0,
+          tribe: "Kamba",
+          career: "security officer and marketer",
+          seeking: "A relationship leading to marriage",
+          photo: "ds.photos/muia.jpg",
+          phone: "254740090409",
+        },
+        {
+          name: "catherine josphine",
+          age: 22,
+          location: "Nairobi, kimbo",
+          gender: "Female",
+          kids: 0,
+          tribe: "Kikuyu",
+          career: "pmu physician and baker",
+          seeking: "An ambitious man ready to settle down",
+          photo: "ds.photos/catherine josphine.jpg",
+          phone: "254110385102",
+        },
+
+        {
+          name: "Kinyanjui",
+          age: 32,
+          location: "Nairobi",
+          gender: "Male",
+          kids: 0,
+          tribe: "kikuyu",
+          career: "professional driver",
+          seeking: "An honest woman who values family life",
+          photo: "ds.photos/kinyanjui.jpg",
+          phone: "254758795567",
+        },
+        {
+          name: "Rose karwitha",
+          age: 34,
+          location: "Nairobi",
+          gender: "Female",
+          kids: 1,
+          tribe: "mmeru",
+          career: "Designer",
+          seeking:
+            "a life partner 35-40 years from any part of kenya who is intentional and purpose-driven.",
+          photo: "ds.photos/karwitha.jpg",
+          phone: "254720292442",
+        },
+      ];
+
+      /* ============================
+   RENDER VERIFIED PROFILES
+   ============================ */
+
+      const verifiedList = document.getElementById("verifiedList");
+
+      verifiedProfiles.forEach((p) => {
+        const card = document.createElement("div");
+        card.className = "pluto-card";
+
+        const hiddenId = "hide_" + Math.random().toString(36).substring(2, 10);
+
+        card.innerHTML = `
+    <div class="verified-badge">GalaryStars254</div>
+
+    <img src="${p.photo}" class="profile-pic">
+
+    <button class="view-more-btn" onclick="toggleHidden('${hiddenId}')">
+      View More
+    </button>
+
+    <div id="${hiddenId}" class="hidden-box">
+      <h3>${p.name}</h3>
+      <p><b>Age:</b> ${p.age}</p>
+      <p><b>Location:</b> ${p.location}</p>
+      <p><b>Gender:</b> ${p.gender}</p>
+      <p><b>Kids:</b> ${p.kids ?? "0"}</p>
+      <p><b>Tribe:</b> ${p.tribe}</p>
+      <p><b>Career:</b> ${p.career}</p>
+      <p><b>Seeking:</b> ${p.seeking}</p>
+
+      <a href="https://wa.me/${p.phone}?text=Hi%20${encodeURIComponent(
+          p.name
+        )},%20I%20saw%20your%20profile%20on%20Singles%20Planet.%20Can%20we%20connect?"
+        class="whatsapp-btn" target="_blank">💬 Chat on WhatsApp</a>
+    </div>
+  `;
+
+        verifiedList.appendChild(card);
+      });
+
+      /* ============================
+   RENDER CATEGORY CARDS
+   ============================ */
+
+      // POPUP FUNCTIONS
+      function openPopup(phones) {
+        const phoneList = document.getElementById("phoneList");
+        phoneList.innerHTML = "";
+
+        phones.forEach((phone) => {
+          const msg = encodeURIComponent(
+            "https://chat.whatsapp.com/CWE7TuhcsO8ApYHTFttx57?mode=wwt"
+          );
+
+          const a = document.createElement("a");
+          a.href = `https://wa.me/${phone}?text=${msg}`;
+          a.target = "_blank";
+          a.style = `
+            display:block;
+            padding:10px;
+            background:#25D366;
+            color:white;
+            margin-bottom:10px;
+            text-align:center;
+            border-radius:10px;
+            font-weight:bold;
+            text-decoration:none;
+        `;
+          a.innerText = phone;
+
+          phoneList.appendChild(a);
+        });
+
+        document.getElementById("popup").style.display = "block";
+      }
+
+      function closePopup() {
+        document.getElementById("popup").style.display = "none";
+      }
+
+      // RENDER CATEGORY CARDS
+      categoryCards.forEach((cat) => {
+        const card = document.createElement("div");
+        card.className = "join-card";
+        card.innerHTML = cat.label;
+
+        // OPEN POPUP WITH NUMBERS
+        card.onclick = () => openPopup(cat.phones);
+
+        unverifiedList.appendChild(card);
+      });
+
+      // === ENABLE SWIPE + DRAG TO SCROLL ===
+      const slider = document.querySelector(".verified-slider");
+
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      slider.addEventListener("mousedown", (e) => {
+        isDown = true;
+        slider.classList.add("active");
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+      });
+
+      slider.addEventListener("mouseleave", () => {
+        isDown = false;
+        slider.classList.remove("active");
+      });
+
+      slider.addEventListener("mouseup", () => {
+        isDown = false;
+        slider.classList.remove("active");
+      });
+
+      slider.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 2; // scroll speed
+        slider.scrollLeft = scrollLeft - walk;
+      });
+
+      // Mobile touch support
+      slider.addEventListener("touchstart", (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+      });
+
+      slider.addEventListener("touchend", () => {
+        isDown = false;
+      });
+
+      slider.addEventListener("touchmove", (e) => {
+        if (!isDown) return;
+        const x = e.touches[0].pageX - slider.offsetLeft;
+        const walk = (x - startX) * 2;
+        slider.scrollLeft = scrollLeft - walk;
+      });
+      // ==========================
+      // AUTO SCROLL VERIFIED PROFILES (3X FASTER)
+      // ==========================
+
+      const autoSlider = document.querySelector(".verified-slider");
+      let autoScrollSpeed = 3; // 3× speed (was 1)
+      let isUserInteracting = false;
+
+      // Auto-scroll function
+      function autoScroll() {
+        if (!isUserInteracting) {
+          autoSlider.scrollLeft += autoScrollSpeed;
+
+          // Loop back to start when reaching the end
+          if (
+            autoSlider.scrollLeft >=
+            autoSlider.scrollWidth - autoSlider.clientWidth
+          ) {
+            autoSlider.scrollLeft = 0;
+          }
+        }
+        requestAnimationFrame(autoScroll);
+      }
+      // Detect user interaction (pause auto-scroll)
+      ["mousedown", "touchstart"].forEach((evt) => {
+        autoSlider.addEventListener(evt, () => {
+          isUserInteracting = true;
+        });
+      });
+      // Resume auto-scroll after interaction
+      ["mouseup", "mouseleave", "touchend"].forEach((evt) => {
+        autoSlider.addEventListener(evt, () => {
+          setTimeout(() => {
+            isUserInteracting = false;
+          }, 800);
+        });
+      });
+      // Start auto scroll
+      autoScroll();
+    </script>
+
+    <script>
+      function toggleHidden(id) {
+        const box = document.getElementById(id);
+        box.style.display = box.style.display === "block" ? "none" : "block";
+      }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <p style="color: red;">Connect with others in Kenya — 47 Counties</p>
   <ul class="counties" id="countiesList">
     <!-- JS will populate this list -->
   </ul>
-
-
-
-             <!-- ======================= BLOG 1 ======================= -->
+<!-- ======================= BLOG 1 ======================= -->
     <div class="premium-card">
       <div class="premium-header">⭐ singles searching⭐</div>
 
