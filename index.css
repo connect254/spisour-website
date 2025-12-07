@@ -252,8 +252,8 @@ border-radius: 10px;
         font-weight: 600;
         cursor: pointer;
         font-size: 14px;
-        box-shadow: 0 6px 18px #e2e5e9;
         transition: 0.2s ease;
+        padding: 0px 4px;
       }
       .btn:hover {
         transform: translateY(-2px);
@@ -262,11 +262,11 @@ border-radius: 10px;
       .btn-primary {
        background: #e2e5e9;
         color: #6b46c1;
+         padding: 0px 4px;
       }
       .btn-login {
         background: #e2e5e9;
         color: #6b46c1;
-        box-shadow: 0 6px 18px #e2e5e9;
       }
 
       .btn-login:hover {
@@ -470,6 +470,7 @@ h2 {
     text-align: center;
   }
 
+
   .whatsapp-btn {
     display: inline-flex;
     align-items: center;
@@ -645,3 +646,144 @@ h2 {
     /* small accessibility focus style */
     .county-link:focus { outline:3px solid #cce; border-radius:6px; }
   
+
+
+     h2 {
+        text-align: center;
+        margin-bottom: 10px;
+        color: #4b007d;
+      }
+
+      .section-title {
+        font-size: 26px;
+        font-weight: 700;
+        text-align: center;
+        margin-top: 40px;
+        color: #4b007d;
+      }
+
+      /* VERIFIED PROFILE CARDS */
+      .verified-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .pluto-card {
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 18px;
+        padding: 10px 10px 15px 10px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        position: relative;
+        transition: 0.3s;
+        min-width: 260px; /* for horizontal scroll */
+      }
+
+      .pluto-card:hover {
+        transform: scale(1.03);
+      }
+
+      .verified-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #4b007d;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 14px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .profile-pic {
+        width: 100%;
+        height: 450px; /* bigger */
+        object-fit: cover;
+        border-radius: 14px;
+      }
+
+      .details {
+        margin-top: 10px;
+        font-size: 14px;
+      }
+
+      .details p {
+        margin: 3px 0;
+      }
+
+      .whatsapp-btn {
+        display: block;
+        text-align: center;
+        margin-top: 12px;
+        background: #25d366;
+        color: white;
+        padding: 10px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 15px;
+      }
+
+      .whatsapp-btn:hover {
+        background: #1eb85c;
+      }
+
+      /* CATEGORY CARDS */
+      .categories {
+        margin-top: 40px;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      /* Horizontal Swiper for Verified Profiles */
+      .verified-wrapper {
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+        margin-bottom: 30px;
+      }
+
+      .verified-slider {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding-bottom: 10px;
+        scrollbar-width: none;
+
+        /* hide scrollbar */
+        scrollbar-width: none;
+      }
+      .verified-slider::-webkit-scrollbar {
+        display: none;
+      }
+
+      .card {
+        min-width: 260px; /* IMPORTANT for sliding */
+      }
+      .view-more-btn {
+        width: 100%;
+        background: #4b007d;
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 10px;
+        cursor: pointer;
+        font-weight: bold;
+        border: none;
+      }
+
+      .hidden-box {
+        display: none;
+        margin-top: 10px;
+        background: rgba(255, 255, 255, 0.85);
+        padding: 10px;
+        border-radius: 14px;
+      }
