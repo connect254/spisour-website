@@ -1,39 +1,41 @@
- :root {
-        --bg: #e2e5e9;
-        --card-glass: rgba(255, 255, 255, 0.12);
-        --card-border: rgba(255, 255, 255, 0.18);
-        --accent: #6b46c1;
-        --muted: #6b6b7a;
-        --whatsapp-green: #25d366;
-        --glass-blur: 8px;
-        --radius: 16px;
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-          Roboto, "Helvetica Neue", Arial;
-      }
-      
 
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
+     :root {
+  --bg: #e2e5e9;
+  --accent: #6b46c1;
+  --muted: #6b6b7a;
+  --whatsapp-green: #25d366;
+  --radius: 16px;
+  font-size: 16px; /* base scaling */
+} 
 
-      
+html,
+body {
+height: 100%;
+margin: 0;
+padding: 0;
+}
+
+  .wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+    
   
 body {
-        min-height: 100%;
-        align-items: flex-start;
-        color: #1b1530;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        padding: 40px 16px;
-        box-sizing: border-box;
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #e2e5e9;
-      }
-
+min-height: 100%;
+align-items: flex-start;
+color: #1b1530;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+padding: 40px 16px;
+box-sizing: border-box;
+margin: 0;
+font-family: Arial, sans-serif;
+background: #e2e5e9;
+ }
 /* Top bar */
 .topbar {
 height: 55px;
@@ -43,17 +45,14 @@ display: flex;
 align-items: center;
 padding: 0 15px;
 }
-
 .jupiter {
   margin-left: 15px;
 }
-
 /* Hamburger icon (3 bars) */
 .menu-icon {
   width: 30px;
   cursor: pointer;
 }
-
 .menu-icon div {
   width: 100%;
   height: 4px;
@@ -61,8 +60,6 @@ padding: 0 15px;
   margin: 5px 0;
   border-radius: 2px;
 }
-
-
 .sidebar::-webkit-scrollbar {
 width: 6px;
 }
@@ -70,7 +67,6 @@ width: 6px;
 background: #6b46c1;
 border-radius: 10px;
 }
-
 /* Sidebar (hidden by default) */
 .sidebar {
   position: fixed;
@@ -85,6 +81,68 @@ border-radius: 10px;
   z-index: 200;
   overflow-y: auto;  
 }
+.sidebar {
+  width: 85%;
+  max-width: 300px;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.profile-pic {
+  height: auto;
+  max-height: 420px;
+}
+.verified-container,
+.cards-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+@media (max-width: 480px) {
+  .pluto-card {
+    min-width: 90%;
+  }
+}
+h2, .section-title {
+  font-size: clamp(20px, 5vw, 26px);
+}
+
+p, li {
+  font-size: clamp(14px, 4vw, 16px);
+}
+button,
+.connect-btn,
+.whatsapp-btn {
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  body {
+    padding: 20px 10px;
+  }
+
+  .premium-card {
+    padding: 18px;
+  }
+
+  .footer {
+    font-size: 13px;
+  }
+}
+
+/* Header inside sidebar */
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+/* Sidebar open */
+.sidebar.open {
+left: 0;
+
+}
 .badge {
   background: #6a41d1;   /* Your purple theme */
   color: white;
@@ -94,19 +152,6 @@ border-radius: 10px;
   min-width: 22px;
   text-align: center;
 }
-
-
-/* Sidebar open */
-.sidebar.open {
-  left: 0;
-}
-.sidebar {
-    pointer-events: none;
-}
-
-.sidebar.open {
-    pointer-events: auto;
-}
 .overlay {
     pointer-events: none;
 }
@@ -114,14 +159,6 @@ border-radius: 10px;
 .overlay.show {
     pointer-events: auto;
 }
-
-/* Header inside sidebar */
-.sidebar-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
-}
-
 .close-btn {
   background: none;
   border: none;
@@ -273,50 +310,8 @@ border-radius: 10px;
         background: #e2e5e9;
         transform: translateY(-2px);
       }
-      
-      .controls {
-        display: flex;
-        gap: 12px;
-        align-items: center;
-        margin-bottom: 18px;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
+  
 
-      .search {
-        background: white;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        padding: 10px;
-        border-radius: 12px;
-        display: flex;
-        gap: 8px;
-        align-items: center;
-        width: 520px;
-        max-width: 100%;
-        cursor: pointer;
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
-      }
-      .search input {
-        border: 0;
-        background: transparent;
-        outline: none;
-        font-size: 14px;
-        width: 100%;
-        cursor: pointer;
-      }
-      
-
-      .filter {
-        background: white;
-        border-radius: 12px;
-        padding: 8px 12px;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        font-size: 14px;
-        cursor: pointer;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
-      }
-
-    
       .welcome-section {
         display: flex;
         justify-content: center;
@@ -397,69 +392,31 @@ border-radius: 10px;
       .footer a:hover {
         text-decoration: underline;
       }
-   .header{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 16px;
-        margin-bottom: 28px;
-      }
- @media (max-width: 640px) {
-        header {
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-        }
-        .brand {
-          justify-content: center;
-        }
-        .cta {
-          justify-content: center;
-        }
-        .controls {
-          flex-direction: column;
-          align-items: stretch;
-        }
-        .search,
-        .filter,
-        .btn {
-          width: 100%;
-        }
-      }
-          
+  header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
 
-
-h2 {
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
     text-align: center;
   }
 
-  /* Category Buttons */
-  .category-list {
-    display: flex;
-    gap: 10px;
+  .brand {
     justify-content: center;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
   }
 
-  .category-btn {
-  display: flex;
-        gap: 12px;
-        align-items: center;
-        margin-bottom: 8px;
-        flex-wrap: wrap;
-        justify-content: center;  
+  .cta {
+    justify-content: center;
+    width: 100%;
   }
-  /* Card Grid */
-  .card-container {
-    display: none;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-  }
+}
 
-  /* Glass-style Card */
+       
   .card {
     background: #6b46c1 ;
    color: white;
@@ -470,33 +427,12 @@ h2 {
     text-align: center;
   }
 
-
-  .whatsapp-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 10px;
-    background: #25d366; /* WhatsApp green */
-    padding: 10px 14px;
-    border-radius: 12px;
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    text-decoration: none;
-  }
-
   .whatsapp-icon {
     width: 30px;
   }
 
 
- .location-list {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-  }
+
 
 /* Special Cases Header */
 .special-header {
@@ -525,21 +461,7 @@ h2 {
   opacity: 0.9;
 }
 
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: -280px; /* hidden initially */
-  width: 280px;
-  height: 100%;
-  background: #fff;
-  z-index: 15;
-  transition: left 0.3s;
-  overflow-y: auto;
-}
 
-.sidebar.open {
-  left: 0;
-}
 
 .overlay {
   position: fixed;
@@ -554,26 +476,8 @@ h2 {
 
 .overlay.show {
   display: block;
-}
- .floating-logins {
-        position: fixed;
-        bottom: 20px;
-        left: 20px;
-        background: red;
-        color: white;
-        padding: 12px 18px;
-        border-radius: 24px;
-        font-weight: 600;
-        font-size: 14px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        z-index: 999999;
-        pointer-events: none; /* won't block clicks */
-        width: 200px; /* fixed width */
-        text-align: center;
-      }
-      
+} 
       .premium-card {
-        background: white;
         border-radius: 20px;
         padding: 25px;
         margin-bottom: 25px;
@@ -713,22 +617,6 @@ h2 {
         margin: 3px 0;
       }
 
-      .whatsapp-btn {
-        display: block;
-        text-align: center;
-        margin-top: 12px;
-        background: #25d366;
-        color: white;
-        padding: 10px;
-        border-radius: 12px;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 15px;
-      }
-
-      .whatsapp-btn:hover {
-        background: #1eb85c;
-      }
 
       /* CATEGORY CARDS */
       .categories {
@@ -768,22 +656,6 @@ h2 {
       .card {
         min-width: 260px; /* IMPORTANT for sliding */
       }
-      .view-more-btn {
-        width: 100%;
-        background: #4b007d;
-        color: white;
-        padding: 10px;
-        border-radius: 10px;
-        margin-top: 10px;
-        cursor: pointer;
-        font-weight: bold;
-        border: none;
-      }
+    
 
-      .hidden-box {
-        display: none;
-        margin-top: 10px;
-        background: rgba(255, 255, 255, 0.85);
-        padding: 10px;
-        border-radius: 14px;
-      }
+      
