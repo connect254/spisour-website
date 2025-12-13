@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Qatar Singles Connect</title>
+    <style>
+      :root {
+        --bg: #f3e8ff;
+        --accent: #6b46c1;
+        --muted: #6b6b7a;
+        --whatsapp-green: #25d366;
+        --card-glass: rgba(255, 255, 255, 0.35);
+        --card-border: rgba(255, 255, 255, 0.4);
+        --radius: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+        background: linear-gradient(135deg, #ede9fe, #fdf4ff);
+        color: #1f2937;
+      }
+
+      header {
+        padding: 24px 16px;
+        text-align: center;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2rem;
+        color: var(--accent);
+      }
+
+      header p {
+        margin-top: 8px;
+        color: var(--muted);
+      }
+
+      .container {
+        max-width: 700px;
+        margin: auto;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .card {
+        background: var(--card-glass);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--card-border);
+        border-radius: var(--radius);
+        padding: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .card h3 {
+        margin-top: 0;
+        color: var(--accent);
+      }
+
+      .card p {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .tags {
+        margin: 12px 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tag {
+        background: #ede9fe;
+        color: #4c1d95;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 0.75rem;
+      }
+
+      .actions {
+        margin-top: 16px;
+        display: flex;
+        gap: 12px;
+      }
+
+      .btn {
+        flex: 1;
+        padding: 12px;
+        border-radius: 14px;
+        border: none;
+        cursor: pointer;
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: white;
+      }
+
+      .btn-whatsapp {
+        background: var(--whatsapp-green);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 24px 16px;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      .cta {
+        margin: 24px auto 0;
+        max-width: 600px;
+        background: var(--card-glass);
+        border: 1px solid var(--card-border);
+        border-radius: var(--radius);
+        padding: 20px;
+        text-align: center;
+      }
+
+      .cta h2 {
+        margin-top: 0;
+        color: var(--accent);
+      }
+
+      .cta a {
+        display: inline-block;
+        margin-top: 12px;
+        background: var(--whatsapp-green);
+        color: #fff;
+        padding: 14px 22px;
+        border-radius: 16px;
+        text-decoration: none;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Kenya.svg"
+          alt="Kenyan Flag"
+          style="width: 36px; vertical-align: middle; margin-right: 8px"
+        />
+        Kenyan Singles in Qatar
+      </h1>
+
+      <p>Meet genuine singles living and working in Qatar 🇶🇦</p>
+    </header>
+
+    <section class="container">
+      <div class="card">
+        <h3>Ahmed · 32</h3>
+        <p>
+          Engineer based in Doha. Enjoys travel, fitness, and meaningful
+          conversations.
+        </p>
+        <div class="tags">
+          <span class="tag">Doha</span>
+          <span class="tag">Professional</span>
+          <span class="tag">Marriage-minded</span>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary">View Profile</button>
+          <a class="btn btn-whatsapp" href="#">whatsapp</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Fatima · 28</h3>
+        <p>
+          Healthcare worker. Loves reading, long walks, and family-oriented
+          values.
+        </p>
+        <div class="tags">
+          <span class="tag">Al Wakrah</span>
+          <span class="tag">Faith-based</span>
+          <span class="tag">Serious</span>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary">View Profile</button>
+          <a class="btn btn-whatsapp" href="#">whatsapp</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Daniel · 35</h3>
+        <p>
+          IT specialist. Calm, ambitious, and ready to settle with the right
+          partner.
+        </p>
+        <div class="tags">
+          <span class="tag">Lusail</span>
+          <span class="tag">Expat</span>
+          <span class="tag">Long-term</span>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary">View Profile</button>
+          <a class="btn btn-whatsapp" href="#">whatsapp</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="cta">
+      <h2>Join Our Free Qatar WhatsApp Singles Group</h2>
+      <p>
+        Chat, connect, and build meaningful relationships with singles in Qatar.
+      </p>
+      <a href="#">Join via WhatsApp</a>
+    </div>
+
+    <footer>
+      © 2025 Qatar Singles Connect · Respectful · Private · Community-focused
+    </footer>
+  </body>
+</html>
