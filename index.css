@@ -229,13 +229,11 @@ left: 0;
         height: 56px;
         width: 56px;
         border-radius: 12px;
-        background: white;
         display: grid;
         place-items: center;
         color: white;
         font-weight: 700;
         font-size: 22px;
-        box-shadow: 0 6px 20px rgba(99, 66, 255, 0.18);
          text-align: center; /* centers the image horizontally */
          margin: 20px 0; /* adds vertical spacing */
       }
