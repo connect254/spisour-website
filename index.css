@@ -1,7 +1,7 @@
 
      :root {
-  --bg: #e2e5e9;
-  --accent: #6b46c1;
+  --bg: orangered;
+  --accent: orangered;
   --muted: #6b6b7a;
   --whatsapp-green: #25d366;
   --radius: 16px;
@@ -34,13 +34,13 @@ padding: 40px 16px;
 box-sizing: border-box;
 margin: 0;
 font-family: Arial, sans-serif;
-background: #e2e5e9;
+background: orangered;
  }
 /* Top bar */
 .topbar {
 height: 55px;
-background: #e2e5e9;;
-color: #6b46c1;
+background: orangered;
+color: white;
 display: flex;
 align-items: center;
 padding: 0 15px;
@@ -56,7 +56,7 @@ padding: 0 15px;
 .menu-icon div {
   width: 100%;
   height: 4px;
-  background: #6b46c1;
+  background: white;
   margin: 5px 0;
   border-radius: 2px;
 }
@@ -237,7 +237,7 @@ left: 0;
          text-align: center; /* centers the image horizontally */
          margin: 20px 0; /* adds vertical spacing */
       }
-
+        
 
 .logo img {
   width: 60px; /* adjust size as needed */
@@ -294,11 +294,16 @@ left: 0;
         transform: translateY(-2px);
       }
 
-      .btn-primary {
-       background: #e2e5e9;
-        color: #6b46c1;
-         padding: 0px 4px;
-      }
+.btn-primary {
+  background: #007bff;   /* blue */
+  color: white;          /* text color */
+  padding: 6px 12px;
+  border: none;
+}
+
+
+
+
       .btn-login {
         background: #e2e5e9;
         color: #6b46c1;
@@ -369,7 +374,7 @@ left: 0;
       
 
       .footer {
-        background: rgba(255, 255, 255, 0.2);
+        background: white;
         backdrop-filter: blur(8px);
         text-align: center;
         padding: 20px;
@@ -655,5 +660,20 @@ left: 0;
         min-width: 260px; /* IMPORTANT for sliding */
       }
     
+.add-btn {
+  display: inline-block;
+  background: #87cefa; /* light blue */
+  padding: 12px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  animation: blinkText 1s infinite;
+}
 
+/* Red blinking text */
+@keyframes blinkText {
+  0%   { color: red; }
+  50%  { color: transparent; }
+  100% { color: red; }
+}
       
