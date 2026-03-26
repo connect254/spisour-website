@@ -79,12 +79,46 @@
         
         </p>
           <br>
-
-       
+            <p style="color: white;"><strong>The counties- Find singles by location and age</strong></p>
+          
   <ul class="counties" id="countiesList">
     <!-- JS will populate this list -->
   </ul>
+  <br>
+  <button class="mybtn"><p style="color: white;"><strong>Advanced search:</strong></p></button>
+     <p style="color: white;">Request to Access singles based on the following criteria { a fee of 500/- will apply}</p>
+  
+ <ul>
+<li><label><input type="checkbox">singles by Career/JOB/cadre</label></li>
+<li><label><input type="checkbox">singles by level of Education/background</label></li>
+<li><label><input type="checkbox">singles by tribe</label></li>
+<li><label><input type="checkbox">singles Outside Kenya</label></li>
+<li><label><input type="checkbox">singles With own house </label></li>
+<li><label><input type="checkbox">singles With own car </label></li>
+<li><label><input type="checkbox">singles With rental properties </label></li>
+<li><label><input type="checkbox">singles With own land </label></li>
+<li><label><input type="checkbox">singles With own businesses </label></li>
+<li><label><input type="checkbox">singles on permanent employment basis</label></li>
+<li><label><input type="checkbox">singles in civil service </label></li>
+<li><label><input type="checkbox">singles near you </label></li>
+<li><label><input type="checkbox">singles by preference </label></li>
+<li><label><input type="checkbox">singles by age groups </label></li>
+ 
+        <p>
+         <a href="https://wa.me/254713943315" target="_blank" class="mybtn">
+  Request to access now
+</a>
+        
+        </p>
 
+
+
+
+ </ul>
+  
+  <div>
+          </div>
+ 
    </div></div>
 
       </section>
@@ -214,20 +248,65 @@ document.querySelector(".location-btn").addEventListener("click", openMenu);
 
  <script>
 const pageRanges = [
-  "Singles list 1", 
-  "Singles list 2",
-  "Singles list 3",
-  "Singles list 4",
-  "Singles list 5"
+"001 - Mombasa singles",
+"002 - Kwale singles",
+"003 - Kilifi singles",
+"004 - Tana River singles",
+"005 - Lamu singles",
+"006 - Taita-Taveta singles",
+"007 - Garissa singles",
+"008 - Wajir singles",
+"009 - Mandera singles",
+"010 - Marsabit singles",
+"011 - Isiolo singles",
+"012 - Meru singles",
+"013 - Tharaka-Nithi singles",
+"014 - Embu singles",
+"015 - Kitui singles",
+"016 - Machakos singles",
+"017 - Makueni singles",
+"018 - Nyandarua singles",
+"019 - Nyeri singles",
+"020 - Kirinyaga singles",
+"021 - Murang’a singles",
+"022 - Kiambu singles",
+"023 - Turkana singles",
+"024 - West Pokot singles",
+"025 - Samburu singles",
+"026 - Trans Nzoia singles",
+"027 - Uasin Gishu singles",
+"028 - Elgeyo-Marakwet singles",
+"029 - Nandi singles",
+"030 - Baringo singles",
+"031 - Laikipia singles",
+"032 - Nakuru singles",
+"033 - Narok singles",
+"034 - Kajiado singles",
+"035 - Kericho singles",
+"036 - Bomet singles",
+"037 - Kakamega singles",
+"038 - Vihiga singles",
+"039 - Bungoma singles",
+"040 - Busia singles",
+"041 - Siaya singles",
+"042 - Kisumu singles",
+"043 - Homa Bay singles",
+"044 - Migori singles",
+"045 - Kisii singles",
+"046 - Nyamira singles",
+"047 - Nairobi singles"
 ];
 
 
 // Target the <ul> where the items will go
 const list = document.getElementById('countiesList');
 
-// Convert range text to a safe filename (like page-1-200.html)
 function rangeToFilename(range) {
-  return range.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '') + '.html';
+  return range
+    .toLowerCase()
+    .replace(/ - /g, '-')   // replace " - " with single dash
+    .replace(/\s+/g, '-')   // replace spaces
+    .replace(/[^a-z0-9\-]/g, '') + '.html';
 }
 
 // Populate the <ul>
@@ -235,8 +314,9 @@ pageRanges.forEach(range => {
   const li = document.createElement('li');
   const a = document.createElement('a');
   a.className = "county-link";
-  a.href = rangeToFilename(range); // fallback link
-  a.setAttribute('data-file', rangeToFilename(range));
+
+ a.href = range + ".html";
+a.setAttribute('data-file', range + ".html");
   a.textContent = range;
 
   a.addEventListener('click', function(e){
