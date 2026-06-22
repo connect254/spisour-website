@@ -1,340 +1,169 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Singles planet</title>
 
+    <title>The Singles Planet</title>
     <link rel="stylesheet" href="index.css" />
   </head>
+
   <body>
-    <!-- Top Bar with Hamburger Menu -->
     <div class="topbar">
       <div class="menu-icon" onclick="openMenu()">
         <div></div>
         <div></div>
         <div></div>
       </div>
-      <h4 class="jupiter"> THE SINGLES PLANET ✨</h4>
+
+      <h4 class="jupiter">THE SINGLES PLANET ✨</h4>
     </div>
-      
-    <!-- Sliding Sidebar -->
+
     <div id="sidebar" class="sidebar">
       <div class="sidebar-header">
         <h2>NAVIGATION</h2>
+
         <button class="close-btn" onclick="closeMenu()">✕</button>
       </div>
+
       <ul class="menu-list">
-        <li class="special-header">✨Testimonies</li>
-<li class="special-item"><a href="testimony.html" target="_blank">✍️ Feed back history</a><span class="badge" id="feedCount">102</span></li>
- <li class="special-header">✨Get posted</li>
-<li class="special-item"><a href="testimony.html" target="_blank">✍️ posting fee ksh. 200/-</a><span class="badge" id="feedCount">1</span></li>
-<li class="special-header">✨contact us</li>
-<li class="special-item"><a href="update.html" target="_blank">call/whatsapp: 0736167326</a><span class="badge" id="updateCount">1</span></li>
-<li class="special-header">✨Social media</li>
-<li class="special-item"><a href="update.html" target="_blank">🅕 fb</a><span class="badge" id="updateCount">1</span></li>
-<li class="special-item"><a href="update.html" target="_blank">🅣 tiktok</a><span class="badge" id="updateCount">1</span></li>
-<li class="special-item"><a href="update.html" target="_blank">🅧 tweeter(x)</a><span class="badge" id="updateCount">1</span></li>
-   
-</ul>
-      
+        <li class="special-header">✨ Join whatsapp group</li>
+
+        <li>
+          <a href="testimony.html" target="_blank">✨ FREE to join</a>
+
+          <span class="badge">102</span>
+        </li>
+
+        <li class="special-header">✨ Join Telegram group</li>
+
+        <li>
+          <a href="testimony.html" target="_blank"> ✍️ FREE to join </a>
+
+          <span class="badge">1</span>
+        </li>
+
+        <li class="special-header">✨ Contact us</li>
+
+        <li>
+          <a href="update.html" target="_blank">
+            Call / WhatsApp: 0713 943 315
+          </a>
+        </li>
+
+        <li class="special-header">✨ Singles activities</li>
+
+        <li><a href="update.html">Workshops (business, tech, crafts)</a></li>
+        <li><a href="update.html">Hiking and nature walks</a></li>
+        <li><a href="update.html">Photography walks</a></li>
+        <li><a href="update.html">Visiting parks</a></li>
+        <li><a href="update.html">Team sports</a></li>
+      </ul>
     </div>
 
-    <!-- Dark Background -->
     <div id="overlay" class="overlay" onclick="closeMenu()"></div>
 
-    <script src="script.js"></script>
-    <div class="wrap" role="main">
-
+    <div class="wrap">
       <header>
         <div class="brand">
-          <div class="logo"> <img
-          src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Kenya.svg"
-          alt="Kenyan Flag"
-          style="width: 36px; vertical-align: middle; margin-right: 8px"
-        /></div>
+          <div class="logo">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Kenya.svg"
+              alt="Kenyan Flag"
+            />
+          </div>
+
           <div>
-            <h1 style="color: white">Your bridge to the future spouse</h1>
+            <h1>Kenyas #No.1 best dating site</h1>
           </div>
         </div>
-            <div class="cta" aria-hidden="false">
-          <button class="btn btn-primary" id="joinBtn">
-  Register now
-</button>
-         
+
+        <div class="cta">
+          <button class="btn btn-primary" id="joinBtn">Register now</button>
         </div>
-    </header>
-      <p style="color: white;">How it works</p>
-       
-        <ol>~Click register</ol>
-        <ol>~Click "add me to singles list"</ol>
-        <ol>~A fee of 100/- is required to put your details on the website</ol>
-        
-        
-        
-        <p>
-         <a href="https://wa.me/254713943315" target="_blank" class="add-btn">
-  Add me to singles list
-</a>
-        
-        </p>
-          <br>
-            <p style="color: white;"><strong>The counties- Find singles by location and age</strong></p>
-          
-  <ul class="counties" id="countiesList">
-    <!-- JS will populate this list -->
-  </ul>
-  <br>
-  <button class="mybtn"><p style="color: white;"><strong>Advanced search:</strong></p></button>
-     <p style="color: white;">Request to Access singles based on the following criteria { a fee of 500/- will apply}</p>
-  
- <ul>
-<li><label><input type="checkbox">singles by Career/JOB/cadre</label></li>
-<li><label><input type="checkbox">singles by level of Education/background</label></li>
-<li><label><input type="checkbox">singles by tribe</label></li>
-<li><label><input type="checkbox">singles Outside Kenya</label></li>
-<li><label><input type="checkbox">singles With own house </label></li>
-<li><label><input type="checkbox">singles With own car </label></li>
-<li><label><input type="checkbox">singles With rental properties </label></li>
-<li><label><input type="checkbox">singles With own land </label></li>
-<li><label><input type="checkbox">singles With own businesses </label></li>
-<li><label><input type="checkbox">singles on permanent employment basis</label></li>
-<li><label><input type="checkbox">singles in civil service </label></li>
-<li><label><input type="checkbox">singles near you </label></li>
-<li><label><input type="checkbox">singles by preference </label></li>
-<li><label><input type="checkbox">singles by age groups </label></li>
- 
-        <p>
-         <a href="https://wa.me/254713943315" target="_blank" class="mybtn">
-  Request to access now
-</a>
-        
-        </p>
+      </header>
 
+      <br />
 
+      <p class="white">How it works</p>
 
+      <ul class="white">
+        <li>✨ Click Register to get added to our database — IT'S FREE</li>
 
- </ul>
-  
-  <div>
-          </div>
- 
-   </div></div>
+        <li>✨ Join our WhatsApp group (Optional)</li>
+      </ul>
 
-      </section>
+      <br />
+
+      <p>
+        <a href="https://wa.me/254713943315" target="_blank" class="add-btn">
+          CHAT SYSTEM ADMIN
+        </a>
+      </p>
+
+      <br />
+
+      <p class="white">
+        <strong>SEARCH SINGLES</strong>
+      </p>
+
+      <br />
+
+      <p>
+        <a href="singlemen.html" class="btn"> SINGLE MEN </a>
+      </p>
+
+      <p>
+        <a href="singlewomen.html" class="btn"> SINGLE WOMEN </a>
+      </p>
+
       <footer class="footer">
         <p>© 2026 The Singles Planet admin. All Rights Reserved.</p>
+
+        <br />
+
         <p>
-          Designed by <strong>The Singles Planet admin</strong> |
-          <a href="mailto:marriagestar@gmail.com">Email Me</a> |
-          <a href="https://wa.me/254736167326" target="_blank">WhatsApp</a>
+          Designed by
+          <strong>The Singles Planet admin</strong>
+
+          |
+
+          <a href="mailto:marriagestar@gmail.com"> Email Me </a>
+
+          |
+
+          <a href="https://wa.me/254736167326" target="_blank"> WhatsApp </a>
         </p>
       </footer>
     </div>
 
     <script>
+      const googleFormUrl = "https://forms.gle/r4Vp8jqYyeMYQZhy9";
+
       function openMenu() {
         document.getElementById("sidebar").classList.add("open");
+
         document.getElementById("overlay").classList.add("show");
       }
 
       function closeMenu() {
         document.getElementById("sidebar").classList.remove("open");
+
         document.getElementById("overlay").classList.remove("show");
       }
-    </script>
-
-    <script>
-      const googleFormUrl = "https://forms.gle/r4Vp8jqYyeMYQZhy9"; // replace with your form link
 
       document.getElementById("joinBtn").addEventListener("click", () => {
         window.open(googleFormUrl, "_blank");
       });
 
-      document
-        .getElementById("genderFilter")
-        .addEventListener("change", () => {});
+      window.addEventListener("DOMContentLoaded", () => {
+        const params = new URLSearchParams(window.location.search);
 
-      document.getElementById("ageFilter").addEventListener("change", () => {});
-      
-
-      document.getElementById("locationFilter").addEventListener("change", () => {});
-     
-
-      document.getElementById("nearbyBtn").addEventListener("click", () => {});
-
-      document.getElementById("loginBtn").addEventListener("click", () => {
-        openMenu();
+        if (params.get("sidebar") === "open") {
+          openMenu();
+        }
       });
     </script>
-    <script>
-    // Example dynamic counters
-document.getElementById("openDatesCount").textContent = 3677;
-document.getElementById("askAdminCount").textContent = 11670;
-document.getElementById("browseCount").textContent = 15098;
-document.getElementById("chatCount").textContent = 31;
-document.getElementById("diasporaCount").textContent = 12117;
-document.getElementById("bemydateCount").textContent = 7;
-document.getElementById("speedCount").textContent = 7;
-document.getElementById("sponsorCount").textContent = 1120;
-document.getElementById("permCount").textContent = 4;
-</script>
-
-    
-<script>
-window.onload = function () {}
-  // Read URL parameters
-  const params = new URLSearchParams(window.location.search);
-
-  // If openMenu=true → automatically open your navigation
-  if (params.get("openMenu") === "true") {
-    if (typeof openNav === "function") {
-      openNav(); // call your existing function that opens the slide menu
-    }
-  }
-</script>
-
-<script>
-function openNav() {
-  document.getElementById("sidebar").classList.add("open");
-}
-</script>
-<script>
-  function openMenu() {
-    document.getElementById("sidebar").classList.add("open");
-    document.getElementById("overlay").classList.add("show");
-  }
-
-  function closeMenu() {
-    document.getElementById("sidebar").classList.remove("open");
-    document.getElementById("overlay").classList.remove("show");
-  }
-
-  // Check URL for sidebar parameter
-  window.addEventListener("DOMContentLoaded", () => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("sidebar") === "open") {
-      openMenu();
-    }
-  });
-</script>
-    <script>
-
-      function openMenu() {
-  document.getElementById("sidebar").classList.add("open");
-  document.getElementById("overlay").classList.add("show");
-}
-
-function closeMenu() {
-  document.getElementById("sidebar").classList.remove("open");
-  document.getElementById("overlay").classList.remove("show");
-}
-
-// Make all filters open the sidebar
-document.getElementById("genderFilter").addEventListener("change", openMenu);
-document.getElementById("ageFilter").addEventListener("change", openMenu);
-document.getElementById("locationFilter").addEventListener("change", openMenu);
-
-document.getElementById("nearbyBtn").addEventListener("click", openMenu);
-
-// Also for the three extra buttons below the filters
-document.querySelector(".gender-btn").addEventListener("click", openMenu);
-document.querySelector(".age-btn").addEventListener("click", openMenu);
-document.querySelector(".location-btn").addEventListener("click", openMenu);
-
-    </script>
-    
-  
-
- <script>
-const pageRanges = [
-"001 - Mombasa singles",
-"002 - Kwale singles",
-"003 - Kilifi singles",
-"004 - Tana River singles",
-"005 - Lamu singles",
-"006 - Taita-Taveta singles",
-"007 - Garissa singles",
-"008 - Wajir singles",
-"009 - Mandera singles",
-"010 - Marsabit singles",
-"011 - Isiolo singles",
-"012 - Meru singles",
-"013 - Tharaka-Nithi singles",
-"014 - Embu singles",
-"015 - Kitui singles",
-"016 - Machakos singles",
-"017 - Makueni singles",
-"018 - Nyandarua singles",
-"019 - Nyeri singles",
-"020 - Kirinyaga singles",
-"021 - Murang’a singles",
-"022 - Kiambu singles",
-"023 - Turkana singles",
-"024 - West Pokot singles",
-"025 - Samburu singles",
-"026 - Trans Nzoia singles",
-"027 - Uasin Gishu singles",
-"028 - Elgeyo-Marakwet singles",
-"029 - Nandi singles",
-"030 - Baringo singles",
-"031 - Laikipia singles",
-"032 - Nakuru singles",
-"033 - Narok singles",
-"034 - Kajiado singles",
-"035 - Kericho singles",
-"036 - Bomet singles",
-"037 - Kakamega singles",
-"038 - Vihiga singles",
-"039 - Bungoma singles",
-"040 - Busia singles",
-"041 - Siaya singles",
-"042 - Kisumu singles",
-"043 - Homa Bay singles",
-"044 - Migori singles",
-"045 - Kisii singles",
-"046 - Nyamira singles",
-"047 - Nairobi singles"
-];
-
-
-// Target the <ul> where the items will go
-const list = document.getElementById('countiesList');
-
-function rangeToFilename(range) {
-  return range
-    .toLowerCase()
-    .replace(/ - /g, '-')   // replace " - " with single dash
-    .replace(/\s+/g, '-')   // replace spaces
-    .replace(/[^a-z0-9\-]/g, '') + '.html';
-}
-
-// Populate the <ul>
-pageRanges.forEach(range => {
-  const li = document.createElement('li');
-  const a = document.createElement('a');
-  a.className = "county-link";
-
- a.href = range + ".html";
-a.setAttribute('data-file', range + ".html");
-  a.textContent = range;
-
-  a.addEventListener('click', function(e){
-    e.preventDefault();
-    const file = this.getAttribute('data-file');
-    window.location.href = file; // navigate to the page
-  });
-
-  li.appendChild(a);
-  list.appendChild(li);
-});
-</script>
-
-
   </body>
 </html>
-
-       
-
-
-
+```
