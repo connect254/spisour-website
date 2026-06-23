@@ -166,7 +166,7 @@
       }
 
       h1 {
-        color: white;
+        color: black;
       }
 
       .btn,
@@ -230,6 +230,15 @@
         color: #007bff;
         text-decoration: none;
       }
+      .fb-invite{
+background:#1877f2;
+color:white;
+padding:12px 20px;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+display:inline-block;
+}
 
       @media (max-width: 768px) {
         body {
