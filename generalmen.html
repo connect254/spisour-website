@@ -25,6 +25,22 @@
         text-decoration: none;
         border-radius: 10px;
       }
+      .blink-btn {
+        background: #6b46c1;
+        animation: blinkRed 1s infinite;
+      }
+
+      @keyframes blinkRed {
+        0%,
+        100% {
+          background: #6b46c1;
+          transform: scale(1);
+        }
+        50% {
+          background: red;
+          transform: scale(1.08);
+        }
+      }
     </style>
   </head>
 
@@ -32,7 +48,10 @@
     <h1>General Dates</h1>
 
     <p>Explore public dating opportunities and meet people.</p>
-
+    <a href="fastlanefinal/membership.pdf" target="_blank" class="blink-btn">
+      View all singles on public dating
+    </a>
+    <br />
     <a href="index.html">Back Home</a>
   </body>
 </html>
