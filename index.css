@@ -230,15 +230,7 @@
         color: #007bff;
         text-decoration: none;
       }
-      .fb-invite{
-background:#1877f2;
-color:white;
-padding:12px 20px;
-text-decoration:none;
-border-radius:8px;
-font-weight:bold;
-display:inline-block;
-}
+ 
 
       @media (max-width: 768px) {
         body {
@@ -262,4 +254,18 @@ display:inline-block;
           font-size: 13px;
         }
       }
-    
+.whatsapp-invite{
+  display:inline-block;
+  background:#25D366;
+  color:white;
+  padding:14px 24px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+  font-size:16px;
+  transition:0.3s;
+}
+
+.whatsapp-invite:hover{
+  transform:scale(1.05);
+}
