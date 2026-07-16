@@ -179,8 +179,8 @@
         font-weight: bold;
         text-decoration: none;
         transition: 0.2s;
-        background: #6b46c1;
-        color: white;
+        background: white;
+        color: red;
         font-size: 18px;
         margin: 10px;
       }
@@ -192,11 +192,11 @@
       }
 
       .btn-primary {
-        background: #007bff;
+        background: white;
       }
 
       .add-btn {
-        background: skyblue;
+        background: white;
         animation: blink 1s infinite;
       }
 
@@ -268,4 +268,113 @@
 
 .whatsapp-invite:hover{
   transform:scale(1.05);
+}
+#joinBtn{
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse{
+    0%{
+        background: blue;
+        transform:scale(1);
+    }
+
+    50%{
+        background:blue;
+        transform:scale(1.08);
+    }
+
+    100%{
+        background: white;
+        transform:scale(1);
+    }
+}
+.members-section{
+    max-width:1000px;
+    margin:20px auto;
+    padding:0 10px;
+}
+
+.members-section h3{
+    text-align:center;
+    color:#6b46c1;
+    margin-bottom:15px;
+}
+
+.table-container{
+    overflow-x:auto;
+}
+
+.members-table{
+    width:100%;
+    border-collapse:collapse;
+    background:transparent;
+}
+
+.members-table thead
+    .members-table thead{
+    display:table-header-group;
+}
+
+
+.members-table td{
+    padding:14px 10px;
+    border:none;
+    border-bottom:1px solid #dddddd; /* Thin separator line */
+    background:transparent;
+    color:#333;
+}
+
+.members-table tr:last-child td{
+    border-bottom:none;
+}
+
+.members-table tr:hover{
+    background:rgba(107,70,193,0.04);
+}
+
+.chat-btn{
+    display:inline-block;
+    padding:6px 14px;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    border-radius:20px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.chat-btn:hover{
+    background:#128C7E;
+}
+.members-table th{
+    
+    color:#fff;
+    padding:12px;
+    text-align:left;
+    font-weight:bold;
+    position:sticky;
+    top:0;
+}
+
+.members-table td{
+    padding:10px;
+    border-bottom:1px solid #ddd;
+}
+.next-page-btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:14px 28px;
+    background:#1565C0;
+    color:#fff;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:16px;
+    border-radius:30px;
+    transition:0.3s ease;
+}
+
+.next-page-btn:hover{
+    background:#0D47A1;
+    transform:translateY(-2px);
 }
